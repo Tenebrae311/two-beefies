@@ -114,26 +114,20 @@ def parse_image(
     """Call Nemotron Parse and return extracted text plus raw API response."""
     payload = {
         "model": model,
+        "tools": [
+            {"type": "function", "function": {"name": "markdown_bbox"}}
+        ],
         "messages": [
             {
                 "role": "user",
                 "content": [
                     {
-                        "type": "text",
-                        "text": (
-                            "Extract all readable text from this document image. "
-                            "Preserve reading order and line breaks. Return only "
-                            "the extracted text; do not summarize."
-                        ),
-                    },
-                    {
                         "type": "image_url",
                         "image_url": {"url": image_data_uri},
-                    },
+                    }
                 ],
             }
         ],
-        "max_tokens": 8192,
         "temperature": 0.0,
         "stream": False,
     }
