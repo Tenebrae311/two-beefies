@@ -1,4 +1,4 @@
-"""Validated passage embeddings from the same Nemotron NIM used for retrieval."""
+"""Validated document embeddings from the same Nemotron model service used for retrieval."""
 
 import math
 import time
@@ -23,9 +23,10 @@ def embed_passages(texts: list[str], *, url: str, model: str, api_key: str = "",
         batch = texts[start:start + batch_size]
         for attempt in range(3):
             try:
+                # Organizers' model service: input_type is "query" or "document"; unknown
+                # fields (modality, truncate, ...) are rejected with 422.
                 response = requests.post(url, headers=headers, json={
-                    "model": model, "input": batch, "input_type": "passage",
-                    "modality": "text", "encoding_format": "float", "truncate": "END",
+                    "model": model, "input": batch, "input_type": "document",
                 }, timeout=timeout)
                 if response.status_code == 429 or response.status_code >= 500:
                     response.raise_for_status()

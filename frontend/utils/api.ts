@@ -1,4 +1,6 @@
-import type { AskResponse, Citation, DebateEvent } from "./types";
+import { normalizeEvidence } from "./evidence";
+import type { AskResponse, CaseMetrics, CaseRecord, CaseSummary, Citation, DebateEvent, TraceStep } from "./types";
+import { normalizeVision } from "./vision";
 
 /** Direct backend URL — used for the SSE stream (Next rewrites may buffer SSE). */
 export const BACKEND_URL = (process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000").replace(/\/$/, "");
@@ -32,7 +34,27 @@ export async function loadMockDebate(): Promise<DebateEvent[]> {
 
 export async function loadMockAsk(): Promise<AskResponse> {
   const res = await fetch("/mock-ask.json");
-  return (await res.json()) as AskResponse;
+  return normalizeAsk((await res.json()) as Partial<AskResponse>);
+}
+
+function normalizeTrace(trace: Partial<TraceStep>[] | undefined): TraceStep[] {
+  return (trace ?? []).map((t) => ({
+    name: String(t.name ?? "tool"),
+    args: t.args ?? {},
+    n_hits: typeof t.n_hits === "number" ? t.n_hits : undefined,
+    cite_ids: Array.isArray(t.cite_ids) ? t.cite_ids : undefined,
+    vision: normalizeVision(t.vision),
+  }));
+}
+
+function normalizeAsk(data: Partial<AskResponse>): AskResponse {
+  return {
+    answer: data.answer ?? "",
+    citations: data.citations ?? [],
+    unsupported: data.unsupported ?? [],
+    trace: normalizeTrace(data.trace),
+    evidence: normalizeEvidence(data.evidence),
+  };
 }
 
 /** POST /api/ask through the Next rewrite. Throws on network / 5xx so callers can fall back to mock. */
@@ -52,13 +74,80 @@ export async function askBackend(question: string, signal?: AbortSignal): Promis
     (err as Error & { status?: number }).status = res.status;
     throw err;
   }
-  const data = (await res.json()) as Partial<AskResponse>;
+  return normalizeAsk((await res.json()) as Partial<AskResponse>);
+}
+
+/* ------------------------------ documented cases ------------------------------ */
+
+export interface MockCases {
+  cases: CaseSummary[];
+  records: Record<string, CaseRecord>;
+}
+
+function normalizeMetrics(m: Partial<CaseMetrics> | undefined): CaseMetrics {
   return {
-    answer: data.answer ?? "",
-    citations: data.citations ?? [],
-    unsupported: data.unsupported ?? [],
-    trace: data.trace ?? [],
+    duration_s: Number(m?.duration_s ?? 0),
+    n_calls: Number(m?.n_calls ?? 0),
+    n_cited: Number(m?.n_cited ?? 0),
+    n_unsupported: Number(m?.n_unsupported ?? 0),
+    support: typeof m?.support === "number" ? m.support : null,
+    gold_page_found: typeof m?.gold_page_found === "boolean" ? m.gold_page_found : null,
+    n_vision_calls: typeof m?.n_vision_calls === "number" ? m.n_vision_calls : undefined,
+    n_weak_claims: typeof m?.n_weak_claims === "number" ? m.n_weak_claims : undefined,
+    suggested_stage: m?.suggested_stage ?? null,
   };
+}
+
+function normalizeCaseSummary(c: Partial<CaseSummary>): CaseSummary {
+  return {
+    slug: String(c.slug ?? ""),
+    question: c.question ?? "",
+    expectation: c.expectation ?? "",
+    annotation: c.annotation ?? null,
+    metrics: normalizeMetrics(c.metrics),
+  };
+}
+
+function normalizeCaseRecord(c: Partial<CaseRecord>): CaseRecord {
+  return {
+    ...normalizeCaseSummary(c),
+    answer: c.answer ?? "",
+    citations: c.citations ?? [],
+    unsupported: c.unsupported ?? [],
+    trace: normalizeTrace(c.trace),
+    evidence: normalizeEvidence(c.evidence),
+    ran_at: c.ran_at ?? "",
+    model: c.model ?? "",
+  };
+}
+
+let mockCasesCache: MockCases | null = null;
+export async function loadMockCases(): Promise<MockCases> {
+  if (mockCasesCache) return mockCasesCache;
+  const res = await fetch("/mock-cases.json");
+  const raw = (await res.json()) as { cases?: Partial<CaseSummary>[]; records?: Record<string, Partial<CaseRecord>> };
+  const cases = (raw.cases ?? []).map(normalizeCaseSummary);
+  const records: Record<string, CaseRecord> = {};
+  // per-slug records only carry the detail fields; question / metrics / annotation come from the summary
+  for (const [slug, r] of Object.entries(raw.records ?? {}))
+    records[slug] = normalizeCaseRecord({ ...cases.find((c) => c.slug === slug), slug, ...r });
+  mockCasesCache = { cases, records };
+  return mockCasesCache;
+}
+
+/** GET /api/cases through the Next rewrite. Throws on any failure so callers can fall back to mock. */
+export async function fetchCases(signal?: AbortSignal): Promise<CaseSummary[]> {
+  const res = await fetch("/api/cases", { signal });
+  if (!res.ok) throw new Error(`Backend responded ${res.status}`);
+  const data = (await res.json()) as unknown;
+  if (!Array.isArray(data)) throw new Error("Unexpected /api/cases payload");
+  return (data as Partial<CaseSummary>[]).map(normalizeCaseSummary);
+}
+
+export async function fetchCase(slug: string, signal?: AbortSignal): Promise<CaseRecord> {
+  const res = await fetch(`/api/cases/${encodeURIComponent(slug)}`, { signal });
+  if (!res.ok) throw new Error(`Backend responded ${res.status}`);
+  return normalizeCaseRecord((await res.json()) as Partial<CaseRecord>);
 }
 
 export async function fetchSource(citeId: string, signal?: AbortSignal): Promise<Citation | null> {

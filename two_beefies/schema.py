@@ -2,7 +2,7 @@
 
 Team 1 writes these tables; the agent only reads them. Columns marked optional may be
 null. `vector` dimension must match the embedding model used for both indexing
-(input_type="passage") and querying (input_type="query").
+(input_type="document") and querying (input_type="query").
 """
 
 from lancedb.pydantic import LanceModel, Vector

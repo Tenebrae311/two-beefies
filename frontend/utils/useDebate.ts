@@ -2,12 +2,16 @@
 
 import { useCallback, useEffect, useReducer, useRef } from "react";
 import { BACKEND_URL, loadMockDebate, sleep } from "./api";
-import type { Citation, DebateEvent, Role, Verdict } from "./types";
+import { normalizeEvidence } from "./evidence";
+import type { Citation, DebateEvent, Evidence, Role, Verdict, VisionResult } from "./types";
+import { normalizeVision } from "./vision";
 
 export interface ToolActivity {
   name: string;
   args: Record<string, unknown>;
   hits?: Citation[];
+  /** set for inspect_page_image / compare_images (Nemotron VL looked at the scan) */
+  vision?: VisionResult | null;
   done: boolean;
 }
 
@@ -20,6 +24,8 @@ export interface Turn {
   citations: Citation[];
   unsupported: string[];
   tools: ToolActivity[];
+  /** undefined = no evidence event yet; null = explicitly none */
+  evidence?: Evidence | null;
 }
 
 export type DebateStatus = "idle" | "connecting" | "running" | "done" | "error";
@@ -129,8 +135,9 @@ function reducer(state: DebateState, action: Action): DebateState {
         }
       }
       if (ti === -1) for (let k = tools.length - 1; k >= 0; k--) if (!tools[k].done) { ti = k; break; }
-      if (ti === -1) tools.push({ name: ev.name, args: {}, hits: ev.hits ?? [], done: true });
-      else tools[ti] = { ...tools[ti], hits: ev.hits ?? [], done: true };
+      const vision = normalizeVision(ev.vision);
+      if (ti === -1) tools.push({ name: ev.name, args: {}, hits: ev.hits ?? [], vision, done: true });
+      else tools[ti] = { ...tools[ti], hits: ev.hits ?? [], vision, done: true };
       turns[i] = { ...turns[i], tools };
       return { ...s, turns };
     }
@@ -151,10 +158,36 @@ function reducer(state: DebateState, action: Action): DebateState {
       };
       return { ...s, turns, lastRound: Math.max(s.lastRound, ev.round ?? 0) };
     }
+    case "evidence": {
+      // Arrives after the debater's turn_end: attach to that role's turn of the same round (else its latest turn).
+      let i = -1;
+      for (let k = turns.length - 1; k >= 0; k--) {
+        if (turns[k].role !== ev.role) continue;
+        if (i === -1) i = k;
+        if (turns[k].round === ev.round) {
+          i = k;
+          break;
+        }
+      }
+      if (i === -1) return s;
+      turns[i] = { ...turns[i], evidence: normalizeEvidence({ support: ev.support, claims: ev.claims }) };
+      return { ...s, turns };
+    }
     case "verdict":
       return {
         ...s,
-        verdict: { converged: !!ev.converged, points: ev.points ?? [], summary: ev.summary ?? "" },
+        verdict: {
+          converged: !!ev.converged,
+          points: ev.points ?? [],
+          summary: ev.summary ?? "",
+          evidence: ev.evidence
+            ? {
+                britannica: ev.evidence.britannica ?? null,
+                wikipedia: ev.evidence.wikipedia ?? null,
+                anachronisms: ev.evidence.anachronisms ?? [],
+              }
+            : null,
+        },
       };
     case "done":
       return { ...s, status: "done", turns: turns.map((t) => (t.finished ? t : { ...t, finished: true })) };
@@ -217,7 +250,10 @@ export function useDebate(onCitations: (c: Citation[] | undefined) => void) {
       const sawTokens: Partial<Record<string, boolean>> = {};
       for (const ev of events) {
         if (runId.current !== my) return;
-        await sleep(ev.type === "token" ? 40 : 300);
+        // vision tools and the reranker take visibly longer than a text search
+        await sleep(
+          ev.type === "token" ? 40 : ev.type === "tool_result" && ev.vision ? 1500 : ev.type === "evidence" ? 900 : 300,
+        );
         if (runId.current !== my) return;
         if (ev.type === "turn_start") sawTokens[ev.role] = false;
         if (ev.type === "token") sawTokens[ev.role] = true;

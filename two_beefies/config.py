@@ -16,25 +16,32 @@ NEBIUS_API_KEY = os.getenv("NEBIUS_API_KEY", "")
 NEBIUS_BASE_URL = os.getenv("NEBIUS_BASE_URL", "https://api.tokenfactory.nebius.com/v1")
 AGENT_MODEL = os.getenv("AGENT_MODEL", "nvidia/Nemotron-3.5-Super-VL")
 
-EMBED_URL = os.getenv("EMBED_URL", "").rstrip("/")
+# Organizers' model service (Docker recipe): Nemotron embed + rerank behind one base URL,
+# e.g. http://127.0.0.1:8000/v1 through an SSH tunnel to the GPU VM. EMBED_URL / NIM_API_KEY
+# are accepted as older names for the same settings.
+RETRIEVAL_BASE_URL = (os.getenv("RETRIEVAL_BASE_URL") or os.getenv("EMBED_URL", "")).rstrip("/")
+RETRIEVAL_API_KEY = os.getenv("RETRIEVAL_API_KEY") or os.getenv("NIM_API_KEY", "")
+EMBED_URL = RETRIEVAL_BASE_URL  # alias used by the ingestion scripts in src/
 EMBED_MODEL = os.getenv("EMBED_MODEL", "nvidia/llama-nemotron-embed-vl-1b-v2")
-RERANK_URL = os.getenv("RERANK_URL", "").rstrip("/")
 RERANK_MODEL = os.getenv("RERANK_MODEL", "nvidia/llama-nemotron-rerank-vl-1b-v2")
-NIM_API_KEY = os.getenv("NIM_API_KEY", "")
+RERANK = bool(RETRIEVAL_BASE_URL)  # rerank search results (and score evidence)
+
 
 def nim_api_key(url: str) -> str:
-    """Reuse the account key only for the official HTTPS Token Factory endpoint."""
-    if NIM_API_KEY:
-        return NIM_API_KEY
+    """Bearer token for the model service; the Nebius account key is only ever sent to
+    the official HTTPS Token Factory endpoint."""
+    if RETRIEVAL_API_KEY:
+        return RETRIEVAL_API_KEY
     parsed = urlparse(url)
     if parsed.scheme == "https" and parsed.hostname == "api.tokenfactory.nebius.com":
         return NEBIUS_API_KEY
     return ""
 
 
-NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "")  # hosted Nemotron Parse (team 1 script)
+# Nemotron Parse: organizers' endpoint (PARSE_API_URL / PARSE_URL), else NVIDIA's hosted one
 PARSE_URL = (os.getenv("PARSE_API_URL") or os.getenv("PARSE_URL", "")).rstrip("/")
-PARSE_MODEL = os.getenv("PARSE_MODEL", "nvidia/nemotron-parse")
+NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "")  # only for NVIDIA's hosted Parse
+PARSE_MODEL = os.getenv("PARSE_MODEL", "nvidia/nemotron-3.5-parse")
 PARSE_API_KEY = os.getenv("PARSE_API_KEY", "")
 
 # Britannica pages: the challenge dataset (2,573 page scans, editions 1-8)

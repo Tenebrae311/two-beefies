@@ -16,5 +16,8 @@ def check(text: str, retrieved: dict[str, dict]) -> tuple[list[dict], list[str]]
     """Return (citations backed by a retrieved source, cite ids never retrieved)."""
     backed, unsupported = [], []
     for cid in cited_ids(text):
-        (backed.append(retrieved[cid]) if cid in retrieved else unsupported.append(cid))
+        if cid in retrieved:
+            backed.append(retrieved[cid])
+        elif not any(r.startswith(cid + "-") for r in retrieved):  # page-level id "EB:1003"
+            unsupported.append(cid)
     return backed, unsupported

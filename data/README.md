@@ -1,12 +1,11 @@
 # Dataset
 
-Dieses Verzeichnis enthält keine Kopie der Parquet-Datei. Das Dataset wird bei Bedarf von Hugging Face geladen:
+This directory does not contain a copy of the Parquet file. The dataset is loaded from Hugging Face on demand:
 
-- Quelle: `NationalLibraryOfScotland/encyclopaedia_britannica_illustrated`
-- Lizenz laut Dataset Card: CC0 1.0
+- Source: `NationalLibraryOfScotland/encyclopaedia_britannica_illustrated`
+- License (per dataset card): CC0 1.0
 - Split: `train`
-- Umfang: 2.573 Bilder
-- Spalten: `image`, `label`, `id`, `meta`
-- Größe der Parquet-Datei: ca. 374 MB
+- Size: 2,573 page images (about 374 MB of Parquet)
+- Columns: `image`, `label` (`not-illustrated` / `illustrated`), `id` (volume id, shared by several pages), `meta` (volume title)
 
-Die Binärdaten werden absichtlich nicht in Git eingecheckt. `src/query_dataset.py` nutzt den Hugging-Face-Cache und kann im Streaming-Modus suchen, ohne das gesamte Dataset in den Arbeitsspeicher zu laden.
+The binary data is deliberately not checked into Git. `src/query_dataset.py` uses the Hugging Face cache and can search in streaming mode without loading the whole dataset into memory. Everything else in `data/` is local and gitignored.

@@ -7,6 +7,12 @@
   --parchment-deep: #e8d6ae;
   --ink: #3b2a1a;
   --sepia: #7a5230;
+  /* the two sides of the duel */
+  --eb-gold: #f0c070;
+  --eb-ember: #b4532a;
+  --wp-cyan: #38bdf8;
+  --wp-indigo: #818cf8;
+  --night: #0b0a10;
 }
 
 @theme inline {
@@ -23,9 +29,226 @@
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(1100px 700px at -10% 0%, rgba(201, 140, 60, 0.13), transparent 60%),
+    radial-gradient(1100px 700px at 110% 10%, rgba(56, 189, 248, 0.11), transparent 60%),
+    var(--background);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* film grain over everything, very faint */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------ hero: a duel across time ------------------------------ */
+
+.hero {
+  background: var(--night);
+}
+.hero-eb {
+  clip-path: polygon(0 0, 57% 0, 43% 100%, 0 100%);
+  background:
+    radial-gradient(ellipse at 20% 35%, rgba(214, 130, 50, 0.42), transparent 58%),
+    radial-gradient(ellipse at 45% 110%, rgba(180, 83, 42, 0.35), transparent 50%),
+    repeating-linear-gradient(115deg, rgba(240, 192, 112, 0.035) 0 1px, transparent 1px 7px),
+    linear-gradient(135deg, #2d170b 0%, #1a0e08 55%, #0f0a09 100%);
+}
+.hero-wp {
+  clip-path: polygon(57% 0, 100% 0, 100% 100%, 43% 100%);
+  background:
+    radial-gradient(ellipse at 85% 25%, rgba(56, 189, 248, 0.32), transparent 55%),
+    radial-gradient(ellipse at 60% 115%, rgba(129, 140, 248, 0.38), transparent 50%),
+    linear-gradient(rgba(148, 197, 255, 0.07) 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(90deg, rgba(148, 197, 255, 0.07) 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(225deg, #071a33 0%, #0a1024 55%, #0b0a10 100%);
+}
+.seam {
+  filter: drop-shadow(0 0 6px rgba(240, 192, 112, 0.8)) drop-shadow(0 0 14px rgba(56, 189, 248, 0.6));
+}
+
+.text-eb-gradient {
+  background: linear-gradient(180deg, #fff1cf 0%, #f0c070 45%, #b4532a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-wp-gradient {
+  background: linear-gradient(180deg, #f0f9ff 0%, #7dd3fc 45%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-duel-gradient {
+  background: linear-gradient(90deg, #9a3f17 0%, #b4632a 35%, #3b5bdb 70%, #0284c7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* the VS medallion: a spinning gold→cyan ring */
+.vs-ring {
+  background: conic-gradient(from 0deg, #f0c070, #b4532a, #818cf8, #38bdf8, #f0c070);
+  animation: spin 9s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* orrery planets + knowledge-graph nodes */
+.orbit {
+  transform-origin: 0 0;
+  animation: spin linear infinite;
+}
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
+}
+.node-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-pulse 3.2s ease-in-out infinite;
+}
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.edge-flow {
+  stroke-dasharray: 3 7;
+  animation: dash-flow 2.4s linear infinite;
+}
+
+/* a spark travelling along the edition timeline */
+@keyframes travel {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+.timeline-spark {
+  animation: travel 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* ------------------------------ buttons, frames, cards ------------------------------ */
+
+.btn-duel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(110deg, #7a2e12 0%, #b4532a 30%, #3b3fb0 65%, #0284c7 100%);
+  background-size: 180% 100%;
+  background-position: 0% 50%;
+  box-shadow:
+    -10px 12px 30px -14px rgba(180, 83, 42, 0.8),
+    10px 12px 30px -14px rgba(14, 165, 233, 0.8);
+  transition:
+    background-position 0.6s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.btn-duel:hover:not(:disabled) {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+}
+.btn-duel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: sheen 3.6s ease-in-out infinite;
+}
+@keyframes sheen {
+  0%,
+  55% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* gradient hairline border: gold on the left, cyan on the right */
+.duel-frame {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90deg, #d9a55a, #b4532a 30%, #64748b 50%, #6366f1 70%, #38bdf8) border-box;
+  box-shadow:
+    -24px 30px 70px -40px rgba(180, 83, 42, 0.55),
+    24px 30px 70px -40px rgba(14, 165, 233, 0.55);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 18px 50px -30px rgba(15, 23, 42, 0.35);
+}
+
+.scoreboard {
+  background:
+    radial-gradient(ellipse at 0% 50%, rgba(214, 130, 50, 0.28), transparent 60%),
+    radial-gradient(ellipse at 100% 50%, rgba(56, 189, 248, 0.24), transparent 60%),
+    #0c0b12;
+}
+
+/* a gold→cyan line along the top of a dark card */
+.top-glow {
+  position: relative;
+}
+.top-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0 1.5rem auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f0c070, #38bdf8, transparent);
+}
+
+/* sunburst rays behind the verdict */
+.rays {
+  background-image: repeating-conic-gradient(from 0deg at 85% 0%, rgba(255, 255, 255, 0.07) 0deg 4deg, transparent 4deg 12deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vs-ring,
+  .orbit,
+  .node-pulse,
+  .edge-flow,
+  .timeline-spark,
+  .btn-duel::after {
+    animation: none;
+  }
 }
 
 /* Parchment texture for the Britannica side */
@@ -44,13 +267,6 @@ body {
     linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
   background-size: 28px 28px;
-}
-
-.header-glow {
-  background:
-    radial-gradient(ellipse at 15% -20%, rgba(214, 160, 80, 0.35), transparent 55%),
-    radial-gradient(ellipse at 90% 120%, rgba(56, 189, 248, 0.22), transparent 55%),
-    linear-gradient(180deg, #14110f 0%, #1c1917 100%);
 }
 
 .drop-cap::first-letter {
@@ -150,4 +366,399 @@ body {
 
 .scrollbar-thin {
   scrollbar-width: thin;
+}
+
+/* =====================================================================================
+   "A duel across 250 years" — signature effects
+   ===================================================================================== */
+
+/* paper grain + foxing over the parchment surfaces (engraved-paper feel) */
+.parchment {
+  position: relative;
+  isolation: isolate;
+}
+.parchment::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.3 0 0 0 0 0.12 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+
+/* ---------- the time rift: a glowing seam between the eras ---------- */
+.rift {
+  background: linear-gradient(180deg, #f0c070, #b4532a, #a78bfa, #38bdf8, #818cf8, #f0c070);
+  background-size: 100% 300%;
+  animation: rift-flow 6s linear infinite;
+  box-shadow:
+    0 0 8px 1px rgba(240, 192, 112, 0.55),
+    0 0 22px 3px rgba(56, 189, 248, 0.35);
+}
+@keyframes rift-flow {
+  to {
+    background-position: 0 300%;
+  }
+}
+.rift-spark {
+  animation: rift-spark 5.5s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+@keyframes rift-spark {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* ---------- turns slide in from their own side of history ---------- */
+@keyframes in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px) rotate(-0.6deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes in-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-in-left {
+  animation: in-left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.animate-in-right {
+  animation: in-right 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* engraved-plate rule under the Britannica turn header */
+.engraved-rule {
+  height: 6px;
+  background:
+    linear-gradient(#7a2e12, #7a2e12) 0 1px / 100% 1px no-repeat,
+    linear-gradient(#7a2e12, #7a2e12) 0 4px / 100% 0.5px no-repeat;
+  opacity: 0.35;
+}
+
+/* ---------- tool calls: "searching the archives…" ---------- */
+.pill-live {
+  position: relative;
+  overflow: hidden;
+}
+.pill-live::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.65) 50%, transparent 80%);
+  transform: translateX(-100%);
+  animation: pill-sweep 1.4s ease-in-out infinite;
+}
+@keyframes pill-sweep {
+  to {
+    transform: translateX(100%);
+  }
+}
+.dots::after {
+  content: "…";
+  display: inline-block;
+  width: 1.1em;
+  text-align: left;
+  animation: dots 1.2s steps(4) infinite;
+  overflow: hidden;
+  vertical-align: bottom;
+  clip-path: inset(0 100% 0 0);
+}
+@keyframes dots {
+  to {
+    clip-path: inset(0 -10% 0 0);
+  }
+}
+
+/* ---------- anachronism: a temporal glitch ---------- */
+.glitch {
+  position: relative;
+  animation: glitch 4.2s steps(1) infinite;
+}
+@keyframes glitch {
+  0%,
+  78%,
+  100% {
+    text-shadow:
+      -0.6px 0 rgba(220, 38, 38, 0.35),
+      0.6px 0 rgba(14, 165, 233, 0.3);
+    transform: none;
+  }
+  80% {
+    text-shadow:
+      -3px 0 rgba(239, 68, 68, 0.85),
+      3px 0 rgba(6, 182, 212, 0.85);
+    transform: translateX(1.5px) skewX(-6deg);
+  }
+  82% {
+    text-shadow:
+      2px 0 rgba(239, 68, 68, 0.8),
+      -2px 0 rgba(6, 182, 212, 0.8);
+    transform: translateX(-2px);
+    clip-path: inset(10% 0 45% 0);
+  }
+  84% {
+    text-shadow:
+      -1.5px 0 rgba(239, 68, 68, 0.7),
+      1.5px 0 rgba(6, 182, 212, 0.7);
+    transform: translateX(1px) skewX(4deg);
+    clip-path: none;
+  }
+  86% {
+    text-shadow:
+      -0.6px 0 rgba(220, 38, 38, 0.35),
+      0.6px 0 rgba(14, 165, 233, 0.3);
+    transform: none;
+  }
+}
+.anachronism-row {
+  background:
+    repeating-linear-gradient(0deg, rgba(185, 28, 28, 0.05) 0 1px, transparent 1px 3px),
+    linear-gradient(100deg, #fee2e2 0%, #fff1f2 45%, #fef3c7 100%);
+  box-shadow:
+    0 0 0 1px rgba(220, 38, 38, 0.55),
+    0 8px 22px -12px rgba(220, 38, 38, 0.6);
+}
+.hourglass-flip {
+  animation: hourglass 3s ease-in-out infinite;
+}
+@keyframes hourglass {
+  0%,
+  40% {
+    transform: rotate(0deg);
+  }
+  55%,
+  90% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- fight-card intro ---------- */
+.fc-overlay {
+  animation: fc-out 2.1s ease-in both;
+}
+@keyframes fc-out {
+  0% {
+    opacity: 0;
+  }
+  8%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fc-left {
+  animation: fc-left 0.55s cubic-bezier(0.2, 0.9, 0.2, 1.05) 0.08s both;
+}
+.fc-right {
+  animation: fc-right 0.55s cubic-bezier(0.2, 0.9, 0.2, 1.05) 0.2s both;
+}
+@keyframes fc-left {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes fc-right {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+.fc-vs {
+  animation: fc-vs 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) 0.5s both;
+}
+@keyframes fc-vs {
+  from {
+    transform: scale(3) rotate(-30deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.fc-topic {
+  animation: fade-up 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) 0.75s both;
+}
+@media (max-width: 767px) {
+  @keyframes fc-left {
+    from {
+      transform: translateY(-110%);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @keyframes fc-right {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: none;
+    }
+  }
+}
+
+/* ---------- balance scale ---------- */
+.scale-move {
+  transition: transform 1.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.scale-sway {
+  animation: sway 3.2s ease-in-out infinite;
+}
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2.5deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+/* ---------- wax seal ---------- */
+.seal-stamp {
+  animation: seal-stamp 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.35s both;
+}
+@keyframes seal-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(2.6) rotate(-35deg);
+    filter: blur(3px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.9) rotate(-8deg);
+    filter: none;
+  }
+  100% {
+    transform: scale(1) rotate(-10deg);
+  }
+}
+.seal-ripple {
+  animation: seal-ripple 0.9s ease-out 0.75s both;
+}
+@keyframes seal-ripple {
+  from {
+    opacity: 0.7;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+/* ---------- rubber stamps & archival index cards (Cases) ---------- */
+.rubber-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  border: 2.5px solid currentColor;
+  border-radius: 6px;
+  padding: 0.12em 0.55em;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.35);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+.stamp-in {
+  animation: stamp-in 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3) 0.2s both;
+}
+@keyframes stamp-in {
+  from {
+    opacity: 0;
+    transform: scale(2.2) rotate(var(--stamp-rot, -8deg));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(var(--stamp-rot, -8deg));
+  }
+}
+.index-card {
+  background-color: #fdfaf2;
+  background-image:
+    linear-gradient(90deg, transparent 22px, rgba(220, 38, 38, 0.28) 22px, rgba(220, 38, 38, 0.28) 23px, transparent 23px),
+    repeating-linear-gradient(180deg, transparent 0 21px, rgba(59, 130, 246, 0.12) 21px 22px);
+  background-position: 0 0, 0 30px;
+}
+.manila {
+  background-color: #ead7ab;
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(255, 248, 225, 0.7), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(150, 105, 45, 0.22), transparent 60%);
+}
+.flow-dash {
+  stroke-dasharray: 4 5;
+  animation: dash-flow 1.6s linear infinite;
+}
+
+/* ---------- specimen magnifier ---------- */
+.lens {
+  box-shadow:
+    0 0 0 3px #3b2a1a,
+    0 0 0 5px #c9a46a,
+    0 14px 30px -8px rgba(0, 0, 0, 0.6),
+    inset 0 0 18px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* fight-card panels */
+.fc-eb {
+  background:
+    radial-gradient(ellipse at 70% 40%, rgba(214, 130, 50, 0.45), transparent 60%),
+    repeating-linear-gradient(115deg, rgba(240, 192, 112, 0.04) 0 1px, transparent 1px 7px),
+    linear-gradient(135deg, #2d170b 0%, #1a0e08 60%, #0f0a09 100%);
+}
+.fc-wp {
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(56, 189, 248, 0.35), transparent 60%),
+    linear-gradient(rgba(148, 197, 255, 0.08) 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(90deg, rgba(148, 197, 255, 0.08) 1px, transparent 1px) 0 0 / 34px 34px,
+    linear-gradient(225deg, #071a33 0%, #0a1024 60%, #0b0a10 100%);
 }

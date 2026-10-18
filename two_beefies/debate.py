@@ -10,7 +10,10 @@ import json
 import re
 import sys
 from collections.abc import Callable
+from datetime import datetime
+from pathlib import Path
 
+from two_beefies import config, evidence
 from two_beefies.agents import RoleAgent, TurnResult
 
 Emit = Callable[[dict], None]
@@ -44,7 +47,48 @@ def _turn(agent: RoleAgent, rnd: int, message: str, emit: Emit) -> TurnResult:
     return turn
 
 
+def _check_evidence(agent: RoleAgent, turn: TurnResult, rnd: int, emit: Emit,
+                    anachronisms: list[dict], supports: dict[str, list[float]]) -> str:
+    """Score the turn with the reranker; returns a note for the moderator's transcript."""
+    ev = evidence.score_turn(agent.role, turn.text, agent.retrieved)
+    if ev is None:  # no reranker configured: the UI shows "reranker offline"
+        emit({"type": "evidence", "role": agent.role, "round": rnd, "support": None,
+              "claims": []})
+        return ""
+    emit({"type": "evidence", "role": agent.role, "round": rnd} | ev)
+    if ev["support"] is not None:
+        supports[agent.role].append(ev["support"])
+    flagged = [c for c in ev["claims"] if c["flag"] in ("anachronism", "unsupported")]
+    for c in flagged:
+        if c["flag"] == "anachronism":
+            anachronisms.append({"round": rnd, "text": c["text"], "support": c["support"],
+                                 "modern_support": c["modern_support"]})
+    if not flagged:
+        return ""
+    lines = [f"- {c['flag'].upper()}: \"{c['text']}\" (own sources {c['support']}, "
+             f"Wikipedia {c['modern_support']})" for c in flagged]
+    return "[Reranker evidence check of this turn]\n" + "\n".join(lines)
+
+
+def _record_events(topic: str, emit: Emit) -> tuple[Emit, Path]:
+    """Also write every event to data/debates/ (replays for the demo, evidence for the docs)."""
+    out = config.ROOT / "data" / "debates"
+    out.mkdir(parents=True, exist_ok=True)
+    slug = re.sub(r"[^a-z0-9]+", "-", topic.lower()).strip("-")[:40]
+    path = out / f"{datetime.now():%Y%m%d-%H%M%S}-{slug}.jsonl"
+
+    def recording_emit(event: dict) -> None:
+        if event["type"] != "token":
+            with path.open("a") as f:
+                f.write(json.dumps(event, ensure_ascii=False, default=str) + "\n")
+        emit(event)
+    return recording_emit, path
+
+
 def run_debate(topic: str, emit: Emit, rounds: int = 3) -> dict:
+    emit, log_path = _record_events(topic, emit)
+    anachronisms: list[dict] = []
+    supports: dict[str, list[float]] = {"britannica": [], "wikipedia": []}
     eb = RoleAgent("britannica", emit)
     wp = RoleAgent("wikipedia", emit)
     mod = RoleAgent("moderator", emit)
@@ -61,6 +105,8 @@ def run_debate(topic: str, emit: Emit, rounds: int = 3) -> dict:
                    f"Respond: which points do you concede, which do you dispute, and why?")
         last_eb = _turn(eb, rnd, msg, emit)
         transcript.append(f"[Round {rnd}] BRITANNICA SCHOLAR:\n{last_eb.text}")
+        if note := _check_evidence(eb, last_eb, rnd, emit, anachronisms, supports):
+            transcript.append(note)
 
         intro = f"The debate topic is: {topic}.\n" if last_wp is None else ""
         msg = (f"{intro}The Britannica scholar said:\n\n{last_eb.text}\n\n"
@@ -68,8 +114,12 @@ def run_debate(topic: str, emit: Emit, rounds: int = 3) -> dict:
                f"different wording? Search first.")
         last_wp = _turn(wp, rnd, msg, emit)
         transcript.append(f"[Round {rnd}] WIKIPEDIA EDITOR:\n{last_wp.text}")
+        if note := _check_evidence(wp, last_wp, rnd, emit, anachronisms, supports):
+            transcript.append(note)
 
         emit({"type": "turn_start", "role": "moderator", "round": rnd})
+        # The moderator judges the debaters' evidence, so their retrievals count as backed.
+        mod.retrieved |= eb.retrieved | wp.retrieved
         mod_turn = mod.ask(
             f"Topic: {topic}\nRound {rnd} of at most {rounds}. Full transcript so far:\n\n"
             + "\n\n".join(transcript))
@@ -81,9 +131,13 @@ def run_debate(topic: str, emit: Emit, rounds: int = 3) -> dict:
         if verdict["converged"]:
             break
 
+    mean = lambda xs: round(sum(xs) / len(xs), 3) if xs else None  # noqa: E731
+    verdict["evidence"] = {"britannica": mean(supports["britannica"]),
+                           "wikipedia": mean(supports["wikipedia"]),
+                           "anachronisms": anachronisms}
     emit({"type": "verdict"} | verdict)
     emit({"type": "done"})
-    return {"topic": topic, "transcript": transcript, "verdict": verdict}
+    return {"topic": topic, "transcript": transcript, "verdict": verdict, "log": str(log_path)}
 
 
 def _print_event(e: dict) -> None:
@@ -96,6 +150,12 @@ def _print_event(e: dict) -> None:
         print(e["text"] if e["role"] != "moderator" else json.loads(e["text"])["summary"])
         if e.get("unsupported"):
             print(f"  !! unsupported citations: {e['unsupported']}")
+    elif t == "evidence":
+        print(f"  [evidence] mean support {e['support']}")
+        for c in e["claims"]:
+            if c["flag"] != "supported":
+                print(f"    {c['flag']:<12} own={c['support']} modern={c['modern_support']} | "
+                      f"{c['text'][:90]}")
     elif t == "verdict":
         print("\n===== VERDICT =====")
         print(json.dumps({k: v for k, v in e.items() if k != "type"}, indent=2,

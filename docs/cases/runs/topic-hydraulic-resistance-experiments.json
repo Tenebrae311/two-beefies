@@ -1,0 +1,404 @@
+{
+  "question": "What does the Britannica say about Hydraulic Resistance Experiments, and how does modern Wikipedia describe it? What changed: language, knowledge or perspective?",
+  "answer": "**Answer:** Britannica's 3rd edition (1788–1797) treats \"Hydraulic Resistance Experiments\" as a first-person report of tests validating De Buat's rule for resistance in pipes and channels, including a syphon occlusion trial and a cylinder-vortex experiment [EB:130-0][EB:130-1][EB:130-3]. Wikipedia has no article by that name; its precomputed counterparts are the general articles \"Hydraulics\" and \"Fluid dynamics\" [WP:65424-0][WP:11034-0].\n\n**Britannica:** 3rd edition (1788–1797, Vol. 16). The article repeats an experiment on occlusion of water in syphons and finds no sensible difference in filling time whether the syphon is horizontal or vertical, even with pressure over six times greater and added obstructions [EB:130-0]. It endorses De Buat's view that resistance depends on the relation between a section and its border, and that subtracting a constant (one-tenth inch) from √d makes √mg/(√d − 0.1) nearly constant (297 to 287 from small pipe to little canal, never below 256 in large canals and rivers) [EB:130-1]. A note describes whirling a polished cylinder in water, as Newton suggested, to study vortices and pipe resistance [EB:130-3]. The OCR renders long s as \"f.\"\n\n**Wikipedia:** \"Hydraulics\" defines the field as an applied science of the mechanical properties and use of liquids, rooted in fluid mechanics, governing energy via pressurized liquids, covering pipe flow, dam design, and open-channel flow [WP:65424-0]. \"Fluid dynamics\" is a subdiscipline of fluid mechanics covering flow of liquids and gases, with aerodynamics and hydrodynamics, applied to aircraft, pipelines, weather, nebulae, and geophysical flows, built on empirical and semi-empirical laws [WP:11034-0].\n\n**What changed:**\n- LANGUAGE: 18th-century OCR with long s (\"ſ\" → \"f\"), archaic spellings (\"veſſels,\" \"ſyphon\"), first-person voice, vs. modern technical prose [EB:130-0][EB:130-1][EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- KNOWLEDGE: Britannica gives De Buat's specific experiments and numerical coefficient; Wikipedia covers the broad modern discipline and omits De Buat's experiments entirely [EB:130-0][EB:130-1] vs. [WP:65424-0][WP:11034-0].\n- PERSPECTIVE: An individual experimenter verifying one engineer's rule vs. an impersonal survey of a whole field [EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- NO_COUNTERPART: No dedicated Wikipedia article on hydraulic resistance exists; the match is topical only.\n\n**Confidence:** Medium. Britannica is legible despite long-s OCR, and counterparts are identified, but there is no direct Wikipedia equivalent, so the comparison is against general hydraulics/fluid dynamics articles.",
+  "citations": [
+    {
+      "cite_id": "EB:130-0",
+      "source": "britannica",
+      "title": "Hydraulic Resistance Experiments",
+      "snippet": "270 Theory. Obviated by an experiment on the occlusion of water in syphons. This might ſerve to juſtify our ingenious author; but he was determined to rely every thing on experiment. He therefore made an experiment on the occlusion of water in ſyphons, which we have repeated in the following form, …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=130",
+      "image_url": "/api/page-image/130",
+      "edition": "3rd (1788-1797)",
+      "year": 1788
+    },
+    {
+      "cite_id": "EB:130-1",
+      "source": "britannica",
+      "title": "Hydraulic Resistance Experiments",
+      "snippet": "Thus Mr De Buat's opinion is completely juſtified; and he may be allowed to aſſert, that the refiſtance depends chiefly on the relation between the fection and its border; and that √mg/√d ſhould be a conſtant quantity. To aſcertain this point was the object of the next ſeries of experiments; to fee …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=130",
+      "image_url": "/api/page-image/130",
+      "edition": "3rd (1788-1797)",
+      "year": 1788
+    },
+    {
+      "cite_id": "EB:130-3",
+      "source": "britannica",
+      "title": "Hydraulic Resistance Experiments",
+      "snippet": "The writer of this article verified this by a very ſimple and inſtructive experiment. He was making experiments on the production of vortices, in the manner ſuggeſted by Sir Isaac Newton, by whirling a very accurate and ſmoothly polished cylinder in water; and he found that the rapid motion of the …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=130",
+      "image_url": "/api/page-image/130",
+      "edition": "3rd (1788-1797)",
+      "year": 1788
+    },
+    {
+      "cite_id": "WP:65424-0",
+      "source": "wikipedia",
+      "title": "Hydraulics",
+      "snippet": "Hydraulics (from Ancient Greek ὕδωρ (húdōr) 'water' and αὐλός (aulós) 'pipe') is a technology and applied science using engineering, chemistry, and other sciences involving the mechanical properties and use of liquids. Rooted in fluid mechanics, hydraulics is used to govern the use of energy via …",
+      "url": "https://en.wikipedia.org/wiki/Hydraulics",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Open_Channel.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "edition": null,
+      "year": null
+    },
+    {
+      "cite_id": "WP:11034-0",
+      "source": "wikipedia",
+      "title": "Fluid dynamics",
+      "snippet": "In physics, physical chemistry, and engineering, fluid dynamics is a subdiscipline of fluid mechanics that describes the flow of fluids – liquids and gases. It has several subdisciplines, including aerodynamics (the study of air and other gases in motion) and hydrodynamics (the study of water and …",
+      "url": "https://en.wikipedia.org/wiki/Fluid_dynamics",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Teardrop_shape.svg/1280px-Teardrop_shape.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "edition": null,
+      "year": null
+    }
+  ],
+  "unsupported": [],
+  "trace": [
+    {
+      "name": "search_britannica",
+      "args": {
+        "query": "Hydraulic Resistance Experiments",
+        "k": 10
+      },
+      "n_hits": 10,
+      "cite_ids": [
+        "EB:130-3",
+        "EB:130-0",
+        "EB:1003-0",
+        "EB:130-1",
+        "EB:2413-1",
+        "EB:1003-2",
+        "EB:122-0",
+        "EB:814-1",
+        "EB:383-0",
+        "EB:1003-1"
+      ]
+    },
+    {
+      "name": "search_wikipedia",
+      "args": {
+        "query": "Hydraulic Resistance Experiments",
+        "k": 10
+      },
+      "n_hits": 10,
+      "cite_ids": [
+        "WP:886283-4",
+        "WP:65424-1",
+        "WP:65424-11",
+        "WP:65424-0",
+        "WP:3397-36",
+        "WP:65424-7",
+        "WP:21296224-19",
+        "WP:9550-17",
+        "WP:65424-9",
+        "WP:65424-10"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:130-3"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:130-3"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:130-0"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:130-0"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:130-1"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:130-1"
+      ]
+    },
+    {
+      "name": "find_counterparts",
+      "args": {
+        "britannica_cite_id": "EB:130-3"
+      },
+      "n_hits": 2,
+      "cite_ids": [
+        "WP:65424-0",
+        "WP:11034-0"
+      ]
+    },
+    {
+      "name": "search_wikipedia",
+      "args": {
+        "k": 10,
+        "query": "hydraulic resistance experiments De Buat coefficient friction pipes open channels"
+      },
+      "n_hits": 10,
+      "cite_ids": [
+        "WP:65424-0",
+        "WP:65424-1",
+        "WP:65424-10",
+        "WP:65424-7",
+        "WP:17867-32",
+        "WP:244588-30",
+        "WP:886283-4",
+        "WP:11034-9",
+        "WP:65424-11",
+        "WP:3397-36"
+      ]
+    },
+    {
+      "name": "read_wikipedia",
+      "args": {
+        "cite_id": "WP:65424-0"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:65424-0"
+      ]
+    },
+    {
+      "name": "read_wikipedia",
+      "args": {
+        "cite_id": "WP:11034-0"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:11034-0"
+      ]
+    }
+  ],
+  "evidence": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "What does the Britannica say about Hydraulic Resistance Experiments, and how does modern Wikipedia describe it? What changed: language, knowledge or perspective?",
+      "timestamp": 1792333359.182849
+    },
+    {
+      "role": "assistant",
+      "content": "I'll search both sources for \"Hydraulic Resistance Experiments\" in parallel.",
+      "reasoning": "The user is asking about \"Hydraulic Resistance Experiments\" - comparing the historical Encyclopaedia Britannica (editions 1-8, 1768-1860) with modern Wikipedia. Let me search both sources.\n\nLet me start by searching both Britannica and Wikipedia for \"Hydraulic Resistance Experiments\".",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333361.5921185,
+      "reasoning_content": "The user is asking about \"Hydraulic Resistance Experiments\" - comparing the historical Encyclopaedia Britannica (editions 1-8, 1768-1860) with modern Wikipedia. Let me search both sources.\n\nLet me start by searching both Britannica and Wikipedia for \"Hydraulic Resistance Experiments\".",
+      "tool_calls": [
+        {
+          "id": "call_b2d7cd04c47c",
+          "call_id": "call_b2d7cd04c47c",
+          "response_item_id": "fc_b2d7cd04c47c",
+          "type": "function",
+          "function": {
+            "name": "search_britannica",
+            "arguments": "{\"query\": \"Hydraulic Resistance Experiments\", \"k\": 10}"
+          }
+        },
+        {
+          "id": "call_d2e38d782588",
+          "call_id": "call_d2e38d782588",
+          "response_item_id": "fc_d2e38d782588",
+          "type": "function",
+          "function": {
+            "name": "search_wikipedia",
+            "arguments": "{\"query\": \"Hydraulic Resistance Experiments\", \"k\": 10}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "search_britannica",
+      "tool_name": "search_britannica",
+      "content": "{\"results\": [{\"cite_id\": \"EB:130-3\", \"title\": \"Hydraulic Resistance Experiments\", \"edition\": \"3rd (1788-1797)\", \"volume_label\": \"Third edition, Volume 16, RAN-SCO\", \"page_index\": 130, \"illustrated\": false, \"retrieval_score\": 4.5662, \"snippet\": \"The writer of this article verified this by a very ſimple and inſtructive experiment. He was making experiments on the production of vortices, in the manner ſuggeſted by Sir Isaac Newton, by whirling a very accurate and ſmoothly polished cylinder in water; and he found that the rapid motion of the ſurrounding water was confined to an ex- ceeding ſmall diſtance from the cylinder, and it was not till after many revolutions that it was ſenſible even at the diſtance of half an inch. We may, by the way, ſuſgget this as the belt form of experiments for exami- ning the refiſtances of pipes. The motion excited by the whirling cylinder in the flagrant water is equal and oppoſite to the motion loſt …\"}, {\"cite_id\": \"EB:130-0\", \"title\": \"Hydraulic Resistance Experiments\", \"edition\": \"3rd (1788-1797)\", \"volume_label\": \"Third edition, Volume 16, RAN-SCO\", \"page_index\": 130, \"illustrated\": false, \"retrieval_score\": 4.4274, \"snippet\": \"270 Theory. Obviated by an experiment on the occlusion of water in syphons. This might ſerve to juſtify our ingenious author; but he was determined to rely every thing on experiment. He therefore made an experiment on the occlusion of water in ſyphons, which we have repeated in the following form, which is affected by the fame circumſtances, and is ſuſceptible of much greater precifion, and of more extenſive and important application. The two veſſels ABCD, abcd (fig. 9.) were connected by the ſyphon EFGgfe, which turned round in the ſhort tubes E and e, without allowing any water to eſcape; the axes of theſe tubes being in one ſtraight line. The veſſels were about 10 inches deep, and the …\"}, {\"cite_id\": \"EB:1003-0\", \"title\": \"Atmospheric Electricity\", \"edition\": \"5th (1815-1817)\", \"volume_label\": \"Fifth edition, Volume 7, CTE-Electricity\", \"page_index\": 1003, \"illustrated\": false, \"retrieval_score\": 4.3423, \"snippet\": \"786 ELECTRICITY. Part V. Atmo- spherical Electricity. prevent our being injured by the splinters of wood, if the tree should be ftricken. It is particularly necefs- fary to avoid rivers and brooks, as thefe are excellent conductors. Perhaps the beft protection in the open air, is a car- riage made fo large, as that a perfon may fit in it at a diftance from the fides, efpecially if it be furrounded at the top and bottom with metallic fillets connected with each other by a flip of the fame filubftance. If overtaken in a ftrm, it is fafer to be completely wet than dry. CHAP. II. Experiments and Obfervations on the Spon- taneous Electricity of the Atmosphere. 482 Experi- ments on atmopheri- cal …\"}, {\"cite_id\": \"EB:130-1\", \"title\": \"Hydraulic Resistance Experiments\", \"edition\": \"3rd (1788-1797)\", \"volume_label\": \"Third edition, Volume 16, RAN-SCO\", \"page_index\": 130, \"illustrated\": false, \"retrieval_score\": 4.2196, \"snippet\": \"Thus Mr De Buat's opinion is completely juſtified; and he may be allowed to aſſert, that the refiſtance depends chiefly on the relation between the fection and its border; and that √mg/√d ſhould be a conſtant quantity. To aſcertain this point was the object of the next ſeries of experiments; to fee whether this quantity was really conſtant, and, if not, to diſcover the law of its variation, and the physical cirſtances which accompanied the variations, and may therefore be conſidered as their cauſes. A careful comparifon of a very great number of experiments, made with the fame ſlope, and with very different channels and velocities, ſhowed that √mg did not follow the proportion of √d, nor of …\"}, {\"cite_id\": \"EB:2413-1\", \"title\": \"Algiers\", \"edition\": \"8th (1853-1860)\", \"volume_label\": \"Eighth edition, Volume 2, A-Anatomy\", \"page_index\": 2413, \"illustrated\": false, \"retrieval_score\": 4.0656, \"snippet\": \"In the year 1635 four young brothers of a good family in France entered into an undertaking so desperate, that perhaps the annals of knight-errantry can scarcely furnish its equal. This was no less than to retort the piracies of the Algerines upon themselves, and this with a small frigate of ten guns! In this ridiculous under- taking 100 volunteers embarked: a Maltese commission was procured, together with an able master and 36 mariners. They had the good fortune, on their first setting out, to take a ship laden with wine on the Spanish coast, with which they were so much elated, that three days after they madly encountered two large Algerine corsairs, one of 20 and the other of 24 guns, …\"}, {\"cite_id\": \"EB:1003-2\", \"title\": \"Atmospheric Electricity\", \"edition\": \"5th (1815-1817)\", \"volume_label\": \"Fifth edition, Volume 7, CTE-Electricity\", \"page_index\": 1003, \"illustrated\": false, \"retrieval_score\": 3.2455, \"snippet\": \"tive ftate of electricity extending his arm into the air in the dark while holding a pointed needle in his hand ; this, however, can only be obferved when the air is very dry. Whether the electricity in the air, in clear dry weather, be of the fame denity at the height of two or three hundred yards, as on the furface of the earth, Mr Kinnerley thought might be eafily afcertained by Dr Franklin's old experiment with the kite. The twine, he fays, fhould have throughout a very fmall wire in it, and the ends of the wire, where the feveral lengths are united, ought to be tied down with a waxed thread, to prevent their a&ing in the manner of points †. Mr Canton made feveral ingenious experiments …\"}, {\"cite_id\": \"EB:122-0\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"retrieval_score\": 2.7983, \"snippet\": \"720 Economists. To this the Economists made answer, that, if the opposition of one will can suspend the effect of all the others, it reduces authority to inaction, and all that reason destroys it. The reason why physical force is necessary is, that you cannot count upon the union of all wills. If, to avoid this objection, you have recourse, they said, to plurality of suffrage, you build no longer on the basis of evidence. That which divides opinions is not yet evident. As nothing in government ought to be arbitrary, and every thing that is not arbitrary is founded on reasons, that is, evidence; there cannot be diversity of opinions on matters of government, except from the effect of …\"}, {\"cite_id\": \"EB:814-1\", \"title\": \"Terrestrial Magnetism and Gauss\", \"edition\": \"8th (1853-1860)\", \"volume_label\": \"Eighth edition, Volume 1, Dissertations\", \"page_index\": 814, \"illustrated\": false, \"retrieval_score\": 2.7725, \"snippet\": \"To Major-General EDWARD SABINE, of the Royal Artillery, is mainly due the judicious management of these magnetic explorations, and the speedy and skilful publication of their interesting results. During the course of an active life he has enjoyed opportunities of making extensive observations with magnetic apparatus and with the pendulum (238) throughout a great range of latitude. His experiments (carried on principally between the years 1819 and 1826) were made in Brazil, the coast of Guinea, Spitzbergen, and Arctic America. His observations on magnetic intensity are particularly valuable, and first indicated the position of a region of maximum intensity in North America considerably to …\"}, {\"cite_id\": \"EB:383-0\", \"title\": \"Political Economy: Sources of Wealth\", \"edition\": \"5th (1815-1817)\", \"volume_label\": \"Fifth edition, Volume 17, Poetry-RHI\", \"page_index\": 383, \"illustrated\": false, \"retrieval_score\": 2.4036, \"snippet\": \"POLITICAL ECONOMY. Chap. II. The ſecond ſort is of thoſe which human induſtry can multiply in proportion to the demand. Where the commodity, as corn, is ſuch as cannot be produced but by human induſtry, the price is more uniform than in almoſt any other cafe. The increaſing ſcarcity and conſequently value of land, tends indeed to raiſe it; but this is counteracted by the invention of machinery, and improved methods of labour. The oppoſite agency of theſe two cauſes has a conſtant tendency to preferre uniformity in the value of grain; though we cannot, with Smith, conſider this uniformity as likely to be complete, as to render the price of grain a ſure ſtandard for the value of ſilver. There …\"}, {\"cite_id\": \"EB:1003-1\", \"title\": \"Atmospheric Electricity\", \"edition\": \"5th (1815-1817)\", \"volume_label\": \"Fifth edition, Volume 7, CTE-Electricity\", \"page_index\": 1003, \"illustrated\": false, \"retrieval_score\": 2.3054, \"snippet\": \"except in moift weather, when he could perceive no figns of electricity. In dry weather, the rod attracted minute bodies at no greater diftance than three or four lines. He repeated the experiment carefully every day, and conftantly obferved, that in weather void of ftorms, the electricity of a piece of fealing wax of two inches long, was above twice as ftrong as that of the air. This obfervation inclined him to conclude, that in weather of equal drynefs, the electricity of the air was always equal. It did not appear to him that hurricanes and tempests increased the electricity of the air, when they were not accompanied with thunder; for that during three days of a very violent continual …\"}]}",
+      "tool_call_id": "call_b2d7cd04c47c",
+      "timestamp": 1792333361.6298587
+    },
+    {
+      "role": "tool",
+      "name": "search_wikipedia",
+      "tool_name": "search_wikipedia",
+      "content": "{\"results\": [{\"cite_id\": \"WP:886283-4\", \"title\": \"Britannia Bridge\", \"section\": \"Design\", \"date_modified\": \"2026-10-17T20:42:23Z\", \"retrieval_score\": 9.4743, \"has_image\": true, \"snippet\": \"For the detailed design of the girders, Stephenson secured the assistance of the distinguished engineer William Fairbairn, an old friend of his father and described by Stephenson as \\\"well known for his thorough practical knowledge in such matters\\\". Fairbairn began a series of practical experiments on various tube shapes and enlisted the help of Eaton Hodgkinson \\\"distinguished as the first scientific authority on the strength of iron beams\\\" It became apparent from Fairbairn's experiments that- without special precautions - the failure mode for the tube under load would be buckling of the top plate in compression, the theoretical analysis of which gave Hodgkinson some difficulty. When …\"}, {\"cite_id\": \"WP:65424-1\", \"title\": \"Hydraulics\", \"section\": \"Overview\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 9.4464, \"has_image\": true, \"snippet\": \"Fluid mechanics provides the theoretical foundation for hydraulics, which focuses on applied engineering using the properties of fluids. In its fluid power applications, hydraulics is used for the generation, control, and transmission of power by the use of pressurized liquids. Hydraulic topics range through some parts of science and most of engineering modules, and they cover concepts such as pipe flow, dam design, fluidics, and fluid control circuitry. The principles of hydraulics are naturally in use in the human body within the vascular system and erectile tissue. Free surface hydraulics is the branch of hydraulics dealing with free surface flow, such as occurring in rivers, canals, …\"}, {\"cite_id\": \"WP:65424-11\", \"title\": \"Hydraulics\", \"section\": \"Hydraulic models\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 9.2536, \"has_image\": true, \"snippet\": \"After students understand the basic principles of hydraulics, some teachers use a hydraulic analogy to help students learn other things. For example: The MONIAC Computer uses water flowing through hydraulic components to help students learn about economics. The thermal–hydraulic analogy uses hydraulic principles to help students learn about thermal circuits. The electronic–hydraulic analogy uses hydraulic principles to help students learn about electronics. The conservation of mass requirement combined with fluid compressibility yields a fundamental relationship between pressure, fluid flow, and volumetric expansion, as shown below: d p d t = β V ( ∑ in Q − d V d t ) {\\\\displaystyle {\\\\frac …\"}, {\"cite_id\": \"WP:65424-0\", \"title\": \"Hydraulics\", \"section\": \"Introduction\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 9.1974, \"has_image\": true, \"snippet\": \"Hydraulics (from Ancient Greek ὕδωρ (húdōr) 'water' and αὐλός (aulós) 'pipe') is a technology and applied science using engineering, chemistry, and other sciences involving the mechanical properties and use of liquids. Rooted in fluid mechanics, hydraulics is used to govern the use of energy via pressurized liquids. It has been part of human history since ancient times. Hydraulic topics range through some parts of science and most engineering modules. Free surface hydraulics is the branch of hydraulics dealing with free surface flow, such as occurring in rivers, canals, lakes, estuaries and seas. Its sub-field, open-channel flow, studies the flow in open channels.\"}, {\"cite_id\": \"WP:3397-36\", \"title\": \"Bridge\", \"section\": \"Stress and strain\", \"date_modified\": \"2026-10-15T21:51:45Z\", \"retrieval_score\": 9.062, \"has_image\": true, \"snippet\": \"The bridge design process typically employs structural analysis methods that divide the bridge into smaller components, and analyze the components individually, subject to certain constraints. A proposed bridge design is then usually modeled with formulas or computer applications. The models incorporate the loads the bridge will experience, calculate the stresses in the bridge, and provide data to the designer indicating whether the design meets the required design goals. To ensure that a proposed bridge design is sufficiently strong to endure foreseeable stresses, many bridge designers use limit state design methodologies (used in Europe and China) or Load and Resistance Factor Design …\"}, {\"cite_id\": \"WP:65424-7\", \"title\": \"Hydraulics\", \"section\": \"Greco-Roman world\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 8.8475, \"has_image\": true, \"snippet\": \"In Ancient Greece, the Greeks constructed sophisticated water and hydraulic power systems. An example is a construction by Eupalinos, under a public contract, of a watering channel for Samos, the Tunnel of Eupalinos. An early example of the usage of a hydraulic wheel, likely the earliest in Europe, is the Perachora wheel (3rd century BC). In Greco-Roman Egypt, the construction of the first hydraulic machine automata by Ctesibius (flourished c. 270 BC) and Hero of Alexandria (c. 10 – 80 AD) is notable. Hero describes several working machines using hydraulic power, such as the force pump, which is known from many Roman sites as having been used for raising water and in fire engines. In the …\"}, {\"cite_id\": \"WP:21296224-19\", \"title\": \"Architecture\", \"section\": \"Postmodernism\", \"date_modified\": \"2026-10-17T20:46:35Z\", \"retrieval_score\": 8.2642, \"has_image\": true, \"snippet\": \"Many architects resisted modernism, finding it devoid of the decorative richness of historical styles. As the first generation of modernists began to die after World War II, the second generation of architects—including Paul Rudolph, Marcel Breuer, and Eero Saarinen—tried to expand the aesthetics of modernism with Brutalism, buildings with expressive sculptural façades made of unfinished concrete. But an even younger postwar generation critiqued modernism and Brutalism for being too austere, standardized, monotone, and not taking into account the richness of human experience offered in historical buildings across time and in different places and cultures. One such reaction to the cold …\"}, {\"cite_id\": \"WP:9550-17\", \"title\": \"Electricity\", \"section\": \"Electric circuits\", \"date_modified\": \"2026-10-17T20:41:46Z\", \"retrieval_score\": 7.571, \"has_image\": true, \"snippet\": \"An electric circuit is an interconnection of electric components such that electric charge is made to flow along a closed path (a circuit), usually to perform some useful task. The components in an electric circuit can take many forms, which can include elements such as resistors, capacitors, switches, transformers and electronics. Electronic circuits contain active components, usually semiconductors, and typically exhibit non-linear behaviour, requiring complex analysis. The simplest electric components are those that are termed passive and linear: while they may temporarily store energy, they contain no sources of it, and exhibit linear responses to stimuli. The resistor is perhaps the …\"}, {\"cite_id\": \"WP:65424-9\", \"title\": \"Hydraulics\", \"section\": \"Modern history\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 7.517, \"has_image\": true, \"snippet\": \"During the mid 16th century, Italian engineer Giuseppe Ceredi advanced the design of the Archimedean screw pump, applying mathematical principles to improve its efficiency for irrigation and drainage and secured a patent for his developments. Ceredi's innovations, documented in Tre discorsi sopra il modo d'alzar acque da' luoghi bassi (1567), led to the widespread adoption of the technology throughout Southern Europe. In 1619 Benedetto Castelli, a student of Galileo Galilei, published the book Della Misura dell'Acque Correnti or \\\"On the Measurement of Running Waters,\\\" one of the foundations of modern hydrodynamics. He served as a chief consultant to the Pope on hydraulic projects, i.e., …\"}, {\"cite_id\": \"WP:65424-10\", \"title\": \"Hydraulics\", \"section\": \"Modern history\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 7.4098, \"has_image\": true, \"snippet\": \"French physician Poiseuille (1797–1869) researched the flow of blood through the body and discovered an important law governing the rate of flow with the diameter of the tube in which flow occurred. Several cities developed citywide hydraulic power networks in the 19th century, to operate machinery such as lifts, cranes, capstans and the like. Joseph Bramah (1748–1814) was an early innovator and William Armstrong (1810–1900) perfected the apparatus for power delivery on an industrial scale. In London, the London Hydraulic Power Company was a major supplier. Its pipes serving large parts of the West End of London, City and the Docks, but there were schemes restricted to single enterprises …\"}]}",
+      "tool_call_id": "call_d2e38d782588",
+      "timestamp": 1792333361.6434827
+    },
+    {
+      "role": "assistant",
+      "content": "The Britannica article exists (3rd edition, 1788-1797). Wikipedia has no direct article by that name, so I'll read the full Britannica text and find its precomputed Wikipedia counterpart, plus search Wikipedia more specifically.",
+      "reasoning": "The Britannica search found the article \"Hydraulic Resistance Experiments\" in the 3rd edition (1788-1797), Volume 16. The Wikipedia search didn't find a direct article \"Hydraulic Resistance Experiments\" - the results are about \"Hydraulics\" generally. Let me:\n\n1. Read the full Britannica article (EB:130-3 and related passages EB:130-0, EB:130-1)\n2. Use find_counterparts to find the Wikipedia counterpart for the Britannica page\n3. Search Wikipedia more specifically\n\nLet me read the Britannica passages and find counterparts in parallel.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333364.9904866,
+      "reasoning_content": "The Britannica search found the article \"Hydraulic Resistance Experiments\" in the 3rd edition (1788-1797), Volume 16. The Wikipedia search didn't find a direct article \"Hydraulic Resistance Experiments\" - the results are about \"Hydraulics\" generally. Let me:\n\n1. Read the full Britannica article (EB:130-3 and related passages EB:130-0, EB:130-1)\n2. Use find_counterparts to find the Wikipedia counterpart for the Britannica page\n3. Search Wikipedia more specifically\n\nLet me read the Britannica passages and find counterparts in parallel.",
+      "tool_calls": [
+        {
+          "id": "call_c81c68a8a5a5",
+          "call_id": "call_c81c68a8a5a5",
+          "response_item_id": "fc_c81c68a8a5a5",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:130-3\"}"
+          }
+        },
+        {
+          "id": "call_1f5c2d55f0f4",
+          "call_id": "call_1f5c2d55f0f4",
+          "response_item_id": "fc_1f5c2d55f0f4",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:130-0\"}"
+          }
+        },
+        {
+          "id": "call_5240cea3ea9b",
+          "call_id": "call_5240cea3ea9b",
+          "response_item_id": "fc_5240cea3ea9b",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:130-1\"}"
+          }
+        },
+        {
+          "id": "call_c1dd263b09f0",
+          "call_id": "call_c1dd263b09f0",
+          "response_item_id": "fc_c1dd263b09f0",
+          "type": "function",
+          "function": {
+            "name": "find_counterparts",
+            "arguments": "{\"britannica_cite_id\": \"EB:130-3\"}"
+          }
+        },
+        {
+          "id": "call_dca2b28e91f8",
+          "call_id": "call_dca2b28e91f8",
+          "response_item_id": "fc_dca2b28e91f8",
+          "type": "function",
+          "function": {
+            "name": "search_wikipedia",
+            "arguments": "{\"k\": 10, \"query\": \"hydraulic resistance experiments De Buat coefficient friction pipes open channels\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:130-3\", \"title\": \"Hydraulic Resistance Experiments\", \"edition\": \"3rd (1788-1797)\", \"volume_label\": \"Third edition, Volume 16, RAN-SCO\", \"page_index\": 130, \"illustrated\": false, \"text\": \"The writer of this article verified this by a very ſimple and inſtructive experiment. He was making experiments on the production of vortices, in the manner ſuggeſted by Sir Isaac Newton, by whirling a very accurate and ſmoothly polished cylinder in water; and he found that the rapid motion of the ſurrounding water was confined to an ex- ceeding ſmall diſtance from the cylinder, and it was not till after many revolutions that it was ſenſible even at the diſtance of half an inch. We may, by the way, ſuſgget this as the belt form of experiments for exami- ning the refiſtances of pipes. The motion excited by the whirling cylinder in the flagrant water is equal and oppoſite to the motion loſt by water paſſing along a ſurface equal to that of the cylinder with the ſame ve- locity. Be this as it may, we are juſtified in conferring with Mr Buat, the ſection of the ſtream as thus dimin- ſhed by cutting off a narrow border all round the touching parts, and ſuppoſing that the motion and di- ſcharge is the ſame as if the root of the mean depth of the ſection were diminifhed by a ſmall quantity, nearly conſtant. We fee, too, that the effect of this muſt be inſenſible in great canals and rivers; ſo that, fortunately, its quantity is beſt aſcertained by experiments made with ſmall pipes. This is attended with another con- veniency, in the opinion of Mr Buat, namely, that the\\n\\nPart I. Theory.\\n\\n52 The reſult agreeable to our diſtinct no- tions of the action of water and its bed.\\n\\n53 Con- ſirmed by experiment.\\n\\nR I V E R.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=130\"}",
+      "tool_call_id": "call_c81c68a8a5a5",
+      "timestamp": 1792333365.0125065
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:130-0\", \"title\": \"Hydraulic Resistance Experiments\", \"edition\": \"3rd (1788-1797)\", \"volume_label\": \"Third edition, Volume 16, RAN-SCO\", \"page_index\": 130, \"illustrated\": false, \"text\": \"270 Theory. Obviated by an experiment on the occlusion of water in syphons.\\n\\nThis might ſerve to juſtify our ingenious author; but he was determined to rely every thing on experiment. He therefore made an experiment on the occlusion of water in ſyphons, which we have repeated in the following form, which is affected by the fame circumſtances, and is ſuſceptible of much greater precifion, and of more extenſive and important application.\\n\\nThe two veſſels ABCD, abcd (fig. 9.) were connected by the ſyphon EFGgfe, which turned round in the ſhort tubes E and e, without allowing any water to eſcape; the axes of theſe tubes being in one ſtraight line. The veſſels were about 10 inches deep, and the branches FG, fg of the ſyphon were about five feet long. The veſſels were fet on two tables of equal height, and (the hole e being ſtopped) the veſſel ABCD, and the whole ſyphon, were filled with water, and water was poured into the veſſel abcd till it flood at a certain height LM. The ſyphon was then turned into a horizontal poſition, and the plug drawn out of e, and the time carefully noted which the water employed in rifing to the level HKb in both veſſels. The whole apparatus was now inclined, fo that the water run back into ABCD. The ſyphon was now put in a vertical poſition, and the experiment was repeated. — No ſenſible or regular difference was obſerved in the time. Yet in this experiment the prefſure on the part Gg of the ſyphon was more than fix times greater than before. As it was thought that the friction on this ſmall part (only fix inches) was too ſmall a portion of the whole obſtruction, various additional obſtructions were put into this part of the ſyphon, and it was even lengthened to nine feet; but ſtill no remarkable difference was obſerved. It was even thought that the times were leſs when the ſyphon was vertical.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=130\"}",
+      "tool_call_id": "call_1f5c2d55f0f4",
+      "timestamp": 1792333365.0262132
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:130-1\", \"title\": \"Hydraulic Resistance Experiments\", \"edition\": \"3rd (1788-1797)\", \"volume_label\": \"Third edition, Volume 16, RAN-SCO\", \"page_index\": 130, \"illustrated\": false, \"text\": \"Thus Mr De Buat's opinion is completely juſtified; and he may be allowed to aſſert, that the refiſtance depends chiefly on the relation between the fection and its border; and that √mg/√d ſhould be a conſtant quantity.\\n\\nTo aſcertain this point was the object of the next ſeries of experiments; to fee whether this quantity was really conſtant, and, if not, to diſcover the law of its variation, and the physical cirſtances which accompanied the variations, and may therefore be conſidered as their cauſes. A careful comparifon of a very great number of experiments, made with the fame ſlope, and with very different channels and velocities, ſhowed that √mg did not follow the proportion of √d, nor of any power of √d. This quantity √mg increafed by ſmaller degrees in proportion as √d was greater. In very great beds √mg was nearly proportional to √d, but in ſmaller channels, the velocities diminifhed much more than √d did. Cafting about for ſome way of accommodation, Mr Buat conſidered, that ſome approximation at leaſt would be had by taking off from √d ſome conſtant ſmall quantity. This is evident: For ſuch a diminution will have but a trifling effect when √d is great, and its effect will increafe rapidly when √d is very ſmall. He therefore tried various values for this ſubtraction, and compared the reſults with the former experiments; and he found, that if in\\n\\nevery cafe √d be diminifhed by one-tenth of an inch, the calculated diſcharges would agree very exactly with the experiment. Therefore, inſtead of √d, he makes uſe of √d—0,1, and finds this quantity always pro- portional to √mg, or finds that √mg/√d—0,1 is a con- ſtant quantity, or very nearly fo. It varied from 297 to 287 in all ſections from that of a very ſmall pipe to that of a little canal. In the large ſections of canals and rivers it diminifhed ſtill more, but never was leſs than 256.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=130\"}",
+      "tool_call_id": "call_5240cea3ea9b",
+      "timestamp": 1792333365.034542
+    },
+    {
+      "role": "tool",
+      "name": "find_counterparts",
+      "tool_name": "find_counterparts",
+      "content": "{\"matches\": [{\"britannica_doc_id\": \"130\", \"wikipedia_doc_id\": \"65424\", \"rank\": 1, \"vector_score\": null, \"rerank_score\": null, \"no_clear_match\": false, \"reason\": \"page topic 'Hydraulics' -> search hit 'Hydraulics'\", \"wikipedia_title\": \"Hydraulics\", \"wikipedia_cite_id\": \"WP:65424-0\"}, {\"britannica_doc_id\": \"130\", \"wikipedia_doc_id\": \"11034\", \"rank\": 2, \"vector_score\": null, \"rerank_score\": null, \"no_clear_match\": false, \"reason\": \"page topic 'Fluid dynamics' -> search hit 'Fluid dynamics'\", \"wikipedia_title\": \"Fluid dynamics\", \"wikipedia_cite_id\": \"WP:11034-0\"}]}",
+      "tool_call_id": "call_c1dd263b09f0",
+      "timestamp": 1792333365.1183674
+    },
+    {
+      "role": "tool",
+      "name": "search_wikipedia",
+      "tool_name": "search_wikipedia",
+      "content": "{\"results\": [{\"cite_id\": \"WP:65424-0\", \"title\": \"Hydraulics\", \"section\": \"Introduction\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 27.4114, \"has_image\": true, \"snippet\": \"Hydraulics (from Ancient Greek ὕδωρ (húdōr) 'water' and αὐλός (aulós) 'pipe') is a technology and applied science using engineering, chemistry, and other sciences involving the mechanical properties and use of liquids. Rooted in fluid mechanics, hydraulics is used to govern the use of energy via pressurized liquids. It has been part of human history since ancient times. Hydraulic topics range through some parts of science and most engineering modules. Free surface hydraulics is the branch of hydraulics dealing with free surface flow, such as occurring in rivers, canals, lakes, estuaries and seas. Its sub-field, open-channel flow, studies the flow in open channels.\"}, {\"cite_id\": \"WP:65424-1\", \"title\": \"Hydraulics\", \"section\": \"Overview\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 26.7049, \"has_image\": true, \"snippet\": \"Fluid mechanics provides the theoretical foundation for hydraulics, which focuses on applied engineering using the properties of fluids. In its fluid power applications, hydraulics is used for the generation, control, and transmission of power by the use of pressurized liquids. Hydraulic topics range through some parts of science and most of engineering modules, and they cover concepts such as pipe flow, dam design, fluidics, and fluid control circuitry. The principles of hydraulics are naturally in use in the human body within the vascular system and erectile tissue. Free surface hydraulics is the branch of hydraulics dealing with free surface flow, such as occurring in rivers, canals, …\"}, {\"cite_id\": \"WP:65424-10\", \"title\": \"Hydraulics\", \"section\": \"Modern history\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 13.952, \"has_image\": true, \"snippet\": \"French physician Poiseuille (1797–1869) researched the flow of blood through the body and discovered an important law governing the rate of flow with the diameter of the tube in which flow occurred. Several cities developed citywide hydraulic power networks in the 19th century, to operate machinery such as lifts, cranes, capstans and the like. Joseph Bramah (1748–1814) was an early innovator and William Armstrong (1810–1900) perfected the apparatus for power delivery on an industrial scale. In London, the London Hydraulic Power Company was a major supplier. Its pipes serving large parts of the West End of London, City and the Docks, but there were schemes restricted to single enterprises …\"}, {\"cite_id\": \"WP:65424-7\", \"title\": \"Hydraulics\", \"section\": \"Greco-Roman world\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 12.897, \"has_image\": true, \"snippet\": \"In Ancient Greece, the Greeks constructed sophisticated water and hydraulic power systems. An example is a construction by Eupalinos, under a public contract, of a watering channel for Samos, the Tunnel of Eupalinos. An early example of the usage of a hydraulic wheel, likely the earliest in Europe, is the Perachora wheel (3rd century BC). In Greco-Roman Egypt, the construction of the first hydraulic machine automata by Ctesibius (flourished c. 270 BC) and Hero of Alexandria (c. 10 – 80 AD) is notable. Hero describes several working machines using hydraulic power, such as the force pump, which is known from many Roman sites as having been used for raising water and in fire engines. In the …\"}, {\"cite_id\": \"WP:17867-32\", \"title\": \"London\", \"section\": \"Rail\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 9.8684, \"has_image\": true, \"snippet\": \"Opened in 1863, the London Underground (\\\"the Tube\\\") is the oldest and third-longest metro system in the world. The system serves 272 stations, and was formed from several private companies, including the world's first underground railway, which opened in 1890. Over 4 million journeys are made every day on the Underground network. The Docklands Light Railway, opened in 1987, is a local metro system serving the Docklands and Southeast London. There are 368 railway stations in the London fare zones on an extensive above-ground suburban railway network, especially in South London. Most rail lines run into the city centre's main stations. London has Britain's busiest station by number of …\"}, {\"cite_id\": \"WP:244588-30\", \"title\": \"Heliocentrism\", \"section\": \"Age of Reason\", \"date_modified\": \"2026-10-17T20:41:59Z\", \"retrieval_score\": 9.4751, \"has_image\": true, \"snippet\": \"In the mid-18th century the Church's opposition began to fade. An annotated copy of Newton's Principia was published in 1742 by Fathers le Seur and Jacquier of the Franciscan Minims, two Catholic mathematicians, with a preface stating that the author's work assumed heliocentrism and could not be explained without the theory. In 1758 the Catholic Church dropped the general prohibition of books advocating heliocentrism from the Index of Forbidden Books. The Observatory of the Roman College was established by Pope Clement XIV in 1774 (nationalized in 1878, but re-founded by Pope Leo XIII as the Vatican Observatory in 1891). In spite of dropping its active resistance to heliocentrism, the …\"}, {\"cite_id\": \"WP:886283-4\", \"title\": \"Britannia Bridge\", \"section\": \"Design\", \"date_modified\": \"2026-10-17T20:42:23Z\", \"retrieval_score\": 9.4743, \"has_image\": true, \"snippet\": \"For the detailed design of the girders, Stephenson secured the assistance of the distinguished engineer William Fairbairn, an old friend of his father and described by Stephenson as \\\"well known for his thorough practical knowledge in such matters\\\". Fairbairn began a series of practical experiments on various tube shapes and enlisted the help of Eaton Hodgkinson \\\"distinguished as the first scientific authority on the strength of iron beams\\\" It became apparent from Fairbairn's experiments that- without special precautions - the failure mode for the tube under load would be buckling of the top plate in compression, the theoretical analysis of which gave Hodgkinson some difficulty. When …\"}, {\"cite_id\": \"WP:11034-9\", \"title\": \"Fluid dynamics\", \"section\": \"Newtonian versus non-Newtonian fluids\", \"date_modified\": \"2026-10-17T20:41:46Z\", \"retrieval_score\": 9.3224, \"has_image\": true, \"snippet\": \"All fluids, except superfluids, are viscous, meaning that they exert some resistance to deformation: neighbouring parcels of fluid moving at different velocities exert viscous forces on each other. The velocity gradient is referred to as a strain rate; it has dimensions T−1. Isaac Newton showed that for many familiar fluids such as water and air, the stress due to these viscous forces is linearly related to the strain rate. Such fluids are called Newtonian fluids. The coefficient of proportionality is called the fluid's viscosity; for Newtonian fluids, it is a fluid property that is independent of the strain rate. Non-Newtonian fluids have a more complicated, non-linear stress-strain …\"}, {\"cite_id\": \"WP:65424-11\", \"title\": \"Hydraulics\", \"section\": \"Hydraulic models\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"retrieval_score\": 9.2536, \"has_image\": true, \"snippet\": \"After students understand the basic principles of hydraulics, some teachers use a hydraulic analogy to help students learn other things. For example: The MONIAC Computer uses water flowing through hydraulic components to help students learn about economics. The thermal–hydraulic analogy uses hydraulic principles to help students learn about thermal circuits. The electronic–hydraulic analogy uses hydraulic principles to help students learn about electronics. The conservation of mass requirement combined with fluid compressibility yields a fundamental relationship between pressure, fluid flow, and volumetric expansion, as shown below: d p d t = β V ( ∑ in Q − d V d t ) {\\\\displaystyle {\\\\frac …\"}, {\"cite_id\": \"WP:3397-36\", \"title\": \"Bridge\", \"section\": \"Stress and strain\", \"date_modified\": \"2026-10-15T21:51:45Z\", \"retrieval_score\": 9.062, \"has_image\": true, \"snippet\": \"The bridge design process typically employs structural analysis methods that divide the bridge into smaller components, and analyze the components individually, subject to certain constraints. A proposed bridge design is then usually modeled with formulas or computer applications. The models incorporate the loads the bridge will experience, calculate the stresses in the bridge, and provide data to the designer indicating whether the design meets the required design goals. To ensure that a proposed bridge design is sufficiently strong to endure foreseeable stresses, many bridge designers use limit state design methodologies (used in Europe and China) or Load and Resistance Factor Design …\"}]}",
+      "tool_call_id": "call_dca2b28e91f8",
+      "timestamp": 1792333365.1303866
+    },
+    {
+      "role": "assistant",
+      "content": "I have the full Britannica text. Now let me read the two Wikipedia counterparts in full.",
+      "reasoning": "Now I have the Britannica text. Let me read the Wikipedia counterparts. The counterparts are:\n1. WP:65424-0 - \"Hydraulics\" (Introduction) - the primary match\n2. WP:11034-0 - \"Fluid dynamics\"\n\nLet me read both Wikipedia passages to get the full text. The WP:65424-0 I already have a snippet of. Let me read the full text of both. Also, the Britannica article is about \"Hydraulic Resistance Experiments\" - this is an article in the 3rd edition (1788-1797), Volume 16. It discusses Mr. De Buat's experiments on resistance of water in channels/pipes, syphon experiments, vortices, etc.\n\nLet me read the full Wikipedia Hydraulics article (WP:65424-0) and Fluid dynamics (WP:11034-0).\n\nActually, I have the snippet for WP:65424-0 already. Let me read the full texts to be thorough. Let me read both Wikipedia pages.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333368.822662,
+      "reasoning_content": "Now I have the Britannica text. Let me read the Wikipedia counterparts. The counterparts are:\n1. WP:65424-0 - \"Hydraulics\" (Introduction) - the primary match\n2. WP:11034-0 - \"Fluid dynamics\"\n\nLet me read both Wikipedia passages to get the full text. The WP:65424-0 I already have a snippet of. Let me read the full text of both. Also, the Britannica article is about \"Hydraulic Resistance Experiments\" - this is an article in the 3rd edition (1788-1797), Volume 16. It discusses Mr. De Buat's experiments on resistance of water in channels/pipes, syphon experiments, vortices, etc.\n\nLet me read the full Wikipedia Hydraulics article (WP:65424-0) and Fluid dynamics (WP:11034-0).\n\nActually, I have the snippet for WP:65424-0 already. Let me read the full texts to be thorough. Let me read both Wikipedia pages.",
+      "tool_calls": [
+        {
+          "id": "call_064be913d542",
+          "call_id": "call_064be913d542",
+          "response_item_id": "fc_064be913d542",
+          "type": "function",
+          "function": {
+            "name": "read_wikipedia",
+            "arguments": "{\"cite_id\": \"WP:65424-0\"}"
+          }
+        },
+        {
+          "id": "call_3242efb42df3",
+          "call_id": "call_3242efb42df3",
+          "response_item_id": "fc_3242efb42df3",
+          "type": "function",
+          "function": {
+            "name": "read_wikipedia",
+            "arguments": "{\"cite_id\": \"WP:11034-0\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "read_wikipedia",
+      "tool_name": "read_wikipedia",
+      "content": "{\"cite_id\": \"WP:65424-0\", \"title\": \"Hydraulics\", \"section\": \"Introduction\", \"date_modified\": \"2026-10-15T21:51:52Z\", \"has_image\": true, \"text\": \"Hydraulics (from Ancient Greek  ὕδωρ (húdōr) 'water' and  αὐλός (aulós) 'pipe') is a technology and applied science using engineering, chemistry, and other sciences involving the mechanical properties and use of liquids.\\nRooted in fluid mechanics, hydraulics is used to govern the use of energy via pressurized liquids. It has been part of human history since ancient times. Hydraulic topics range through some parts of science and most engineering modules.\\nFree surface hydraulics is the branch of hydraulics dealing with free surface flow, such as occurring in rivers, canals, lakes, estuaries and seas. Its sub-field, open-channel flow, studies the flow in open channels.\", \"url\": \"https://en.wikipedia.org/wiki/Hydraulics\"}",
+      "tool_call_id": "call_064be913d542",
+      "timestamp": 1792333368.8557382
+    },
+    {
+      "role": "tool",
+      "name": "read_wikipedia",
+      "tool_name": "read_wikipedia",
+      "content": "{\"cite_id\": \"WP:11034-0\", \"title\": \"Fluid dynamics\", \"section\": \"Introduction\", \"date_modified\": \"2026-10-17T20:41:46Z\", \"has_image\": true, \"text\": \"In physics, physical chemistry, and engineering, fluid dynamics is a subdiscipline of fluid mechanics that describes the flow of fluids – liquids and gases. It has several subdisciplines, including aerodynamics (the study of air and other gases in motion) and hydrodynamics (the study of water and other liquids in motion). Fluid dynamics has a wide range of applications, including calculating forces and moments on aircraft, determining the mass flow rate of petroleum through pipelines, predicting weather patterns, understanding nebulae in interstellar space, understanding large scale geophysical flows involving oceans/atmosphere and modelling fission weapon detonation.\\nFluid dynamics offers a systematic structure—which underlies these practical disciplines—that embraces empirical and semi-empirical laws derived from flow measurement and used to solve practical problems. The solution to a fluid dynamics problem typically involves the calculation of various properties of the fluid, such as flow velocity, pressure, density, and temperature, as functions of space and time.\\nBefore the twentieth century, \\\"hydrodynamics\\\" was synonymous with fluid dynamics. This is still reflected in names of some fluid dynamics topics, like magnetohydrodynamics and hydrodynamic stability, both of which can also be applied to gases.\", \"url\": \"https://en.wikipedia.org/wiki/Fluid_dynamics\"}",
+      "tool_call_id": "call_3242efb42df3",
+      "timestamp": 1792333368.8835678
+    },
+    {
+      "role": "assistant",
+      "content": "**Answer:** Britannica's 3rd edition (1788–1797) treats \"Hydraulic Resistance Experiments\" as a first-person report of tests validating De Buat's rule for resistance in pipes and channels, including a syphon occlusion trial and a cylinder-vortex experiment [EB:130-0][EB:130-1][EB:130-3]. Wikipedia has no article by that name; its precomputed counterparts are the general articles \"Hydraulics\" and \"Fluid dynamics\" [WP:65424-0][WP:11034-0].\n\n**Britannica:** 3rd edition (1788–1797, Vol. 16). The article repeats an experiment on occlusion of water in syphons and finds no sensible difference in filling time whether the syphon is horizontal or vertical, even with pressure over six times greater and added obstructions [EB:130-0]. It endorses De Buat's view that resistance depends on the relation between a section and its border, and that subtracting a constant (one-tenth inch) from √d makes √mg/(√d − 0.1) nearly constant (297 to 287 from small pipe to little canal, never below 256 in large canals and rivers) [EB:130-1]. A note describes whirling a polished cylinder in water, as Newton suggested, to study vortices and pipe resistance [EB:130-3]. The OCR renders long s as \"f.\"\n\n**Wikipedia:** \"Hydraulics\" defines the field as an applied science of the mechanical properties and use of liquids, rooted in fluid mechanics, governing energy via pressurized liquids, covering pipe flow, dam design, and open-channel flow [WP:65424-0]. \"Fluid dynamics\" is a subdiscipline of fluid mechanics covering flow of liquids and gases, with aerodynamics and hydrodynamics, applied to aircraft, pipelines, weather, nebulae, and geophysical flows, built on empirical and semi-empirical laws [WP:11034-0].\n\n**What changed:**\n- LANGUAGE: 18th-century OCR with long s (\"ſ\" → \"f\"), archaic spellings (\"veſſels,\" \"ſyphon\"), first-person voice, vs. modern technical prose [EB:130-0][EB:130-1][EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- KNOWLEDGE: Britannica gives De Buat's specific experiments and numerical coefficient; Wikipedia covers the broad modern discipline and omits De Buat's experiments entirely [EB:130-0][EB:130-1] vs. [WP:65424-0][WP:11034-0].\n- PERSPECTIVE: An individual experimenter verifying one engineer's rule vs. an impersonal survey of a whole field [EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- NO_COUNTERPART: No dedicated Wikipedia article on hydraulic resistance exists; the match is topical only.\n\n**Confidence:** Medium. Britannica is legible despite long-s OCR, and counterparts are identified, but there is no direct Wikipedia equivalent, so the comparison is against general hydraulics/fluid dynamics articles.",
+      "reasoning": "Now I have all the material I need. Let me synthesize the answer.\n\n**Britannica (3rd edition, 1788-1797), \"Hydraulic Resistance Experiments\":**\n- Discusses experiments verifying Mr. De Buat's theories on resistance of water in channels/pipes\n- A syphon experiment: two vessels connected by a syphon, testing whether pressure/occlusion affects water flow — found no sensible difference in time when syphon was vertical vs horizontal, even with pressure more than 6x greater and obstructions added\n- De Buat's opinion: resistance depends chiefly on the relation between the section (cross-section) and its border; √mg/√d should be constant\n- Experiments showed √mg did not follow proportion of √d; in very great beds √mg nearly proportional to √d, but in smaller channels velocities diminished more\n- De Buat's correction: subtract a constant small quantity (one-tenth of an inch) from √d, making √mg/(√d - 0.1) constant, varying from 297 to 287 from small pipe to little canal, never less than 256 in large sections of canals and rivers\n- Also a vortex experiment: whirling a polished cylinder in water, finding rapid motion of surrounding water confined to small distance from cylinder — suggested as a form of experiment for examining resistances of pipes\n- OCR uses long s (\"ſ\" read as \"f\")\n\n**Wikipedia counterparts:**\n- \"Hydraulics\" (WP:65424): technology and applied science using engineering, chemistry, and other sciences involving mechanical properties and use of liquids; rooted in fluid mechanics; governs energy via pressurized liquids; topics include pipe flow, dam design, free surface hydraulics, open-channel flow\n- \"Fluid dynamics\" (WP:11034): subdiscipline of fluid mechanics describing flow of fluids (liquids and gases); subdisciplines include aerodynamics and hydrodynamics; applications include forces on aircraft, mass flow rate of petroleum through pipelines, weather prediction, nebulae, geophysical flows, fission weapon detonation; embraces empirical and semi-empirical laws\n\n**What changed:**\n- LANGUAGE: Yes — archaic OCR with long s (\"ſ\" as \"f\"), 18th-century phrasing, Mr. De Buat, syphon, veſſels, etc. Modern Wikipedia uses contemporary technical English.\n- KNOWLEDGE: Yes — Britannica presents specific historical experiments (De Buat's coefficient, syphon occlusion tests, cylinder vortex experiments) with specific numbers; Wikipedia gives a broad, modern framing of hydraulics/fluid dynamics as a discipline with empirical and semi-empirical laws, applications to pipelines, aircraft, weather, etc. The specific De Buat experiments are not in Wikipedia; the knowledge is reorganized into a modern disciplinary framework.\n- PERSPECTIVE: Britannica is a first-person experimental report (\"The writer of this article verified this...\"), focused on validating a particular engineer's (De Buat's) formula through hands-on experiments. Wikipedia is an encyclopedic, impersonal survey of a field. This is partly perspective (authoritative individual experimenter vs. collective scientific discipline), but the primary categories are language and knowledge.\n- NO_COUNPART: Not exactly — there is a counterpart (Hydraulics / Fluid dynamics), but no article specifically titled \"Hydraulic Resistance Experiments\" in Wikipedia. The counterpart match is topical, not a direct equivalent.\n\nConfidence: medium-high. The Britannica text is clear enough despite OCR long-s. The Wikipedia counterpart is a topical match (Hydraulics), not a dedicated article on hydraulic resistance experiments, so the comparison is somewhat indirect.\n\nLet me write the answer following the required format, under 300 words, with citations.\n\nStructure:\n1. **Answer** - two or three sentences\n2. **Britannica** - what it says, with edition/year\n3. **Wikipedia** - what it says\n4. **What changed** - each difference labelled with category\n5. **Confidence** - high/medium/low and what evidence is missing\n\nCitations: EB:130-0, EB:130-1, EB:130-3 for Britannica; WP:65424-0, WP:11034-0 for Wikipedia.\n\nLet me draft:\n\n**Answer:** Britannica's 3rd edition (1788–1797) treats \"Hydraulic Resistance Experiments\" as a report of hands-on tests validating De Buat's formula for resistance in pipes and channels, including a syphon occlusion trial and a cylinder-vortex test [EB:130-0][EB:130-1][EB:130-3]. Wikipedia has no article by that name; its precomputed counterparts are the general articles \"Hydraulics\" and \"Fluid dynamics,\" which frame the subject as a modern applied discipline rooted in fluid mechanics [WP:65424-0][WP:11034-0].\n\n**Britannica:** In the 3rd edition (1788–1797, Vol. 16), the article describes repeating an experiment on the occlusion of water in syphons — two vessels connected by a syphon — finding no sensible difference in filling time whether the syphon was horizontal or vertical, even with pressure more than six times greater and added obstructions [EB:130-0]. It endorses Mr. De Buat's view that resistance depends chiefly on the relation between a section and its border, and that subtracting a constant (one-tenth of an inch) from √d makes √mg/(√d − 0.1) nearly constant, varying from 297 to 287 from small pipe to little canal, never below 256 in large canals and rivers [EB:130-1]. A separate note describes whirling a polished cylinder in water (in the manner Newton suggested) to study vortices and pipe resistance [EB:130-3]. The OCR renders the long s as \"f.\"\n\n**Wikipedia:** The matched article \"Hydraulics\" defines the field as a technology and applied science using engineering, chemistry and other sciences concerning the mechanical properties and use of liquids, rooted in fluid mechanics and used to govern energy via pressurized liquids, covering pipe flow, dam design, and open-channel flow [WP:65424-0]. \"Fluid dynamics\" describes it as a subdiscipline of fluid mechanics covering the flow of liquids and gases, with aerodynamics and hydrodynamics as subdisciplines, and applications from aircraft forces and pipeline flow to weather, nebulae, and geophysical flows, built on empirical and semi-empirical laws [WP:11034-0].\n\n**What changed:**\n- LANGUAGE: 18th-century OCR text with long s (\"ſ\" → \"f\"), archaic spellings (\"veſſels,\" \"ſyphon,\" \"refiſtances\"), and first-person reportage vs. modern technical encyclopedic prose [EB:130-0][EB:130-1][EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- KNOWLEDGE: Britannica reports specific historical experiments and De Buat's empirical coefficient with numerical values; Wikipedia reorganizes the topic into a broad modern discipline (hydraulics/fluid dynamics) with wide applications and does not mention De Buat's experiments or coefficient at all [EB:130-0][EB:130-1] vs. [WP:65424-0][WP:11034-0].\n- PERSPECTIVE: Britannica is a first-person experimentalist's verification of one engineer's rule; Wikipedia is an impersonal survey of an entire field [EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- NO_COUNTERPART: Wikipedia has no dedicated article on hydraulic resistance experiments; the match is topical only (Hydraulics/Fluid dynamics).\n\n**Confidence:** Medium. The Britannica passages are legible despite long-s OCR, and the Wikipedia counterparts are clearly identified, but there is no dedicated Wikipedia article on hydraulic resistance experiments, so the comparison is against general hydraulics/fluid dynamics articles rather than a direct equivalent.\n\nLet me check the word count. This is around 280-300 words. Let me count roughly... It might be a bit long. Let me tighten it to be under 300 words.\n\nActually, let me count more carefully. I'll aim to keep it concise. Let me rewrite more tightly.\n\nWord count check — I'll write it and estimate. The answer should be under 300 words. Let me be economical.\n\nFinal version:\n\n**Answer:** Britannica's 3rd edition (1788–1797) treats \"Hydraulic Resistance Experiments\" as a first-person report of tests validating De Buat's rule for resistance in pipes and channels, including a syphon occlusion trial and a cylinder-vortex experiment [EB:130-0][EB:130-1][EB:130-3]. Wikipedia has no article by that name; its precomputed counterparts are the general articles \"Hydraulics\" and \"Fluid dynamics\" [WP:65424-0][WP:11034-0].\n\n**Britannica:** 3rd edition (1788–1797, Vol. 16). The article repeats an experiment on occlusion of water in syphons and finds no sensible difference in filling time whether the syphon is horizontal or vertical, even with pressure over six times greater and added obstructions [EB:130-0]. It endorses De Buat's view that resistance depends on the relation between a section and its border, and that subtracting a constant (one-tenth inch) from √d makes √mg/(√d − 0.1) nearly constant (297 to 287 from small pipe to little canal, never below 256 in large canals and rivers) [EB:130-1]. A note describes whirling a polished cylinder in water, as Newton suggested, to study vortices and pipe resistance [EB:130-3]. The OCR renders long s as \"f.\"\n\n**Wikipedia:** \"Hydraulics\" defines the field as an applied science of the mechanical properties and use of liquids, rooted in fluid mechanics, governing energy via pressurized liquids, covering pipe flow, dam design, and open-channel flow [WP:65424-0]. \"Fluid dynamics\" is a subdiscipline of fluid mechanics covering flow of liquids and gases, with aerodynamics and hydrodynamics, applied to aircraft, pipelines, weather, nebulae, and geophysical flows, built on empirical and semi-empirical laws [WP:11034-0].\n\n**What changed:**\n- LANGUAGE: 18th-century OCR with long s (\"ſ\" → \"f\"), archaic spellings (\"veſſels,\" \"ſyphon\"), first-person voice, vs. modern technical prose [EB:130-0][EB:130-1][EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- KNOWLEDGE: Britannica gives De Buat's specific experiments and numerical coefficient; Wikipedia covers the broad modern discipline and omits De Buat's experiments entirely [EB:130-0][EB:130-1] vs. [WP:65424-0][WP:11034-0].\n- PERSPECTIVE: An individual experimenter verifying one engineer's rule vs. an impersonal survey of a whole field [EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- NO_COUNTERPART: No dedicated Wikipedia article on hydraulic resistance exists; the match is topical only.\n\n**Confidence:** Medium. Britannica is legible despite long-s OCR, and counterparts are identified, but there is no direct Wikipedia equivalent, so the comparison is against general hydraulics/fluid dynamics articles.\n\nThis is about 260 words. Good. Let me finalize.\n\nActually, I want to double check: the question asks \"What changed: language, knowledge or perspective?\" — so I should label each difference. I've done that. Good.\n\nOne more consideration: should I verify the OCR interpretation? The text has \"ſ\" which is long s. I've noted that. I'm confident in the reading.\n\nLet me produce the final answer.",
+      "finish_reason": "stop",
+      "timestamp": 1792333379.4727552,
+      "reasoning_content": "Now I have all the material I need. Let me synthesize the answer.\n\n**Britannica (3rd edition, 1788-1797), \"Hydraulic Resistance Experiments\":**\n- Discusses experiments verifying Mr. De Buat's theories on resistance of water in channels/pipes\n- A syphon experiment: two vessels connected by a syphon, testing whether pressure/occlusion affects water flow — found no sensible difference in time when syphon was vertical vs horizontal, even with pressure more than 6x greater and obstructions added\n- De Buat's opinion: resistance depends chiefly on the relation between the section (cross-section) and its border; √mg/√d should be constant\n- Experiments showed √mg did not follow proportion of √d; in very great beds √mg nearly proportional to √d, but in smaller channels velocities diminished more\n- De Buat's correction: subtract a constant small quantity (one-tenth of an inch) from √d, making √mg/(√d - 0.1) constant, varying from 297 to 287 from small pipe to little canal, never less than 256 in large sections of canals and rivers\n- Also a vortex experiment: whirling a polished cylinder in water, finding rapid motion of surrounding water confined to small distance from cylinder — suggested as a form of experiment for examining resistances of pipes\n- OCR uses long s (\"ſ\" read as \"f\")\n\n**Wikipedia counterparts:**\n- \"Hydraulics\" (WP:65424): technology and applied science using engineering, chemistry, and other sciences involving mechanical properties and use of liquids; rooted in fluid mechanics; governs energy via pressurized liquids; topics include pipe flow, dam design, free surface hydraulics, open-channel flow\n- \"Fluid dynamics\" (WP:11034): subdiscipline of fluid mechanics describing flow of fluids (liquids and gases); subdisciplines include aerodynamics and hydrodynamics; applications include forces on aircraft, mass flow rate of petroleum through pipelines, weather prediction, nebulae, geophysical flows, fission weapon detonation; embraces empirical and semi-empirical laws\n\n**What changed:**\n- LANGUAGE: Yes — archaic OCR with long s (\"ſ\" as \"f\"), 18th-century phrasing, Mr. De Buat, syphon, veſſels, etc. Modern Wikipedia uses contemporary technical English.\n- KNOWLEDGE: Yes — Britannica presents specific historical experiments (De Buat's coefficient, syphon occlusion tests, cylinder vortex experiments) with specific numbers; Wikipedia gives a broad, modern framing of hydraulics/fluid dynamics as a discipline with empirical and semi-empirical laws, applications to pipelines, aircraft, weather, etc. The specific De Buat experiments are not in Wikipedia; the knowledge is reorganized into a modern disciplinary framework.\n- PERSPECTIVE: Britannica is a first-person experimental report (\"The writer of this article verified this...\"), focused on validating a particular engineer's (De Buat's) formula through hands-on experiments. Wikipedia is an encyclopedic, impersonal survey of a field. This is partly perspective (authoritative individual experimenter vs. collective scientific discipline), but the primary categories are language and knowledge.\n- NO_COUNPART: Not exactly — there is a counterpart (Hydraulics / Fluid dynamics), but no article specifically titled \"Hydraulic Resistance Experiments\" in Wikipedia. The counterpart match is topical, not a direct equivalent.\n\nConfidence: medium-high. The Britannica text is clear enough despite OCR long-s. The Wikipedia counterpart is a topical match (Hydraulics), not a dedicated article on hydraulic resistance experiments, so the comparison is somewhat indirect.\n\nLet me write the answer following the required format, under 300 words, with citations.\n\nStructure:\n1. **Answer** - two or three sentences\n2. **Britannica** - what it says, with edition/year\n3. **Wikipedia** - what it says\n4. **What changed** - each difference labelled with category\n5. **Confidence** - high/medium/low and what evidence is missing\n\nCitations: EB:130-0, EB:130-1, EB:130-3 for Britannica; WP:65424-0, WP:11034-0 for Wikipedia.\n\nLet me draft:\n\n**Answer:** Britannica's 3rd edition (1788–1797) treats \"Hydraulic Resistance Experiments\" as a report of hands-on tests validating De Buat's formula for resistance in pipes and channels, including a syphon occlusion trial and a cylinder-vortex test [EB:130-0][EB:130-1][EB:130-3]. Wikipedia has no article by that name; its precomputed counterparts are the general articles \"Hydraulics\" and \"Fluid dynamics,\" which frame the subject as a modern applied discipline rooted in fluid mechanics [WP:65424-0][WP:11034-0].\n\n**Britannica:** In the 3rd edition (1788–1797, Vol. 16), the article describes repeating an experiment on the occlusion of water in syphons — two vessels connected by a syphon — finding no sensible difference in filling time whether the syphon was horizontal or vertical, even with pressure more than six times greater and added obstructions [EB:130-0]. It endorses Mr. De Buat's view that resistance depends chiefly on the relation between a section and its border, and that subtracting a constant (one-tenth of an inch) from √d makes √mg/(√d − 0.1) nearly constant, varying from 297 to 287 from small pipe to little canal, never below 256 in large canals and rivers [EB:130-1]. A separate note describes whirling a polished cylinder in water (in the manner Newton suggested) to study vortices and pipe resistance [EB:130-3]. The OCR renders the long s as \"f.\"\n\n**Wikipedia:** The matched article \"Hydraulics\" defines the field as a technology and applied science using engineering, chemistry and other sciences concerning the mechanical properties and use of liquids, rooted in fluid mechanics and used to govern energy via pressurized liquids, covering pipe flow, dam design, and open-channel flow [WP:65424-0]. \"Fluid dynamics\" describes it as a subdiscipline of fluid mechanics covering the flow of liquids and gases, with aerodynamics and hydrodynamics as subdisciplines, and applications from aircraft forces and pipeline flow to weather, nebulae, and geophysical flows, built on empirical and semi-empirical laws [WP:11034-0].\n\n**What changed:**\n- LANGUAGE: 18th-century OCR text with long s (\"ſ\" → \"f\"), archaic spellings (\"veſſels,\" \"ſyphon,\" \"refiſtances\"), and first-person reportage vs. modern technical encyclopedic prose [EB:130-0][EB:130-1][EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- KNOWLEDGE: Britannica reports specific historical experiments and De Buat's empirical coefficient with numerical values; Wikipedia reorganizes the topic into a broad modern discipline (hydraulics/fluid dynamics) with wide applications and does not mention De Buat's experiments or coefficient at all [EB:130-0][EB:130-1] vs. [WP:65424-0][WP:11034-0].\n- PERSPECTIVE: Britannica is a first-person experimentalist's verification of one engineer's rule; Wikipedia is an impersonal survey of an entire field [EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- NO_COUNTERPART: Wikipedia has no dedicated article on hydraulic resistance experiments; the match is topical only (Hydraulics/Fluid dynamics).\n\n**Confidence:** Medium. The Britannica passages are legible despite long-s OCR, and the Wikipedia counterparts are clearly identified, but there is no dedicated Wikipedia article on hydraulic resistance experiments, so the comparison is against general hydraulics/fluid dynamics articles rather than a direct equivalent.\n\nLet me check the word count. This is around 280-300 words. Let me count roughly... It might be a bit long. Let me tighten it to be under 300 words.\n\nActually, let me count more carefully. I'll aim to keep it concise. Let me rewrite more tightly.\n\nWord count check — I'll write it and estimate. The answer should be under 300 words. Let me be economical.\n\nFinal version:\n\n**Answer:** Britannica's 3rd edition (1788–1797) treats \"Hydraulic Resistance Experiments\" as a first-person report of tests validating De Buat's rule for resistance in pipes and channels, including a syphon occlusion trial and a cylinder-vortex experiment [EB:130-0][EB:130-1][EB:130-3]. Wikipedia has no article by that name; its precomputed counterparts are the general articles \"Hydraulics\" and \"Fluid dynamics\" [WP:65424-0][WP:11034-0].\n\n**Britannica:** 3rd edition (1788–1797, Vol. 16). The article repeats an experiment on occlusion of water in syphons and finds no sensible difference in filling time whether the syphon is horizontal or vertical, even with pressure over six times greater and added obstructions [EB:130-0]. It endorses De Buat's view that resistance depends on the relation between a section and its border, and that subtracting a constant (one-tenth inch) from √d makes √mg/(√d − 0.1) nearly constant (297 to 287 from small pipe to little canal, never below 256 in large canals and rivers) [EB:130-1]. A note describes whirling a polished cylinder in water, as Newton suggested, to study vortices and pipe resistance [EB:130-3]. The OCR renders long s as \"f.\"\n\n**Wikipedia:** \"Hydraulics\" defines the field as an applied science of the mechanical properties and use of liquids, rooted in fluid mechanics, governing energy via pressurized liquids, covering pipe flow, dam design, and open-channel flow [WP:65424-0]. \"Fluid dynamics\" is a subdiscipline of fluid mechanics covering flow of liquids and gases, with aerodynamics and hydrodynamics, applied to aircraft, pipelines, weather, nebulae, and geophysical flows, built on empirical and semi-empirical laws [WP:11034-0].\n\n**What changed:**\n- LANGUAGE: 18th-century OCR with long s (\"ſ\" → \"f\"), archaic spellings (\"veſſels,\" \"ſyphon\"), first-person voice, vs. modern technical prose [EB:130-0][EB:130-1][EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- KNOWLEDGE: Britannica gives De Buat's specific experiments and numerical coefficient; Wikipedia covers the broad modern discipline and omits De Buat's experiments entirely [EB:130-0][EB:130-1] vs. [WP:65424-0][WP:11034-0].\n- PERSPECTIVE: An individual experimenter verifying one engineer's rule vs. an impersonal survey of a whole field [EB:130-3] vs. [WP:65424-0][WP:11034-0].\n- NO_COUNTERPART: No dedicated Wikipedia article on hydraulic resistance exists; the match is topical only.\n\n**Confidence:** Medium. Britannica is legible despite long-s OCR, and counterparts are identified, but there is no direct Wikipedia equivalent, so the comparison is against general hydraulics/fluid dynamics articles.\n\nThis is about 260 words. Good. Let me finalize.\n\nActually, I want to double check: the question asks \"What changed: language, knowledge or perspective?\" — so I should label each difference. I've done that. Good.\n\nOne more consideration: should I verify the OCR interpretation? The text has \"ſ\" which is long s. I've noted that. I'm confident in the reading.\n\nLet me produce the final answer."
+    }
+  ],
+  "slug": "topic-hydraulic-resistance-experiments",
+  "expectation": "success candidate: indexed page with a Wikipedia counterpart",
+  "gold_page": 130,
+  "model": "nvidia/Nemotron-3.5-Super-VL",
+  "ran_at": "2026-10-18T14:22:59.478153+00:00",
+  "metrics": {
+    "duration_s": 20.3,
+    "n_calls": 9,
+    "n_vision_calls": 0,
+    "n_cited": 5,
+    "n_unsupported": 0,
+    "support": null,
+    "n_weak_claims": 0,
+    "gold_page_found": true,
+    "suggested_stage": null
+  }
+}

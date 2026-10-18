@@ -65,10 +65,32 @@
     ]
   },
   {
+    "type": "tool_call",
+    "role": "britannica",
+    "name": "inspect_page_image",
+    "args": {
+      "cite_id": "EB:1771-v1-p489",
+      "question": "How many planets are engraved on this plate, and what does the caption say?"
+    }
+  },
+  {
+    "type": "tool_result",
+    "role": "britannica",
+    "name": "inspect_page_image",
+    "hits": [],
+    "vision": {
+      "question": "How many planets are engraved on this plate, and what does the caption say?",
+      "answer": "Plate XL, headed “THE SOLAR SYSTEM” and signed “A. Bell sculp.” The sun is drawn at the centre with six concentric orbits, each carrying one planet labelled in italic: Mercury, Venus, Earth, Mars, Jupiter and Saturn, Saturn being the outermost. The caption reads: “Fig. 1. The Copernican or Solar System, with the orbits of the six primary planets.” No seventh planet, no moons and no comets are engraved.",
+      "images": [
+        "/mock/eb-1771-plate-solar-system.svg"
+      ]
+    }
+  },
+  {
     "type": "turn_end",
     "role": "britannica",
     "round": 1,
-    "text": "Sir, the matter admits of no great dispute. **Astronomy** is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order [EB:1771-v1-p487].\n\nThe solar system consists of the sun, with the planets and comets moving about him; and the primary planets are **six in number** — Mercury, Venus, the Earth, Mars, Jupiter, and Saturn [EB:1771-v1-p489]. The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican system is demonstrated to be the true system of the world, displaying the wisdom and power of the Creator [EB:1771-v1-p491].",
+    "text": "Sir, the matter admits of no great dispute. **Astronomy** is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order [EB:1771-v1-p487].\n\nThe solar system consists of the sun, with the planets and comets moving about him; and the primary planets are **six in number** — Mercury, Venus, the Earth, Mars, Jupiter, and Saturn — even as Plate XL engraves their six orbits about the sun [EB:1771-v1-p489]. I am told, moreover, that Mr Herschel has descried a seventh, *Uranus*, in the year 1781 [EB:1771-v1-p489]. The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican system is demonstrated to be the true system of the world, displaying the wisdom and power of the Creator [EB:1771-v1-p491].",
     "citations": [
       {
         "cite_id": "EB:1771-v1-p487",
@@ -102,6 +124,50 @@
       }
     ],
     "unsupported": []
+  },
+  {
+    "type": "evidence",
+    "role": "britannica",
+    "round": 1,
+    "support": 0.61,
+    "claims": [
+      {
+        "text": "Astronomy is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order.",
+        "cites": [
+          "EB:1771-v1-p487"
+        ],
+        "support": 0.94,
+        "modern_support": 0.71,
+        "flag": "supported"
+      },
+      {
+        "text": "The primary planets are six in number — Mercury, Venus, the Earth, Mars, Jupiter and Saturn — as Plate XL engraves them.",
+        "cites": [
+          "EB:1771-v1-p489"
+        ],
+        "support": 0.91,
+        "modern_support": 0.18,
+        "flag": "supported"
+      },
+      {
+        "text": "Mr Herschel has descried a seventh planet, Uranus, in the year 1781.",
+        "cites": [
+          "EB:1771-v1-p489"
+        ],
+        "support": 0.06,
+        "modern_support": 0.93,
+        "flag": "anachronism"
+      },
+      {
+        "text": "The Copernican system is the true system of the world, displaying the wisdom and power of the Creator.",
+        "cites": [
+          "EB:1771-v1-p491"
+        ],
+        "support": 0.52,
+        "modern_support": 0.34,
+        "flag": "weak"
+      }
+    ]
   },
   {
     "type": "turn_start",
@@ -208,6 +274,41 @@
     "unsupported": []
   },
   {
+    "type": "evidence",
+    "role": "wikipedia",
+    "round": 1,
+    "support": 0.94,
+    "claims": [
+      {
+        "text": "Astronomy is the natural science that studies celestial objects and phenomena, using mathematics, physics and chemistry.",
+        "cites": [
+          "WP:Astronomy"
+        ],
+        "support": 0.95,
+        "modern_support": null,
+        "flag": "supported"
+      },
+      {
+        "text": "The Solar System has eight planets, adding Uranus and Neptune to the scholar's six.",
+        "cites": [
+          "WP:Solar_System#planets"
+        ],
+        "support": 0.92,
+        "modern_support": null,
+        "flag": "supported"
+      },
+      {
+        "text": "Pluto counted as a ninth planet from 1930 until the IAU reclassified it as a dwarf planet in 2006.",
+        "cites": [
+          "WP:Pluto#classification"
+        ],
+        "support": 0.96,
+        "modern_support": null,
+        "flag": "supported"
+      }
+    ]
+  },
+  {
     "type": "turn_start",
     "role": "moderator",
     "round": 1
@@ -282,6 +383,41 @@
     ]
   },
   {
+    "type": "evidence",
+    "role": "britannica",
+    "round": 2,
+    "support": 0.56,
+    "claims": [
+      {
+        "text": "In 1781 Sir William Herschel discovered Uranus, and in 1846 Neptune was found where Le Verrier and Adams had calculated.",
+        "cites": [
+          "EB:1853-v4-p12"
+        ],
+        "support": 0.93,
+        "modern_support": 0.9,
+        "flag": "supported"
+      },
+      {
+        "text": "The planets are, in all probability, inhabited like our earth.",
+        "cites": [
+          "EB:1771-v1-p489"
+        ],
+        "support": 0.74,
+        "modern_support": 0.05,
+        "flag": "supported"
+      },
+      {
+        "text": "The plurality of worlds was affirmed by the best philosophers of the age.",
+        "cites": [
+          "EB:1771-v3-p118"
+        ],
+        "support": 0.0,
+        "modern_support": 0.12,
+        "flag": "unsupported"
+      }
+    ]
+  },
+  {
     "type": "turn_start",
     "role": "wikipedia",
     "round": 2
@@ -339,6 +475,39 @@
       }
     ],
     "unsupported": []
+  },
+  {
+    "type": "evidence",
+    "role": "wikipedia",
+    "round": 2,
+    "support": 0.62,
+    "claims": [
+      {
+        "text": "The modern record of Herschel's and Le Verrier's discoveries matches the scholar's almost word for word.",
+        "cites": [
+          "WP:Solar_System#planets"
+        ],
+        "support": 0.41,
+        "modern_support": null,
+        "flag": "weak"
+      },
+      {
+        "text": "Heliocentrism is today a superseded model: the Sun has no special place in the universe, and no appeal is made to a Creator.",
+        "cites": [
+          "WP:Heliocentrism"
+        ],
+        "support": 0.83,
+        "modern_support": null,
+        "flag": "supported"
+      },
+      {
+        "text": "The modern articles make no claim that the planets are inhabited.",
+        "cites": [],
+        "support": null,
+        "modern_support": null,
+        "flag": "uncited"
+      }
+    ]
   },
   {
     "type": "turn_start",
@@ -413,7 +582,19 @@
         ]
       }
     ],
-    "summary": "The two encyclopaedias agree on what astronomy is and that the planets circle the Sun, but 250 years of discovery separate them on the contents of the solar system: Uranus, Neptune and the dwarf planets did not exist for the 1771 reader. The deepest shift is in perspective — the 18th-century text reads the heavens as evidence of a Creator and speculates about inhabited worlds, claims with no modern counterpart."
+    "summary": "The two encyclopaedias agree on what astronomy is and that the planets circle the Sun, but 250 years of discovery separate them on the contents of the solar system: Uranus, Neptune and the dwarf planets did not exist for the 1771 reader. The deepest shift is in perspective — the 18th-century text reads the heavens as evidence of a Creator and speculates about inhabited worlds, claims with no modern counterpart.",
+    "evidence": {
+      "britannica": 0.58,
+      "wikipedia": 0.78,
+      "anachronisms": [
+        {
+          "round": 1,
+          "text": "Mr Herschel has descried a seventh planet, Uranus, in the year 1781.",
+          "support": 0.06,
+          "modern_support": 0.93
+        }
+      ]
+    }
   },
   {
     "type": "done"

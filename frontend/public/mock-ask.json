@@ -1,5 +1,5 @@
 {
-  "answer": "In its first edition (1771), the *Encyclopaedia Britannica* counted **six primary planets** — Mercury, Venus, the Earth, Mars, Jupiter and Saturn — circling the Sun in the Copernican arrangement [EB:1771-v1-p489] [EB:1771-v1-p491].\n\nBy its eighth edition (1853) Britannica itself had caught up with two major discoveries: **Uranus** (Herschel, 1781) and **Neptune** (Le Verrier and Adams, 1846) [EB:1853-v4-p12].\n\nModern Wikipedia lists **eight planets**, matching the 1853 Britannica on the major planets [WP:Solar_System#planets]. The main later change is Pluto: discovered in 1930, counted as the ninth planet, and reclassified as a dwarf planet in 2006 [WP:Pluto#classification].\n\n- **Knowledge change:** 6 → 8 planets (plus dwarf planets).\n- **Perspective change:** the 1771 text reads the system as proof of the Creator's wisdom; Wikipedia calls heliocentrism a superseded model [WP:Heliocentrism].\n- One claim about Saturn's rings in the 1771 edition could not be verified [EB:1771-v1-p493].",
+  "answer": "In its first edition (1771), the *Encyclopaedia Britannica* counted **six primary planets** — Mercury, Venus, the Earth, Mars, Jupiter and Saturn — circling the Sun in the Copernican arrangement [EB:1771-v1-p489] [EB:1771-v1-p491].\n\nBy its eighth edition (1853) Britannica itself had caught up with two major discoveries: **Uranus** (Herschel, 1781) and **Neptune** (Le Verrier and Adams, 1846) [EB:1853-v4-p12].\n\nModern Wikipedia lists **eight planets**, matching the 1853 Britannica on the major planets [WP:Solar_System#planets]. The main later change is Pluto: discovered in 1930, counted as the ninth planet, and reclassified as a dwarf planet in 2006 [WP:Pluto#classification].\n\n- **Knowledge change:** 6 → 8 planets (plus dwarf planets).\n- **Perspective change:** the 1771 text reads the system as proof of the Creator's wisdom; Wikipedia calls heliocentrism a superseded model [WP:Heliocentrism].\n- **The pictures changed too:** the 1771 plate engraves six orbits about the Sun as a mathematical figure; the modern diagram shows eight planets plus dwarf planets, in colour [EB:1771-v1-p489] [WP:Solar_System#planets].\n- One claim about Saturn's rings in the 1771 edition could not be verified [EB:1771-v1-p493].",
   "citations": [
     {
       "cite_id": "EB:1771-v1-p489",
@@ -71,31 +71,151 @@
       "args": {
         "query": "number of planets",
         "edition": 1
+      },
+      "n_hits": 3,
+      "cite_ids": [
+        "EB:1771-v1-p489",
+        "EB:1771-v1-p491",
+        "EB:1771-v1-p487"
+      ]
+    },
+    {
+      "name": "inspect_page_image",
+      "args": {
+        "cite_id": "EB:1771-v1-p489",
+        "question": "How many planets are engraved on this plate, and what does the caption say?"
+      },
+      "n_hits": 0,
+      "cite_ids": [],
+      "vision": {
+        "question": "How many planets are engraved on this plate, and what does the caption say?",
+        "answer": "Plate XL, headed “THE SOLAR SYSTEM” and signed “A. Bell sculp.” The sun is drawn at the centre with six concentric orbits, each carrying one planet labelled in italic: Mercury, Venus, Earth, Mars, Jupiter and Saturn, Saturn being the outermost. The caption reads: “Fig. 1. The Copernican or Solar System, with the orbits of the six primary planets.” No seventh planet, no moons and no comets are engraved.",
+        "images": [
+          "/mock/eb-1771-plate-solar-system.svg"
+        ]
       }
     },
     {
       "name": "search_britannica",
       "args": {
         "query": "Herschel Uranus Neptune discovery"
-      }
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:1853-v4-p12"
+      ]
     },
     {
       "name": "search_wikipedia",
       "args": {
         "query": "planets of the Solar System"
+      },
+      "n_hits": 2,
+      "cite_ids": [
+        "WP:Solar_System#planets",
+        "WP:Pluto#classification"
+      ]
+    },
+    {
+      "name": "compare_images",
+      "args": {
+        "britannica_cite_id": "EB:1771-v1-p489",
+        "wikipedia_cite_id": "WP:Solar_System#planets",
+        "question": "How do the 1771 plate and the modern Wikipedia illustration depict the solar system differently?"
+      },
+      "n_hits": 0,
+      "cite_ids": [],
+      "vision": {
+        "question": "How do the 1771 plate and the modern Wikipedia illustration depict the solar system differently?",
+        "answer": "Image 1 is a copper engraving: the Sun as a small dark disc with six concentric circular orbits drawn to scale-free, evenly spaced radii, the planets as black dots labelled Mercury to Saturn. Image 2 is a modern colour diagram: the Sun as a large glowing body at the left, eight planets in a row with their relative sizes, and Pluto marked separately as a dwarf planet. The engraving shows the geometry of the orbits; the modern image shows the bodies themselves and adds Uranus and Neptune.",
+        "images": [
+          "/mock/eb-1771-plate-solar-system.svg",
+          "/mock/wp-solar-system.svg"
+        ]
       }
     },
     {
       "name": "get_wikipedia_article",
       "args": {
         "title": "Pluto"
-      }
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:Pluto#classification"
+      ]
     },
     {
       "name": "get_wikipedia_article",
       "args": {
         "title": "Heliocentrism"
-      }
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:Heliocentrism"
+      ]
     }
-  ]
+  ],
+  "evidence": {
+    "support": 0.72,
+    "claims": [
+      {
+        "text": "In 1771 Britannica counted six primary planets, Mercury to Saturn, in the Copernican arrangement.",
+        "cites": [
+          "EB:1771-v1-p489",
+          "EB:1771-v1-p491"
+        ],
+        "support": 0.93,
+        "flag": "supported"
+      },
+      {
+        "text": "By 1853 Britannica recorded Uranus (Herschel, 1781) and Neptune (Le Verrier and Adams, 1846).",
+        "cites": [
+          "EB:1853-v4-p12"
+        ],
+        "support": 0.95,
+        "flag": "supported"
+      },
+      {
+        "text": "Modern Wikipedia lists eight planets, matching the 1853 Britannica on the major planets.",
+        "cites": [
+          "WP:Solar_System#planets"
+        ],
+        "support": 0.97,
+        "flag": "supported"
+      },
+      {
+        "text": "Pluto was discovered in 1930, counted as the ninth planet, and reclassified as a dwarf planet in 2006.",
+        "cites": [
+          "WP:Pluto#classification"
+        ],
+        "support": 0.94,
+        "flag": "supported"
+      },
+      {
+        "text": "The 1771 text reads the system as proof of the Creator's wisdom; Wikipedia calls heliocentrism a superseded model.",
+        "cites": [
+          "WP:Heliocentrism"
+        ],
+        "support": 0.57,
+        "flag": "weak"
+      },
+      {
+        "text": "The 1771 plate engraves six orbits; the modern diagram shows eight planets plus dwarf planets.",
+        "cites": [
+          "EB:1771-v1-p489",
+          "WP:Solar_System#planets"
+        ],
+        "support": 0.66,
+        "flag": "supported"
+      },
+      {
+        "text": "One claim about Saturn's rings in the 1771 edition could not be verified.",
+        "cites": [
+          "EB:1771-v1-p493"
+        ],
+        "support": 0.0,
+        "flag": "unsupported"
+      }
+    ]
+  }
 }

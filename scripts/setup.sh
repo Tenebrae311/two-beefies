@@ -8,4 +8,4 @@ fi
 uv sync
 [ -f .env ] || cp .env.example .env
 if [ -d frontend ]; then (cd frontend && npm install); fi
-echo "Done. Fill in .env (NEBIUS_API_KEY, EMBED_URL, RERANK_URL, LANCEDB_URI)."
+echo "Done. Fill in .env (NEBIUS_API_KEY, RETRIEVAL_BASE_URL, PARSE_URL, LANCEDB_URI)."

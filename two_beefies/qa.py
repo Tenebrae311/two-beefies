@@ -3,17 +3,20 @@
 import json
 import sys
 
+from two_beefies import evidence
 from two_beefies.agents import RoleAgent
 
 
 def ask(question: str) -> dict:
-    turn = RoleAgent("qa").ask(question)
+    agent = RoleAgent("qa")
+    turn = agent.ask(question)
     return {
         "question": question,
         "answer": turn.text,
         "citations": turn.citations,
         "unsupported": turn.unsupported,
         "trace": turn.calls,
+        "evidence": evidence.score_turn("qa", turn.text, agent.retrieved),
         "messages": turn.messages,
     }
 

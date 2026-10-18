@@ -1,0 +1,451 @@
+{
+  "question": "What does the Britannica say about Rock Crystal Properties and Classification, and how does modern Wikipedia describe it? What changed: language, knowledge or perspective?",
+  "answer": "**Answer**\nThe Britannica's 4th edition (1801–1810) article \"Rock Crystal Properties and Classification\" describes rock crystal by its form, colour, and accidents, coloured by metallic oxides and classed among \"false gems.\" Modern Wikipedia's Quartz article describes rock crystal as pure, colorless quartz, classified by crystal structure, polymorphism, and impurity-driven colour, with piezoelectric applications — a shift from gemology to mineral science.\n\n**Britannica** — 4th ed. (1801–1810), Vol. 6 Part 2, Conchology–Crystallization [EB:108-0–3]. Coloured crystals owe their tinge to \"an exceedingly small portion of metallic oxide,\" lost when strongly heated; sold as \"false gems\": false rubies, topazes, emeralds, amethysts, sapphires [EB:108-0]. Fourcroy classifies them by form, colour (diaphanous, reddish, smoky, blackish), and accidents (hollow, water-bearing, pebble-form) [EB:108-0,1]. Three geometric orders of pure crystal (18-plane columnar; 12/16-plane double pyramids; imperfect single pyramids) plus a fourth \"metallic crystals\" order; aqua fortis distinguishes crystal from spars [EB:108-2]. Crystals were once fluid; Bergman grew crystals from quartz powder and \"suor\" (sulfuric) acid [EB:108-3].\n\n**Wikipedia** — Quartz article. Rock crystal = pure, colorless, transparent/translucent quartz; coloured varieties (amethyst, citrine, rose, smoky, milky) get colour from impurities altering molecular orbitals/electronic transitions [WP:25233-5]. Quartz occurs as α-quartz (trigonal) and β-quartz (hexagonal), switching at 573 °C, in chiral space groups; ideal habit is a six-sided prism with pyramidal ends, often twinned [WP:25233-3,4]. \"Rock crystal\" is the traditional name for transparent coarsely crystalline quartz; Greeks called it supercooled ice [WP:25233-1]. Piezoelectricity (Curie, 1880) enables oscillators and clocks [WP:25233-6,14].\n\n**What changed**\n- LANGUAGE: archaic OCR spellings (\"cryſtal,\" \"falſe,\" \"aqua fortis,\" \"suor acid\") vs modern mineral terminology [EB:108-0–3 vs WP:25233-1,5].\n- KNOWLEDGE: colour from metallic oxides and fire resistance vs impurity-driven electronic transitions and α/β polymorphs at 573 °C; piezoelectricity, space groups, chirality, chalcedony/moganite are new [EB:108-0,2,3 vs WP:25233-3,5,6].\n- PERSPECTIVE: gems/jewels and medicinal uses vs rock-forming mineral (~12% of lithosphere) and electronics/industrial uses [EB:108-0,3 vs WP:25233-7,12,14].\n\n**Confidence**: high. Both sources directly cover rock crystal properties/classification. Only the 4th Britannica edition was located; later editions and the rest of the Wikipedia article were not checked.",
+  "citations": [
+    {
+      "cite_id": "EB:108-0",
+      "source": "britannica",
+      "title": "Rock Crystal Properties and Classification",
+      "snippet": "C R Y [ 782 ] C R Y pyramid, and are of various colours; or they lie in clayey earths, and have both pyramids, but no prim. They are found at Blackenburg upon the Hartz, and at Morferoh in the Silverland in Transylvania. The coloured transparent cryſtals derive their tinge from an exceedingly ſmall …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=108",
+      "image_url": "/api/page-image/108",
+      "edition": "4th (1801-1810)",
+      "year": 1801
+    },
+    {
+      "cite_id": "EB:108-2",
+      "source": "britannica",
+      "title": "Rock Crystal Properties and Classification",
+      "snippet": "many it is found ſtained with the colours of the ruby, ſapphire, emerald, and topaz; in which cafe jewellers take great advantage of it, feeling it under the name of occidental ſapphire. The orders of pure cryſtal are three: the firſt is perfect columnar cryſtals, with double pyramids, com- poſed …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=108",
+      "image_url": "/api/page-image/108",
+      "edition": "4th (1801-1810)",
+      "year": 1801
+    },
+    {
+      "cite_id": "EB:108-3",
+      "source": "britannica",
+      "title": "Rock Crystal Properties and Classification",
+      "snippet": "the world; but that which is formed of hexagonal columns, affixed to a ſolid baſe at one end, and ter- minated by a hexagonal column at the other, is in- finitely more ſo: this is what we call ſtrig or rock cryſtal, and is the ſpecies deſcribed by moſt authors under the name of cryſtal of the …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=108",
+      "image_url": "/api/page-image/108",
+      "edition": "4th (1801-1810)",
+      "year": 1801
+    },
+    {
+      "cite_id": "WP:25233-5",
+      "source": "wikipedia",
+      "title": "Quartz",
+      "snippet": "Pure quartz, traditionally called rock crystal or clear quartz, is colorless and transparent or translucent. Colored varieties of quartz are common and include citrine, rose quartz, amethyst, smoky quartz, milky quartz, and others. These color differentiations arise from the presence of impurities …",
+      "url": "https://en.wikipedia.org/wiki/Quartz",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Quartz_Br%C3%A9sil.jpg/1280px-Quartz_Br%C3%A9sil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "edition": null,
+      "year": null
+    },
+    {
+      "cite_id": "WP:25233-3",
+      "source": "wikipedia",
+      "title": "Quartz",
+      "snippet": "Quartz can form as two distinct polymorphs depending on the temperature and pressure: α-quartz (also called low quartz or normal quartz) and β-quartz (also called quartz-beta or high quartz). α-quartz crystallizes in the trigonal crystal system, while β-quartz has greater symmetry and crystallizes …",
+      "url": "https://en.wikipedia.org/wiki/Quartz",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Quartz_Br%C3%A9sil.jpg/1280px-Quartz_Br%C3%A9sil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "edition": null,
+      "year": null
+    },
+    {
+      "cite_id": "WP:25233-1",
+      "source": "wikipedia",
+      "title": "Quartz",
+      "snippet": "The word quartz is derived from the German word Quarz, which had the same form in the first half of the 14th century in Middle High German and in East Central German and which came from the Polish dialect term kwardy, which corresponds to the Czech term tvrdý ('hard'). Some sources, however, …",
+      "url": "https://en.wikipedia.org/wiki/Quartz",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Quartz_Br%C3%A9sil.jpg/1280px-Quartz_Br%C3%A9sil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "edition": null,
+      "year": null
+    },
+    {
+      "cite_id": "WP:25233-6",
+      "source": "wikipedia",
+      "title": "Quartz",
+      "snippet": "Quartz crystals have piezoelectric properties; they develop an electric potential upon the application of mechanical stress. Quartz's piezoelectric properties were discovered by Jacques and Pierre Curie in 1880.",
+      "url": "https://en.wikipedia.org/wiki/Quartz",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Quartz_Br%C3%A9sil.jpg/1280px-Quartz_Br%C3%A9sil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "edition": null,
+      "year": null
+    },
+    {
+      "cite_id": "WP:25233-7",
+      "source": "wikipedia",
+      "title": "Quartz",
+      "snippet": "Quartz is the second most abundant mineral or mineral group in the Earth's lithosphere; by mass, the feldspar group comprises 41% of the lithosphere, followed by quartz at 12% and the pyroxene group at 11%. Quartz is a defining constituent of granite and other felsic igneous rocks. It is very …",
+      "url": "https://en.wikipedia.org/wiki/Quartz",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Quartz_Br%C3%A9sil.jpg/1280px-Quartz_Br%C3%A9sil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "edition": null,
+      "year": null
+    }
+  ],
+  "unsupported": [],
+  "trace": [
+    {
+      "name": "search_britannica",
+      "args": {
+        "query": "rock crystal properties classification",
+        "k": 10
+      },
+      "n_hits": 10,
+      "cite_ids": [
+        "EB:108-1",
+        "EB:108-3",
+        "EB:108-0",
+        "EB:108-2",
+        "EB:1839-2",
+        "EB:456-0",
+        "EB:895-1",
+        "EB:2465-0",
+        "EB:952-1",
+        "EB:571-1"
+      ]
+    },
+    {
+      "name": "search_wikipedia",
+      "args": {
+        "query": "rock crystal properties classification quartz",
+        "k": 10
+      },
+      "n_hits": 10,
+      "cite_ids": [
+        "WP:25233-7",
+        "WP:25233-3",
+        "WP:25233-4",
+        "WP:25233-6",
+        "WP:25233-5",
+        "WP:25233-12",
+        "WP:25233-1",
+        "WP:25233-14",
+        "WP:25233-13",
+        "WP:25233-11"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:108-0"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:108-0"
+      ]
+    },
+    {
+      "name": "read_wikipedia",
+      "args": {
+        "cite_id": "WP:25233-3"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:25233-3"
+      ]
+    },
+    {
+      "name": "read_wikipedia",
+      "args": {
+        "cite_id": "WP:25233-5"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:25233-5"
+      ]
+    },
+    {
+      "name": "read_wikipedia",
+      "args": {
+        "cite_id": "WP:25233-1"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:25233-1"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:108-1"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:108-1"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:108-2"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:108-2"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:108-3"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:108-3"
+      ]
+    },
+    {
+      "name": "read_wikipedia",
+      "args": {
+        "cite_id": "WP:25233-4"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:25233-4"
+      ]
+    }
+  ],
+  "evidence": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "What does the Britannica say about Rock Crystal Properties and Classification, and how does modern Wikipedia describe it? What changed: language, knowledge or perspective?",
+      "timestamp": 1792333320.1908789
+    },
+    {
+      "role": "assistant",
+      "content": "I'll search both the historical Britannica and modern Wikipedia for information on rock crystal properties and classification.",
+      "reasoning": "The user is asking about \"Rock Crystal Properties and Classification\" from the historical Encyclopaedia Britannica and modern Wikipedia. I need to search both sources.\n\nLet me start by searching both sources for \"Rock Crystal Properties and Classification\" and related terms.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333321.907255,
+      "reasoning_content": "The user is asking about \"Rock Crystal Properties and Classification\" from the historical Encyclopaedia Britannica and modern Wikipedia. I need to search both sources.\n\nLet me start by searching both sources for \"Rock Crystal Properties and Classification\" and related terms.",
+      "tool_calls": [
+        {
+          "id": "call_d8e1f7572d90",
+          "call_id": "call_d8e1f7572d90",
+          "response_item_id": "fc_d8e1f7572d90",
+          "type": "function",
+          "function": {
+            "name": "search_britannica",
+            "arguments": "{\"query\": \"rock crystal properties classification\", \"k\": 10}"
+          }
+        },
+        {
+          "id": "call_bcf375c703e9",
+          "call_id": "call_bcf375c703e9",
+          "response_item_id": "fc_bcf375c703e9",
+          "type": "function",
+          "function": {
+            "name": "search_wikipedia",
+            "arguments": "{\"query\": \"rock crystal properties classification quartz\", \"k\": 10}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "search_britannica",
+      "tool_name": "search_britannica",
+      "content": "{\"results\": [{\"cite_id\": \"EB:108-1\", \"title\": \"Rock Crystal Properties and Classification\", \"edition\": \"4th (1801-1810)\", \"volume_label\": \"Fourth edition, Volume 6 Part 2, Conchology-Crystallization\", \"page_index\": 108, \"illustrated\": false, \"retrieval_score\": 10.1585, \"snippet\": \"have a crut of metallic calces or of a pyrites; ſome are found cryſtallized in the infide of a cavity; while ſome feem to contain amianthus or abelus; and others contain ſhrils. The ſame author reckons among cryſtals the oriental topaz, the hyacinth, the ori- ental ſapphire, and the amethyſis. M. Daubenton has always looked upon this laft as a quartz of a cryſtal. When the rock cryſtals are ſemitranſparent or inter- mixed with opaque veins, they are called by the Swe- dish lapidaries milk-cryſtals. When they are found in the form of round pebbles, which is occaſioned by their being toſſed about and rubbed againſt one ano- ther by floods or by the ſea, they are called by the Engliſh …\"}, {\"cite_id\": \"EB:108-3\", \"title\": \"Rock Crystal Properties and Classification\", \"edition\": \"4th (1801-1810)\", \"volume_label\": \"Fourth edition, Volume 6 Part 2, Conchology-Crystallization\", \"page_index\": 108, \"illustrated\": false, \"retrieval_score\": 10.0424, \"snippet\": \"the world; but that which is formed of hexagonal columns, affixed to a ſolid baſe at one end, and ter- minated by a hexagonal column at the other, is in- finitely more ſo: this is what we call ſtrig or rock cryſtal, and is the ſpecies deſcribed by moſt authors under the name of cryſtal of the ſlops, or that kept for medicinal uſes. With regard to the formation of cryſtals, it is cer- tain that they muſt have been once in a ſtate flat, ſince ſome are found to have water in their cavities. Profeſſor Bergman obtained 13 regular formed cryſ- tals, by ſuffering the powder of quartz to remain in a veſſel with ſuor acid for two years. Theſe were about the ſize of ſmall peas, and were leſs hard …\"}, {\"cite_id\": \"EB:108-0\", \"title\": \"Rock Crystal Properties and Classification\", \"edition\": \"4th (1801-1810)\", \"volume_label\": \"Fourth edition, Volume 6 Part 2, Conchology-Crystallization\", \"page_index\": 108, \"illustrated\": false, \"retrieval_score\": 8.6984, \"snippet\": \"C R Y [ 782 ] C R Y pyramid, and are of various colours; or they lie in clayey earths, and have both pyramids, but no prim. They are found at Blackenburg upon the Hartz, and at Morferoh in the Silverland in Transylvania. The coloured transparent cryſtals derive their tinge from an exceedingly ſmall portion of metallic oxide, but loſe them entirely when ſtrongly heated. They are called falſe gems; viz. the red from Oran in Bar- bary, falſe rubies; the yellow from Saxony, falſe to- pazes; the green from Dauphiny, very rare, falſe emeralds or grafes; the violet from Vil in Catalonia, falſe amethyſis; the blue from Puy in Valais in France, falſe ſaphires. There are likewife opal or rainbow …\"}, {\"cite_id\": \"EB:108-2\", \"title\": \"Rock Crystal Properties and Classification\", \"edition\": \"4th (1801-1810)\", \"volume_label\": \"Fourth edition, Volume 6 Part 2, Conchology-Crystallization\", \"page_index\": 108, \"illustrated\": false, \"retrieval_score\": 6.1089, \"snippet\": \"many it is found ſtained with the colours of the ruby, ſapphire, emerald, and topaz; in which cafe jewellers take great advantage of it, feeling it under the name of occidental ſapphire. The orders of pure cryſtal are three: the firſt is perfect columnar cryſtals, with double pyramids, com- poſed of 18 planes, in an hexagonal column, termi- nated by an hexagonal pyramid at each end; the fe- cond order is of perfect cryſtals, with double py- ramids, without a column, compoſed either of 12 or of 16 planes, in two hexagonal pyramids, joined cloſely baſe to baſe, without the intervention of any column; the third order is that of imperfect cryſtals, with ſingle pyramids, compoſed either of 12 or …\"}, {\"cite_id\": \"EB:1839-2\", \"title\": \"Brasil\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 2\", \"page_index\": 1839, \"illustrated\": false, \"retrieval_score\": 4.4879, \"snippet\": \"they still retain their blind passion for mining, and totally neglect the fine country around them, of which the produce would amply compensate them for the loss of its former wealth. The descendants of the original settlers in the interior of Brasil, have generally sunk into a deplorable degeneracy of manners. They are unfitted for active life by their education, their habits, and still more by their hereditary prejudices. Perpetually indulging in prospects of fancied wealth, they neglect the means by which alone their hopes can be realized. They are listless and indolent, passing whole days in perfect inactivity, and leaving every trade to be occupied by mulattoes or negroes. Every where …\"}, {\"cite_id\": \"EB:456-0\", \"title\": \"Greenland\", \"edition\": \"2nd (1778-1783)\", \"volume_label\": \"Second edition, Volume 5, G-J\", \"page_index\": 456, \"illustrated\": false, \"retrieval_score\": 3.5355, \"snippet\": \"G R E [ 3402 ] G R E Greenland. quantity of fand of a yellow colour, intermixed with frecks of vermilion, to the Bergen company. They probably found their account in this prefent; for they delired him by a letter to procure as much of that fand as poffible: but he was never able to find the place where he faw the firft fpecimen. It was one of the fmallfleft among a great number of iflands; and the mark he had fet up was blown down by a violent fform. Poffibly this might be the fame mineral of which Capt. Frobifher brought fo much to England. This country produces rock-cryftals both red and white, and whole mountains of the abeflos or incombufible flax. Around the colony, which is known by …\"}, {\"cite_id\": \"EB:895-1\", \"title\": \"Lizards and Crocodiles\", \"edition\": \"5th (1815-1817)\", \"volume_label\": \"Fifth edition, Volume 8, ELE-FOR\", \"page_index\": 895, \"illustrated\": false, \"retrieval_score\": 3.1702, \"snippet\": \"\\\" Mr Smith of Bedford obferves to me on the word dragon, as follows: Mr Jacob Bobart, botany profeffor (or rather fuperintendent of the garden) of Oxford, did about 40 years ago, find a dead rat in the phyfic gar- den, which he made to refemble the common picture of dragons, by altering its head and tail, and thrufing in taper harp flicks, which diftended the fkin on each fide, till it mimicked wings. He let it dry as hard as poffible. The learned immediately pronounced it a dragon, and one of them fent an accurate defcription of it to Dr Magliabecbi, librarian to the grand duke of Tufcany. Several fine copies of verles were wrote on fo rare a fubjeſt; but at laft Mr Bobart owned the cheat; …\"}, {\"cite_id\": \"EB:2465-0\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"retrieval_score\": 3.0619, \"snippet\": \"D I A ( 429 ) D I A fladow of that perpendicular edge is a vertical circle paffing through the fun, in the ftereographic projection. The moon being duly marked on this dial, the fun's declination, and the length of the day at any time, are had by inſpection (as alſo his altitude, by means of a ſcale of tangents.) But its chief property is, that it may be placed true, whenever the fun ſhines, without the help of any other inftrument. Let d (Plate LXXI. fig. 1.) be the fun's place in the ftereographic projection, x d y z the parallel of the fun's declination. Z d a vertical circle through the fun's center, P d the hour-circle ; and it is evident, that the diameter NS of this projection being …\"}, {\"cite_id\": \"EB:952-1\", \"title\": \"London Wards and Buildings\", \"edition\": \"3rd (1788-1797)\", \"volume_label\": \"Third edition, Volume 10, LES-MEC\", \"page_index\": 952, \"illustrated\": false, \"retrieval_score\": 2.8803, \"snippet\": \"ſh permitted by the 33d of Henry VIII. to be brought of any ſtranger at ſea between England, France, Flan- dery, and Zealand. Limcreet ward is remarkable for a very large build- ings, of great antiquity, called Leadenhall, with ſlat battlements led on the top, and a ſpacious ſquare in the middle. In 1309 it was the houſe of Sir Hugh Nevil knight ; in 1384, of Humphrey Bohun Earl of Hereford ; in 1408 it became the property of the celebrated Whittington, who preſented it to the mayor and commonalty of London ; and in 1419, a public granary was created here by Sir Simon Eyre, a citi- zen and draper, who built it with ſtone in its pre- ſent form. This granary was deſigned as a preferva- tive …\"}, {\"cite_id\": \"EB:571-1\", \"title\": \"Surgery: Inflammation Treatment\", \"edition\": \"2nd (1778-1783)\", \"volume_label\": \"Second edition, Volume 10, SCU-Appendix\", \"page_index\": 571, \"illustrated\": false, \"retrieval_score\": 2.7468, \"snippet\": \"itſelf, which generally acts alſo as a ſedative. A- mong the latter we may place, in the firſt place, the mild expreſſed oils, as alſo the ſoft ointments made with theſe oils and pure wax. When we ſpeak of ſedative medicines, however, it muſt not be underſtood that all of that claſs are to be uſed indiſcriminately. Thus opium, though one of the moſt powerful of all ſedatives, yet as its applica- tion, externally, to the human body, is always attend- ed with ſome degree of irritation, however uſeful it may at times be found in ſome particular ſpecies of inflammatory diſorders, will never, probably, as an external application, become of general uſe in theſe caſes. Warm emollient fomentations, …\"}]}",
+      "tool_call_id": "call_d8e1f7572d90",
+      "timestamp": 1792333321.9284968
+    },
+    {
+      "role": "tool",
+      "name": "search_wikipedia",
+      "tool_name": "search_wikipedia",
+      "content": "{\"results\": [{\"cite_id\": \"WP:25233-7\", \"title\": \"Quartz\", \"section\": \"Occurrence\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 23.323, \"has_image\": true, \"snippet\": \"Quartz is the second most abundant mineral or mineral group in the Earth's lithosphere; by mass, the feldspar group comprises 41% of the lithosphere, followed by quartz at 12% and the pyroxene group at 11%. Quartz is a defining constituent of granite and other felsic igneous rocks. It is very common in sedimentary rocks such as sandstone and shale. It is a common constituent of schist, gneiss, quartzite and other metamorphic rocks. Quartz has the lowest potential for weathering in the Goldich dissolution series and consequently it is very common as a residual mineral in stream sediments and residual soils. Generally a high presence of quartz suggests a \\\"mature\\\" rock, since it indicates the …\"}, {\"cite_id\": \"WP:25233-3\", \"title\": \"Quartz\", \"section\": \"Crystal habit and structure\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 23.3078, \"has_image\": true, \"snippet\": \"Quartz can form as two distinct polymorphs depending on the temperature and pressure: α-quartz (also called low quartz or normal quartz) and β-quartz (also called quartz-beta or high quartz). α-quartz crystallizes in the trigonal crystal system, while β-quartz has greater symmetry and crystallizes in the hexagonal crystal system. The transition from α-quartz to β-quartz occurs abruptly at 573 °C (1,063 °F; 846 K) at ambient pressure; the transition temperature is greater at higher pressures. β-quartz is unstable at room temperature; therefore, all quartz at room temperature is α-quartz regardless of which polymorph it formed as. Both polymorphs of quartz can occur in two different space …\"}, {\"cite_id\": \"WP:25233-4\", \"title\": \"Quartz\", \"section\": \"Crystal habit and structure\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 22.4539, \"has_image\": true, \"snippet\": \"The ideal crystal shape for quartz is a six-sided prism terminating with six-sided pyramid-like rhombohedrons at each end. In nature, quartz crystals are often twinned (with twin right-handed and left-handed quartz crystals), distorted, or so intergrown with adjacent crystals of quartz or other minerals as to only show part of this shape, or to lack obvious crystal faces altogether and appear massive. Well-formed crystals typically form as a druse (a layer of crystals lining a void), of which quartz geodes are particularly fine examples. The crystals are attached at one end to the enclosing rock, and only one termination pyramid is present. However, doubly terminated crystals do occur where …\"}, {\"cite_id\": \"WP:25233-6\", \"title\": \"Quartz\", \"section\": \"Piezoelectricity\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 22.3522, \"has_image\": true, \"snippet\": \"Quartz crystals have piezoelectric properties; they develop an electric potential upon the application of mechanical stress. Quartz's piezoelectric properties were discovered by Jacques and Pierre Curie in 1880.\"}, {\"cite_id\": \"WP:25233-5\", \"title\": \"Quartz\", \"section\": \"Varieties\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 21.1399, \"has_image\": true, \"snippet\": \"Pure quartz, traditionally called rock crystal or clear quartz, is colorless and transparent or translucent. Colored varieties of quartz are common and include citrine, rose quartz, amethyst, smoky quartz, milky quartz, and others. These color differentiations arise from the presence of impurities which change the molecular orbitals, causing some electronic transitions that absorb electromagnetic energy from the visible spectrum. The unabsorbed wavelengths are transmitted and give rise to the mineral's visible color. Quartz varieties were previously classified into three categories based on the visibility of their individual crystals. Macrocrystalline quartz varieties have individual …\"}, {\"cite_id\": \"WP:25233-12\", \"title\": \"Quartz\", \"section\": \"Uses\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 21.0737, \"has_image\": true, \"snippet\": \"Quartz is the most common material identified as the mystical substance maban in Australian Aboriginal mythology. It is found regularly in passage tomb cemeteries in Europe in a burial context, such as Newgrange or Carrowmore in Ireland. Quartz was also used in prehistoric Ireland, as well as many other countries, for stone tools; both vein quartz and rock crystal were knapped as part of the lithic technology of prehistoric peoples. While jade has been the most prized semi-precious stone for carving in East Asia and pre-Columbian America since earliest times, in Europe and the Middle East different varieties of quartz were the most commonly used for the various types of jewelry and …\"}, {\"cite_id\": \"WP:25233-1\", \"title\": \"Quartz\", \"section\": \"Etymology\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 19.5001, \"has_image\": true, \"snippet\": \"The word quartz is derived from the German word Quarz, which had the same form in the first half of the 14th century in Middle High German and in East Central German and which came from the Polish dialect term kwardy, which corresponds to the Czech term tvrdý ('hard'). Some sources, however, attribute the word's origin to the Saxon word Querkluftertz, meaning 'cross-vein ore'. The Ancient Greeks referred to quartz as κρύσταλλος (krustallos) meaning 'crystal', derived from the Ancient Greek κρύος (kruos) meaning 'icy cold', because some philosophers (including Theophrastus) believed the mineral to be a form of supercooled ice. Today, the term rock crystal is sometimes used as an alternative …\"}, {\"cite_id\": \"WP:25233-14\", \"title\": \"Quartz\", \"section\": \"Uses\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 18.5022, \"has_image\": true, \"snippet\": \"An early use of the piezoelectricity of quartz crystals was in phonograph pickups. One of the most common piezoelectric uses of quartz today is as a crystal oscillator. Also called a quartz oscillator or resonator, it was first developed by Walter Guyton Cady in 1921. George Washington Pierce designed and patented quartz crystal oscillators in 1923. The quartz clock is a familiar device using the mineral; it is simply a clock that uses a quartz oscillator as its time reference. Warren Marrison created the first quartz oscillator clock based on the work of Cady and Pierce in 1927. The resonant frequency of a quartz crystal oscillator is changed by mechanically loading it, and this principle …\"}, {\"cite_id\": \"WP:25233-13\", \"title\": \"Quartz\", \"section\": \"Uses\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 17.6602, \"has_image\": true, \"snippet\": \"Elemental impurity incorporation strongly influences the ability to process and utilize quartz. Naturally occurring quartz crystals of extremely high purity, necessary for the crucibles and other equipment used for growing perfect large silicon boules to be sliced into silicon wafers in the semiconductor industry, are expensive and rare. These high-purity quartz are defined as containing less than 50 ppm of impurity elements. A major mining location for high-purity quartz is the Spruce Pine Mining District in Spruce Pine, North Carolina, United States. Quartz may also be found in Caldoveiro Peak in Asturias, Spain. By the 1930s, the electronics industry had become dependent on quartz …\"}, {\"cite_id\": \"WP:25233-11\", \"title\": \"Quartz\", \"section\": \"Synthetic and artificial treatments\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 16.9597, \"has_image\": true, \"snippet\": \"Not all varieties of quartz are naturally occurring. Some clear quartz crystals can be treated using heat or gamma irradiation to induce color where it would not otherwise have occurred naturally. Susceptibility to such treatments depends on the location from which the quartz was mined. Prasiolite, an olive-colored material, is produced by heat treatment; natural prasiolite has also been observed in Lower Silesia in Poland. Although citrine occurs naturally, the majority is the result of heat-treating amethyst or smoky quartz. Carnelian has been heat-treated to deepen its color since prehistoric times. Because natural quartz is often twinned, synthetic quartz is produced for use in …\"}]}",
+      "tool_call_id": "call_bcf375c703e9",
+      "timestamp": 1792333321.946814
+    },
+    {
+      "role": "assistant",
+      "content": "I found the relevant passages. Let me read the full texts of both the Britannica page and the relevant Wikipedia sections.",
+      "reasoning": "I found relevant results. The Britannica result is \"Rock Crystal Properties and Classification\" from the 4th edition (1801-1810), and the Wikipedia result is \"Quartz\" which covers rock crystal. Let me read the full texts of both.\n\nFor Britannica, the cite ids are EB:108-0, EB:108-1, EB:108-2, EB:108-3 — all from page 108, 4th edition. Let me read the full passage.\n\nFor Wikipedia, cite ids are WP:25233-*. Let me read the full passage. The most relevant sections are \"Crystal habit and structure\" (WP:25233-3, WP:25233-4), \"Varieties\" (WP:25233-5), and \"Etymology\" (WP:25233-1).\n\nLet me read both full passages. I'll read EB:108-0 (which seems to be the main one, retrieval score 8.6984), and also the others. Actually, since they're all the same page, let me read EB:108-0 which is likely the full page text. And read WP:25233-3 and WP:25233-5 for crystal structure and varieties.\n\nActually, let me read EB:108-0 for the full Britannica passage, and WP:25233-3, WP:25233-5, WP:25233-1 for Wikipedia. Let me batch these.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333325.1374075,
+      "reasoning_content": "I found relevant results. The Britannica result is \"Rock Crystal Properties and Classification\" from the 4th edition (1801-1810), and the Wikipedia result is \"Quartz\" which covers rock crystal. Let me read the full texts of both.\n\nFor Britannica, the cite ids are EB:108-0, EB:108-1, EB:108-2, EB:108-3 — all from page 108, 4th edition. Let me read the full passage.\n\nFor Wikipedia, cite ids are WP:25233-*. Let me read the full passage. The most relevant sections are \"Crystal habit and structure\" (WP:25233-3, WP:25233-4), \"Varieties\" (WP:25233-5), and \"Etymology\" (WP:25233-1).\n\nLet me read both full passages. I'll read EB:108-0 (which seems to be the main one, retrieval score 8.6984), and also the others. Actually, since they're all the same page, let me read EB:108-0 which is likely the full page text. And read WP:25233-3 and WP:25233-5 for crystal structure and varieties.\n\nActually, let me read EB:108-0 for the full Britannica passage, and WP:25233-3, WP:25233-5, WP:25233-1 for Wikipedia. Let me batch these.",
+      "tool_calls": [
+        {
+          "id": "call_76cb23794d07",
+          "call_id": "call_76cb23794d07",
+          "response_item_id": "fc_76cb23794d07",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:108-0\"}"
+          }
+        },
+        {
+          "id": "call_ba23b3fd0405",
+          "call_id": "call_ba23b3fd0405",
+          "response_item_id": "fc_ba23b3fd0405",
+          "type": "function",
+          "function": {
+            "name": "read_wikipedia",
+            "arguments": "{\"cite_id\": \"WP:25233-3\"}"
+          }
+        },
+        {
+          "id": "call_43ac30b87bc1",
+          "call_id": "call_43ac30b87bc1",
+          "response_item_id": "fc_43ac30b87bc1",
+          "type": "function",
+          "function": {
+            "name": "read_wikipedia",
+            "arguments": "{\"cite_id\": \"WP:25233-5\"}"
+          }
+        },
+        {
+          "id": "call_e7190d09c339",
+          "call_id": "call_e7190d09c339",
+          "response_item_id": "fc_e7190d09c339",
+          "type": "function",
+          "function": {
+            "name": "read_wikipedia",
+            "arguments": "{\"cite_id\": \"WP:25233-1\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:108-0\", \"title\": \"Rock Crystal Properties and Classification\", \"edition\": \"4th (1801-1810)\", \"volume_label\": \"Fourth edition, Volume 6 Part 2, Conchology-Crystallization\", \"page_index\": 108, \"illustrated\": false, \"text\": \"C R Y [ 782 ] C R Y\\n\\npyramid, and are of various colours; or they lie in\\nclayey earths, and have both pyramids, but no prim.\\nThey are found at Blackenburg upon the Hartz, and\\nat Morferoh in the Silverland in Transylvania.\\n\\nThe coloured transparent cryſtals derive their tinge\\nfrom an exceedingly ſmall portion of metallic oxide,\\nbut loſe them entirely when ſtrongly heated. They\\nare called falſe gems; viz. the red from Oran in Bar-\\nbary, falſe rubies; the yellow from Saxony, falſe to-\\npazes; the green from Dauphiny, very rare, falſe\\nemeralds or grafes; the violet from Vil in Catalonia,\\nfalſe amethyſis; the blue from Puy in Valais in France,\\nfalſe ſaphires. There are likewife opal or rainbow\\ncryſtals, the various colours of which are thrown out\\nin zones acroſs the ſurface. They make a very fine ap-\\npearance, though they never ſhine like the oriental opal.\\n\\nM. Fourcroy makes a remarkable difference between\\nthe cryſtals and quartz, by affirming that the former\\nare unalterable in the fire, in which they neither loſe\\ntheir hardneſs, tranſparency nor colour; while the\\nquartz loſes the flame qualities, and is reduced by it to\\na white and opaque earth. He claffes the rock cryſtals,\\n\\nI. According to their form, viz. 1. Infolded hexag-\\nonal cryſtals ending in pyramids of ſix faces, which\\nhave a double refraction, or flow two images of the\\nflame object when looked through. 2. Hexagonal\\ncryſtals united, having one or two points. 3. Te-\\ntrahedral, dodecahedral, flattened cryſtals; and which,\\nthough hexagonal, have nevertheless their planes irreg-\\nular. 4. Cryſtals in large maſſes, from the ſfland of\\nMadagascar, which have a ſimple refraction.\\n\\nII. With regard to their colour, as being either\\ndiaphanous, reddih, ſmoky, or blackiſh.\\n\\nIII. With regard to accidental changes, fome are\\nhollow; fome contain water within one or more cavi-\\nties; fome are cafed one within the other; fome are\\nof a round form, as the pebbles of the Rhine; ſome\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=108\"}",
+      "tool_call_id": "call_76cb23794d07",
+      "timestamp": 1792333325.1731205
+    },
+    {
+      "role": "tool",
+      "name": "read_wikipedia",
+      "tool_name": "read_wikipedia",
+      "content": "{\"cite_id\": \"WP:25233-3\", \"title\": \"Quartz\", \"section\": \"Crystal habit and structure\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"has_image\": true, \"text\": \"Quartz can form as two distinct polymorphs depending on the temperature and pressure: α-quartz (also called low quartz or normal quartz) and β-quartz (also called quartz-beta or high quartz). α-quartz crystallizes in the trigonal crystal system, while β-quartz has greater symmetry and crystallizes in the hexagonal crystal system. The transition from α-quartz to β-quartz occurs abruptly at 573 °C (1,063 °F; 846 K) at ambient pressure; the transition temperature is greater at higher pressures. β-quartz is unstable at room temperature; therefore, all quartz at room temperature is α-quartz regardless of which polymorph it formed as.\\nBoth polymorphs of quartz can occur in two different space groups depending on the chirality. Above the transition temperature, α-quartz in P3121 (space group 152) becomes β-quartz in P6422 (space group 181), and α-quartz in P3221 (space group 154) becomes β-quartz in P6222 (space group 180).\\nThese space groups are truly chiral (they each belong to the 11 enantiomorphous pairs). Both α-quartz and β-quartz are examples of chiral crystal structures composed of achiral building blocks (SiO4 tetrahedra in the present case). The transformation between α- and β-quartz only involves a comparatively minor rotation of the tetrahedra with respect to one another, without a change in the way they are linked. However, there is a significant change in volume during this transition, and this can result in significant microfracturing in ceramics during firing, in ornamental stone after a fire and in rocks of the Earth's crust exposed to high temperatures, thereby damaging materials containing quartz and degrading their physical and mechanical properties.\", \"url\": \"https://en.wikipedia.org/wiki/Quartz\"}",
+      "tool_call_id": "call_ba23b3fd0405",
+      "timestamp": 1792333325.2008188
+    },
+    {
+      "role": "tool",
+      "name": "read_wikipedia",
+      "tool_name": "read_wikipedia",
+      "content": "{\"cite_id\": \"WP:25233-5\", \"title\": \"Quartz\", \"section\": \"Varieties\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"has_image\": true, \"text\": \"Pure quartz, traditionally called rock crystal or clear quartz, is colorless and transparent or translucent. Colored varieties of quartz are common and include citrine, rose quartz, amethyst, smoky quartz, milky quartz, and others. These color differentiations arise from the presence of impurities which change the molecular orbitals, causing some electronic transitions that absorb electromagnetic energy from the visible spectrum. The unabsorbed wavelengths are transmitted and give rise to the mineral's visible color.\\nQuartz varieties were previously classified into three categories based on the visibility of their individual crystals. Macrocrystalline quartz varieties have individual crystals that are visible to the unaided eye (macroscopic). Microcrystalline quartz varieties are aggregates of tiny crystals that can only be seen through a microscope (microscopic). Cryptocrystalline quartz varieties are aggregates of crystals that are too small to be seen even with an optical microscope (sub-microscopic). Today, the microcrystalline and cryptocrystalline varieties are commonly grouped together and referred to as chalcedony. However, in the scientific literature, chalcedony is a specific form of silica consisting of fine intergrowths of both quartz and its monoclinic polymorph, moganite. Chalcedony is commonly translucent to opaque, while the macrocrystalline varieties of quartz tend to be more transparent. Color is a secondary identifier for the cryptocrystalline varieties and a primary identifier for the macrocrystalline varieties.\", \"url\": \"https://en.wikipedia.org/wiki/Quartz\"}",
+      "tool_call_id": "call_43ac30b87bc1",
+      "timestamp": 1792333325.2297058
+    },
+    {
+      "role": "tool",
+      "name": "read_wikipedia",
+      "tool_name": "read_wikipedia",
+      "content": "{\"cite_id\": \"WP:25233-1\", \"title\": \"Quartz\", \"section\": \"Etymology\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"has_image\": true, \"text\": \"The word quartz is derived from the German word Quarz, which had the same form in the first half of the 14th century in Middle High German and in East Central German and which came from the Polish dialect term kwardy, which corresponds to the Czech term tvrdý ('hard'). Some sources, however, attribute the word's origin to the Saxon word Querkluftertz, meaning 'cross-vein ore'.\\nThe Ancient Greeks referred to quartz as κρύσταλλος (krustallos) meaning 'crystal', derived from the Ancient Greek κρύος (kruos) meaning 'icy cold', because some philosophers (including Theophrastus) believed the mineral to be a form of supercooled ice. Today, the term rock crystal is sometimes used as an alternative name for transparent, coarsely crystalline quartz.\", \"url\": \"https://en.wikipedia.org/wiki/Quartz\"}",
+      "tool_call_id": "call_e7190d09c339",
+      "timestamp": 1792333325.2577646
+    },
+    {
+      "role": "assistant",
+      "content": "The Britannica passage appears cut off mid-sentence. Let me read the remaining parts of the same page to get the complete text.",
+      "reasoning": "I now have the full Britannica passage and the Wikipedia sections. Let me also read the other Britannica passages (EB:108-1, EB:108-2, EB:108-3) to get the complete picture, since EB:108-0 seems to be cut off in the middle. Actually, the read_britannica returned the full text for EB:108-0, but it ends mid-sentence (\"ſome are\"). Let me read the other parts to get the complete passage. The snippets from search showed more content.\n\nLet me read EB:108-1, EB:108-2, EB:108-3 to complete the Britannica picture.\n\nActually, the read_britannica returns the full text of the passage by citation id. EB:108-0 seems to be a partial passage. The snippets show there's more content. Let me read the other cite_ids on the same page.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333328.310429,
+      "reasoning_content": "I now have the full Britannica passage and the Wikipedia sections. Let me also read the other Britannica passages (EB:108-1, EB:108-2, EB:108-3) to get the complete picture, since EB:108-0 seems to be cut off in the middle. Actually, the read_britannica returned the full text for EB:108-0, but it ends mid-sentence (\"ſome are\"). Let me read the other parts to get the complete passage. The snippets from search showed more content.\n\nLet me read EB:108-1, EB:108-2, EB:108-3 to complete the Britannica picture.\n\nActually, the read_britannica returns the full text of the passage by citation id. EB:108-0 seems to be a partial passage. The snippets show there's more content. Let me read the other cite_ids on the same page.",
+      "tool_calls": [
+        {
+          "id": "call_52d4a911d55a",
+          "call_id": "call_52d4a911d55a",
+          "response_item_id": "fc_52d4a911d55a",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:108-1\"}"
+          }
+        },
+        {
+          "id": "call_aa46c08aa900",
+          "call_id": "call_aa46c08aa900",
+          "response_item_id": "fc_aa46c08aa900",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:108-2\"}"
+          }
+        },
+        {
+          "id": "call_baadfceb0d06",
+          "call_id": "call_baadfceb0d06",
+          "response_item_id": "fc_baadfceb0d06",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:108-3\"}"
+          }
+        },
+        {
+          "id": "call_bbf7590dab0a",
+          "call_id": "call_bbf7590dab0a",
+          "response_item_id": "fc_bbf7590dab0a",
+          "type": "function",
+          "function": {
+            "name": "read_wikipedia",
+            "arguments": "{\"cite_id\": \"WP:25233-4\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:108-1\", \"title\": \"Rock Crystal Properties and Classification\", \"edition\": \"4th (1801-1810)\", \"volume_label\": \"Fourth edition, Volume 6 Part 2, Conchology-Crystallization\", \"page_index\": 108, \"illustrated\": false, \"text\": \"have a crut of metallic calces or of a pyrites; ſome\\nare found cryſtallized in the infide of a cavity; while\\nſome feem to contain amianthus or abelus; and others\\ncontain ſhrils. The ſame author reckons among\\ncryſtals the oriental topaz, the hyacinth, the ori-\\nental ſapphire, and the amethyſis. M. Daubenton has\\nalways looked upon this laft as a quartz of a cryſtal.\\n\\nWhen the rock cryſtals are ſemitranſparent or inter-\\nmixed with opaque veins, they are called by the Swe-\\ndish lapidaries milk-cryſtals. When they are found in\\nthe form of round pebbles, which is occaſioned by\\ntheir being toſſed about and rubbed againſt one ano-\\nther by floods or by the ſea, they are called by the\\nEngliſh lapidaries pebble-cryſtals. They come from\\nthe Indies, Siberia, and other places.\\n\\nAccording to Bomare, the rock-cryſtals are gene-\\nrally formed upon or among quartz, which flows their\\ngreat affinity, and are to be found in all parts of the\\nworld. The greateſt quantity of them is brought\\nfrom Mount Saint Gothard in Switzerland. Large\\npieces of theſe, weighing from 5 to 800 pounds, were\\nfound there at Grimfelberg; another of about 1200\\npounds weight was found ſome years ago at Filbach\\nin the Valais; and a piece fix feet long, four wide, and\\nequally thick, was found in the iſle of Madagascar,\\nwhere the natural productions are of the moſt extra-\\nordinary ſize and perfection.\\n\\nIn the imperial collection at Vienna, there is a py-\\n\\nramidal cryſtal vaſe two ells in height, cut wholly out\\nof one piece. It is uſual with the largeſt cryſtals of\\nthe German mountains to be full of cracks and flaws,\\nand to be ſo contructed internally as to flow all the\\nprismatic colours; but the above-mentioned ones were\\nquite free from theſe blemiſhes, and refembled columns\\nof the pureſt glaſs, only much clearer than any glaſs\\ncan be made. Cryſtal is alſo found in many parts of\\nBritain and Ireland. About Britol it is found of an\\namethyſine tinge. In Silesia and Bohemia in Ger-\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=108\"}",
+      "tool_call_id": "call_52d4a911d55a",
+      "timestamp": 1792333328.3207827
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:108-2\", \"title\": \"Rock Crystal Properties and Classification\", \"edition\": \"4th (1801-1810)\", \"volume_label\": \"Fourth edition, Volume 6 Part 2, Conchology-Crystallization\", \"page_index\": 108, \"illustrated\": false, \"text\": \"many it is found ſtained with the colours of the ruby,\\nſapphire, emerald, and topaz; in which cafe jewellers\\ntake great advantage of it, feeling it under the name\\nof occidental ſapphire.\\n\\nThe orders of pure cryſtal are three: the firſt is\\nperfect columnar cryſtals, with double pyramids, com-\\npoſed of 18 planes, in an hexagonal column, termi-\\nnated by an hexagonal pyramid at each end; the fe-\\ncond order is of perfect cryſtals, with double py-\\nramids, without a column, compoſed either of 12 or\\nof 16 planes, in two hexagonal pyramids, joined\\ncloſely baſe to baſe, without the intervention of any\\ncolumn; the third order is that of imperfect cryſtals,\\nwith ſingle pyramids, compoſed either of 12 or 10\\nplanes, in an hexagonal or pentangular column, af-\\nfixed irregularly at one end to ſome ſolid body, and\\nterminated at the other by an hexagonal or pentan-\\ngular pyramid.\\n\\nTheſe are all the general forms into which cryſtal,\\nwhen pure, is found concreted: but under theſe there\\nare almoſt infinite varieties in the number of angles,\\nand the length, thickness, and other accidents of the\\ncolumns and pyramids.\\n\\nWhen cryſtal is blended with metallic particles at\\nthe time of its formation, it affumes a variety of fi-\\ngures wholly different from theſe, confituting a fourth\\norder, under the name of metallic cryſtals: when that\\nmetal is lead, the cryſtal affumes the form of a cube;\\nwhen it is tin, of a quadrilateral pyramid, with a broad\\nbaſe; when iron, the cryſtal is found concreted in\\nrhomboidal figures; theſe cryſtals are very common\\nabout mines; but the common ſpars, which are liable\\nto be influenced in the ſame manner by the metals,\\nand to appear in the very ſame form, are to be care-\\nfully diſtinguiſhed from them. There is one very\\neasy teſt for this purpoſe, which is, that all ſpars are\\nfubject to be diſſolved by aqua fortis, and effervece\\nviolently only on its touching them: but it has no ſuch\\neffects on cryſtal.\\n\\nThe pebble-cryſtal is common enough in all parts of\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=108\"}",
+      "tool_call_id": "call_aa46c08aa900",
+      "timestamp": 1792333328.3306985
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:108-3\", \"title\": \"Rock Crystal Properties and Classification\", \"edition\": \"4th (1801-1810)\", \"volume_label\": \"Fourth edition, Volume 6 Part 2, Conchology-Crystallization\", \"page_index\": 108, \"illustrated\": false, \"text\": \"the world; but that which is formed of hexagonal\\ncolumns, affixed to a ſolid baſe at one end, and ter-\\nminated by a hexagonal column at the other, is in-\\nfinitely more ſo: this is what we call ſtrig or rock\\ncryſtal, and is the ſpecies deſcribed by moſt authors\\nunder the name of cryſtal of the ſlops, or that kept for\\nmedicinal uſes.\\n\\nWith regard to the formation of cryſtals, it is cer-\\ntain that they muſt have been once in a ſtate flat,\\nſince ſome are found to have water in their cavities.\\nProfeſſor Bergman obtained 13 regular formed cryſ-\\ntals, by ſuffering the powder of quartz to remain in a\\nveſſel with ſuor acid for two years. Theſe were about\\nthe ſize of ſmall peas, and were leſs hard than quartz.\\nMr Magellan informs us, that he received from Mr\\nAchard\\n\\nCryſtal.\\n\\nCryſtal.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=108\"}",
+      "tool_call_id": "call_baadfceb0d06",
+      "timestamp": 1792333328.3405294
+    },
+    {
+      "role": "tool",
+      "name": "read_wikipedia",
+      "tool_name": "read_wikipedia",
+      "content": "{\"cite_id\": \"WP:25233-4\", \"title\": \"Quartz\", \"section\": \"Crystal habit and structure\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"has_image\": true, \"text\": \"The ideal crystal shape for quartz is a six-sided prism terminating with six-sided pyramid-like rhombohedrons at each end. In nature, quartz crystals are often twinned (with twin right-handed and left-handed quartz crystals), distorted, or so intergrown with adjacent crystals of quartz or other minerals as to only show part of this shape, or to lack obvious crystal faces altogether and appear massive.\\nWell-formed crystals typically form as a druse (a layer of crystals lining a void), of which quartz geodes are particularly fine examples. The crystals are attached at one end to the enclosing rock, and only one termination pyramid is present. However, doubly terminated crystals do occur where they develop freely without attachment, for instance, within gypsum.\", \"url\": \"https://en.wikipedia.org/wiki/Quartz\"}",
+      "tool_call_id": "call_bbf7590dab0a",
+      "timestamp": 1792333328.3495808
+    },
+    {
+      "role": "assistant",
+      "content": "**Answer**\nThe Britannica's 4th edition (1801–1810) article \"Rock Crystal Properties and Classification\" describes rock crystal by its form, colour, and accidents, coloured by metallic oxides and classed among \"false gems.\" Modern Wikipedia's Quartz article describes rock crystal as pure, colorless quartz, classified by crystal structure, polymorphism, and impurity-driven colour, with piezoelectric applications — a shift from gemology to mineral science.\n\n**Britannica** — 4th ed. (1801–1810), Vol. 6 Part 2, Conchology–Crystallization [EB:108-0–3]. Coloured crystals owe their tinge to \"an exceedingly small portion of metallic oxide,\" lost when strongly heated; sold as \"false gems\": false rubies, topazes, emeralds, amethysts, sapphires [EB:108-0]. Fourcroy classifies them by form, colour (diaphanous, reddish, smoky, blackish), and accidents (hollow, water-bearing, pebble-form) [EB:108-0,1]. Three geometric orders of pure crystal (18-plane columnar; 12/16-plane double pyramids; imperfect single pyramids) plus a fourth \"metallic crystals\" order; aqua fortis distinguishes crystal from spars [EB:108-2]. Crystals were once fluid; Bergman grew crystals from quartz powder and \"suor\" (sulfuric) acid [EB:108-3].\n\n**Wikipedia** — Quartz article. Rock crystal = pure, colorless, transparent/translucent quartz; coloured varieties (amethyst, citrine, rose, smoky, milky) get colour from impurities altering molecular orbitals/electronic transitions [WP:25233-5]. Quartz occurs as α-quartz (trigonal) and β-quartz (hexagonal), switching at 573 °C, in chiral space groups; ideal habit is a six-sided prism with pyramidal ends, often twinned [WP:25233-3,4]. \"Rock crystal\" is the traditional name for transparent coarsely crystalline quartz; Greeks called it supercooled ice [WP:25233-1]. Piezoelectricity (Curie, 1880) enables oscillators and clocks [WP:25233-6,14].\n\n**What changed**\n- LANGUAGE: archaic OCR spellings (\"cryſtal,\" \"falſe,\" \"aqua fortis,\" \"suor acid\") vs modern mineral terminology [EB:108-0–3 vs WP:25233-1,5].\n- KNOWLEDGE: colour from metallic oxides and fire resistance vs impurity-driven electronic transitions and α/β polymorphs at 573 °C; piezoelectricity, space groups, chirality, chalcedony/moganite are new [EB:108-0,2,3 vs WP:25233-3,5,6].\n- PERSPECTIVE: gems/jewels and medicinal uses vs rock-forming mineral (~12% of lithosphere) and electronics/industrial uses [EB:108-0,3 vs WP:25233-7,12,14].\n\n**Confidence**: high. Both sources directly cover rock crystal properties/classification. Only the 4th Britannica edition was located; later editions and the rest of the Wikipedia article were not checked.",
+      "reasoning": "Now I have a comprehensive picture of both sources. Let me compile my answer.\n\n**Britannica (4th edition, 1801-1810), \"Rock Crystal Properties and Classification\":**\n\nThe article discusses:\n1. **Formation/occurrence**: Crystals found in clayey earths, at Blackenburg (Hartz) and Morferoh in Transylvania. Coloured transparent crystals derive tinge from metallic oxide but lose color when strongly heated. Called \"false gems\": red from Oran (false rubies), yellow from Saxony (false topazes), green from Dauphiny (false emeralds/grafes), violet from Vil in Catalonia (false amethysts), blue from Puy in Valais (false sapphires). Opal/rainbow crystals throw colors in zones across surface.\n2. **M. Fourcroy's distinction**: crystals unalterable in fire (keep hardness, transparency, color), while quartz loses flame qualities and is reduced to white opaque earth. He classifies rock crystals:\n   - I. According to form: (1) Infolded hexagonal crystals ending in pyramids of six faces, double refraction; (2) Hexagonal crystals united, one or two points; (3) Tetrahedral, dodecahedral, flattened crystals, hexagonal but irregular planes; (4) Crystals in large masses from Madagascar, simple refraction.\n   - II. With regard to colour: diaphanous, reddish, smoky, blackish.\n   - III. With regard to accidental changes: hollow, contain water in cavities, cased one within another, round form (pebbles of the Rhine).\n3. **Bomare**: rock crystals generally formed upon/among quartz, found worldwide, greatest quantity from Mount Saint Gothard, Switzerland. Large pieces found at Grimfelberg (5-800 pounds), Filbach in Valais (~1200 pounds), Madagascar (6 feet long).\n4. **Imperial collection at Vienna**: pyramidal crystal vase two ells high cut from one piece.\n5. **Crystal found in Britain and Ireland**: near Bristol with amethystine tinge.\n6. **Silesia and Bohemia**: stained with colors of ruby, sapphire, emerald, topaz; jewellers sell as \"occidental sapphire.\"\n7. **Three orders of pure crystal**: (1) perfect columnar crystals with double pyramids, 18 planes, hexagonal column terminated by hexagonal pyramid at each end; (2) perfect crystals with double pyramids, 12 or 16 planes, two hexagonal pyramids joined base to base without column; (3) imperfect crystals with single pyramids, 12 or 10 planes, hexagonal or pentangular column, affixed at one end, terminated at other by hexagonal or pentangular pyramid.\n8. **Fourth order - metallic crystals**: blended with metallic particles at formation. Lead → cube; tin → quadrilateral pyramid with broad base; iron → rhomboidal figures. Test: spars dissolve in aqua fortis and effervesce; crystal does not.\n9. **Pebble-crystal**: common; formed of hexagonal columns affixed to solid base at one end, terminated by hexagonal column at other = \"strig or rock crystal,\" species described as \"crystal of the slops\" for medicinal uses.\n10. **Formation**: crystals must have once been in a fluid state (since some have water in cavities). Professor Bergman obtained 13 regular formed crystals by leaving powder of quartz in a vessel with sulfuric acid for two years (size of small peas, less hard than quartz).\n\n**Wikipedia (Quartz article):**\n\n- **Etymology**: \"quartz\" from German Quarz, from Polish kwardy/Czech tvrdý ('hard'); possibly Saxon Querkluftertz ('cross-vein ore'). Ancient Greeks κρύσταλλος (krustallos) meaning 'crystal' from κρύος (kruos) 'icy cold' — believed to be supercooled ice. Today \"rock crystal\" is alternative name for transparent, coarsely crystalline quartz.\n- **Crystal habit and structure**: Two polymorphs: α-quartz (trigonal) and β-quartz (hexagonal), transition at 573°C. Space groups P3121/P3221 (α) and P6422/P6222 (β), chiral. Ideal shape: six-sided prism with six-sided pyramid-like rhombohedrons at each end. Often twinned (right/left-handed), distorted, intergrown. Form as druse/geodes; doubly terminated where free.\n- **Varieties**: Pure quartz = rock crystal/clear quartz, colorless and transparent/translucent. Colored varieties: citrine, rose quartz, amethyst, smoky quartz, milky quartz. Colors from impurities changing molecular orbitals/electronic transitions. Classification: macrocrystalline (visible), microcrystalline (microscopic), cryptocrystalline (sub-microscopic); microcrystalline + cryptocrystalline = chalcedony. Chalcedony = fine intergrowths of quartz and moganite.\n- **Piezoelectricity**: discovered by Jacques and Pierre Curie in 1880. Used in crystal oscillators (Cady 1921, Pierce 1923), quartz clocks (Marrison 1927).\n- **Occurrence**: second most abundant mineral in lithosphere (12% by mass), defining constituent of granite, common in sedimentary/metamorphic rocks.\n\nNow, let me structure the answer per the required format:\n\n1. **Answer** - two or three sentences.\n2. **Britannica** - what it says, with edition/year.\n3. **Wikipedia** - what it says.\n4. **What changed** - each difference labelled with category: LANGUAGE, KNOWLEDGE, PERSPECTIVE, NO_COUNTERPART.\n5. **Confidence** - high/medium/low, and what evidence is missing.\n\nUnder 300 words. Cite every factual statement inline with citation ids.\n\nLet me draft:\n\n**Answer**: The 4th-edition Britannica (1801-1810) treats rock crystal as a gem-like mineral classified by form, colour, and accidents, coloured by metallic oxides and hard enough to resist fire. Modern Wikipedia's Quartz article describes rock crystal as pure, colorless quartz (SiO₂), classified by crystal system, polymorphism, and impurity-driven colour, with piezoelectric and industrial uses. The shift is from a gemological, form-based classification to a chemical and structural mineralogy.\n\n**Britannica**: EB:108-0 to EB:108-3 (4th ed., 1801-1810): rock crystals are hexagonal, doubly refracting, coloured by \"an exceedingly small portion of metallic oxide\" but losing colour when heated; sold as \"false gems\" (false rubies, topazes, emeralds, amethysts, sapphires) [EB:108-0]. Fourcroy classifies them by form (four orders), colour (diaphanous, reddish, smoky, blackish), and accidents (hollow, water-filled, pebble-form) [EB:108-0, EB:108-1]. Pure crystal has three orders of geometry (18-plane columnar, 12/16-plane double pyramids, imperfect single pyramids) plus a fourth \"metallic crystals\" order; test with aqua fortis distinguishes crystal from spars [EB:108-2]. Crystals once fluid; Bergman grew crystals from quartz powder and sulfuric acid [EB:108-3].\n\n**Wikipedia**: Rock crystal = pure, colorless, transparent/translucent quartz; coloured varieties (amethyst, citrine, rose, smoky, milky) get colour from impurities altering molecular orbitals [WP:25233-5]. Quartz has α (trigonal) and β (hexagonal) polymorphs transitioning at 573°C, chiral space groups; ideal form is six-sided prism with pyramidal terminations, often twinned [WP:25233-3, WP:25233-4]. \"Rock crystal\" is the traditional name for transparent coarsely crystalline quartz; Greeks thought it was supercooled ice [WP:25233-1]. Piezoelectricity (Curie, 1880) underpins oscillators and clocks [WP:25233-6, WP:25233-14].\n\n**What changed**:\n- LANGUAGE: \"cryſtal\"/long-s OCR spellings, \"falſe gems,\" \"aqua fortis,\" \"suor [sulfuric] acid\" vs modern mineral terminology [EB:108-0–3 vs WP:25233-1,5].\n- KNOWLEDGE: Britannica attributes colour to metallic oxides and believes crystal resists fire while quartz is reduced to opaque earth (Fourcroy) [EB:108-0]; Wikipedia explains colour via impurity-driven electronic transitions and identifies α/β quartz polymorphs with a 573°C transition [WP:25233-3,5]. Wikipedia adds piezoelectricity, space groups, chirality, moganite/chalcedony — all unknown in 1801 [WP:25233-3,5,6].\n- PERSPECTIVE: Britannica frames crystals as gems/jewels (\"false gems,\" jewellers, medicinal \"crystal of the slops\") [EB:108-0,3]; Wikipedia frames quartz as a rock-forming mineral (12% of lithosphere, granite constituent) with industrial/electronics uses [WP:25233-7,12,14].\n\n**Confidence**: high. Both sources directly address rock crystal properties/classification. Missing: whether later Britannica editions revised the article (only 4th ed. found), and the Wikipedia article's full varieties/treatment sections not fully read.\n\nWord count check — this might be over 300 words. Let me tighten. The limit is 300 words for the whole answer. Let me be more concise.\n\nLet me count roughly. I'll aim for ~250 words.\n\nLet me write it concisely.\n\n**Answer** (2 sentences):\nThe Britannica's 4th edition (1801–1810) article \"Rock Crystal Properties and Classification\" describes rock crystal by its form, colour, and accidents, coloured by metallic oxides and classed among \"false gems.\" Modern Wikipedia's Quartz article describes rock crystal as pure, colorless quartz, classified by crystal structure, polymorphism, and impurity-driven colour, with piezoelectric applications — a shift from gemology to mineral science.\n\n**Britannica**: 4th ed. (1801–1810), Vol. 6 Part 2 [EB:108-0–3]. Coloured crystals owe their tinge to \"an exceedingly small portion of metallic oxide,\" lost when heated; sold as false rubies, topazes, emeralds, amethysts, sapphires [EB:108-0]. Fourcroy classifies them by form, colour (diaphanous, reddish, smoky, blackish), and accidents (hollow, water-bearing, pebble-form) [EB:108-0,1]. Three geometric orders of pure crystal (18-plane columnar; 12/16-plane double pyramids; imperfect single pyramids) plus a fourth \"metallic crystals\" order; aqua fortis distinguishes crystal from spars [EB:108-2]. Crystals were once fluid; Bergman grew crystals from quartz powder and sulfuric acid [EB:108-3].\n\n**Wikipedia**: Rock crystal = pure, colorless, transparent/translucent quartz; coloured varieties (amethyst, citrine, rose, smoky, milky) get colour from impurities shifting electronic transitions [WP:25233-5]. Quartz occurs as α-quartz (trigonal) and β-quartz (hexagonal), switching at 573 °C, in chiral space groups; ideal habit is a six-sided prism with pyramidal ends, often twinned [WP:25233-3,4]. \"Rock crystal\" is the traditional name for transparent coarsely crystalline quartz; Greeks called it supercooled ice [WP:25233-1]. Piezoelectricity (Curie, 1880) enables oscillators and clocks [WP:25233-6,14].\n\n**What changed**:\n- LANGUAGE: archaic spellings (\"cryſtal,\" \"falſe,\" \"aqua fortis,\" \"suor acid\") vs modern terms [EB:108-0–3 vs WP:25233-1,5].\n- KNOWLEDGE: colour from metallic oxides/fire resistance vs impurity-driven electronic transitions and α/β polymorphs at 573 °C; piezoelectricity, space groups, chirality, chalcedony/moganite are new [EB:108-0,2,3 vs WP:25233-3,5,6].\n- PERSPECTIVE: gems/jewels and medicinal uses vs rock-forming mineral (12% of lithosphere) and electronics/industrial uses [EB:108-0,3 vs WP:25233-7,12,14].\n\n**Confidence**: high. Both sources directly cover rock crystal properties/classification. Only the 4th Britannica edition was located; later editions and the rest of the Wikipedia article were not checked.\n\nLet me count words... roughly 240-260 words. Good.\n\nCitation format: one id per bracket, exactly as returned. I have EB:108-0, EB:108-1, EB:108-2, EB:108-3, WP:25233-1, WP:25233-3, WP:25233-4, WP:25233-5, WP:25233-6, WP:25233-7, WP:25233-12, WP:25233-14. All valid.\n\nNote about OCR: \"suor acid\" = sulfuric acid, \"ſuor\" with long s. I'll note \"suor (sulfuric) acid.\"\n\nNow write the final answer.",
+      "finish_reason": "stop",
+      "timestamp": 1792333342.9577026,
+      "reasoning_content": "Now I have a comprehensive picture of both sources. Let me compile my answer.\n\n**Britannica (4th edition, 1801-1810), \"Rock Crystal Properties and Classification\":**\n\nThe article discusses:\n1. **Formation/occurrence**: Crystals found in clayey earths, at Blackenburg (Hartz) and Morferoh in Transylvania. Coloured transparent crystals derive tinge from metallic oxide but lose color when strongly heated. Called \"false gems\": red from Oran (false rubies), yellow from Saxony (false topazes), green from Dauphiny (false emeralds/grafes), violet from Vil in Catalonia (false amethysts), blue from Puy in Valais (false sapphires). Opal/rainbow crystals throw colors in zones across surface.\n2. **M. Fourcroy's distinction**: crystals unalterable in fire (keep hardness, transparency, color), while quartz loses flame qualities and is reduced to white opaque earth. He classifies rock crystals:\n   - I. According to form: (1) Infolded hexagonal crystals ending in pyramids of six faces, double refraction; (2) Hexagonal crystals united, one or two points; (3) Tetrahedral, dodecahedral, flattened crystals, hexagonal but irregular planes; (4) Crystals in large masses from Madagascar, simple refraction.\n   - II. With regard to colour: diaphanous, reddish, smoky, blackish.\n   - III. With regard to accidental changes: hollow, contain water in cavities, cased one within another, round form (pebbles of the Rhine).\n3. **Bomare**: rock crystals generally formed upon/among quartz, found worldwide, greatest quantity from Mount Saint Gothard, Switzerland. Large pieces found at Grimfelberg (5-800 pounds), Filbach in Valais (~1200 pounds), Madagascar (6 feet long).\n4. **Imperial collection at Vienna**: pyramidal crystal vase two ells high cut from one piece.\n5. **Crystal found in Britain and Ireland**: near Bristol with amethystine tinge.\n6. **Silesia and Bohemia**: stained with colors of ruby, sapphire, emerald, topaz; jewellers sell as \"occidental sapphire.\"\n7. **Three orders of pure crystal**: (1) perfect columnar crystals with double pyramids, 18 planes, hexagonal column terminated by hexagonal pyramid at each end; (2) perfect crystals with double pyramids, 12 or 16 planes, two hexagonal pyramids joined base to base without column; (3) imperfect crystals with single pyramids, 12 or 10 planes, hexagonal or pentangular column, affixed at one end, terminated at other by hexagonal or pentangular pyramid.\n8. **Fourth order - metallic crystals**: blended with metallic particles at formation. Lead → cube; tin → quadrilateral pyramid with broad base; iron → rhomboidal figures. Test: spars dissolve in aqua fortis and effervesce; crystal does not.\n9. **Pebble-crystal**: common; formed of hexagonal columns affixed to solid base at one end, terminated by hexagonal column at other = \"strig or rock crystal,\" species described as \"crystal of the slops\" for medicinal uses.\n10. **Formation**: crystals must have once been in a fluid state (since some have water in cavities). Professor Bergman obtained 13 regular formed crystals by leaving powder of quartz in a vessel with sulfuric acid for two years (size of small peas, less hard than quartz).\n\n**Wikipedia (Quartz article):**\n\n- **Etymology**: \"quartz\" from German Quarz, from Polish kwardy/Czech tvrdý ('hard'); possibly Saxon Querkluftertz ('cross-vein ore'). Ancient Greeks κρύσταλλος (krustallos) meaning 'crystal' from κρύος (kruos) 'icy cold' — believed to be supercooled ice. Today \"rock crystal\" is alternative name for transparent, coarsely crystalline quartz.\n- **Crystal habit and structure**: Two polymorphs: α-quartz (trigonal) and β-quartz (hexagonal), transition at 573°C. Space groups P3121/P3221 (α) and P6422/P6222 (β), chiral. Ideal shape: six-sided prism with six-sided pyramid-like rhombohedrons at each end. Often twinned (right/left-handed), distorted, intergrown. Form as druse/geodes; doubly terminated where free.\n- **Varieties**: Pure quartz = rock crystal/clear quartz, colorless and transparent/translucent. Colored varieties: citrine, rose quartz, amethyst, smoky quartz, milky quartz. Colors from impurities changing molecular orbitals/electronic transitions. Classification: macrocrystalline (visible), microcrystalline (microscopic), cryptocrystalline (sub-microscopic); microcrystalline + cryptocrystalline = chalcedony. Chalcedony = fine intergrowths of quartz and moganite.\n- **Piezoelectricity**: discovered by Jacques and Pierre Curie in 1880. Used in crystal oscillators (Cady 1921, Pierce 1923), quartz clocks (Marrison 1927).\n- **Occurrence**: second most abundant mineral in lithosphere (12% by mass), defining constituent of granite, common in sedimentary/metamorphic rocks.\n\nNow, let me structure the answer per the required format:\n\n1. **Answer** - two or three sentences.\n2. **Britannica** - what it says, with edition/year.\n3. **Wikipedia** - what it says.\n4. **What changed** - each difference labelled with category: LANGUAGE, KNOWLEDGE, PERSPECTIVE, NO_COUNTERPART.\n5. **Confidence** - high/medium/low, and what evidence is missing.\n\nUnder 300 words. Cite every factual statement inline with citation ids.\n\nLet me draft:\n\n**Answer**: The 4th-edition Britannica (1801-1810) treats rock crystal as a gem-like mineral classified by form, colour, and accidents, coloured by metallic oxides and hard enough to resist fire. Modern Wikipedia's Quartz article describes rock crystal as pure, colorless quartz (SiO₂), classified by crystal system, polymorphism, and impurity-driven colour, with piezoelectric and industrial uses. The shift is from a gemological, form-based classification to a chemical and structural mineralogy.\n\n**Britannica**: EB:108-0 to EB:108-3 (4th ed., 1801-1810): rock crystals are hexagonal, doubly refracting, coloured by \"an exceedingly small portion of metallic oxide\" but losing colour when heated; sold as \"false gems\" (false rubies, topazes, emeralds, amethysts, sapphires) [EB:108-0]. Fourcroy classifies them by form (four orders), colour (diaphanous, reddish, smoky, blackish), and accidents (hollow, water-filled, pebble-form) [EB:108-0, EB:108-1]. Pure crystal has three orders of geometry (18-plane columnar, 12/16-plane double pyramids, imperfect single pyramids) plus a fourth \"metallic crystals\" order; test with aqua fortis distinguishes crystal from spars [EB:108-2]. Crystals once fluid; Bergman grew crystals from quartz powder and sulfuric acid [EB:108-3].\n\n**Wikipedia**: Rock crystal = pure, colorless, transparent/translucent quartz; coloured varieties (amethyst, citrine, rose, smoky, milky) get colour from impurities altering molecular orbitals [WP:25233-5]. Quartz has α (trigonal) and β (hexagonal) polymorphs transitioning at 573°C, chiral space groups; ideal form is six-sided prism with pyramidal terminations, often twinned [WP:25233-3, WP:25233-4]. \"Rock crystal\" is the traditional name for transparent coarsely crystalline quartz; Greeks thought it was supercooled ice [WP:25233-1]. Piezoelectricity (Curie, 1880) underpins oscillators and clocks [WP:25233-6, WP:25233-14].\n\n**What changed**:\n- LANGUAGE: \"cryſtal\"/long-s OCR spellings, \"falſe gems,\" \"aqua fortis,\" \"suor [sulfuric] acid\" vs modern mineral terminology [EB:108-0–3 vs WP:25233-1,5].\n- KNOWLEDGE: Britannica attributes colour to metallic oxides and believes crystal resists fire while quartz is reduced to opaque earth (Fourcroy) [EB:108-0]; Wikipedia explains colour via impurity-driven electronic transitions and identifies α/β quartz polymorphs with a 573°C transition [WP:25233-3,5]. Wikipedia adds piezoelectricity, space groups, chirality, moganite/chalcedony — all unknown in 1801 [WP:25233-3,5,6].\n- PERSPECTIVE: Britannica frames crystals as gems/jewels (\"false gems,\" jewellers, medicinal \"crystal of the slops\") [EB:108-0,3]; Wikipedia frames quartz as a rock-forming mineral (12% of lithosphere, granite constituent) with industrial/electronics uses [WP:25233-7,12,14].\n\n**Confidence**: high. Both sources directly address rock crystal properties/classification. Missing: whether later Britannica editions revised the article (only 4th ed. found), and the Wikipedia article's full varieties/treatment sections not fully read.\n\nWord count check — this might be over 300 words. Let me tighten. The limit is 300 words for the whole answer. Let me be more concise.\n\nLet me count roughly. I'll aim for ~250 words.\n\nLet me write it concisely.\n\n**Answer** (2 sentences):\nThe Britannica's 4th edition (1801–1810) article \"Rock Crystal Properties and Classification\" describes rock crystal by its form, colour, and accidents, coloured by metallic oxides and classed among \"false gems.\" Modern Wikipedia's Quartz article describes rock crystal as pure, colorless quartz, classified by crystal structure, polymorphism, and impurity-driven colour, with piezoelectric applications — a shift from gemology to mineral science.\n\n**Britannica**: 4th ed. (1801–1810), Vol. 6 Part 2 [EB:108-0–3]. Coloured crystals owe their tinge to \"an exceedingly small portion of metallic oxide,\" lost when heated; sold as false rubies, topazes, emeralds, amethysts, sapphires [EB:108-0]. Fourcroy classifies them by form, colour (diaphanous, reddish, smoky, blackish), and accidents (hollow, water-bearing, pebble-form) [EB:108-0,1]. Three geometric orders of pure crystal (18-plane columnar; 12/16-plane double pyramids; imperfect single pyramids) plus a fourth \"metallic crystals\" order; aqua fortis distinguishes crystal from spars [EB:108-2]. Crystals were once fluid; Bergman grew crystals from quartz powder and sulfuric acid [EB:108-3].\n\n**Wikipedia**: Rock crystal = pure, colorless, transparent/translucent quartz; coloured varieties (amethyst, citrine, rose, smoky, milky) get colour from impurities shifting electronic transitions [WP:25233-5]. Quartz occurs as α-quartz (trigonal) and β-quartz (hexagonal), switching at 573 °C, in chiral space groups; ideal habit is a six-sided prism with pyramidal ends, often twinned [WP:25233-3,4]. \"Rock crystal\" is the traditional name for transparent coarsely crystalline quartz; Greeks called it supercooled ice [WP:25233-1]. Piezoelectricity (Curie, 1880) enables oscillators and clocks [WP:25233-6,14].\n\n**What changed**:\n- LANGUAGE: archaic spellings (\"cryſtal,\" \"falſe,\" \"aqua fortis,\" \"suor acid\") vs modern terms [EB:108-0–3 vs WP:25233-1,5].\n- KNOWLEDGE: colour from metallic oxides/fire resistance vs impurity-driven electronic transitions and α/β polymorphs at 573 °C; piezoelectricity, space groups, chirality, chalcedony/moganite are new [EB:108-0,2,3 vs WP:25233-3,5,6].\n- PERSPECTIVE: gems/jewels and medicinal uses vs rock-forming mineral (12% of lithosphere) and electronics/industrial uses [EB:108-0,3 vs WP:25233-7,12,14].\n\n**Confidence**: high. Both sources directly cover rock crystal properties/classification. Only the 4th Britannica edition was located; later editions and the rest of the Wikipedia article were not checked.\n\nLet me count words... roughly 240-260 words. Good.\n\nCitation format: one id per bracket, exactly as returned. I have EB:108-0, EB:108-1, EB:108-2, EB:108-3, WP:25233-1, WP:25233-3, WP:25233-4, WP:25233-5, WP:25233-6, WP:25233-7, WP:25233-12, WP:25233-14. All valid.\n\nNote about OCR: \"suor acid\" = sulfuric acid, \"ſuor\" with long s. I'll note \"suor (sulfuric) acid.\"\n\nNow write the final answer."
+    }
+  ],
+  "slug": "topic-rock-crystal-properties-and-classification",
+  "expectation": "success candidate: indexed page with a Wikipedia counterpart",
+  "gold_page": 108,
+  "model": "nvidia/Nemotron-3.5-Super-VL",
+  "ran_at": "2026-10-18T14:22:22.961759+00:00",
+  "metrics": {
+    "duration_s": 22.8,
+    "n_calls": 10,
+    "n_vision_calls": 0,
+    "n_cited": 8,
+    "n_unsupported": 0,
+    "support": null,
+    "n_weak_claims": 0,
+    "gold_page_found": true,
+    "suggested_stage": null
+  }
+}

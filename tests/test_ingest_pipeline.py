@@ -15,12 +15,12 @@ from two_beefies.schema import EMBED_DIM
 class EmbeddingTests(unittest.TestCase):
     def test_nebius_key_is_only_reused_for_official_https_endpoint(self):
         from two_beefies import config
-        with patch.object(config, "NIM_API_KEY", ""), patch.object(config, "NEBIUS_API_KEY", "account-key"):
+        with patch.object(config, "RETRIEVAL_API_KEY", ""), patch.object(config, "NEBIUS_API_KEY", "account-key"):
             self.assertEqual(config.nim_api_key("https://api.tokenfactory.nebius.com/v1/embeddings"), "account-key")
             for url in ("https://parser.tunnel.example/v1", "http://api.tokenfactory.nebius.com/v1",
                         "https://api.tokenfactory.nebius.com.evil.example/v1"):
                 self.assertEqual(config.nim_api_key(url), "")
-        with patch.object(config, "NIM_API_KEY", "explicit-key"):
+        with patch.object(config, "RETRIEVAL_API_KEY", "explicit-key"):
             self.assertEqual(config.nim_api_key("https://embed.example"), "explicit-key")
 
     def test_query_and_passage_embedding_urls_agree(self):
@@ -30,7 +30,7 @@ class EmbeddingTests(unittest.TestCase):
             self.assertEqual(_nim_url(base, "embeddings"), "https://embed.example/v1/embeddings")
 
     @patch("two_beefies.embedding.requests.post")
-    def test_batches_reorders_and_uses_passage_mode(self, post):
+    def test_batches_reorders_and_uses_document_mode(self, post):
         def respond(_url, **kwargs):
             from unittest.mock import Mock
             response = Mock(status_code=200)
@@ -45,7 +45,9 @@ class EmbeddingTests(unittest.TestCase):
         self.assertEqual([v[0] for v in vectors], [1.0, 2.0, 1.0])
         self.assertEqual(post.call_count, 2)
         self.assertEqual(post.call_args.args[0], "https://embed.example/v1/embeddings")
-        self.assertEqual(post.call_args.kwargs["json"]["input_type"], "passage")
+        # the organizers' model service accepts only "query" / "document" and no extra fields
+        self.assertEqual(post.call_args.kwargs["json"],
+                         {"model": "embed-model", "input": ["three"], "input_type": "document"})
         self.assertEqual(post.call_args.kwargs["headers"]["Authorization"], "Bearer embed-key")
 
     @patch("two_beefies.embedding.requests.post")

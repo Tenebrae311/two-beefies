@@ -1,10 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { askBackend, formatArgs, loadMockAsk } from "@/utils/api";
+import { askBackend, loadMockAsk } from "@/utils/api";
 import type { AskResponse, Citation } from "@/utils/types";
 import { CitedText, SourceIcon, useCitations } from "./citations";
 import { Spinner } from "./debate-parts";
+import { EvidenceStrip } from "./evidence";
+import { TraceList } from "./trace";
+import { QuestionIcon } from "./flair";
+import { EyeIcon } from "./vision";
 
 const EXAMPLES = [
   "How many planets did Britannica list in 1771, and how does that compare to today?",
@@ -65,18 +69,22 @@ export function AskView({ mock }: { mock: boolean }) {
 
   const eb = result?.citations.filter((c) => c.source === "britannica") ?? [];
   const wp = result?.citations.filter((c) => c.source !== "britannica") ?? [];
+  const nVision = result?.trace.filter((s) => s.vision).length ?? 0;
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
       <form
-        className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200"
+        className="glass-card rounded-3xl p-5 ring-1 ring-slate-200/80 md:p-6"
         onSubmit={(e) => {
           e.preventDefault();
           void ask(question);
         }}
       >
-        <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-          Ask across 250 years of encyclopaedias
+        <label className="mb-3 flex items-baseline gap-3 px-1">
+          <span className="text-duel-gradient text-xl font-semibold tracking-tight md:text-2xl">
+            Ask across 250 years of encyclopaedias
+          </span>
+          <span className="hidden text-sm text-slate-500 sm:inline">One agent, both sources, every claim cited.</span>
         </label>
         <textarea
           value={question}
@@ -86,16 +94,17 @@ export function AskView({ mock }: { mock: boolean }) {
           }}
           rows={3}
           placeholder="e.g. How did the understanding of combustion change between 1771 and today?"
-          className="w-full resize-none rounded-xl bg-slate-50 px-4 py-3 text-lg text-slate-900 outline-none ring-1 ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-amber-400"
+          className="w-full resize-none rounded-2xl bg-white px-4 py-3 text-lg text-slate-900 shadow-inner outline-none ring-1 ring-slate-200 transition placeholder:text-slate-400 focus:ring-2 focus:ring-amber-400"
         />
         <div className="mt-3 flex flex-wrap items-center gap-2">
           {EXAMPLES.map((ex) => (
             <button
               key={ex}
+              data-ask-example
               type="button"
               onClick={() => void ask(ex)}
               disabled={loading}
-              className="rounded-full bg-white px-3 py-1 text-left text-[13px] text-slate-600 ring-1 ring-slate-200 transition hover:-translate-y-px hover:bg-amber-50 hover:ring-amber-300 disabled:opacity-40"
+              className="rounded-full bg-white/80 px-3 py-1 text-left text-[13px] text-slate-600 ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-amber-50 hover:to-sky-50 hover:shadow-md hover:ring-amber-300 disabled:opacity-40"
             >
               {ex}
             </button>
@@ -103,16 +112,16 @@ export function AskView({ mock }: { mock: boolean }) {
           <button
             type="submit"
             disabled={loading || !question.trim()}
-            className="ml-auto inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 font-semibold text-white shadow transition hover:-translate-y-px hover:shadow-lg disabled:opacity-40"
+            className="btn-duel ml-auto inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-semibold text-white disabled:opacity-40"
           >
-            {loading ? <Spinner /> : null} Ask
+            {loading ? <Spinner /> : <QuestionIcon />} Ask
             <kbd className="hidden rounded bg-white/15 px-1.5 text-[10px] font-normal sm:inline">Ctrl ↵</kbd>
           </button>
         </div>
       </form>
 
       {loading && (
-        <div className="animate-fade-up space-y-3 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+        <div className="glass-card animate-fade-up space-y-3 rounded-3xl p-6 ring-1 ring-slate-200/80">
           <div className="flex items-center gap-2 text-sm text-slate-600">
             <Spinner /> The Hermes agent is consulting Britannica and Wikipedia…
           </div>
@@ -141,7 +150,7 @@ export function AskView({ mock }: { mock: boolean }) {
             </div>
           )}
 
-          <article className="rounded-2xl bg-white p-7 shadow-lg ring-1 ring-slate-200">
+          <article className="duel-frame rounded-3xl p-7 md:p-8">
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Answer</span>
               {result.unsupported.length > 0 ? (
@@ -163,10 +172,19 @@ export function AskView({ mock }: { mock: boolean }) {
               unsupported={result.unsupported}
               className="text-[16.5px] leading-relaxed text-slate-800"
             />
+            {result.evidence && (
+              <EvidenceStrip
+                evidence={result.evidence}
+                tone="wp"
+                citations={result.citations}
+                unsupported={result.unsupported}
+                className="mt-5"
+              />
+            )}
           </article>
 
           {result.citations.length > 0 && (
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               <SourceList
                 title="Encyclopaedia Britannica · 1768–1860"
                 cites={eb}
@@ -177,34 +195,24 @@ export function AskView({ mock }: { mock: boolean }) {
             </div>
           )}
 
-          <details className="group rounded-2xl bg-slate-900 text-slate-200 shadow ring-1 ring-slate-800">
+          {/* opened by default when the agent looked at a scan, so the vision cards are visible */}
+          <details
+            open={nVision > 0 || undefined}
+            className="scoreboard group rounded-2xl text-slate-200 shadow-xl ring-1 ring-white/10"
+          >
             <summary className="flex cursor-pointer list-none items-center gap-2 px-5 py-3 text-sm font-semibold">
               <span className="transition group-open:rotate-90">▸</span>
               Agent trace
               <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-normal">{result.trace.length} steps</span>
+              {nVision > 0 && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-violet-500/20 px-2 py-0.5 text-xs font-normal text-violet-200 ring-1 ring-violet-400/30">
+                  <EyeIcon className="!h-3 !w-3" /> {nVision} vision call{nVision === 1 ? "" : "s"}
+                </span>
+              )}
             </summary>
-            <ol className="space-y-1.5 px-5 pb-4">
-              {result.trace.map((s, i) => (
-                <li key={i} className="flex items-start gap-3 font-mono text-[12.5px]">
-                  <span className="w-5 shrink-0 text-right text-slate-500">{i + 1}</span>
-                  <span>
-                    <span
-                      className={
-                        s.name.includes("britannica")
-                          ? "text-amber-300"
-                          : s.name.includes("wikipedia")
-                            ? "text-sky-300"
-                            : "text-emerald-300"
-                      }
-                    >
-                      {s.name}
-                    </span>
-                    <span className="text-slate-400">({formatArgs(s.args)})</span>
-                  </span>
-                </li>
-              ))}
-              {result.trace.length === 0 && <li className="text-sm text-slate-500">No tool calls recorded.</li>}
-            </ol>
+            <div className="px-5 pb-4">
+              <TraceList steps={result.trace} citations={result.citations} unsupported={result.unsupported} />
+            </div>
           </details>
         </div>
       )}

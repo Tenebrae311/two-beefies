@@ -1,0 +1,386 @@
+{
+  "question": "What does the Britannica say about Economists on Majority Rule, and how does modern Wikipedia describe it? What changed: language, knowledge or perspective?",
+  "answer": "**Answer** — Britannica's \"Economists on Majority Rule\" (4th–6th supplement, 1815–1824) records the Physiocrats' rejection of majority rule: government must rest on evidence, not vote-counting, because majorities can be moved by private interest and ignorance [EB:122-0][EB:122-1]. Modern Wikipedia describes majority rule as a formal social-choice rule — the option preferred by more than half the voters wins — with criteria such as May's theorem and discussion of minority rights [WP:658906-0][WP:658906-4].\n\n**Britannica** — The \"Economists\" (Physiocrats) argue plurality of suffrage is no security: divisions of opinion come only from ignorance or bad design, and numbers cannot make the non-evident evident [EB:122-0]. The greatest evil is that majority rule sets private interest against the public interest, \"which is sure to be sacrificed\" [EB:122-1]. Rule by votes gives \"despotical authority\" to numbers where only evidence should govern, leaving the nation unprotected, and an uninstructed nation is split between rich and poor, each regarding the other as prey [EB:122-2][EB:122-3].\n\n**Wikipedia** — Majority rule is a social-choice rule in which the option preferred by over half the voters wins; it is one of two major notions of democracy (alongside the utilitarian rule), used in parliamentary procedure, generalized by Condorcet's principle, and axiomatized by May's theorem (anonymity, neutrality, decisiveness, positive response); the article also covers supermajority rules and minority-rights protections [WP:658906-0][WP:658906-4][WP:658906-3][WP:658906-7].\n\n**What changed**\n- LANGUAGE: archaic idiom (\"plurality of suffrage,\" \"deliberants,\" \"prepossession\") versus modern social-choice vocabulary.\n- KNOWLEDGE: Britannica gives philosophical objections only; Wikipedia adds vote thresholds, May's theorem, the Condorcet principle, supermajority rules, and voting paradoxes.\n- PERSPECTIVE: Britannica is elitist and technocratic — rule by evidence and enlightened experts, distrust of the masses \"sunk in ignorance and prejudices\" and of the poor envying the rich; Wikipedia is neutral and institutional, including how majority rule can protect minority rights [EB:122-3][WP:658906-7].\n\n**Confidence**: high — based on the full Britannica passage and Wikipedia's lead section; the counterpart pipeline links the Britannica page to both \"Physiocracy\" and \"Majority rule.\"",
+  "citations": [
+    {
+      "cite_id": "EB:122-0",
+      "source": "britannica",
+      "title": "Economists on Majority Rule",
+      "snippet": "720 Economists. To this the Economists made answer, that, if the opposition of one will can suspend the effect of all the others, it reduces authority to inaction, and all that reason destroys it. The reason why physical force is necessary is, that you cannot count upon the union of all wills. If, …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=122",
+      "image_url": "/api/page-image/122",
+      "edition": "4th-6th suppl. (1815-1824)",
+      "year": 1815
+    },
+    {
+      "cite_id": "EB:122-1",
+      "source": "britannica",
+      "title": "Economists on Majority Rule",
+      "snippet": "But the greatest evil, they said, of the mode of determining, by majority of votes, the question respecting the social order, was, that it set individual interest in opposition to public; in which case, the public interests are sure to be sacrificed. “ How great soever the differences among men, …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=122",
+      "image_url": "/api/page-image/122",
+      "edition": "4th-6th suppl. (1815-1824)",
+      "year": 1815
+    },
+    {
+      "cite_id": "WP:658906-0",
+      "source": "wikipedia",
+      "title": "Majority rule",
+      "snippet": "In social choice theory, the majority rule (MR) is a social choice rule which says that, when comparing two options (such as bills or candidates), the option preferred by more than half of the voters (a majority) should win. In political philosophy, the majority rule is one of two major competing …",
+      "url": "https://en.wikipedia.org/wiki/Majority_rule",
+      "image_url": null,
+      "edition": null,
+      "year": null
+    },
+    {
+      "cite_id": "WP:658906-4",
+      "source": "wikipedia",
+      "title": "Majority rule",
+      "snippet": "Kenneth May proved that the simple majority rule is the only \"fair\" ordinal decision rule, in that majority rule does not let some votes count more than others or privilege an alternative by requiring fewer votes to pass. Formally, majority rule is the only decision rule that has the following …",
+      "url": "https://en.wikipedia.org/wiki/Majority_rule",
+      "image_url": null,
+      "edition": null,
+      "year": null
+    },
+    {
+      "cite_id": "EB:122-2",
+      "source": "britannica",
+      "title": "Economists on Majority Rule",
+      "snippet": "der this system, it is not evidence,” they said, Economists, “ which governs; it is opinion, or the will of a certain number of men actuated by the same opinion. The mischief apt to result cannot be estimated; it is without bounds. Suppose, in fact, that the vote of the majority is dictated by …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=122",
+      "image_url": "/api/page-image/122",
+      "edition": "4th-6th suppl. (1815-1824)",
+      "year": 1815
+    },
+    {
+      "cite_id": "EB:122-3",
+      "source": "britannica",
+      "title": "Economists on Majority Rule",
+      "snippet": "“ So long, on the other hand, as a nation is not thus instructed, the people, properly so called, sunk in ignorance and prejudices, see no farther than the nearest objects by which they are surrounded; each canton thinks the interest of the state is all summed up in the interest of that canton; …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=122",
+      "image_url": "/api/page-image/122",
+      "edition": "4th-6th suppl. (1815-1824)",
+      "year": 1815
+    },
+    {
+      "cite_id": "WP:658906-3",
+      "source": "wikipedia",
+      "title": "Majority rule",
+      "snippet": "Parliamentary rules may prescribe the use of a supermajoritarian rule under certain circumstances, such as the 60% filibuster rule to close debate in the US Senate. However such requirement means that 41 percent of the members or more could prevent debate from being closed, an example where the …",
+      "url": "https://en.wikipedia.org/wiki/Majority_rule",
+      "image_url": null,
+      "edition": null,
+      "year": null
+    },
+    {
+      "cite_id": "WP:658906-7",
+      "source": "wikipedia",
+      "title": "Majority rule",
+      "snippet": "A super-majority rule actually empowers the minority, making it stronger (at least through its veto) than the majority. McGann argued that when only one of multiple minorities is protected by the super-majority rule (same as seen in simple plurality elections systems), so the protection is for the …",
+      "url": "https://en.wikipedia.org/wiki/Majority_rule",
+      "image_url": null,
+      "edition": null,
+      "year": null
+    }
+  ],
+  "unsupported": [],
+  "trace": [
+    {
+      "name": "search_britannica",
+      "args": {
+        "query": "economists majority rule",
+        "k": 10
+      },
+      "n_hits": 10,
+      "cite_ids": [
+        "EB:122-1",
+        "EB:122-2",
+        "EB:122-0",
+        "EB:2418-2",
+        "EB:814-1",
+        "EB:2418-0",
+        "EB:2418-1",
+        "EB:122-3",
+        "EB:2465-2",
+        "EB:383-1"
+      ]
+    },
+    {
+      "name": "search_wikipedia",
+      "args": {
+        "query": "economists majority rule",
+        "k": 10
+      },
+      "n_hits": 10,
+      "cite_ids": [
+        "WP:658906-0",
+        "WP:658906-1",
+        "WP:658906-9",
+        "WP:658906-6",
+        "WP:658906-10",
+        "WP:658906-2",
+        "WP:658906-4",
+        "WP:658906-7",
+        "WP:658906-3",
+        "WP:22278-6"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:122-0"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:122-0"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:122-1"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:122-1"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:122-2"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:122-2"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:122-3"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:122-3"
+      ]
+    },
+    {
+      "name": "find_counterparts",
+      "args": {
+        "britannica_cite_id": "EB:122-0"
+      },
+      "n_hits": 2,
+      "cite_ids": [
+        "WP:45440-0",
+        "WP:658906-0"
+      ]
+    },
+    {
+      "name": "read_wikipedia",
+      "args": {
+        "cite_id": "WP:658906-0"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:658906-0"
+      ]
+    }
+  ],
+  "evidence": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "What does the Britannica say about Economists on Majority Rule, and how does modern Wikipedia describe it? What changed: language, knowledge or perspective?",
+      "timestamp": 1792333342.9693906
+    },
+    {
+      "role": "assistant",
+      "content": "I'll search both sources for material on economists and majority rule.",
+      "reasoning": "The user is asking about \"Economists on Majority Rule\" - I need to search both Britannica and Wikipedia for this topic. Let me start by searching both sources.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333345.1818926,
+      "reasoning_content": "The user is asking about \"Economists on Majority Rule\" - I need to search both Britannica and Wikipedia for this topic. Let me start by searching both sources.",
+      "tool_calls": [
+        {
+          "id": "call_c87e65680e2c",
+          "call_id": "call_c87e65680e2c",
+          "response_item_id": "fc_c87e65680e2c",
+          "type": "function",
+          "function": {
+            "name": "search_britannica",
+            "arguments": "{\"query\": \"economists majority rule\", \"k\": 10}"
+          }
+        },
+        {
+          "id": "call_418883e7c8da",
+          "call_id": "call_418883e7c8da",
+          "response_item_id": "fc_418883e7c8da",
+          "type": "function",
+          "function": {
+            "name": "search_wikipedia",
+            "arguments": "{\"query\": \"economists majority rule\", \"k\": 10}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "search_britannica",
+      "tool_name": "search_britannica",
+      "content": "{\"results\": [{\"cite_id\": \"EB:122-1\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"retrieval_score\": 8.4297, \"snippet\": \"But the greatest evil, they said, of the mode of determining, by majority of votes, the question respecting the social order, was, that it set individual interest in opposition to public; in which case, the public interests are sure to be sacrificed. “ How great soever the differences among men, they have within them, nevertheless, two grand moving powers common to all, and which are the source of all their actions : the appetite of pleasure, and the aversion to pain. To suppose that men can move in opposition to those powers, is to suppose that the cause can depend upon the effect. But the desire of enjoyment, and opinion by which it is modified, cannot act naturally and constantly in the …\"}, {\"cite_id\": \"EB:122-2\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"retrieval_score\": 6.8769, \"snippet\": \"der this system, it is not evidence,” they said, Economists, “ which governs; it is opinion, or the will of a certain number of men actuated by the same opinion. The mischief apt to result cannot be estimated; it is without bounds. Suppose, in fact, that the vote of the majority is dictated by private interests, and that evidence is on the side of the minority; is it not monstrous that the former should command? and that the form of the government should lend to bad design a title to triumph over evidence itself? This excess of disorder is nevertheless inevitable, under so defective a plan of government; and the nation remains absolutely without protection against the scourges with which, …\"}, {\"cite_id\": \"EB:122-0\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"retrieval_score\": 5.1982, \"snippet\": \"720 Economists. To this the Economists made answer, that, if the opposition of one will can suspend the effect of all the others, it reduces authority to inaction, and all that reason destroys it. The reason why physical force is necessary is, that you cannot count upon the union of all wills. If, to avoid this objection, you have recourse, they said, to plurality of suffrage, you build no longer on the basis of evidence. That which divides opinions is not yet evident. As nothing in government ought to be arbitrary, and every thing that is not arbitrary is founded on reasons, that is, evidence; there cannot be diversity of opinions on matters of government, except from the effect of …\"}, {\"cite_id\": \"EB:2418-2\", \"title\": \"Algebra: Fractions and Powers\", \"edition\": \"8th (1853-1860)\", \"volume_label\": \"Eighth edition, Volume 2, A-Anatomy\", \"page_index\": 2418, \"illustrated\": false, \"retrieval_score\": 3.9018, \"snippet\": \"30. This method of expressing the fractions 1/2, 1/3, 1/4 as powers of the root a, but with negative indices, is a consequence of the rule which has been given for the division of powers; for we may consider 1/a as the quotient arising from the division of any power of a by the next higher power; for example, from the division of the 2d by the 3d, and so we have 1/a = a²/a³; but since powers of the same quantity are divided by subtracting the exponent of the divisor from that of the dividend (sect. 30), it follows, that a²/a³ = a²⁻³ = a⁻¹; therefore the fraction 1/a may also be expressed thus, a⁻¹. By considering 1/a as equal to a²/a³, it will appear in the same manner that 1/a² = a²/a⁴ = …\"}, {\"cite_id\": \"EB:814-1\", \"title\": \"Terrestrial Magnetism and Gauss\", \"edition\": \"8th (1853-1860)\", \"volume_label\": \"Eighth edition, Volume 1, Dissertations\", \"page_index\": 814, \"illustrated\": false, \"retrieval_score\": 3.8502, \"snippet\": \"To Major-General EDWARD SABINE, of the Royal Artillery, is mainly due the judicious management of these magnetic explorations, and the speedy and skilful publication of their interesting results. During the course of an active life he has enjoyed opportunities of making extensive observations with magnetic apparatus and with the pendulum (238) throughout a great range of latitude. His experiments (carried on principally between the years 1819 and 1826) were made in Brazil, the coast of Guinea, Spitzbergen, and Arctic America. His observations on magnetic intensity are particularly valuable, and first indicated the position of a region of maximum intensity in North America considerably to …\"}, {\"cite_id\": \"EB:2418-0\", \"title\": \"Algebra: Fractions and Powers\", \"edition\": \"8th (1853-1860)\", \"volume_label\": \"Eighth edition, Volume 2, A-Anatomy\", \"page_index\": 2418, \"illustrated\": false, \"retrieval_score\": 3.5362, \"snippet\": \"ALGEBRA. 495 Algebra. 13x-22 12. If it be required to add or subtract mixed quantities, they may either be reduced to the form of fractions by prob. 3, and then added or subtracted, or else these operations may be performed first on the integer quantities, and afterwards on the fractions. 27. Prob. VII.—To Multiply Fractions. Rule. Multiply the numerators of the fractions for the numerator of the product, and the denominators for the denominator of the product. Ex. 1. Multiply b by c. b/a × c/d = bd/ac, the product required. Ex. 2. Multiply a+b/c by a-b/d. a+b/c × a-b/d = a²-b²/cd, the product. If it be required to multiply an integer by a fraction, the integer may be considered as having …\"}, {\"cite_id\": \"EB:2418-1\", \"title\": \"Algebra: Fractions and Powers\", \"edition\": \"8th (1853-1860)\", \"volume_label\": \"Eighth edition, Volume 2, A-Anatomy\", \"page_index\": 2418, \"illustrated\": false, \"retrieval_score\": 3.2781, \"snippet\": \"If either the divisor or dividend be an integer quantity, it may be represented as a fraction, by placing unity for a denominator; or if it be a mixed quantity, it may be reduced to a fraction by prob. 3, and the operation of division performed agreeably to the rule. The reason of the rule for division may be explained thus: Let it be required to divide c/d by a/b. If c/d is to be divided by a, the quotient is c/ad; but if it is to be divided by b then the last quotient must be multiplied by b; thus we have cb/ad for the quotient required. Or let a/b = m, and c/d = n, then a=bm and c=dn; also ad=bdm and bc=bdn; therefore bdn/bdm = n/m = bc/ad. Sect. III.—Involution and Evolution. 29. In …\"}, {\"cite_id\": \"EB:122-3\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"retrieval_score\": 2.7931, \"snippet\": \"“ So long, on the other hand, as a nation is not thus instructed, the people, properly so called, sunk in ignorance and prejudices, see no farther than the nearest objects by which they are surrounded; each canton thinks the interest of the state is all summed up in the interest of that canton; each profession in the interest of that profession; the knowledge of relations and dependencies is absolutely wanting: such men cannot ascend from effects to causes, much less enumerate the links in the chain of causes and effects. It becomes, therefore, morally impossible for them to act by principle and by rule. Every credulous and prone to prepossession, they must be gained in order to be …\"}, {\"cite_id\": \"EB:2465-2\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"retrieval_score\": 2.5323, \"snippet\": \"The conſtruction is the ſame in every other cafe, due regard being had to the difference of longitude of the place at which the dial would be horizontal, and the place for which it is to ſerve : And likewiſe, taking care to draw no lines but what are neceſſary ; which may be done partly by the rules already given for determining the time that the fun ſhines on any plane : and partly from this, that on the tropical days, the hyperbola deſcribed by the ſhadow of the point R limits the extent of all the hour-lines. Of the right placing of dials, and having a true meridian line for the regulating of clocks and watches. The plane on which the dial is to ſet being duly prepared, and every thing …\"}, {\"cite_id\": \"EB:383-1\", \"title\": \"Political Economy: Sources of Wealth\", \"edition\": \"5th (1815-1817)\", \"volume_label\": \"Fifth edition, Volume 17, Poetry-RHI\", \"page_index\": 383, \"illustrated\": false, \"retrieval_score\": 2.4675, \"snippet\": \"The third ſort conſiſts of thoſe, in the multiplication of which the power of man is either limited or uncertain. In theſe the rule is various. Some commodities are not cultivated on their own account, but are appendages to others; as wool and hides to the carcaſe of the ox or ſheep. Both theſe commodities are much more portable, and more eaſily preſerved, than the fleſh of the animals from which they are taken; the market for them is thus much more extensive, and the demand more equal at all times. Hence, in rude periods, when the fleſh of animals, from its abundance, is of ſmall value, theſe appendages equal or ſurpaſs it in price. At Buenos Ayres frequently, and ſometimes even in Spain, …\"}]}",
+      "tool_call_id": "call_c87e65680e2c",
+      "timestamp": 1792333345.2238595
+    },
+    {
+      "role": "tool",
+      "name": "search_wikipedia",
+      "tool_name": "search_wikipedia",
+      "content": "{\"results\": [{\"cite_id\": \"WP:658906-0\", \"title\": \"Majority rule\", \"section\": \"Introduction\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 9.6205, \"snippet\": \"In social choice theory, the majority rule (MR) is a social choice rule which says that, when comparing two options (such as bills or candidates), the option preferred by more than half of the voters (a majority) should win. In political philosophy, the majority rule is one of two major competing notions of democracy. The most common alternative is given by the utilitarian rule (or other welfarist rules), which identify the spirit of liberal democracy with the equal consideration of interests. Although the two rules can disagree in theory, political philosophers beginning with James Mill have argued the two can be reconciled in practice, with majority rule being a valid approximation to the …\"}, {\"cite_id\": \"WP:658906-1\", \"title\": \"Majority rule\", \"section\": \"Plurality rules\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 9.6165, \"snippet\": \"A common alternative to the majority rule is the plurality-rule family of voting rules, which includes ranked choice voting (RCV), two-round plurality, and first-preference plurality. These rules are often used in elections with more than two candidates. Such rules elect the candidate with the most votes after applying some voting procedure, even if a majority of voters would prefer some other alternative. Systems in the plurality-rule family share several major features like center squeeze and tend to produce similar results. Plurality rule is often contrasted with the two other major families of voting rules, the evaluative rules and the majority (or Condorcet) rules.\"}, {\"cite_id\": \"WP:658906-9\", \"title\": \"Majority rule\", \"section\": \"Minority rights\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 9.1764, \"snippet\": \"McGann argued that majority rule helps to protect minority rights, at least in deliberative settings. The argument is that cycling ensures that parties that lose to a majority have an interest to remain part of the group's process, because any decision can easily be overturned by another majority. Furthermore, suppose a minority wishes to overturn a decision. In that case, under majority rule it just needs to form a coalition that has more than half of the officials involved and that will give it power. Under supermajority rules, a minority needs its own supermajority to overturn a decision. To support the view that majority rule protects minority rights better than supermajority rules, …\"}, {\"cite_id\": \"WP:658906-6\", \"title\": \"Majority rule\", \"section\": \"Other properties\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 9.0887, \"snippet\": \"In group decision-making voting paradoxes can form. It is possible that alternatives a, b, and c exist such that a majority prefers a to b, another majority prefers b to c, and yet another majority prefers c to a. Because majority rule requires an alternative to have majority support to pass, majority rule is vulnerable to rejecting the majority's decision.\"}, {\"cite_id\": \"WP:658906-10\", \"title\": \"Majority rule\", \"section\": \"Other arguments\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 8.9666, \"snippet\": \"Saunders argued that deliberative democracy flourishes under majority rule and that under majority rule, participants always have to convince more than half the group, while under supermajoritarian rules participants might only need to persuade a minority (to prevent a change). Where large changes in seats held by a party may arise from only relatively slight change in votes cast (such as under FPTP), and a simple majority is all that is required to wield power (most legislatures in democratic countries), governments may repeatedly fall into and out of power. This may cause polarization and policy lurch, or it may encourage compromise, depending on other aspects of political culture. McGann …\"}, {\"cite_id\": \"WP:658906-2\", \"title\": \"Majority rule\", \"section\": \"Cardinal rules\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 8.8982, \"snippet\": \"The utilitarian rule, and cardinal social choice rules in general, take into account not just the number of voters who support each choice but also the intensity of their preferences. Philosophers critical of majority rule have often argued that majority rule does not take into account the intensity of preference for different voters, and as a result \\\"two voters who are casually interested in doing something\\\" can defeat one voter who has \\\"dire opposition\\\" to the proposal of the two, leading to poor deliberative practice or even to \\\"an aggressive culture and conflict\\\"; however, the median voter theorem guarantees that majority-rule will tend to elect \\\"compromise\\\" or \\\"consensus\\\" candidates in …\"}, {\"cite_id\": \"WP:658906-4\", \"title\": \"Majority rule\", \"section\": \"May's theorem\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 8.647, \"snippet\": \"Kenneth May proved that the simple majority rule is the only \\\"fair\\\" ordinal decision rule, in that majority rule does not let some votes count more than others or privilege an alternative by requiring fewer votes to pass. Formally, majority rule is the only decision rule that has the following properties: Anonymity: the decision rule treats each voter identically (one vote, one value). Who casts a vote makes no difference; the voter's identity need not be disclosed. Neutrality: the decision rule treats each alternative or candidate equally (a free and fair election). Decisiveness: if the vote is tied, adding a single voter (who expresses an opinion) will break the tie. Positive response: If …\"}, {\"cite_id\": \"WP:658906-7\", \"title\": \"Majority rule\", \"section\": \"Minority rights\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 8.216, \"snippet\": \"A super-majority rule actually empowers the minority, making it stronger (at least through its veto) than the majority. McGann argued that when only one of multiple minorities is protected by the super-majority rule (same as seen in simple plurality elections systems), so the protection is for the status quo, rather than for the faction that supports it. Another possible way to prevent tyranny is to elevate certain rights as inalienable. Thereafter, any decision that targets such a right might be majoritarian, but it would not be legitimate, because it would violate the requirement for equal rights.\"}, {\"cite_id\": \"WP:658906-3\", \"title\": \"Majority rule\", \"section\": \"Supermajority rules\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"retrieval_score\": 7.5985, \"snippet\": \"Parliamentary rules may prescribe the use of a supermajoritarian rule under certain circumstances, such as the 60% filibuster rule to close debate in the US Senate. However such requirement means that 41 percent of the members or more could prevent debate from being closed, an example where the majority will would be blocked by a minority. Byzantine Fault Tolerance studies offer a technical mathematical proof for the basis of consent that requires a minimum supermajority consensus threshold greater than two-thirds.\"}, {\"cite_id\": \"WP:22278-6\", \"title\": \"Ottoman Empire\", \"section\": \"Expansion and peak (1453–1566)\", \"date_modified\": \"2026-10-17T20:41:47Z\", \"retrieval_score\": 7.4158, \"has_image\": true, \"snippet\": \"The son of Murad II, Mehmed the Conqueror, reorganised both state and military, and on 29 May 1453 conquered Constantinople, ending the Byzantine Empire. Mehmed allowed the Eastern Orthodox Church to maintain its autonomy and land in exchange for accepting Ottoman authority. Due to tension between the states of western Europe and the later Byzantine Empire, most of the Orthodox population accepted Ottoman rule, as preferable to Venetian rule. Albanian resistance was a major obstacle to Ottoman expansion on the Italian peninsula. In the 15th and 16th centuries, the Ottoman Empire entered a period of expansion. The Empire prospered under the rule of a line of committed and effective Sultans. …\"}]}",
+      "tool_call_id": "call_418883e7c8da",
+      "timestamp": 1792333345.2578583
+    },
+    {
+      "role": "assistant",
+      "content": "I found the Britannica entry \"Economists on Majority Rule\" (4th-6th suppl., 1815–1824) and the Wikipedia article on Majority rule. Let me read the full passages and check the counterpart mapping.",
+      "reasoning": "I found the Britannica page \"Economists on Majority Rule\" from the 4th-6th supplement (1815-1824), Volume 3, page index 122. There are 4 passages (EB:122-0, 122-1, 122-2, 122-3). Let me read the full text of this page to get the complete picture. I should also read the Wikipedia \"Majority rule\" article, and use find_counterparts for the Britannica page.\n\nLet me read all the EB passages and the Wikipedia article, and find counterparts.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333347.8835576,
+      "reasoning_content": "I found the Britannica page \"Economists on Majority Rule\" from the 4th-6th supplement (1815-1824), Volume 3, page index 122. There are 4 passages (EB:122-0, 122-1, 122-2, 122-3). Let me read the full text of this page to get the complete picture. I should also read the Wikipedia \"Majority rule\" article, and use find_counterparts for the Britannica page.\n\nLet me read all the EB passages and the Wikipedia article, and find counterparts.",
+      "tool_calls": [
+        {
+          "id": "call_332f316e7ab3",
+          "call_id": "call_332f316e7ab3",
+          "response_item_id": "fc_332f316e7ab3",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:122-0\"}"
+          }
+        },
+        {
+          "id": "call_31a1b4612151",
+          "call_id": "call_31a1b4612151",
+          "response_item_id": "fc_31a1b4612151",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:122-1\"}"
+          }
+        },
+        {
+          "id": "call_b15205f75d6b",
+          "call_id": "call_b15205f75d6b",
+          "response_item_id": "fc_b15205f75d6b",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:122-2\"}"
+          }
+        },
+        {
+          "id": "call_b1bd940e0b72",
+          "call_id": "call_b1bd940e0b72",
+          "response_item_id": "fc_b1bd940e0b72",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:122-3\"}"
+          }
+        },
+        {
+          "id": "call_af8868f4fdcb",
+          "call_id": "call_af8868f4fdcb",
+          "response_item_id": "fc_af8868f4fdcb",
+          "type": "function",
+          "function": {
+            "name": "find_counterparts",
+            "arguments": "{\"britannica_cite_id\": \"EB:122-0\"}"
+          }
+        },
+        {
+          "id": "call_3da05cbfbc2e",
+          "call_id": "call_3da05cbfbc2e",
+          "response_item_id": "fc_3da05cbfbc2e",
+          "type": "function",
+          "function": {
+            "name": "read_wikipedia",
+            "arguments": "{\"cite_id\": \"WP:658906-0\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:122-0\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"text\": \"720 Economists.\\n\\nTo this the Economists made answer, that, if the opposition of one will can suspend the effect of all the others, it reduces authority to inaction, and all that reason destroys it. The reason why physical force is necessary is, that you cannot count upon the union of all wills. If, to avoid this objection, you have recourse, they said, to plurality of suffrage, you build no longer on the basis of evidence. That which divides opinions is not yet evident. As nothing in government ought to be arbitrary, and every thing that is not arbitrary is founded on reasons, that is, evidence; there cannot be diversity of opinions on matters of government, except from the effect of ignorance, or of bad design on the part of the deliberants. But it cannot be determined by a few voices less or more, on which side the ground of evil lies: experience shows, that an accredited error may long unite partisans in much greater number than the truth by which it is opposed. The number of those who concur in an opinion cannot render that evident which is not evident; their opinion is only opinion still; which is, of course, subject to change, for nothing but evidence is unalterable. And with respect to bad design; as that results from particular interests, it can never be determined whether the number of those whom such interests command is the greatest or the least. On both accounts, then, plurality of suffrage is not security.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=122\"}",
+      "tool_call_id": "call_332f316e7ab3",
+      "timestamp": 1792333347.9061518
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:122-1\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"text\": \"But the greatest evil, they said, of the mode of determining, by majority of votes, the question respecting the social order, was, that it set individual interest in opposition to public; in which case, the public interests are sure to be sacrificed. “ How great soever the differences among men, they have within them, nevertheless, two grand moving powers common to all, and which are the source of all their actions : the appetite of pleasure, and the aversion to pain. To suppose that men can move in opposition to those powers, is to suppose that the cause can depend upon the effect. But the desire of enjoyment, and opinion by which it is modified, cannot act naturally and constantly in the direction of the public interest, when authority is divided among several persons who are liable to have interests opposite to one another. For it may be laid down as a truth, which will not admit of contestation, that the public interest cannot be considered as generally safe, when it is in opposition to the private interests of those who are entrusted with it. If one or more of the public administrators behold any great advantage to themselves in a sacrifice which has been made, or which may be made, of the public interest, we ask, said the Economists, What can prevent the sacrifice from being made? Not the two springs of action which nature has placed within us to be the cause of all we do; for they are, in this case, put in opposition to the public interest. Not any other authority in opposition to that of the public administrator; since, by the supposition, they themselves engross the whole of the governing power.”\\n\\nThe remaining evil which the Economists ascribed to this expedient was, that it attached to the number of votes a despotical authority, which can safely and usefully belong to evidence alone. “ Un\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=122\"}",
+      "tool_call_id": "call_31a1b4612151",
+      "timestamp": 1792333347.9259033
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:122-2\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"text\": \"der this system, it is not evidence,” they said, Economists, “ which governs; it is opinion, or the will of a certain number of men actuated by the same opinion. The mischief apt to result cannot be estimated; it is without bounds. Suppose, in fact, that the vote of the majority is dictated by private interests, and that evidence is on the side of the minority; is it not monstrous that the former should command? and that the form of the government should lend to bad design a title to triumph over evidence itself? This excess of disorder is nevertheless inevitable, under so defective a plan of government; and the nation remains absolutely without protection against the scourges with which, under private interest, set in opposition to public, it may be lacerated; especially if these private interests are the interests of men who, by their riches or otherwise, are in possession of power.\\n\\n“ We forget not,” they said, “ that the mischievous tendency of private interest, would find a counterpoise in the knowledge of the nation. It is very true, that, in a nation really enlightened, a nation that had from evidence the knowledge of its own true interests, the body of rulers could not abuse their authority. But why? because the evidence of the abuse would, in that case, annihilate the authority. But the idea of a nation governed by plurality of suffrage, and by evidence at the same time, involves an absurdity. Again, a nation sufficiently instructed to know all the links in the chain of social good and evil, would never sanction a form of government which places the common interest in opposition to the private interests of those to whom it is entrusted. Besides, it would be ridiculous to suppose a nation sufficiently instructed to have the wills of all united under the evidence of what is best in the social order, and to suppose its rulers, at the very same time, so ignorant as to be divided on those subjects, and reduced for a ground of decision to plurality of suffrage.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=122\"}",
+      "tool_call_id": "call_b15205f75d6b",
+      "timestamp": 1792333347.9431076
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:122-3\", \"title\": \"Economists on Majority Rule\", \"edition\": \"4th-6th suppl. (1815-1824)\", \"volume_label\": \"Volume 3\", \"page_index\": 122, \"illustrated\": false, \"text\": \"“ So long, on the other hand, as a nation is not thus instructed, the people, properly so called, sunk in ignorance and prejudices, see no farther than the nearest objects by which they are surrounded; each canton thinks the interest of the state is all summed up in the interest of that canton; each profession in the interest of that profession; the knowledge of relations and dependencies is absolutely wanting: such men cannot ascend from effects to causes, much less enumerate the links in the chain of causes and effects. It becomes, therefore, morally impossible for them to act by principle and by rule. Every credulous and prone to prepossession, they must be gained in order to be persuaded; the same artifices must be practised upon them which are used to seduce them. The resolutions of men, the sport of momentary impressions, must have all the inconstancy of these impressions. Divided into rich and poor; the rich look upon the poor as made for them; and upon every power which they wish to possess, as naturally their due. The poor, justly discontented with the treatment they receive, and mistaking the cause, are tempted to envy the condition of the rich, and to regard as injustice the inequality of the condition which is made between them. It is evidently,\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=122\"}",
+      "tool_call_id": "call_b1bd940e0b72",
+      "timestamp": 1792333347.954503
+    },
+    {
+      "role": "tool",
+      "name": "find_counterparts",
+      "tool_name": "find_counterparts",
+      "content": "{\"matches\": [{\"britannica_doc_id\": \"122\", \"wikipedia_doc_id\": \"45440\", \"rank\": 1, \"vector_score\": null, \"rerank_score\": null, \"no_clear_match\": false, \"reason\": \"page topic 'Physiocracy' -> search hit 'Physiocracy'\", \"wikipedia_title\": \"Physiocracy\", \"wikipedia_cite_id\": \"WP:45440-0\"}, {\"britannica_doc_id\": \"122\", \"wikipedia_doc_id\": \"658906\", \"rank\": 2, \"vector_score\": null, \"rerank_score\": null, \"no_clear_match\": false, \"reason\": \"page topic 'Majority rule' -> search hit 'Majority rule'\", \"wikipedia_title\": \"Majority rule\", \"wikipedia_cite_id\": \"WP:658906-0\"}]}",
+      "tool_call_id": "call_af8868f4fdcb",
+      "timestamp": 1792333347.9869947
+    },
+    {
+      "role": "tool",
+      "name": "read_wikipedia",
+      "tool_name": "read_wikipedia",
+      "content": "{\"cite_id\": \"WP:658906-0\", \"title\": \"Majority rule\", \"section\": \"Introduction\", \"date_modified\": \"2026-10-17T19:33:19Z\", \"text\": \"In social choice theory, the majority rule (MR) is a social choice rule which says that, when comparing two options (such as bills or candidates), the option preferred by more than half of the voters (a majority) should win.\\nIn political philosophy, the majority rule is one of two major competing notions of democracy. The most common alternative is given by the utilitarian rule (or other welfarist rules), which identify the spirit of liberal democracy with the equal consideration of interests. Although the two rules can disagree in theory, political philosophers beginning with James Mill have argued the two can be reconciled in practice, with majority rule being a valid approximation to the utilitarian rule whenever voters share similarly-strong preferences. This position has found strong support in many social choice models, where the socially-optimal winner and the majority-preferred winner often overlap.\\nMajority rule is the most common social choice rule worldwide, being heavily used in deliberative assemblies for dichotomous decisions, e.g. whether or not to pass a bill. Mandatory referendums where the question is yes or no are also generally decided by majority rule. It is one of the basic rules of parliamentary procedure, as described in handbooks like Robert's Rules of Order.\\nIn elections with more than two candidates, majority-rule is generalized by Condorcet's majority-rule principle, which states that if most voters prefer option A to option B (rank A over B), then A should defeat B unless there is a Condorcet paradox.\", \"url\": \"https://en.wikipedia.org/wiki/Majority_rule\"}",
+      "tool_call_id": "call_3da05cbfbc2e",
+      "timestamp": 1792333347.9978628
+    },
+    {
+      "role": "assistant",
+      "content": "**Answer** — Britannica's \"Economists on Majority Rule\" (4th–6th supplement, 1815–1824) records the Physiocrats' rejection of majority rule: government must rest on evidence, not vote-counting, because majorities can be moved by private interest and ignorance [EB:122-0][EB:122-1]. Modern Wikipedia describes majority rule as a formal social-choice rule — the option preferred by more than half the voters wins — with criteria such as May's theorem and discussion of minority rights [WP:658906-0][WP:658906-4].\n\n**Britannica** — The \"Economists\" (Physiocrats) argue plurality of suffrage is no security: divisions of opinion come only from ignorance or bad design, and numbers cannot make the non-evident evident [EB:122-0]. The greatest evil is that majority rule sets private interest against the public interest, \"which is sure to be sacrificed\" [EB:122-1]. Rule by votes gives \"despotical authority\" to numbers where only evidence should govern, leaving the nation unprotected, and an uninstructed nation is split between rich and poor, each regarding the other as prey [EB:122-2][EB:122-3].\n\n**Wikipedia** — Majority rule is a social-choice rule in which the option preferred by over half the voters wins; it is one of two major notions of democracy (alongside the utilitarian rule), used in parliamentary procedure, generalized by Condorcet's principle, and axiomatized by May's theorem (anonymity, neutrality, decisiveness, positive response); the article also covers supermajority rules and minority-rights protections [WP:658906-0][WP:658906-4][WP:658906-3][WP:658906-7].\n\n**What changed**\n- LANGUAGE: archaic idiom (\"plurality of suffrage,\" \"deliberants,\" \"prepossession\") versus modern social-choice vocabulary.\n- KNOWLEDGE: Britannica gives philosophical objections only; Wikipedia adds vote thresholds, May's theorem, the Condorcet principle, supermajority rules, and voting paradoxes.\n- PERSPECTIVE: Britannica is elitist and technocratic — rule by evidence and enlightened experts, distrust of the masses \"sunk in ignorance and prejudices\" and of the poor envying the rich; Wikipedia is neutral and institutional, including how majority rule can protect minority rights [EB:122-3][WP:658906-7].\n\n**Confidence**: high — based on the full Britannica passage and Wikipedia's lead section; the counterpart pipeline links the Britannica page to both \"Physiocracy\" and \"Majority rule.\"",
+      "reasoning": "I now have the full picture:\n\n**Britannica (EB:122-0 through EB:122-3)**: \"Economists on Majority Rule\" from the 4th-6th supplement (1815-1824), Volume 3, page 720. This is the Physiocrats (the \"Economists\" = Physiocratic school, French economists like Quesnay). The passage discusses their critique of majority rule / plurality of suffrage:\n1. Opposition of one will suspends all others → reduces authority to inaction; physical force necessary because you can't count on union of all wills.\n2. Plurality of suffrage is not based on evidence — opinions differ only due to ignorance or bad design; number of voices can't make something evident; error can unite more partisans than truth.\n3. Greatest evil: sets individual interest in opposition to public interest; public interest sacrificed. Human nature driven by pleasure and aversion to pain; can't act in public interest when authority divided among persons with opposite interests. Public interest not safe when opposed to private interests of those entrusted with it.\n4. Majority attaches despotical authority to number of votes, which belongs to evidence alone. If majority dictated by private interests and evidence on minority's side, it's monstrous that former commands. Nation without protection against scourges, especially if private interests are held by men with riches/power.\n5. Counterpoise would be knowledge of the nation — but a nation governed by plurality of suffrage AND evidence is absurd; a sufficiently instructed nation would never sanction such government.\n6. If nation not instructed: people sunk in ignorance and prejudices; divided into rich and poor; rich look on poor as made for them; poor tempted to envy and regard inequality as injustice.\n\nThe counterpart mapping shows the best Wikipedia match is \"Physiocracy\" (rank 1) and \"Majority rule\" (rank 2). The Wikipedia article on Majority rule is a modern social-choice-theory treatment: MR = option preferred by more than half wins; competing notion of democracy alongside utilitarian rule; used in parliamentary procedure; Condorcet principle; properties (anonymity, neutrality, decisiveness, positive response); minority rights discussions; supermajority rules; voting paradoxes.\n\nNow for the \"What changed\" analysis:\n\n- **LANGUAGE**: Yes — 1810s OCR/English (\"fuch\"-style long s not present here but archaic diction: \"plurality of suffrage,\" \"deliberants,\" \"prepossession,\" \"engross the whole of the governing power\") vs. modern social choice vocabulary (\"social choice rule,\" \"dichotomous decisions,\" \"Condorcet paradox,\" \"utilitarian rule\").\n- **KNOWLEDGE**: Yes — Britannica gives no vote-counting formalism, no May's theorem, no Condorcet paradox formalization, no supermajority rules, no minority-rights theory; it presents the Physiocrats' philosophical objections. Wikipedia adds formal social choice theory.\n- **PERSPECTIVE**: Yes — Britannica (Physiocrat view) is elitist/technocratic: rule by evidence, skepticism of the masses (\"sunk in ignorance and prejudices\"), fear of the poor envying the rich, rule by enlightened experts; Wikipedia treats majority rule neutrally as a decision rule, discusses minority rights protection, deliberative democracy.\n\nThe counterpart pipeline matched both \"Physiocracy\" and \"Majority rule\" — the Britannica page is about the Physiocrats' (Economists') views on majority rule. The most direct counterpart is \"Majority rule.\"\n\nI should cite:\n- EB:122-0, EB:122-1, EB:122-2, EB:122-3 for Britannica claims\n- WP:658906-0 for the intro of Majority rule\n- Maybe also WP:658906-3 (supermajority), WP:658906-9 (minority rights), WP:658906-4 (May's theorem) for the \"what changed\" knowledge section. Let me check what I have: I have WP:658906-0 (intro), WP:658906-1 (plurality), WP:658906-2 (cardinal rules), WP:658906-3 (supermajority), WP:658906-4 (May's theorem), WP:658906-6 (other properties), WP:658906-7 (minority rights), WP:658906-9 (minority rights), WP:658906-10 (other arguments).\n\nI could read more sections to strengthen the Wikipedia side. Let me grab a couple more relevant sections: May's theorem (WP:658906-4) and minority rights (WP:658906-7 or 9). Actually, I have snippets already. But to cite them properly with full text, I could read them. The snippets give me enough content to describe, but for citations I should use the cite_ids I already have from search results — those are valid citation ids. The instructions say cite every factual statement inline with citation id from the tool result. I have the ids from the search results: WP:658906-0 through WP:658906-10. I can cite those based on the snippets returned.\n\nActually, to be safe and accurate, let me read a couple more Wikipedia sections to confirm details: May's theorem (WP:658906-4), supermajority/minority rights (WP:658906-7), and maybe plurality (WP:658906-1). But the snippets are already fairly clear. Let me read WP:658906-4 and WP:658906-7 to verify.\n\nActually, the snippets are sufficient to describe Wikipedia's treatment at a high level. But let me verify May's theorem details and minority rights with one more read call each to make the \"What changed — knowledge\" section precise. Let me batch those two reads.\n\nActually, I have enough. The snippets clearly show:\n- WP:658906-0: MR as social choice rule, > half wins, competing notion of democracy with utilitarian rule, James Mill reconciliation, parliamentary procedure, Condorcet principle.\n- WP:658906-4: May's theorem — only fair ordinal rule, anonymity, neutrality, decisiveness, positive response.\n- WP:658906-3: supermajority rules, filibuster 60%, 41% blocking.\n- WP:658906-7/9: minority rights, supermajority empowers minority, inalienable rights.\n\nI think I have enough to write the answer. Let me also note the edition detail: 4th-6th suppl. (1815-1824). The \"Economists\" here are the Physiocrats.\n\nWord count: keep under 300 words. Structure:\n1. Answer (2-3 sentences)\n2. Britannica (with edition/year)\n3. Wikipedia\n4. What changed (categories labeled)\n5. Confidence\n\nLet me draft:\n\n**Answer**: Britannica's \"Economists on Majority Rule\" (4th–6th supplement, 1815–1824) records the Physiocrats' rejection of majority rule: decisions must rest on evidence, not vote-counting, since majorities can be driven by private interest and ignorance [EB:122-0, EB:122-1]. Modern Wikipedia treats majority rule as a formal social-choice rule — the option preferred by over half of voters wins — with criteria like May's theorem and discussion of minority rights [WP:658906-0, WP:658906-4].\n\n**Britannica**: The Physiocrats (\"Economists\") argue plurality of suffrage is no security: opinions differ only from ignorance or bad design, numbers cannot make the non-evident evident, and majority rule sets private interest against the public interest, which is \"sure to be sacrificed\" [EB:122-0, EB:122-1]. Rule by votes gives \"despotical authority\" to numbers where only evidence should govern; an uninstructed nation is split between rich and poor, each preying on the other [EB:122-2, EB:122-3].\n\n**Wikipedia**: Majority rule is a social choice rule where the option preferred by more than half the voters wins; it is one of two major notions of democracy (the other utilitarian), used in parliamentary procedure, generalized by Condorcet's principle, and axiomatized by May's theorem (anonymity, neutrality, decisiveness, positive response); articles also cover supermajority rules and minority-rights protections [WP:658906-0, WP:658906-4, WP:658906-3, WP:658906-7].\n\n**What changed**:\n- LANGUAGE: archaic idiom (\"plurality of suffrage,\" \"deliberants,\" \"prepossession\") vs. social-choice technical vocabulary.\n- KNOWLEDGE: Britannica offers philosophical objections only; Wikipedia adds vote thresholds, May's theorem, Condorcet principle, supermajority rules, and voting paradoxes.\n- PERSPECTIVE: Britannica is elitist — rule by evidence/enlightened experts, distrust of the masses (\"sunk in ignorance and prejudices\") and of the poor envying the rich; Wikipedia is neutral and institutional, discussing how majority rule can protect minority rights.\n\n**Confidence**: high — direct full text of the Britannica passage and Wikipedia lead section; the counterpart pipeline links the Britannica page to both \"Physiocracy\" and \"Majority rule.\"\n\nWord count check: roughly 220-250 words. Good.\n\nCitations format: [EB:122-0] etc. One id per bracket, no ranges/lists. I'll keep each bracket to a single id.\n\nLet me make sure each factual statement has a citation. I'll write it carefully.",
+      "finish_reason": "stop",
+      "timestamp": 1792333359.1666002,
+      "reasoning_content": "I now have the full picture:\n\n**Britannica (EB:122-0 through EB:122-3)**: \"Economists on Majority Rule\" from the 4th-6th supplement (1815-1824), Volume 3, page 720. This is the Physiocrats (the \"Economists\" = Physiocratic school, French economists like Quesnay). The passage discusses their critique of majority rule / plurality of suffrage:\n1. Opposition of one will suspends all others → reduces authority to inaction; physical force necessary because you can't count on union of all wills.\n2. Plurality of suffrage is not based on evidence — opinions differ only due to ignorance or bad design; number of voices can't make something evident; error can unite more partisans than truth.\n3. Greatest evil: sets individual interest in opposition to public interest; public interest sacrificed. Human nature driven by pleasure and aversion to pain; can't act in public interest when authority divided among persons with opposite interests. Public interest not safe when opposed to private interests of those entrusted with it.\n4. Majority attaches despotical authority to number of votes, which belongs to evidence alone. If majority dictated by private interests and evidence on minority's side, it's monstrous that former commands. Nation without protection against scourges, especially if private interests are held by men with riches/power.\n5. Counterpoise would be knowledge of the nation — but a nation governed by plurality of suffrage AND evidence is absurd; a sufficiently instructed nation would never sanction such government.\n6. If nation not instructed: people sunk in ignorance and prejudices; divided into rich and poor; rich look on poor as made for them; poor tempted to envy and regard inequality as injustice.\n\nThe counterpart mapping shows the best Wikipedia match is \"Physiocracy\" (rank 1) and \"Majority rule\" (rank 2). The Wikipedia article on Majority rule is a modern social-choice-theory treatment: MR = option preferred by more than half wins; competing notion of democracy alongside utilitarian rule; used in parliamentary procedure; Condorcet principle; properties (anonymity, neutrality, decisiveness, positive response); minority rights discussions; supermajority rules; voting paradoxes.\n\nNow for the \"What changed\" analysis:\n\n- **LANGUAGE**: Yes — 1810s OCR/English (\"fuch\"-style long s not present here but archaic diction: \"plurality of suffrage,\" \"deliberants,\" \"prepossession,\" \"engross the whole of the governing power\") vs. modern social choice vocabulary (\"social choice rule,\" \"dichotomous decisions,\" \"Condorcet paradox,\" \"utilitarian rule\").\n- **KNOWLEDGE**: Yes — Britannica gives no vote-counting formalism, no May's theorem, no Condorcet paradox formalization, no supermajority rules, no minority-rights theory; it presents the Physiocrats' philosophical objections. Wikipedia adds formal social choice theory.\n- **PERSPECTIVE**: Yes — Britannica (Physiocrat view) is elitist/technocratic: rule by evidence, skepticism of the masses (\"sunk in ignorance and prejudices\"), fear of the poor envying the rich, rule by enlightened experts; Wikipedia treats majority rule neutrally as a decision rule, discusses minority rights protection, deliberative democracy.\n\nThe counterpart pipeline matched both \"Physiocracy\" and \"Majority rule\" — the Britannica page is about the Physiocrats' (Economists') views on majority rule. The most direct counterpart is \"Majority rule.\"\n\nI should cite:\n- EB:122-0, EB:122-1, EB:122-2, EB:122-3 for Britannica claims\n- WP:658906-0 for the intro of Majority rule\n- Maybe also WP:658906-3 (supermajority), WP:658906-9 (minority rights), WP:658906-4 (May's theorem) for the \"what changed\" knowledge section. Let me check what I have: I have WP:658906-0 (intro), WP:658906-1 (plurality), WP:658906-2 (cardinal rules), WP:658906-3 (supermajority), WP:658906-4 (May's theorem), WP:658906-6 (other properties), WP:658906-7 (minority rights), WP:658906-9 (minority rights), WP:658906-10 (other arguments).\n\nI could read more sections to strengthen the Wikipedia side. Let me grab a couple more relevant sections: May's theorem (WP:658906-4) and minority rights (WP:658906-7 or 9). Actually, I have snippets already. But to cite them properly with full text, I could read them. The snippets give me enough content to describe, but for citations I should use the cite_ids I already have from search results — those are valid citation ids. The instructions say cite every factual statement inline with citation id from the tool result. I have the ids from the search results: WP:658906-0 through WP:658906-10. I can cite those based on the snippets returned.\n\nActually, to be safe and accurate, let me read a couple more Wikipedia sections to confirm details: May's theorem (WP:658906-4), supermajority/minority rights (WP:658906-7), and maybe plurality (WP:658906-1). But the snippets are already fairly clear. Let me read WP:658906-4 and WP:658906-7 to verify.\n\nActually, the snippets are sufficient to describe Wikipedia's treatment at a high level. But let me verify May's theorem details and minority rights with one more read call each to make the \"What changed — knowledge\" section precise. Let me batch those two reads.\n\nActually, I have enough. The snippets clearly show:\n- WP:658906-0: MR as social choice rule, > half wins, competing notion of democracy with utilitarian rule, James Mill reconciliation, parliamentary procedure, Condorcet principle.\n- WP:658906-4: May's theorem — only fair ordinal rule, anonymity, neutrality, decisiveness, positive response.\n- WP:658906-3: supermajority rules, filibuster 60%, 41% blocking.\n- WP:658906-7/9: minority rights, supermajority empowers minority, inalienable rights.\n\nI think I have enough to write the answer. Let me also note the edition detail: 4th-6th suppl. (1815-1824). The \"Economists\" here are the Physiocrats.\n\nWord count: keep under 300 words. Structure:\n1. Answer (2-3 sentences)\n2. Britannica (with edition/year)\n3. Wikipedia\n4. What changed (categories labeled)\n5. Confidence\n\nLet me draft:\n\n**Answer**: Britannica's \"Economists on Majority Rule\" (4th–6th supplement, 1815–1824) records the Physiocrats' rejection of majority rule: decisions must rest on evidence, not vote-counting, since majorities can be driven by private interest and ignorance [EB:122-0, EB:122-1]. Modern Wikipedia treats majority rule as a formal social-choice rule — the option preferred by over half of voters wins — with criteria like May's theorem and discussion of minority rights [WP:658906-0, WP:658906-4].\n\n**Britannica**: The Physiocrats (\"Economists\") argue plurality of suffrage is no security: opinions differ only from ignorance or bad design, numbers cannot make the non-evident evident, and majority rule sets private interest against the public interest, which is \"sure to be sacrificed\" [EB:122-0, EB:122-1]. Rule by votes gives \"despotical authority\" to numbers where only evidence should govern; an uninstructed nation is split between rich and poor, each preying on the other [EB:122-2, EB:122-3].\n\n**Wikipedia**: Majority rule is a social choice rule where the option preferred by more than half the voters wins; it is one of two major notions of democracy (the other utilitarian), used in parliamentary procedure, generalized by Condorcet's principle, and axiomatized by May's theorem (anonymity, neutrality, decisiveness, positive response); articles also cover supermajority rules and minority-rights protections [WP:658906-0, WP:658906-4, WP:658906-3, WP:658906-7].\n\n**What changed**:\n- LANGUAGE: archaic idiom (\"plurality of suffrage,\" \"deliberants,\" \"prepossession\") vs. social-choice technical vocabulary.\n- KNOWLEDGE: Britannica offers philosophical objections only; Wikipedia adds vote thresholds, May's theorem, Condorcet principle, supermajority rules, and voting paradoxes.\n- PERSPECTIVE: Britannica is elitist — rule by evidence/enlightened experts, distrust of the masses (\"sunk in ignorance and prejudices\") and of the poor envying the rich; Wikipedia is neutral and institutional, discussing how majority rule can protect minority rights.\n\n**Confidence**: high — direct full text of the Britannica passage and Wikipedia lead section; the counterpart pipeline links the Britannica page to both \"Physiocracy\" and \"Majority rule.\"\n\nWord count check: roughly 220-250 words. Good.\n\nCitations format: [EB:122-0] etc. One id per bracket, no ranges/lists. I'll keep each bracket to a single id.\n\nLet me make sure each factual statement has a citation. I'll write it carefully."
+    }
+  ],
+  "slug": "topic-economists-on-majority-rule",
+  "expectation": "success candidate: indexed page with a Wikipedia counterpart",
+  "gold_page": 122,
+  "model": "nvidia/Nemotron-3.5-Super-VL",
+  "ran_at": "2026-10-18T14:22:39.172158+00:00",
+  "metrics": {
+    "duration_s": 16.2,
+    "n_calls": 8,
+    "n_vision_calls": 0,
+    "n_cited": 8,
+    "n_unsupported": 0,
+    "support": null,
+    "n_weak_claims": 0,
+    "gold_page_found": true,
+    "suggested_stage": null
+  }
+}

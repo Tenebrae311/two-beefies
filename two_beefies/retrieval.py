@@ -1,13 +1,15 @@
 """Retrieval over the two LanceDB tables: Nemotron embed -> LanceDB -> Nemotron rerank.
 
-Falls back to LanceDB full-text search when no embedding endpoint is configured, and to
-the raw vector/FTS order when no reranker is configured, so the agent keeps working
-while the NIM containers are not up yet.
+Embedding and reranking come from the organizers' model service (one HTTP service for
+both models, see RETRIEVAL_BASE_URL). Without it, retrieval falls back to LanceDB
+full-text search without reranking, so the agent keeps working.
 """
 
 import json
 import logging
+import re
 import sys
+import time
 from functools import cache
 from typing import Literal
 
@@ -23,6 +25,12 @@ Source = Literal["britannica", "wikipedia"]
 PREFIX = {"britannica": "EB", "wikipedia": "WP"}
 TABLES = {"britannica": config.BRITANNICA_TABLE, "wikipedia": config.WIKIPEDIA_TABLE}
 
+# Service limits (organizers' model service): reranking 1-32 documents, query text
+# 2,000 chars; these markers are reserved for images and rejected inside text.
+MAX_RERANK_DOCS = 32
+MAX_QUERY_CHARS = 1500
+_IMAGE_MARKERS = re.compile(r"<image>|<img>|</img>|<IMG_CONTEXT>", re.I)
+
 
 @cache
 def _db():
@@ -35,38 +43,59 @@ def _table(source: Source):
 
 
 def _nim_url(base: str, path: str) -> str:
+    """Accept "https://host", "https://host/v1/" or the full endpoint URL."""
     base = base.rstrip("/")
     return base if base.endswith(path) else f"{base}{'/' if base.endswith('/v1') else '/v1/'}{path}"
 
 
-def _nim_headers(url: str | None = None) -> dict:
-    key = config.nim_api_key(config.EMBED_URL if url is None else url)
-    return {"Authorization": f"Bearer {key}"} if key else {}
+def _service(path: str, payload: dict, retries: int = 6) -> dict:
+    """POST to the model service; waits and retries while its queue is full (429)."""
+    url = _nim_url(config.RETRIEVAL_BASE_URL, path)
+    key = config.nim_api_key(url)
+    headers = {"Authorization": f"Bearer {key}"} if key else {}
+    for attempt in range(retries):
+        resp = httpx.post(url, json=payload, headers=headers, timeout=120)
+        if resp.status_code != 429 or attempt == retries - 1:
+            break
+        time.sleep(float(resp.headers.get("Retry-After", 1)))
+    if resp.status_code >= 400:
+        raise RuntimeError(f"model service {path}: HTTP {resp.status_code} {resp.text[:300]}")
+    return resp.json()
+
+
+def _text(s: str, limit: int) -> str:
+    return _IMAGE_MARKERS.sub(" ", s)[:limit]
+
+
+def embed(texts: list[str], input_type: Literal["query", "document"]) -> list[list[float]]:
+    """2048-d unit vectors; at most 16 inputs per request (service limit)."""
+    vectors: list[list[float]] = []
+    limit = MAX_QUERY_CHARS if input_type == "query" else 32_000
+    for i in range(0, len(texts), 16):
+        data = _service("embeddings", {"model": config.EMBED_MODEL, "input_type": input_type,
+                                       "input": [_text(t, limit) for t in texts[i:i + 16]]})
+        vectors += [d["embedding"] for d in sorted(data["data"], key=lambda d: d["index"])]
+    return vectors
 
 
 def embed_query(text: str) -> list[float]:
-    resp = httpx.post(
-        _nim_url(config.EMBED_URL, "embeddings"),
-        headers=_nim_headers(config.EMBED_URL),
-        json={"model": config.EMBED_MODEL, "input": [text], "input_type": "query",
-              "modality": "text", "encoding_format": "float", "truncate": "END"},
-        timeout=60,
-    )
-    resp.raise_for_status()
-    return resp.json()["data"][0]["embedding"]
+    return embed([text], "query")[0]
 
 
 def rerank(query: str, passages: list[str]) -> list[tuple[int, float]]:
-    """Return (passage index, logit) sorted best first."""
-    resp = httpx.post(
-        _nim_url(config.RERANK_URL, "ranking"),
-        headers=_nim_headers(config.RERANK_URL),
-        json={"model": config.RERANK_MODEL, "query": {"text": query},
-              "passages": [{"text": p} for p in passages], "truncate": "END"},
-        timeout=60,
-    )
-    resp.raise_for_status()
-    return [(r["index"], r["logit"]) for r in resp.json()["rankings"]]
+    """Return (passage index, raw logit) sorted best first."""
+    data = _service("rerank", {"model": config.RERANK_MODEL,
+                               "query": _text(query, MAX_QUERY_CHARS),
+                               "documents": [_text(p, 32_000) for p in passages[:MAX_RERANK_DOCS]]})
+    return [(r["index"], r["relevance_score"]) for r in data["results"]]
+
+
+@cache
+def _has_vectors(source: Source) -> bool:
+    """Vector search only if this table was embedded with the configured model
+    (the dev fixture may hold zero vectors from a build without the model service)."""
+    rows = _table(source).search().select(["embed_model"]).limit(1).to_list()
+    return bool(rows) and rows[0].get("embed_model") == config.EMBED_MODEL
 
 
 def _quote(value: str) -> str:
@@ -75,7 +104,7 @@ def _quote(value: str) -> str:
 
 def _candidates(source: Source, query: str, n: int, where: str | None) -> list[dict]:
     tbl = _table(source)
-    if config.EMBED_URL:
+    if config.RETRIEVAL_BASE_URL and _has_vectors(source):
         q = tbl.search(embed_query(query)).distance_type("cosine")
     else:
         try:
@@ -100,10 +129,10 @@ def search(source: Source, query: str, k: int = 5, edition: str | None = None) -
     # edition values look like "4th (1801-1810)"; match on the prefix
     where = (f"edition LIKE {_quote(edition.strip() + '%')}"
              if edition and source == "britannica" else None)
-    rows = _candidates(source, query, config.CANDIDATES if config.RERANK_URL else k, where)
+    rows = _candidates(source, query, config.CANDIDATES if config.RERANK else k, where)
     for row in rows:
         row["retrieval_score"] = _score(row)
-    if config.RERANK_URL and rows:
+    if config.RERANK and rows:
         ranked = rerank(query, [r["text"][:4000] for r in rows])
         rows = [rows[i] | {"rerank_score": round(logit, 3)} for i, logit in ranked]
     return [_clean(source, r) for r in rows[:k]]
@@ -131,16 +160,19 @@ def get(cite_id: str) -> dict | None:
 
 
 def counterparts(cite_id: str) -> list[dict]:
-    """Team 1's Britannica -> Wikipedia matches for the page this chunk belongs to."""
-    row = get(cite_id)
-    if row is None or row["source"] != "britannica":
+    """Team 1's Britannica -> Wikipedia matches for the page this chunk belongs to.
+    Accepts a chunk id (EB:<page>-<chunk>) or a page id (EB:<page>)."""
+    source, row_id = parse_cite_id(cite_id)
+    if source != "britannica":
         return []
+    row = get(cite_id)
+    doc_id = row["doc_id"] if row else row_id
     try:
         matches = _db().open_table(config.MATCHES_TABLE)
     except Exception as e:
         log.warning("matches table unavailable: %s", e)
         return []
-    found = (matches.search().where(f"britannica_doc_id = {_quote(row['doc_id'])}")
+    found = (matches.search().where(f"britannica_doc_id = {_quote(doc_id)}")
              .limit(10).to_list())
     out = []
     for m in sorted(found, key=lambda m: m.get("rank", 0)):
@@ -155,11 +187,21 @@ def counterparts(cite_id: str) -> list[dict]:
     return out
 
 
+def pages() -> list[dict]:
+    """One row per indexed Britannica page: page_index, title, edition, illustrated."""
+    rows = (_table("britannica").search()
+            .select(["page_index", "title", "edition", "illustrated"]).limit(100_000).to_list())
+    seen: dict[int, dict] = {}
+    for r in rows:
+        seen.setdefault(r["page_index"], {k: r.get(k) for k in
+                                          ("page_index", "title", "edition", "illustrated")})
+    return sorted(seen.values(), key=lambda r: r["page_index"])
+
+
 def topics(limit: int = 12) -> list[str]:
-    """First headword of each indexed Britannica page (title holds "HEAD1, HEAD2, ...")."""
+    """Titles of the indexed Britannica pages, for the frontend's topic presets."""
     rows = _table("britannica").search().select(["title"]).limit(10_000).to_list()
-    heads = [r["title"].split(",")[0].strip().title() for r in rows if r.get("title")]
-    return list(dict.fromkeys(heads))[:limit]
+    return list(dict.fromkeys(r["title"].strip() for r in rows if r.get("title")))[:limit]
 
 
 def snippet(text: str, n: int = config.SNIPPET_CHARS) -> str:

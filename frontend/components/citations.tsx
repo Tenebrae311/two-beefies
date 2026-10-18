@@ -237,6 +237,43 @@ export function CitedText({
             </ul>
           );
         }
+        // GitHub-style table: | a | b | / |---|---| / | 1 | 2 |
+        const isTable =
+          lines.length >= 2 && lines.every((l) => /^\s*\|.*\|\s*$/.test(l)) && /^[\s|:-]+$/.test(lines[1]);
+        if (isTable) {
+          const cells = (l: string) =>
+            l
+              .trim()
+              .replace(/^\||\|$/g, "")
+              .split("|")
+              .map((c) => c.trim());
+          return (
+            <div key={bi} className="overflow-x-auto">
+              <table className="w-full border-collapse text-left text-[0.88em] leading-snug">
+                <thead>
+                  <tr>
+                    {cells(lines[0]).map((c, ci) => (
+                      <th key={ci} className="border-b border-current/20 px-2 py-1.5 font-semibold">
+                        {renderInline(c, `${bi}-h${ci}`, citations, unsupported)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {lines.slice(2).map((l, li) => (
+                    <tr key={li} className="align-top">
+                      {cells(l).map((c, ci) => (
+                        <td key={ci} className="border-b border-current/10 px-2 py-1.5">
+                          {renderInline(c, `${bi}-${li}-${ci}`, citations, unsupported)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
         const heading = block.match(/^#{1,4}\s+(.*)$/);
         if (heading && lines.length === 1)
           return (

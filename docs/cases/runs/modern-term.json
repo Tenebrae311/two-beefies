@@ -1,0 +1,429 @@
+{
+  "question": "What does the Britannica say about sundials?",
+  "answer": "## Answer\n\nThe 1st edition Encyclopaedia Britannica (1768–1771) treats sundials as a practical, geometric craft: how to draw hour-lines on a wall or plane, how to set a dial true using a watch, quadrant, or solar altitudes, and how foreign (Babylonian/Italian) dials count hours from sunrise and sunset. Modern Wikipedia defines a sundial as a horological device telling civil time via the Sun's position, with a gnomon whose style is parallel to Earth's axis at an angle equal to latitude, valued now as decoration and mathematical study.\n\n## Britannica\n\n1st edition (1768–1771), Volume 2 (C–L), p. 429, \"Sundial Construction and Types\" [EB:2465-0 to EB:2465-3]. It describes a dial read by stereographic projection whose moon markings let you read the sun's declination and day length by inspection; Babylonian and Italian dials reckon hours from sunrise/sunset rather than noon, so they perpetually differ from clocks (in Italy the day begins at mid-twilight, the Ave Maria). It notes better timekeeping instruments have made such dials of little account, though their theory is ingenious and they remain handy for \"vulgar use.\" It gives construction rules (tangents of hour-distances, co-tangents of solar altitudes) and methods to set a dial true: an equinoctial ring-dial, solar altitude with a (Hadley's) quadrant, equal morning/afternoon altitudes to correct a watch, and a meridian line made with a pinhole plate inclined at the co-latitude.\n\n## Wikipedia\n\n\"A sundial is a horological device that tells the time of day (civil time) … by the apparent position of the Sun\" — a dial plate plus gnomon casting a shadow on hour-lines; the style (time-telling edge) must be parallel to Earth's rotational axis, its angle above horizontal equal to latitude; sundials are now decorative objects, metaphors, and objects of mathematical study, and cheap mass-produced ones are often misaligned [WP:72907-0].\n\n## What changed\n\n- **LANGUAGE**: OCR long-s renders \"sun\" as \"fun,\" \"instrument\" as \"inftrument\"; archaic terms (\"vulgar use,\" \"stile,\" Babylonian/Italian dials).\n- **KNOWLEDGE**: Britannica gives pre-industrial practical methods for regulating clocks and laying out dials by geometry; Wikipedia states the axial/latitude alignment rule and frames time as civil time.\n- **PERSPECTIVE**: Britannica is instructional and practical for the builder, with religious framing (Ave Maria); Wikipedia is encyclopedic, emphasizing decoration and intrigue.\n- **NO_COUNTERPART**: Wikipedia's digital sundials, national sundial societies, and equation-of-time discussion have no Britannica equivalent; Britannica's pinhole meridian line and Italian twilight reckoning have no Wikipedia counterpart here.\n\n## Confidence\n\nHigh on the Britannica content (full passage read). Medium on the comparison, since I read only Wikipedia's introduction, not the full article, and only the 1st Britannica edition surfaced — later editions (2nd–8th, through 1860) may cover sundials differently.",
+  "citations": [
+    {
+      "cite_id": "EB:2465-0",
+      "source": "britannica",
+      "title": "Sundial Construction and Types",
+      "snippet": "D I A ( 429 ) D I A fladow of that perpendicular edge is a vertical circle paffing through the fun, in the ftereographic projection. The moon being duly marked on this dial, the fun's declination, and the length of the day at any time, are had by inſpection (as alſo his altitude, by means of a …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=2465",
+      "image_url": "/api/page-image/2465",
+      "edition": "1st (1768-1771)",
+      "year": 1768
+    },
+    {
+      "cite_id": "EB:2465-3",
+      "source": "britannica",
+      "title": "Sundial Construction and Types",
+      "snippet": "Or, in ſummer, take two equal altitudes of the fun in the ſame day ; one any time between 7 and 10 in the morning, the other between 2 and 5 in the afternoon ; noting the moments of theſe two obſervations by a clock or watch : and if the watch ſhews the obſervations to be at equal diſtances from …",
+      "url": "https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=2465",
+      "image_url": "/api/page-image/2465",
+      "edition": "1st (1768-1771)",
+      "year": 1768
+    },
+    {
+      "cite_id": "WP:72907-0",
+      "source": "wikipedia",
+      "title": "Sundial",
+      "snippet": "A sundial is a horological device that tells the time of day (referred to as civil time in modern usage) when direct sunlight shines by the apparent position of the Sun in the sky. In the narrowest sense of the word, it consists of a flat plate (the dial) and a gnomon, which casts a shadow onto the …",
+      "url": "https://en.wikipedia.org/wiki/Sundial",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/MootHallSundial.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "edition": null,
+      "year": null
+    }
+  ],
+  "unsupported": [],
+  "trace": [
+    {
+      "name": "search_britannica",
+      "args": {
+        "query": "sundials",
+        "k": 10
+      },
+      "n_hits": 0,
+      "cite_ids": []
+    },
+    {
+      "name": "search_wikipedia",
+      "args": {
+        "query": "sundial",
+        "k": 5
+      },
+      "n_hits": 5,
+      "cite_ids": [
+        "WP:72907-68",
+        "WP:72907-66",
+        "WP:72907-67",
+        "WP:72907-59",
+        "WP:72907-9"
+      ]
+    },
+    {
+      "name": "search_britannica",
+      "args": {
+        "k": 10,
+        "query": "fundials"
+      },
+      "n_hits": 0,
+      "cite_ids": []
+    },
+    {
+      "name": "search_britannica",
+      "args": {
+        "k": 10,
+        "query": "sun-dials"
+      },
+      "n_hits": 5,
+      "cite_ids": [
+        "EB:2243-1",
+        "EB:2465-2",
+        "EB:2465-1",
+        "EB:2465-0",
+        "EB:2465-3"
+      ]
+    },
+    {
+      "name": "search_britannica",
+      "args": {
+        "k": 10,
+        "query": "gnomon"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:2465-0"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:2465-0"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:2465-0"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:2465-1"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:2465-1"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:2465-2"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:2465-2"
+      ]
+    },
+    {
+      "name": "read_britannica",
+      "args": {
+        "cite_id": "EB:2465-3"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "EB:2465-3"
+      ]
+    },
+    {
+      "name": "find_counterparts",
+      "args": {
+        "britannica_cite_id": "EB:2465-0"
+      },
+      "n_hits": 2,
+      "cite_ids": [
+        "WP:72907-0",
+        "WP:143431-0"
+      ]
+    },
+    {
+      "name": "read_wikipedia",
+      "args": {
+        "cite_id": "WP:72907-0"
+      },
+      "n_hits": 1,
+      "cite_ids": [
+        "WP:72907-0"
+      ]
+    }
+  ],
+  "evidence": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "What does the Britannica say about sundials?",
+      "timestamp": 1792333559.3105166
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "reasoning": "The user is asking what the historical Encyclopaedia Britannica (editions 1-8, 1768-1860) says about sundials. I should search Britannica for \"sundials\" and also search Wikipedia for counterparts, then provide the answer in the specified format. Let me search both sources in parallel.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333560.5046504,
+      "reasoning_content": "The user is asking what the historical Encyclopaedia Britannica (editions 1-8, 1768-1860) says about sundials. I should search Britannica for \"sundials\" and also search Wikipedia for counterparts, then provide the answer in the specified format. Let me search both sources in parallel.",
+      "tool_calls": [
+        {
+          "id": "call_536900251f52",
+          "call_id": "call_536900251f52",
+          "response_item_id": "fc_536900251f52",
+          "type": "function",
+          "function": {
+            "name": "search_britannica",
+            "arguments": "{\"query\": \"sundials\", \"k\": 10}"
+          }
+        },
+        {
+          "id": "call_140f46375814",
+          "call_id": "call_140f46375814",
+          "response_item_id": "fc_140f46375814",
+          "type": "function",
+          "function": {
+            "name": "search_wikipedia",
+            "arguments": "{\"query\": \"sundial\", \"k\": 5}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "search_britannica",
+      "tool_name": "search_britannica",
+      "content": "{\"results\": [], \"note\": \"No matching passages found.\"}",
+      "tool_call_id": "call_536900251f52",
+      "timestamp": 1792333560.5215642
+    },
+    {
+      "role": "tool",
+      "name": "search_wikipedia",
+      "tool_name": "search_wikipedia",
+      "content": "{\"results\": [{\"cite_id\": \"WP:72907-68\", \"title\": \"Sundial\", \"section\": \"Other\", \"date_modified\": \"2026-10-15T21:51:53Z\", \"retrieval_score\": 7.4795, \"has_image\": true, \"snippet\": \"Real Sun Time – Sundial as a mobile or desktop version Register of Scottish Sundials Sundialing Space – Sundial Generator The British Sundial Society including a register of British sundials The Equation of Time The Sundial Primer World Sundial Atlas [1]\"}, {\"cite_id\": \"WP:72907-66\", \"title\": \"Sundial\", \"section\": \"National organisations\", \"date_modified\": \"2026-10-15T21:51:53Z\", \"retrieval_score\": 7.332, \"has_image\": true, \"snippet\": \"Asociación Amigos de los Relojes de Sol (AARS) – Spanish Sundial Society British Sundial Society (BSS) – British Sundial Society Commission des Cadrans Solaires de la Société Astronomique de France French Sundial Society Coordinamento Gnomonico Italiano Archived 2017-07-30 at the Wayback Machine (CGI) – Italian Sundial Society North American Sundial Society (NASS) – North American Sundial Society Societat Catalana de Gnomònica – Catalan Sundial Society De Zonnewijzerkring – Dutch Sundial Society (in English) Zonnewijzerkring Vlaanderen – Flemish Sundial Society\"}, {\"cite_id\": \"WP:72907-67\", \"title\": \"Sundial\", \"section\": \"Historical\", \"date_modified\": \"2026-10-15T21:51:53Z\", \"retrieval_score\": 7.0896, \"has_image\": true, \"snippet\": \"\\\"The Book of Remedies from Deficiencies in Setting Up Marble Sundials\\\" is an Arabic manuscript from 1319 about timekeeping and sundials. \\\"Small Treatise on the Calculation of Tables for the Construction of Inclined Sundials\\\" is another Arabic manuscript, from the 16th century, about the mathematical calculations used to create sundials. It was written by Sibt al-Maridini. Vodolazhskaya, L. Analemmatic and Horizontal Sundials of the Bronze Age (Northern Black Sea Coast). Archaeoastronomy and Ancient Technologies 1(1), 2013, 68-88 Reconstruction of ancient Egyptian sundials\"}, {\"cite_id\": \"WP:72907-59\", \"title\": \"Sundial\", \"section\": \"Digital sundial\", \"date_modified\": \"2026-10-15T21:51:53Z\", \"retrieval_score\": 7.0723, \"has_image\": true, \"snippet\": \"A digital sundial indicates the current time with numerals formed by the sunlight striking it. Sundials of this type are installed in the Deutsches Museum in Munich and in the Sundial Park in Genk (Belgium), and a small version is available commercially. There is a patent for this type of sundial.\"}, {\"cite_id\": \"WP:72907-9\", \"title\": \"Sundial\", \"section\": \"Adjustments to calculate clock time from a sundial reading\", \"date_modified\": \"2026-10-15T21:51:53Z\", \"retrieval_score\": 7.0548, \"has_image\": true, \"snippet\": \"The most common reason for a sundial to differ greatly from clock time is that the sundial has not been oriented correctly or its hour lines have not been drawn correctly. For example, most commercial sundials are designed as horizontal sundials as described above. To be accurate, such a sundial must have been designed for the local geographical latitude and its style must be parallel to the Earth's rotational axis; the style must be aligned with true north and its height (its angle with the horizontal) must equal the local latitude. To adjust the style height, the sundial can often be tilted slightly \\\"up\\\" or \\\"down\\\" while maintaining the style's north-south alignment.\"}]}",
+      "tool_call_id": "call_140f46375814",
+      "timestamp": 1792333560.5439458
+    },
+    {
+      "role": "assistant",
+      "content": "The Britannica search found nothing for \"sundials\". Given the long-s OCR issue (\"s\" read as \"f\"), let me try alternative spellings.",
+      "reasoning": "The Britannica search for \"sundials\" found nothing. The OCR of 18th/19th century print often reads long s as \"f\". Let me try alternative spellings - \"fundials\" or maybe \"sun-dials\" with hyphen, or \"gnomon\". Let me try a few variants: \"sundial\", \"sun-dials\", \"fundials\", \"gnomon\".",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333562.4802425,
+      "reasoning_content": "The Britannica search for \"sundials\" found nothing. The OCR of 18th/19th century print often reads long s as \"f\". Let me try alternative spellings - \"fundials\" or maybe \"sun-dials\" with hyphen, or \"gnomon\". Let me try a few variants: \"sundial\", \"sun-dials\", \"fundials\", \"gnomon\".",
+      "tool_calls": [
+        {
+          "id": "call_e98a18128447",
+          "call_id": "call_e98a18128447",
+          "response_item_id": "fc_e98a18128447",
+          "type": "function",
+          "function": {
+            "name": "search_britannica",
+            "arguments": "{\"k\": 10, \"query\": \"fundials\"}"
+          }
+        },
+        {
+          "id": "call_f3c5e2ebbe1e",
+          "call_id": "call_f3c5e2ebbe1e",
+          "response_item_id": "fc_f3c5e2ebbe1e",
+          "type": "function",
+          "function": {
+            "name": "search_britannica",
+            "arguments": "{\"k\": 10, \"query\": \"sun-dials\"}"
+          }
+        },
+        {
+          "id": "call_4fe56f14fb0f",
+          "call_id": "call_4fe56f14fb0f",
+          "response_item_id": "fc_4fe56f14fb0f",
+          "type": "function",
+          "function": {
+            "name": "search_britannica",
+            "arguments": "{\"k\": 10, \"query\": \"gnomon\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "search_britannica",
+      "tool_name": "search_britannica",
+      "content": "{\"results\": [], \"note\": \"No matching passages found.\"}",
+      "tool_call_id": "call_e98a18128447",
+      "timestamp": 1792333562.5062087
+    },
+    {
+      "role": "tool",
+      "name": "search_britannica",
+      "tool_name": "search_britannica",
+      "content": "{\"results\": [{\"cite_id\": \"EB:2243-1\", \"title\": \"Astronomical Models and Eclipses\", \"section\": \"illustration (described by Nemotron VL)\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 1, A-B\", \"page_index\": 2243, \"illustrated\": true, \"retrieval_score\": 6.8744, \"snippet\": \"This is Plate XLIII from the Encyclopaedia Britannica, an astronomical engraving depicting five figures. Figure 1 shows a geocentric model with a central Earth surrounded by planetary orbits and zodiacal signs. Figure 2 illustrates a heliocentric system, with the Sun at the center and Earth orbiting it, labeled with points A through H. Figure 3 explains solar and lunar eclipses, showing the Sun casting a shadow on Earth and the Moon in various phases. Figure 4 details the phases of the Moon as it orbits Earth, with the Moon shown in different illuminated states. Figure 5 is a chart of celestial coordinates, displaying arcs and lines with numerical and lettered labels, likely for tracking …\"}, {\"cite_id\": \"EB:2465-2\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"retrieval_score\": 5.9363, \"snippet\": \"The conſtruction is the ſame in every other cafe, due regard being had to the difference of longitude of the place at which the dial would be horizontal, and the place for which it is to ſerve : And likewiſe, taking care to draw no lines but what are neceſſary ; which may be done partly by the rules already given for determining the time that the fun ſhines on any plane : and partly from this, that on the tropical days, the hyperbola deſcribed by the ſhadow of the point R limits the extent of all the hour-lines. Of the right placing of dials, and having a true meridian line for the regulating of clocks and watches. The plane on which the dial is to ſet being duly prepared, and every thing …\"}, {\"cite_id\": \"EB:2465-1\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"retrieval_score\": 5.8695, \"snippet\": \"The improvements which have been made in all ſorts of inftruments and machines for meaſuring time, have rendered ſuch dials of little account. Yet, as the theory of them is ingenious, and they are really, in ſome reſpects, the belt contrived of any for vulgar uſe, a general idea of their derivation may not be unacceptable. Let fig. 5. repreſent an erect ſouth wall, on which a Babylonian dial is to be drawn, ſhewing the hours from fun-riſing ; the latitude of the place, whole horizon is paralleled to the wall, being equal to the angle KCR. Make, as for a common dial, KG=KR (which is perpendicular to CR) the radius of the equinoctial ÆQ, and draw RS perpendicular to CK for the ſtile of the …\"}, {\"cite_id\": \"EB:2465-0\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"retrieval_score\": 5.7152, \"snippet\": \"D I A ( 429 ) D I A fladow of that perpendicular edge is a vertical circle paffing through the fun, in the ftereographic projection. The moon being duly marked on this dial, the fun's declination, and the length of the day at any time, are had by inſpection (as alſo his altitude, by means of a ſcale of tangents.) But its chief property is, that it may be placed true, whenever the fun ſhines, without the help of any other inftrument. Let d (Plate LXXI. fig. 1.) be the fun's place in the ftereographic projection, x d y z the parallel of the fun's declination. Z d a vertical circle through the fun's center, P d the hour-circle ; and it is evident, that the diameter NS of this projection being …\"}, {\"cite_id\": \"EB:2465-3\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"retrieval_score\": 3.3525, \"snippet\": \"Or, in ſummer, take two equal altitudes of the fun in the ſame day ; one any time between 7 and 10 in the morning, the other between 2 and 5 in the afternoon ; noting the moments of theſe two obſervations by a clock or watch : and if the watch ſhews the obſervations to be at equal diſtances from noon, it agrees exactly with the fun : if not, the watch muſt be corrected by half the difference of the forenoon and afternoon intervals ; and then the dial may be ſet true by the watch. Thus, for example ; ſuppoſe you had taken the fun's altitude when it was 20 minutes paſt VIII in the morning by the watch ; and found, by obſerving in the afternoon, that the fun had the ſame altitude to minutes …\"}]}",
+      "tool_call_id": "call_f3c5e2ebbe1e",
+      "timestamp": 1792333562.5250635
+    },
+    {
+      "role": "tool",
+      "name": "search_britannica",
+      "tool_name": "search_britannica",
+      "content": "{\"results\": [{\"cite_id\": \"EB:2465-0\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"retrieval_score\": 5.7425, \"snippet\": \"D I A ( 429 ) D I A fladow of that perpendicular edge is a vertical circle paffing through the fun, in the ftereographic projection. The moon being duly marked on this dial, the fun's declination, and the length of the day at any time, are had by inſpection (as alſo his altitude, by means of a ſcale of tangents.) But its chief property is, that it may be placed true, whenever the fun ſhines, without the help of any other inftrument. Let d (Plate LXXI. fig. 1.) be the fun's place in the ftereographic projection, x d y z the parallel of the fun's declination. Z d a vertical circle through the fun's center, P d the hour-circle ; and it is evident, that the diameter NS of this projection being …\"}]}",
+      "tool_call_id": "call_4fe56f14fb0f",
+      "timestamp": 1792333562.5343685
+    },
+    {
+      "role": "assistant",
+      "content": "Found a 1st edition (1771) article \"Sundial Construction and Types\". Let me read the full passages.",
+      "reasoning": "Found it: \"Sundial Construction and Types\" from the 1st edition (1768-1771), Volume 2, page 429 (page_index 2465). Let me read the full text of these passages to get the complete content. Let me read all the passages at cite_id EB:2465-0 through EB:2465-3, and also search for more passages about sundials. Let me read the full text via read_britannica for each cite id.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333565.0113857,
+      "reasoning_content": "Found it: \"Sundial Construction and Types\" from the 1st edition (1768-1771), Volume 2, page 429 (page_index 2465). Let me read the full text of these passages to get the complete content. Let me read all the passages at cite_id EB:2465-0 through EB:2465-3, and also search for more passages about sundials. Let me read the full text via read_britannica for each cite id.",
+      "tool_calls": [
+        {
+          "id": "call_9fa26c752fe1",
+          "call_id": "call_9fa26c752fe1",
+          "response_item_id": "fc_9fa26c752fe1",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:2465-0\"}"
+          }
+        },
+        {
+          "id": "call_b91c6ae4007d",
+          "call_id": "call_b91c6ae4007d",
+          "response_item_id": "fc_b91c6ae4007d",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:2465-1\"}"
+          }
+        },
+        {
+          "id": "call_a8b0fae28acb",
+          "call_id": "call_a8b0fae28acb",
+          "response_item_id": "fc_a8b0fae28acb",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:2465-2\"}"
+          }
+        },
+        {
+          "id": "call_7f22260a580c",
+          "call_id": "call_7f22260a580c",
+          "response_item_id": "fc_7f22260a580c",
+          "type": "function",
+          "function": {
+            "name": "read_britannica",
+            "arguments": "{\"cite_id\": \"EB:2465-3\"}"
+          }
+        },
+        {
+          "id": "call_1400b823e16d",
+          "call_id": "call_1400b823e16d",
+          "response_item_id": "fc_1400b823e16d",
+          "type": "function",
+          "function": {
+            "name": "find_counterparts",
+            "arguments": "{\"britannica_cite_id\": \"EB:2465-0\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:2465-0\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"text\": \"D I A ( 429 ) D I A\\n\\nfladow of that perpendicular edge is a vertical circle paffing through the fun, in the ftereographic projection.\\n\\nThe moon being duly marked on this dial, the fun's declination, and the length of the day at any time, are had by inſpection (as alſo his altitude, by means of a ſcale of tangents.) But its chief property is, that it may be placed true, whenever the fun ſhines, without the help of any other inftrument.\\n\\nLet d (Plate LXXI. fig. 1.) be the fun's place in the ftereographic projection, x d y z the parallel of the fun's declination. Z d a vertical circle through the fun's center, P d the hour-circle ; and it is evident, that the diameter NS of this projection being placed duly north and ſouth, theſe three circles will paſs through the point d. And therefore, to give the dial its due ſituation, we have only to turn its gnomon toward the fun, on a horizontal plane, until the hour on the common gnomonical projection coincides with that marked by the hour-circle P d, which paſſes through the interſection of the fladown Z d with the circle of the fun's prefent declination.\\n\\nThe Babylonian and Italian dials reckon the hours, not from the meridian, as with us, but from the fun's riſing and ſetting. Thus, in Italy, an hour before fun-ſet is reckoned the 23d hour ; two hours before fun-ſet, the 22d hour ; and ſo of the reſt. And the fladown that marks them on the hour-lines, is that of the point of a ſtile. This occaſions a perpetual variation between their dials and clocks, which they muſt correct from time to time, before it ariſes to any ſenſible quantity, by ſetting their clocks to much ſooner or ſooner. And in Italy, they begin their day, and regulate their clocks, not from fun-ſet, but from about mid-twilight, when the Ave Maria is ſaid ; which corrects the difference that would otherwiſe be between the clock and the dial.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=2465\"}",
+      "tool_call_id": "call_9fa26c752fe1",
+      "timestamp": 1792333565.044779
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:2465-1\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"text\": \"The improvements which have been made in all ſorts of inftruments and machines for meaſuring time, have rendered ſuch dials of little account. Yet, as the theory of them is ingenious, and they are really, in ſome reſpects, the belt contrived of any for vulgar uſe, a general idea of their derivation may not be unacceptable.\\n\\nLet fig. 5. repreſent an erect ſouth wall, on which a Babylonian dial is to be drawn, ſhewing the hours from fun-riſing ; the latitude of the place, whole horizon is paralleled to the wall, being equal to the angle KCR. Make, as for a common dial, KG=KR (which is perpendicular to CR) the radius of the equinoctial ÆQ, and draw RS perpendicular to CK for the ſtile of the dial ; the ſhadown of whole point R is to mark the hours, when SR is ſet upright on the plane of the dial.\\n\\nThen it is evident, that, in the contingent line ÆQ, the ſpaces K 1, K 2, K 3, &c. being taken equal to the tangents of the hour-diftances from the meridian, to the radius KG, one, two, three, &c. hours after fun-riſing, on the equinoctial day ; the fladown of the point R will be found, at theſe times, reſpectively in the points, 1, 2, 3, &c.\\n\\nDraw, for the like hours after fun-riſing, when the fun is in the tropic of Capricorn V, the like common lines CD, CE, CF, &c. and at theſe hours the ſhadow of the point R will be found in thoſe lines reſpectively. Find the fun's altitudes above the plane of the dial at theſe\\n\\nhours, and with their co-tangents S d, S e, S f, &c. to radius S R, deſcribe arcs interſecting the hour-lines in the points d, e, f, &c. ſo ſhall the right lines 1 d, 2 e, 3 f, &c. be the lines of I, II, III, &c. hours after fun-riſing.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=2465\"}",
+      "tool_call_id": "call_b91c6ae4007d",
+      "timestamp": 1792333565.0755916
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:2465-2\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"text\": \"The conſtruction is the ſame in every other cafe, due regard being had to the difference of longitude of the place at which the dial would be horizontal, and the place for which it is to ſerve : And likewiſe, taking care to draw no lines but what are neceſſary ; which may be done partly by the rules already given for determining the time that the fun ſhines on any plane : and partly from this, that on the tropical days, the hyperbola deſcribed by the ſhadow of the point R limits the extent of all the hour-lines.\\n\\nOf the right placing of dials, and having a true meridian line for the regulating of clocks and watches.\\n\\nThe plane on which the dial is to ſet being duly prepared, and every thing neceſſary for fixing it, you may find the hour tolerably exact by a large equinoctial ring-dial, and ſet your watch to it. And then the dial may be fixed by the watch at your leiſure.\\n\\nIf you would be more exact, take the fun's altitude by a good quadrant, noting the precise time of obſervation by a clock or watch. Then compute the time for the altitude obſerved, and ſet the watch to agree with that time, according to the fun. A Hadley's quadrant is very convenient for this purpoſe ; for, by it you may take the angle between the fun and his image reflected from a balon of water ; the half of which angle, ſubtracting the refraction, is the altitude required. This is ſoon done in ſummer, and the nearer the fun is to the prime vertical (the eaft or weſt azimuth) when the obſervation is made, ſo much the better.\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=2465\"}",
+      "tool_call_id": "call_a8b0fae28acb",
+      "timestamp": 1792333565.0991755
+    },
+    {
+      "role": "tool",
+      "name": "read_britannica",
+      "tool_name": "read_britannica",
+      "content": "{\"cite_id\": \"EB:2465-3\", \"title\": \"Sundial Construction and Types\", \"edition\": \"1st (1768-1771)\", \"volume_label\": \"First edition, 1771, Volume 2, C-L\", \"page_index\": 2465, \"illustrated\": false, \"text\": \"Or, in ſummer, take two equal altitudes of the fun in the ſame day ; one any time between 7 and 10 in the morning, the other between 2 and 5 in the afternoon ; noting the moments of theſe two obſervations by a clock or watch : and if the watch ſhews the obſervations to be at equal diſtances from noon, it agrees exactly with the fun : if not, the watch muſt be corrected by half the difference of the forenoon and afternoon intervals ; and then the dial may be ſet true by the watch.\\n\\nThus, for example ; ſuppoſe you had taken the fun's altitude when it was 20 minutes paſt VIII in the morning by the watch ; and found, by obſerving in the afternoon, that the fun had the ſame altitude to minutes before III : then it is plain, that the watch was 5 minutes too faſt for the fun : for 5 minutes after XII is the middle time between VIII h. 20 m. in the morning, and III h. 50 m. in the afternoon : and therefore, to make the watch agree with the fun, it muſt be ſet back five minutes.\\n\\nA good meridian line, for regulating clocks or watch-es, may be had by the following method.\\n\\nMake a round hole, almoſt a quarter of an inch diameter, in a thin plate of metal ; and fix the plate in the top of a ſhut window, in ſuch a manner, that it may recline from the zenith at an angle equal to the co-lati-tude of your place, as nearly as you can gueſs : for then\\n\\nVol. II. No. 44. 3 4 P the\", \"url\": \"https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated/viewer/default/train?row=2465\"}",
+      "tool_call_id": "call_7f22260a580c",
+      "timestamp": 1792333565.1139052
+    },
+    {
+      "role": "tool",
+      "name": "find_counterparts",
+      "tool_name": "find_counterparts",
+      "content": "{\"matches\": [{\"britannica_doc_id\": \"2465\", \"wikipedia_doc_id\": \"72907\", \"rank\": 1, \"vector_score\": null, \"rerank_score\": null, \"no_clear_match\": false, \"reason\": \"page topic 'Sundial' -> search hit 'Sundial'\", \"wikipedia_title\": \"Sundial\", \"wikipedia_cite_id\": \"WP:72907-0\"}, {\"britannica_doc_id\": \"2465\", \"wikipedia_doc_id\": \"143431\", \"rank\": 2, \"vector_score\": null, \"rerank_score\": null, \"no_clear_match\": false, \"reason\": \"page topic 'Stereographic projection' -> search hit 'Stereographic projection'\", \"wikipedia_title\": \"Stereographic projection\", \"wikipedia_cite_id\": \"WP:143431-0\"}]}",
+      "tool_call_id": "call_1400b823e16d",
+      "timestamp": 1792333565.1564262
+    },
+    {
+      "role": "assistant",
+      "content": "I have the Britannica 1st edition text. Now let me read the Wikipedia counterpart for comparison.",
+      "reasoning": "I have the Britannica text from the 1st edition (1771), Volume 2, page 429, \"Sundial Construction and Types\" (though the title might be \"DIAL\" — the OCR header says \"D I A (429) D I A\"). Let me read the Wikipedia \"Sundial\" article fully to compare. Let me read WP:72907-0.",
+      "finish_reason": "tool_calls",
+      "timestamp": 1792333567.4071612,
+      "reasoning_content": "I have the Britannica text from the 1st edition (1771), Volume 2, page 429, \"Sundial Construction and Types\" (though the title might be \"DIAL\" — the OCR header says \"D I A (429) D I A\"). Let me read the Wikipedia \"Sundial\" article fully to compare. Let me read WP:72907-0.",
+      "tool_calls": [
+        {
+          "id": "chatcmpl-tool-a2b5f271922f8c04",
+          "call_id": "chatcmpl-tool-a2b5f271922f8c04",
+          "response_item_id": "fc_chatcmpl-tool-a2b5f271922f8c04",
+          "type": "function",
+          "function": {
+            "name": "read_wikipedia",
+            "arguments": "{\"cite_id\": \"WP:72907-0\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "name": "read_wikipedia",
+      "tool_name": "read_wikipedia",
+      "content": "{\"cite_id\": \"WP:72907-0\", \"title\": \"Sundial\", \"section\": \"Introduction\", \"date_modified\": \"2026-10-15T21:51:53Z\", \"has_image\": true, \"text\": \"A sundial is a horological device that tells the time of day (referred to as civil time in modern usage) when direct sunlight shines by the apparent position of the Sun in the sky. In the narrowest sense of the word, it consists of a flat plate (the dial) and a gnomon, which casts a shadow onto the dial. As the Sun appears to move through the sky, the shadow aligns with different hour-lines, which are marked on the dial to indicate the time of day. The style is the time-telling edge of the gnomon, though a single point or nodus may be used. The gnomon casts a broad shadow; the shadow of the style shows the time. The gnomon may be a rod, wire, or elaborately decorated metal casting. The style must be parallel to the axis of the Earth's rotation for the sundial to be accurate throughout the year. The style's angle from horizontal is equal to the sundial's geographical latitude.\\nThe term sundial can refer to any device that uses the Sun's altitude or azimuth (or both) to show the time. Sundials are valued as decorative objects, metaphors, and objects of intrigue and mathematical study.\\nThe passing of time can be observed by placing a stick in the sand or a nail in a board and placing markers at the edge of a shadow or outlining a shadow at intervals. It is common for inexpensive, mass-produced decorative sundials to have incorrectly aligned gnomons, shadow lengths, and hour-lines, which cannot be adjusted to tell the correct time.\", \"url\": \"https://en.wikipedia.org/wiki/Sundial\"}",
+      "tool_call_id": "chatcmpl-tool-a2b5f271922f8c04",
+      "timestamp": 1792333567.435943
+    },
+    {
+      "role": "assistant",
+      "content": "## Answer\n\nThe 1st edition Encyclopaedia Britannica (1768–1771) treats sundials as a practical, geometric craft: how to draw hour-lines on a wall or plane, how to set a dial true using a watch, quadrant, or solar altitudes, and how foreign (Babylonian/Italian) dials count hours from sunrise and sunset. Modern Wikipedia defines a sundial as a horological device telling civil time via the Sun's position, with a gnomon whose style is parallel to Earth's axis at an angle equal to latitude, valued now as decoration and mathematical study.\n\n## Britannica\n\n1st edition (1768–1771), Volume 2 (C–L), p. 429, \"Sundial Construction and Types\" [EB:2465-0 to EB:2465-3]. It describes a dial read by stereographic projection whose moon markings let you read the sun's declination and day length by inspection; Babylonian and Italian dials reckon hours from sunrise/sunset rather than noon, so they perpetually differ from clocks (in Italy the day begins at mid-twilight, the Ave Maria). It notes better timekeeping instruments have made such dials of little account, though their theory is ingenious and they remain handy for \"vulgar use.\" It gives construction rules (tangents of hour-distances, co-tangents of solar altitudes) and methods to set a dial true: an equinoctial ring-dial, solar altitude with a (Hadley's) quadrant, equal morning/afternoon altitudes to correct a watch, and a meridian line made with a pinhole plate inclined at the co-latitude.\n\n## Wikipedia\n\n\"A sundial is a horological device that tells the time of day (civil time) … by the apparent position of the Sun\" — a dial plate plus gnomon casting a shadow on hour-lines; the style (time-telling edge) must be parallel to Earth's rotational axis, its angle above horizontal equal to latitude; sundials are now decorative objects, metaphors, and objects of mathematical study, and cheap mass-produced ones are often misaligned [WP:72907-0].\n\n## What changed\n\n- **LANGUAGE**: OCR long-s renders \"sun\" as \"fun,\" \"instrument\" as \"inftrument\"; archaic terms (\"vulgar use,\" \"stile,\" Babylonian/Italian dials).\n- **KNOWLEDGE**: Britannica gives pre-industrial practical methods for regulating clocks and laying out dials by geometry; Wikipedia states the axial/latitude alignment rule and frames time as civil time.\n- **PERSPECTIVE**: Britannica is instructional and practical for the builder, with religious framing (Ave Maria); Wikipedia is encyclopedic, emphasizing decoration and intrigue.\n- **NO_COUNTERPART**: Wikipedia's digital sundials, national sundial societies, and equation-of-time discussion have no Britannica equivalent; Britannica's pinhole meridian line and Italian twilight reckoning have no Wikipedia counterpart here.\n\n## Confidence\n\nHigh on the Britannica content (full passage read). Medium on the comparison, since I read only Wikipedia's introduction, not the full article, and only the 1st Britannica edition surfaced — later editions (2nd–8th, through 1860) may cover sundials differently.",
+      "reasoning": "I now have both sources. Let me compose the answer in the required format:\n\n1. **Answer** - two or three sentences.\n2. **Britannica** - what it says, with edition/year.\n3. **Wikipedia** - what it says.\n4. **What changed** - each difference labelled with category.\n5. **Confidence** - high/medium/low and missing evidence.\n\nCitations: EB:2465-0 through EB:2465-3, WP:72907-0.\n\nThe Britannica text is OCR with long s as \"f\". I should cite with the citation ids as returned.\n\nBritannica (1st ed., 1768-1771, Vol. 2, p. 429, \"Sundial Construction and Types\" / under \"DIAL\"): It discusses construction of dials — a stereographic projection dial where the moon's marking lets you read the sun's declination and day length by inspection; Babylonian and Italian dials reckon hours from sunrise/sunset rather than the meridian, so they vary perpetually from clocks; in Italy the day begins at mid-twilight (Ave Maria). It notes improved timekeeping instruments have rendered such dials of little account, but their theory is ingenious and they're handy for vulgar use. Gives geometric construction for a Babylonian dial on a south wall (tangents of hour-distances, co-tangents of sun's altitudes). Describes setting dials true: by equinoctial ring-dial, by solar altitude with a quadrant (Hadley's quadrant), by equal altitudes of the sun morning/noon/afternoon to correct a watch, and making a meridian line with a pinhole in a plate on a shut window inclined at co-latitude.\n\nWikipedia: a sundial is a horological device telling civil time by the Sun's apparent position; flat plate (dial) + gnomon casting shadow on hour-lines; style is time-telling edge, parallel to Earth's axis, angle = latitude; decorative/metaphorical/mathematical interest; mass-produced decorative ones often misaligned.\n\nDifferences:\n- LANGUAGE: OCR long-s (\"fun\" for \"sun\", \"inftrument\" for \"instrument\"), archaic terms (\"vulgar uſe\", \"stile\", \"Babylonian/Italian dials\").\n- KNOWLEDGE: Britannica frames dials as practically useful for regulating clocks/watch and gives surveyor-style methods (Hadley's quadrant, equal altitudes, meridian line via pinhole); Wikipedia treats them as decorative/mathematical objects and defines civil time, style parallel to Earth's axis, latitude angle — the Britannica doesn't state the gnomon must be parallel to Earth's axis / angle equals latitude explicitly (it describes construction geometrically instead). Also Babylonian/Italian hour reckoning from sunrise/sunset — that's historical practice, not really a \"changed fact\" but a different system.\n- PERSPECTIVE: Britannica: practical, instructional, aimed at gentlemen constructing/setting dials, religious framing (Ave Maria marks start of Italian day); Wikipedia: encyclopedic, civil time, decorative/intrigue.\n- NO_COUNTERPART: Wikipedia has digital sundials, national societies, equation of time — no counterpart in Britannica. Britannica's meridian-line pinhole method and Babylonian/Italian dials have no counterpart in the Wikipedia lead.\n\nConfidence: high for what the Britannica says (full text read). Medium for comparison since I only read the Wikipedia lead/introduction section, not the full article (history, types, etc.). Missing: full Wikipedia article text and whether later Britannica editions (2nd-8th, through 1860) have more/different sundial content — my search found only 1st edition passages.\n\nLet me keep it under 300 words.",
+      "finish_reason": "stop",
+      "timestamp": 1792333576.7032294,
+      "reasoning_content": "I now have both sources. Let me compose the answer in the required format:\n\n1. **Answer** - two or three sentences.\n2. **Britannica** - what it says, with edition/year.\n3. **Wikipedia** - what it says.\n4. **What changed** - each difference labelled with category.\n5. **Confidence** - high/medium/low and missing evidence.\n\nCitations: EB:2465-0 through EB:2465-3, WP:72907-0.\n\nThe Britannica text is OCR with long s as \"f\". I should cite with the citation ids as returned.\n\nBritannica (1st ed., 1768-1771, Vol. 2, p. 429, \"Sundial Construction and Types\" / under \"DIAL\"): It discusses construction of dials — a stereographic projection dial where the moon's marking lets you read the sun's declination and day length by inspection; Babylonian and Italian dials reckon hours from sunrise/sunset rather than the meridian, so they vary perpetually from clocks; in Italy the day begins at mid-twilight (Ave Maria). It notes improved timekeeping instruments have rendered such dials of little account, but their theory is ingenious and they're handy for vulgar use. Gives geometric construction for a Babylonian dial on a south wall (tangents of hour-distances, co-tangents of sun's altitudes). Describes setting dials true: by equinoctial ring-dial, by solar altitude with a quadrant (Hadley's quadrant), by equal altitudes of the sun morning/noon/afternoon to correct a watch, and making a meridian line with a pinhole in a plate on a shut window inclined at co-latitude.\n\nWikipedia: a sundial is a horological device telling civil time by the Sun's apparent position; flat plate (dial) + gnomon casting shadow on hour-lines; style is time-telling edge, parallel to Earth's axis, angle = latitude; decorative/metaphorical/mathematical interest; mass-produced decorative ones often misaligned.\n\nDifferences:\n- LANGUAGE: OCR long-s (\"fun\" for \"sun\", \"inftrument\" for \"instrument\"), archaic terms (\"vulgar uſe\", \"stile\", \"Babylonian/Italian dials\").\n- KNOWLEDGE: Britannica frames dials as practically useful for regulating clocks/watch and gives surveyor-style methods (Hadley's quadrant, equal altitudes, meridian line via pinhole); Wikipedia treats them as decorative/mathematical objects and defines civil time, style parallel to Earth's axis, latitude angle — the Britannica doesn't state the gnomon must be parallel to Earth's axis / angle equals latitude explicitly (it describes construction geometrically instead). Also Babylonian/Italian hour reckoning from sunrise/sunset — that's historical practice, not really a \"changed fact\" but a different system.\n- PERSPECTIVE: Britannica: practical, instructional, aimed at gentlemen constructing/setting dials, religious framing (Ave Maria marks start of Italian day); Wikipedia: encyclopedic, civil time, decorative/intrigue.\n- NO_COUNTERPART: Wikipedia has digital sundials, national societies, equation of time — no counterpart in Britannica. Britannica's meridian-line pinhole method and Babylonian/Italian dials have no counterpart in the Wikipedia lead.\n\nConfidence: high for what the Britannica says (full text read). Medium for comparison since I only read the Wikipedia lead/introduction section, not the full article (history, types, etc.). Missing: full Wikipedia article text and whether later Britannica editions (2nd-8th, through 1860) have more/different sundial content — my search found only 1st edition passages.\n\nLet me keep it under 300 words."
+    }
+  ],
+  "slug": "modern-term",
+  "expectation": "failure risk (Retrieval): the 1771 page says 'dial', not 'sundial'",
+  "gold_page": null,
+  "model": "nvidia/Nemotron-3.5-Super-VL",
+  "ran_at": "2026-10-18T14:26:16.712627+00:00",
+  "metrics": {
+    "duration_s": 17.4,
+    "n_calls": 11,
+    "n_vision_calls": 0,
+    "n_cited": 3,
+    "n_unsupported": 0,
+    "support": null,
+    "n_weak_claims": 0,
+    "gold_page_found": null,
+    "suggested_stage": null
+  }
+}

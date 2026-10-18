@@ -1,9 +1,10 @@
 """Retrieval tools registered into the Hermes Agent tool registry.
 
 Toolsets (enabled per agent role via AIAgent(enabled_toolsets=...)):
-  britannica  search_britannica, read_britannica
+  britannica  search_britannica, read_britannica, inspect_page_image
   wikipedia   search_wikipedia, read_wikipedia
   crosswalk   find_counterparts
+  vision      compare_images (needs both sources, so never given to a debater)
 
 Every handler records which citation ids it handed to the model, keyed by the Hermes
 task_id. `grounding.py` later checks the agent's answer against that record, and the
@@ -18,11 +19,11 @@ from dataclasses import dataclass, field
 
 from tools.registry import registry
 
-from two_beefies import retrieval
+from two_beefies import retrieval, vision
 
 log = logging.getLogger(__name__)
 
-TOOLSETS = ("britannica", "wikipedia", "crosswalk")
+TOOLSETS = ("britannica", "wikipedia", "crosswalk", "vision")
 
 
 @dataclass
@@ -48,7 +49,8 @@ def end_task(task_id: str) -> TaskLog | None:
         return _tasks.pop(task_id, None)
 
 
-def _record(task_id: str | None, name: str, args: dict, rows: list[dict]) -> None:
+def _record(task_id: str | None, name: str, args: dict, rows: list[dict],
+            extra: dict | None = None) -> None:
     task = _tasks.get(task_id or "")
     if task is None:
         return
@@ -56,9 +58,10 @@ def _record(task_id: str | None, name: str, args: dict, rows: list[dict]) -> Non
     for c in cits:
         task.retrieved[c["cite_id"]] = c
     task.calls.append({"name": name, "args": args, "n_hits": len(rows),
-                       "cite_ids": [c["cite_id"] for c in cits]})
+                       "cite_ids": [c["cite_id"] for c in cits]} | (extra or {}))
     if task.on_event:
-        task.on_event({"type": "tool_result", "role": task.role, "name": name, "hits": cits})
+        task.on_event({"type": "tool_result", "role": task.role, "name": name, "hits": cits}
+                      | (extra or {}))
 
 
 def _compact(row: dict) -> dict:
@@ -66,6 +69,8 @@ def _compact(row: dict) -> dict:
     keys = ("cite_id", "title", "section", "edition", "volume_label", "page_index", "illustrated",
             "date_modified", "retrieval_score", "rerank_score")
     out = {k: row[k] for k in keys if row.get(k) is not None}
+    if row["source"] == "wikipedia" and row.get("image_url"):
+        out["has_image"] = True
     out["snippet"] = retrieval.snippet(row.get("text", ""))
     return out
 
@@ -112,9 +117,49 @@ def _read_handler(source: retrieval.Source, name: str):
     return handler
 
 
+def _inspect_handler(args: dict, task_id: str | None = None, **_) -> str:
+    try:
+        cite_id, question = str(args.get("cite_id", "")), str(args.get("question", ""))
+        if retrieval.parse_cite_id(cite_id)[0] != "britannica":
+            return json.dumps({"error": "inspect_page_image only works on Britannica scans"})
+        row = retrieval.get(cite_id)
+        if row is None:
+            return json.dumps({"error": f"Unknown cite_id {cite_id}"})
+        answer = vision.inspect_page(row, question)
+        _record(task_id, "inspect_page_image", args, [row], {"vision": {
+            "question": question, "answer": answer, "images": [row.get("image_url")]}})
+        return json.dumps({"cite_id": row["cite_id"], "edition": row.get("edition"),
+                           "seen_on_scan": answer}, ensure_ascii=False)
+    except Exception as e:
+        return _err(e)
+
+
+def _compare_handler(args: dict, task_id: str | None = None, **_) -> str:
+    try:
+        eb = retrieval.get(str(args.get("britannica_cite_id", "")))
+        wp = retrieval.get(str(args.get("wikipedia_cite_id", "")))
+        if eb is None or wp is None or eb["source"] != "britannica" or wp["source"] != "wikipedia":
+            return json.dumps({"error": "need one Britannica and one Wikipedia cite_id"})
+        question = str(args.get("question", ""))
+        answer = vision.compare(eb, wp, question)
+        _record(task_id, "compare_images", args, [eb, wp], {"vision": {
+            "question": question, "answer": answer,
+            "images": [eb.get("image_url"), wp.get("image_url")]}})
+        return json.dumps({"britannica": eb["cite_id"], "wikipedia": wp["cite_id"],
+                           "comparison": answer}, ensure_ascii=False)
+    except Exception as e:
+        return _err(e)
+
+
 def _counterparts_handler(args: dict, task_id: str | None = None, **_) -> str:
     try:
         matches = retrieval.counterparts(str(args.get("britannica_cite_id", "")))
+        task = _tasks.get(task_id or "")
+        if task is not None:
+            task.calls.append({"name": "find_counterparts", "args": args,
+                               "n_hits": len(matches),
+                               "cite_ids": [m["wikipedia_cite_id"] for m in matches
+                                            if m.get("wikipedia_cite_id")]})
         if not matches:
             return json.dumps({"matches": [], "note": "No precomputed match for this page."})
         return json.dumps({"matches": matches}, ensure_ascii=False, default=str)
@@ -155,6 +200,30 @@ def register() -> None:
         schema=_schema("read_britannica", "Read the full text of a Britannica passage by citation id.",
                        {"cite_id": _CITE}, ["cite_id"]),
         handler=_read_handler("britannica", "read_britannica"))
+    registry.register(
+        name="inspect_page_image", toolset="britannica",
+        schema=_schema("inspect_page_image",
+                       "Look at the ORIGINAL SCAN of a Britannica page with the vision model. "
+                       "Use it when the OCR text is garbled or incomplete, to check a word or "
+                       "number, or to describe an engraving/illustration (pages marked "
+                       "illustrated). Returns what is visible on the scan.",
+                       {"cite_id": _CITE,
+                        "question": {"type": "string",
+                                     "description": "What to look for on the page."}},
+                       ["cite_id", "question"]),
+        handler=_inspect_handler)
+    registry.register(
+        name="compare_images", toolset="vision",
+        schema=_schema("compare_images",
+                       "Compare a Britannica page scan (e.g. an 18th-century engraving) with "
+                       "the lead image of a Wikipedia article (results marked has_image) using "
+                       "the vision model: how did the depiction of the subject change?",
+                       {"britannica_cite_id": _CITE,
+                        "wikipedia_cite_id": {"type": "string",
+                                              "description": "Wikipedia citation id, e.g. 'WP:123-0'."},
+                        "question": {"type": "string", "description": "What to compare."}},
+                       ["britannica_cite_id", "wikipedia_cite_id", "question"]),
+        handler=_compare_handler)
     registry.register(
         name="search_wikipedia", toolset="wikipedia",
         schema=_schema("search_wikipedia",

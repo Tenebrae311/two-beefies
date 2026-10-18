@@ -29,8 +29,36 @@ class AskRequest(BaseModel):
 async def ask(req: AskRequest) -> dict:
     out = await asyncio.to_thread(qa.ask, req.question)
     out.pop("messages", None)
-    out["trace"] = [{"name": c["name"], "args": c["args"]} for c in out["trace"]]
     return out
+
+
+CASES_DIR = config.ROOT / "docs" / "cases"
+
+
+def _annotations() -> dict:
+    path = CASES_DIR / "annotations.json"
+    return json.loads(path.read_text()) if path.is_file() else {}
+
+
+@app.get("/api/cases")
+async def cases() -> list[dict]:
+    notes = _annotations()
+    out = []
+    for path in sorted((CASES_DIR / "runs").glob("*.json")):
+        run = json.loads(path.read_text())
+        out.append({k: run.get(k) for k in ("slug", "question", "expectation", "metrics")}
+                   | {"annotation": notes.get(run["slug"])})
+    return out
+
+
+@app.get("/api/cases/{slug}")
+async def case(slug: str) -> dict:
+    path = CASES_DIR / "runs" / f"{slug}.json"
+    if not path.is_file() or path.parent != CASES_DIR / "runs":
+        raise HTTPException(404, f"Unknown case {slug}")
+    run = json.loads(path.read_text())
+    run.pop("messages", None)
+    return run | {"annotation": _annotations().get(slug)}
 
 
 @app.get("/api/debate")

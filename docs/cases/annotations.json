@@ -1,0 +1,38 @@
+{
+  "plate-giraffe": {
+    "verdict": "success",
+    "stage": "Agent reasoning (vision tools)",
+    "why": "The agent found the 3rd-edition plate CXXIX, looked at the original scan with inspect_page_image and compared it with the Wikipedia photo via compare_images. It read the label 'CERVUS. Camelopardalis' (the giraffe filed among the deer) and contrasted it with the modern genus Giraffa / family Giraffidae (KNOWLEDGE), noted the 'native hunter for scale' framing (PERSPECTIVE) and the surviving epithet camelopardalis (LANGUAGE). Every citation was retrieved.",
+    "reveals": "Plates carry almost no OCR text, so a text-only pipeline is blind to them. Letting Nemotron 3.5 Super VL go back to the scan turns 122 illustrated pages of the dataset into usable evidence."
+  },
+  "modern-term": {
+    "verdict": "success",
+    "stage": "Retrieval (recovered by the agent)",
+    "why": "'sundials' and the long-s guess 'fundials' returned nothing, because the 1771 text writes 'sun-dials' / 'dial'. The agent kept reformulating ('sun-dials', 'gnomon'), found the 1st-edition page, read all four chunks and produced a grounded comparison: a practical construction manual in 1771 vs. a horological/decorative object today.",
+    "reveals": "Language change is first of all a retrieval problem: the modern word does not match the historical one. Agentic query reformulation compensates for lexical search; vector search with Nemotron Embed should close this gap without retries."
+  },
+  "time-travel": {
+    "verdict": "success",
+    "stage": "Agent reasoning",
+    "why": "Asked what the 1790s Britannica said about Baghdad after 1800, the agent identified the 3rd edition (1788-1797), stated that it cannot contain later events, summarised what it does say (foundation by al-Mansur, early Abbasids) and gave Wikipedia's post-1800 history separately, labelled NO_COUNTERPART.",
+    "reveals": "Edition metadata (edition + years) in every search hit is what makes temporal reasoning possible; without it the agent could not tell 'not covered' from 'not yet known'."
+  },
+  "ambiguity-mercury": {
+    "verdict": "failure",
+    "stage": "Retrieval -> Agent reasoning",
+    "why": "Retrieves the wrong material. No indexed Britannica page mentions Mercury (confirmed on the astronomy plate with inspect_page_image), and the Wikipedia side only holds articles matched to the sampled Britannica pages, so search returned side mentions (Martianus Capella, Tycho Brahe, a 'mercury column'). The agent turned these artefacts into the claim that 'Wikipedia treats Mercury primarily as a planet within historical astronomical models'.",
+    "reveals": "Absence in the index is not absence in the source. The Wikipedia collection must cover more than the matched counterparts, and the agent should report coverage limits instead of generalising from whatever top-k returns."
+  },
+  "long-s": {
+    "verdict": "failure",
+    "stage": "Retrieval (FTS stop words) -> Agent reasoning",
+    "why": "Misinterprets a source. Searching 'such' returned nothing; the agent explained this with the long s ('the OCR renders it as fuch'). The real cause: LanceDB's full-text index drops English stop words, and 'such' is one. The word appears literally 15 times on 6 indexed pages ('such instructions' finds them); 'fuch' (5 pages) and 'ſuch' (7 pages) exist too, so the agent's results were real but its diagnosis was wrong.",
+    "reveals": "The agent confabulates plausible explanations for tool behaviour it cannot observe. Index settings (stop words, stemming, ASCII folding of 'ſ') are part of the pipeline and must be documented and tested; the agent should not be asked to guess why a tool returned nothing."
+  },
+  "aggregate-count": {
+    "verdict": "failure",
+    "stage": "Retrieval (architecture)",
+    "why": "Cannot answer reliably. 'How many indexed pages are about medicine?' needs enumeration, but every tool returns top-k passages. The agent said so honestly and listed a sample (surgery/inflammation, bills of mortality) but could give no number.",
+    "reveals": "RAG over chunks answers 'what does X say', not 'how many X'. Corpus-level questions need a metadata tool (e.g. list pages with their topics/editions) next to semantic search."
+  }
+}

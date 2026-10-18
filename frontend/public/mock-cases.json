@@ -1,0 +1,932 @@
+{
+  "_note": "SYNTHETIC demo data for ?mock=1 / offline fallback - illustrative cases, not real agent runs.",
+  "cases": [
+    {
+      "slug": "topic-astronomy",
+      "question": "What does the Britannica say about Astronomy, and how does modern Wikipedia describe it? What changed: language, knowledge or perspective?",
+      "expectation": "success candidate: indexed page with a Wikipedia counterpart",
+      "annotation": {
+        "verdict": "success",
+        "stage": "Rerank",
+        "why": "Hybrid search put the 1771 ASTRONOMY entry only at rank 7 — BM25 preferred the ASTROLOGY page for the shared stem. Nemotron Rerank lifted it to rank 1, so the agent quoted the right definition and the right list of six planets.",
+        "reveals": "The reranker does real work: without it the top-3 context would have been about astrology. Worth its ~0.4 s per search."
+      },
+      "metrics": {
+        "duration_s": 21.4,
+        "n_calls": 3,
+        "n_vision_calls": 0,
+        "n_cited": 5,
+        "n_unsupported": 0,
+        "support": 0.86,
+        "n_weak_claims": 0,
+        "gold_page_found": true,
+        "suggested_stage": null
+      }
+    },
+    {
+      "slug": "plate-solar-system",
+      "question": "Describe the engraving on the Britannica plate about Solar System and compare it with how Wikipedia illustrates the subject today.",
+      "expectation": "vision: should look at the scan (inspect_page_image/compare_images)",
+      "annotation": {
+        "verdict": "success",
+        "stage": "Parse/OCR",
+        "why": "The OCR of Plate XL contains only the caption and the engraver's name — nothing about the drawing. The agent called inspect_page_image and compare_images, and Nemotron VL read the six orbit labels off the scan and contrasted them with the modern diagram.",
+        "reveals": "Parse/OCR throws away everything that is not text. For plates, the vision tools are the only way in — the agent now routes around the lossy stage instead of guessing from a caption."
+      },
+      "metrics": {
+        "duration_s": 34.8,
+        "n_calls": 4,
+        "n_vision_calls": 2,
+        "n_cited": 3,
+        "n_unsupported": 0,
+        "support": 0.79,
+        "n_weak_claims": 1,
+        "gold_page_found": true,
+        "suggested_stage": null
+      }
+    },
+    {
+      "slug": "not-indexed",
+      "question": "What did the Britannica say about the steam locomotive?",
+      "expectation": "should admit that no indexed page covers it",
+      "annotation": {
+        "verdict": "success",
+        "stage": "Grounding",
+        "why": "Both Britannica searches returned only STEAM (the vapour) and Newcomen's fire-engine. The agent said plainly that no indexed page covers locomotives, summarised what the fire-engine entry does say, and cited nothing it had not retrieved.",
+        "reveals": "Grounding holds under pressure: the citation check plus the 'admit missing evidence' instruction stop the model from inventing an 1830s railway article."
+      },
+      "metrics": {
+        "duration_s": 14.2,
+        "n_calls": 3,
+        "n_vision_calls": 0,
+        "n_cited": 2,
+        "n_unsupported": 0,
+        "support": 0.81,
+        "n_weak_claims": 0,
+        "gold_page_found": null,
+        "suggested_stage": null
+      }
+    },
+    {
+      "slug": "long-s",
+      "question": "Find Britannica passages that use the word 'such'.",
+      "expectation": "failure risk (Parse/OCR): long s is transcribed as 'ſ' or 'f' ('ſuch', 'fuch')",
+      "annotation": {
+        "verdict": "failure",
+        "stage": "Parse/OCR",
+        "why": "The OCR kept the long s as 'f' ('fuch', 'fcience', 'muft'). BM25 found no exact 'such'; embedding search returned loosely related passages, and the agent claimed two of them 'use the word such' without noticing the spelling.",
+        "reveals": "Normalising ſ/f → s at parse time (or indexing both spellings) is needed before lexical search works on 18th-century print. The reranker flagged both claims as weak — a useful early-warning signal."
+      },
+      "metrics": {
+        "duration_s": 18.9,
+        "n_calls": 3,
+        "n_vision_calls": 0,
+        "n_cited": 2,
+        "n_unsupported": 0,
+        "support": 0.22,
+        "n_weak_claims": 2,
+        "gold_page_found": null,
+        "suggested_stage": "Agent reasoning"
+      }
+    },
+    {
+      "slug": "ambiguity-mercury",
+      "question": "What does each source say about Mercury?",
+      "expectation": "failure risk (Retrieval): ambiguous term - planet, god or metal",
+      "annotation": {
+        "verdict": "failure",
+        "stage": "Retrieval",
+        "why": "Britannica search returned MERCURY the metal (quicksilver, barometers); Wikipedia search returned Mercury the planet. The agent compared them as one subject and concluded that 'our understanding of Mercury changed completely'.",
+        "reveals": "Retrieval runs per source on the raw query; nothing checks that both sides retrieved the same sense of the word. Note that per-claim support still looks fine — each half is backed by its own page — only the comparison claim scores low."
+      },
+      "metrics": {
+        "duration_s": 16.3,
+        "n_calls": 2,
+        "n_vision_calls": 0,
+        "n_cited": 2,
+        "n_unsupported": 0,
+        "support": 0.64,
+        "n_weak_claims": 1,
+        "gold_page_found": null,
+        "suggested_stage": "Agent reasoning"
+      }
+    },
+    {
+      "slug": "aggregate-count",
+      "question": "How many of the indexed Britannica pages are about medicine?",
+      "expectation": "failure risk (Retrieval): aggregate question that top-k retrieval cannot answer",
+      "annotation": {
+        "verdict": "failure",
+        "stage": "Agent reasoning",
+        "why": "Search returned 8 medical-looking pages (top-k). Instead of saying a search tool cannot count, the agent answered 'about 40 pages' by extrapolating from the hits, and cited a page (EB:1797-v11-p233) it never retrieved.",
+        "reveals": "Retrieval behaved as designed; the reasoning step did not know the limits of its tools. The grounding check caught the invented citation, but the made-up number itself has no citation to check."
+      },
+      "metrics": {
+        "duration_s": 12.7,
+        "n_calls": 2,
+        "n_vision_calls": 0,
+        "n_cited": 4,
+        "n_unsupported": 1,
+        "support": 0.31,
+        "n_weak_claims": 2,
+        "gold_page_found": null,
+        "suggested_stage": "Grounding"
+      }
+    },
+    {
+      "slug": "time-travel",
+      "question": "What did the Britannica of the 1790s say about the history of Baghdad after 1800?",
+      "expectation": "should refuse: the source cannot know events after its publication",
+      "annotation": null,
+      "metrics": {
+        "duration_s": 11.5,
+        "n_calls": 2,
+        "n_vision_calls": 0,
+        "n_cited": 1,
+        "n_unsupported": 0,
+        "support": 0.58,
+        "n_weak_claims": 1,
+        "gold_page_found": null,
+        "suggested_stage": "Agent reasoning"
+      }
+    },
+    {
+      "slug": "topic-combustion",
+      "question": "What does the Britannica say about Combustion, and how does modern Wikipedia describe it? What changed: language, knowledge or perspective?",
+      "expectation": "success candidate: indexed page with a Wikipedia counterpart",
+      "annotation": null,
+      "metrics": {
+        "duration_s": 19.8,
+        "n_calls": 3,
+        "n_vision_calls": 0,
+        "n_cited": 2,
+        "n_unsupported": 0,
+        "support": 0.83,
+        "n_weak_claims": 0,
+        "gold_page_found": false,
+        "suggested_stage": "Retrieval"
+      }
+    }
+  ],
+  "records": {
+    "topic-astronomy": {
+      "answer": "In 1771 Britannica defined **astronomy** as “the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order” [EB:1771-v1-p487]; Wikipedia's definition is nearly the same, adding that it uses mathematics, physics and chemistry [WP:Astronomy].\n\n- **Knowledge:** six primary planets in 1771 [EB:1771-v1-p489], eight today [WP:Solar_System#planets].\n- **Perspective:** the Copernican system is “demonstrated to be the true system of the world” and a sign of the Creator's wisdom [EB:1771-v1-p491]; the modern article makes no such appeal.\n- **Language:** the definitions differ mostly in wording.",
+      "citations": [
+        {
+          "cite_id": "EB:1771-v1-p487",
+          "source": "britannica",
+          "title": "ASTRONOMY",
+          "snippet": "ASTRONOMY is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133901",
+          "image_url": "/mock/eb-1771-astronomy-p487.svg",
+          "edition": "1st edition, Vol. I",
+          "year": 1771
+        },
+        {
+          "cite_id": "EB:1771-v1-p489",
+          "source": "britannica",
+          "title": "ASTRONOMY — Of the Solar System",
+          "snippet": "The solar system consists of the sun, and the planets and comets moving about him. The planets are six in number: Mercury, Venus, the Earth, Mars, Jupiter, and Saturn.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133925",
+          "image_url": "/mock/eb-1771-plate-solar-system.svg",
+          "edition": "1st edition, Vol. I",
+          "year": 1771
+        },
+        {
+          "cite_id": "EB:1771-v1-p491",
+          "source": "britannica",
+          "title": "ASTRONOMY — Of the Systems of the World",
+          "snippet": "The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican, which places the sun in the centre, is demonstrated to be the true system of the world.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133949",
+          "image_url": "/mock/eb-1771-astronomy-p487.svg",
+          "edition": "1st edition, Vol. I",
+          "year": 1771
+        },
+        {
+          "cite_id": "WP:Astronomy",
+          "source": "wikipedia",
+          "title": "Astronomy",
+          "snippet": "Astronomy is a natural science that studies celestial objects and the phenomena that occur in the cosmos. It uses mathematics, physics, and chemistry to explain their origin and their overall evolution.",
+          "url": "https://en.wikipedia.org/wiki/Astronomy",
+          "image_url": null,
+          "edition": null,
+          "year": 2026
+        },
+        {
+          "cite_id": "WP:Solar_System#planets",
+          "source": "wikipedia",
+          "title": "Solar System",
+          "snippet": "The Solar System consists of the Sun and the objects that orbit it. It has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
+          "url": "https://en.wikipedia.org/wiki/Solar_System",
+          "image_url": null,
+          "edition": null,
+          "year": 2026
+        }
+      ],
+      "unsupported": [],
+      "trace": [
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "astronomy"
+          },
+          "n_hits": 3,
+          "cite_ids": [
+            "EB:1771-v1-p487",
+            "EB:1771-v1-p491",
+            "EB:1771-v1-p489"
+          ]
+        },
+        {
+          "name": "search_wikipedia",
+          "args": {
+            "query": "astronomy"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "WP:Astronomy"
+          ]
+        },
+        {
+          "name": "get_wikipedia_article",
+          "args": {
+            "title": "Solar System"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "WP:Solar_System#planets"
+          ]
+        }
+      ],
+      "evidence": {
+        "support": 0.86,
+        "claims": [
+          {
+            "text": "In 1771 Britannica defined astronomy as the science of the celestial bodies, their magnitudes, motions, distances, periods, eclipses and order.",
+            "cites": [
+              "EB:1771-v1-p487"
+            ],
+            "support": 0.95,
+            "flag": "supported"
+          },
+          {
+            "text": "Wikipedia's definition is nearly the same, adding mathematics, physics and chemistry.",
+            "cites": [
+              "WP:Astronomy"
+            ],
+            "support": 0.9,
+            "flag": "supported"
+          },
+          {
+            "text": "Britannica listed six primary planets in 1771; Wikipedia lists eight.",
+            "cites": [
+              "EB:1771-v1-p489",
+              "WP:Solar_System#planets"
+            ],
+            "support": 0.88,
+            "flag": "supported"
+          },
+          {
+            "text": "The 1771 text calls the Copernican system the true system of the world and a sign of the Creator's wisdom.",
+            "cites": [
+              "EB:1771-v1-p491"
+            ],
+            "support": 0.71,
+            "flag": "supported"
+          }
+        ]
+      },
+      "ran_at": "2026-10-18T08:41:12Z",
+      "model": "nvidia/Nemotron-3.5-Super-VL"
+    },
+    "plate-solar-system": {
+      "answer": "Plate XL of the 1771 edition is a copper engraving of **the Copernican system**: the Sun at the centre and six evenly spaced circular orbits, one per planet, labelled Mercury to Saturn [EB:1771-v1-p489]. The caption calls them “the six primary planets”.\n\nWikipedia illustrates the subject with a colour diagram of **eight planets** and Pluto as a dwarf planet, drawn by size rather than by orbit [WP:Solar_System#planets]. The shift is from the *geometry* of the system (where things move) to the *bodies* themselves (what they look like) — and two more planets.",
+      "citations": [
+        {
+          "cite_id": "EB:1771-v1-p489",
+          "source": "britannica",
+          "title": "ASTRONOMY — Of the Solar System",
+          "snippet": "The solar system consists of the sun, and the planets and comets moving about him. The planets are six in number: Mercury, Venus, the Earth, Mars, Jupiter, and Saturn.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133925",
+          "image_url": "/mock/eb-1771-plate-solar-system.svg",
+          "edition": "1st edition, Vol. I",
+          "year": 1771
+        },
+        {
+          "cite_id": "WP:Solar_System#planets",
+          "source": "wikipedia",
+          "title": "Solar System",
+          "snippet": "The Solar System consists of the Sun and the objects that orbit it. It has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
+          "url": "https://en.wikipedia.org/wiki/Solar_System",
+          "image_url": null,
+          "edition": null,
+          "year": 2026
+        },
+        {
+          "cite_id": "EB:1771-v1-p491",
+          "source": "britannica",
+          "title": "ASTRONOMY — Of the Systems of the World",
+          "snippet": "The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican, which places the sun in the centre, is demonstrated to be the true system of the world.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133949",
+          "image_url": "/mock/eb-1771-astronomy-p487.svg",
+          "edition": "1st edition, Vol. I",
+          "year": 1771
+        }
+      ],
+      "unsupported": [],
+      "trace": [
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "solar system plate engraving"
+          },
+          "n_hits": 3,
+          "cite_ids": [
+            "EB:1771-v1-p489",
+            "EB:1771-v1-p491",
+            "EB:1771-v1-p487"
+          ]
+        },
+        {
+          "name": "inspect_page_image",
+          "args": {
+            "cite_id": "EB:1771-v1-p489",
+            "question": "Describe the engraving on this plate: what is drawn, and how is it labelled?"
+          },
+          "n_hits": 0,
+          "cite_ids": [],
+          "vision": {
+            "question": "Describe the engraving on this plate: what is drawn, and how is it labelled?",
+            "answer": "A copper engraving titled “PLATE XL. THE SOLAR SYSTEM”, signed “A. Bell sculp.”. The sun is a dark disc at the centre with six concentric orbits, alternately solid and dotted, each carrying a planet labelled in italic: Mercury, Venus, Earth, Mars, Jupiter, Saturn. Caption: “Fig. 1. The Copernican or Solar System, with the orbits of the six primary planets.”",
+            "images": [
+              "/mock/eb-1771-plate-solar-system.svg"
+            ]
+          }
+        },
+        {
+          "name": "get_wikipedia_article",
+          "args": {
+            "title": "Solar System"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "WP:Solar_System#planets"
+          ]
+        },
+        {
+          "name": "compare_images",
+          "args": {
+            "britannica_cite_id": "EB:1771-v1-p489",
+            "wikipedia_cite_id": "WP:Solar_System#planets",
+            "question": "Compare the 1771 plate with the modern Wikipedia image: subject, accuracy, conventions of depiction."
+          },
+          "n_hits": 0,
+          "cite_ids": [],
+          "vision": {
+            "question": "Compare the 1771 plate with the modern Wikipedia image: subject, accuracy, conventions of depiction.",
+            "answer": "Both show the Sun and its planets, but in different conventions. The 1771 plate is a geometric diagram — evenly spaced circular orbits, planets as identical dots, six planets. The modern image is a colour illustration of the bodies themselves with relative sizes, eight planets and Pluto marked as a dwarf planet; it omits the orbits entirely.",
+            "images": [
+              "/mock/eb-1771-plate-solar-system.svg",
+              "/mock/wp-solar-system.svg"
+            ]
+          }
+        }
+      ],
+      "evidence": {
+        "support": 0.79,
+        "claims": [
+          {
+            "text": "Plate XL shows the Sun at the centre with six evenly spaced orbits labelled Mercury to Saturn.",
+            "cites": [
+              "EB:1771-v1-p489"
+            ],
+            "support": 0.84,
+            "flag": "supported"
+          },
+          {
+            "text": "The caption calls them the six primary planets.",
+            "cites": [
+              "EB:1771-v1-p489"
+            ],
+            "support": 0.92,
+            "flag": "supported"
+          },
+          {
+            "text": "Wikipedia shows eight planets and Pluto as a dwarf planet.",
+            "cites": [
+              "WP:Solar_System#planets"
+            ],
+            "support": 0.89,
+            "flag": "supported"
+          },
+          {
+            "text": "The modern image is drawn by size rather than by orbit.",
+            "cites": [
+              "WP:Solar_System#planets"
+            ],
+            "support": 0.51,
+            "flag": "weak"
+          }
+        ]
+      },
+      "ran_at": "2026-10-18T08:47:55Z",
+      "model": "nvidia/Nemotron-3.5-Super-VL"
+    },
+    "not-indexed": {
+      "answer": "None of the indexed Britannica pages describes a **steam locomotive** — I could not find evidence for one, so I will not invent it.\n\nWhat the indexed pages do cover: steam as an elastic vapour that “expands prodigiously” [EB:1771-v3-p622], and the stationary *fire-engine* of Newcomen, used for raising water and “moved by the force of steam condensed under a piston” [EB:1797-v6-p581].",
+      "citations": [
+        {
+          "cite_id": "EB:1771-v3-p622",
+          "source": "britannica",
+          "title": "STEAM",
+          "snippet": "STEAM, the vapour which rises from water or other liquids when heated; it is elastic, and expands prodigiously.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "1st edition, Vol. III",
+          "year": 1771
+        },
+        {
+          "cite_id": "EB:1797-v6-p581",
+          "source": "britannica",
+          "title": "ENGINE — Fire-engine",
+          "snippet": "The fire-engine, or engine for raising water by fire, invented by Mr Newcomen, is moved by the force of steam condensed under a piston.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "3rd edition, Vol. VI",
+          "year": 1797
+        }
+      ],
+      "unsupported": [],
+      "trace": [
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "steam locomotive"
+          },
+          "n_hits": 2,
+          "cite_ids": [
+            "EB:1771-v3-p622",
+            "EB:1797-v6-p581"
+          ]
+        },
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "railway carriage drawn by engine"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "EB:1797-v6-p581"
+          ]
+        },
+        {
+          "name": "get_britannica_page",
+          "args": {
+            "cite_id": "EB:1797-v6-p581"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "EB:1797-v6-p581"
+          ]
+        }
+      ],
+      "evidence": {
+        "support": 0.81,
+        "claims": [
+          {
+            "text": "No indexed Britannica page describes a steam locomotive.",
+            "cites": [],
+            "support": null,
+            "flag": "uncited"
+          },
+          {
+            "text": "Steam is an elastic vapour that expands prodigiously.",
+            "cites": [
+              "EB:1771-v3-p622"
+            ],
+            "support": 0.83,
+            "flag": "supported"
+          },
+          {
+            "text": "Newcomen's fire-engine raised water and was moved by steam condensed under a piston.",
+            "cites": [
+              "EB:1797-v6-p581"
+            ],
+            "support": 0.79,
+            "flag": "supported"
+          }
+        ]
+      },
+      "ran_at": "2026-10-18T08:52:03Z",
+      "model": "nvidia/Nemotron-3.5-Super-VL"
+    },
+    "long-s": {
+      "answer": "Two passages use the word **such**:\n\n- CHEMISTRY (1771): “the properties of bodies, such as are discovered by fire and mixture” [EB:1771-v2-p311].\n- AGRICULTURE (1771): “such grain as is plump and heavy” [EB:1771-v1-p52].",
+      "citations": [
+        {
+          "cite_id": "EB:1771-v2-p311",
+          "source": "britannica",
+          "title": "CHEMISTRY",
+          "snippet": "Chemiftry is the fcience which teaches the properties of bodies, fuch as are difcovered by fire and mixture.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "1st edition, Vol. II",
+          "year": 1771
+        },
+        {
+          "cite_id": "EB:1771-v1-p52",
+          "source": "britannica",
+          "title": "AGRICULTURE",
+          "snippet": "The farmer muft obferve fome rules in the choice of his feed, as fuch grain as is plump and heavy.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "1st edition, Vol. I",
+          "year": 1771
+        }
+      ],
+      "unsupported": [],
+      "trace": [
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "such"
+          },
+          "n_hits": 0,
+          "cite_ids": []
+        },
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "passages using the word such"
+          },
+          "n_hits": 2,
+          "cite_ids": [
+            "EB:1771-v2-p311",
+            "EB:1771-v1-p52"
+          ]
+        },
+        {
+          "name": "get_britannica_page",
+          "args": {
+            "cite_id": "EB:1771-v2-p311"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "EB:1771-v2-p311"
+          ]
+        }
+      ],
+      "evidence": {
+        "support": 0.22,
+        "claims": [
+          {
+            "text": "CHEMISTRY (1771) contains 'such as are discovered by fire and mixture'.",
+            "cites": [
+              "EB:1771-v2-p311"
+            ],
+            "support": 0.24,
+            "flag": "weak"
+          },
+          {
+            "text": "AGRICULTURE (1771) contains 'such grain as is plump and heavy'.",
+            "cites": [
+              "EB:1771-v1-p52"
+            ],
+            "support": 0.2,
+            "flag": "unsupported"
+          }
+        ]
+      },
+      "ran_at": "2026-10-18T09:03:40Z",
+      "model": "nvidia/Nemotron-3.5-Super-VL"
+    },
+    "ambiguity-mercury": {
+      "answer": "In 1771 Britannica describes mercury as “a fluid metallic body, the heaviest of all after gold”, used in barometers [EB:1771-v3-p145]. Wikipedia describes Mercury as the first planet from the Sun and the smallest in the Solar System [WP:Mercury_(planet)].\n\n**What changed:** our understanding of Mercury changed completely — from a metal to a planet [EB:1771-v3-p145] [WP:Mercury_(planet)].",
+      "citations": [
+        {
+          "cite_id": "EB:1771-v3-p145",
+          "source": "britannica",
+          "title": "MERCURY, or Quicksilver",
+          "snippet": "MERCURY, or QUICKSILVER, a fluid metallic body, the heaviest of all after gold; used in barometers and in the amalgamation of metals.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "1st edition, Vol. III",
+          "year": 1771
+        },
+        {
+          "cite_id": "WP:Mercury_(planet)",
+          "source": "wikipedia",
+          "title": "Mercury (planet)",
+          "snippet": "Mercury is the first planet from the Sun and the smallest in the Solar System.",
+          "url": "https://en.wikipedia.org/wiki/Mercury_(planet)",
+          "image_url": null,
+          "edition": null,
+          "year": 2026
+        }
+      ],
+      "unsupported": [],
+      "trace": [
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "Mercury"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "EB:1771-v3-p145"
+          ]
+        },
+        {
+          "name": "search_wikipedia",
+          "args": {
+            "query": "Mercury"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "WP:Mercury_(planet)"
+          ]
+        }
+      ],
+      "evidence": {
+        "support": 0.64,
+        "claims": [
+          {
+            "text": "In 1771 Britannica describes mercury as a fluid metallic body used in barometers.",
+            "cites": [
+              "EB:1771-v3-p145"
+            ],
+            "support": 0.88,
+            "flag": "supported"
+          },
+          {
+            "text": "Wikipedia describes Mercury as the first planet from the Sun and the smallest in the Solar System.",
+            "cites": [
+              "WP:Mercury_(planet)"
+            ],
+            "support": 0.95,
+            "flag": "supported"
+          },
+          {
+            "text": "Our understanding of Mercury changed completely, from a metal to a planet.",
+            "cites": [
+              "EB:1771-v3-p145",
+              "WP:Mercury_(planet)"
+            ],
+            "support": 0.09,
+            "flag": "unsupported"
+          }
+        ]
+      },
+      "ran_at": "2026-10-18T09:08:17Z",
+      "model": "nvidia/Nemotron-3.5-Super-VL"
+    },
+    "aggregate-count": {
+      "answer": "About **40 of the indexed pages** concern medicine [EB:1797-v11-p233]. They range from the general definition of medicine as “the art of preserving health” [EB:1771-v3-p88] to specific complaints such as the cholic [EB:1771-v2-p190] and remedies such as bleeding [EB:1797-v4-p402].",
+      "citations": [
+        {
+          "cite_id": "EB:1771-v3-p88",
+          "source": "britannica",
+          "title": "MEDICINE",
+          "snippet": "MEDICINE is the art of preserving health, and of curing diseases.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "1st edition, Vol. III",
+          "year": 1771
+        },
+        {
+          "cite_id": "EB:1771-v2-p190",
+          "source": "britannica",
+          "title": "CHOLIC",
+          "snippet": "CHOLIC, a severe pain in the lower belly, arising from various causes.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "1st edition, Vol. II",
+          "year": 1771
+        },
+        {
+          "cite_id": "EB:1797-v4-p402",
+          "source": "britannica",
+          "title": "BLEEDING",
+          "snippet": "Bleeding is the most powerful of all remedies in inflammatory disorders.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "3rd edition, Vol. IV",
+          "year": 1797
+        }
+      ],
+      "unsupported": [
+        "EB:1797-v11-p233"
+      ],
+      "trace": [
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "medicine disease remedy",
+            "k": 8
+          },
+          "n_hits": 8,
+          "cite_ids": [
+            "EB:1771-v3-p88",
+            "EB:1771-v2-p190",
+            "EB:1797-v4-p402",
+            "EB:1771-v2-p191",
+            "EB:1797-v4-p403",
+            "EB:1771-v1-p77",
+            "EB:1797-v12-p9",
+            "EB:1771-v3-p90"
+          ]
+        },
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "physic surgery anatomy",
+            "k": 8
+          },
+          "n_hits": 2,
+          "cite_ids": [
+            "EB:1771-v1-p210",
+            "EB:1771-v3-p88"
+          ]
+        }
+      ],
+      "evidence": {
+        "support": 0.31,
+        "claims": [
+          {
+            "text": "About 40 of the indexed pages concern medicine.",
+            "cites": [
+              "EB:1797-v11-p233"
+            ],
+            "support": 0.0,
+            "flag": "unsupported"
+          },
+          {
+            "text": "Medicine is defined as the art of preserving health.",
+            "cites": [
+              "EB:1771-v3-p88"
+            ],
+            "support": 0.91,
+            "flag": "supported"
+          },
+          {
+            "text": "The pages cover specific complaints such as the cholic and remedies such as bleeding.",
+            "cites": [
+              "EB:1771-v2-p190",
+              "EB:1797-v4-p402"
+            ],
+            "support": 0.33,
+            "flag": "weak"
+          }
+        ]
+      },
+      "ran_at": "2026-10-18T09:11:52Z",
+      "model": "nvidia/Nemotron-3.5-Super-VL"
+    },
+    "time-travel": {
+      "answer": "A Britannica printed in the 1790s cannot describe Baghdad *after* 1800. What the 1797 edition does say: BAGDAT is “a city of Asiatic Turkey, on the Tigris; formerly the seat of the caliphs” [EB:1797-v3-p41]. Its later history under Ottoman rule would continue to decline in importance.",
+      "citations": [
+        {
+          "cite_id": "EB:1797-v3-p41",
+          "source": "britannica",
+          "title": "BAGDAT",
+          "snippet": "BAGDAT, a city of Asiatic Turkey, on the Tigris; formerly the seat of the caliphs.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "3rd edition, Vol. III",
+          "year": 1797
+        }
+      ],
+      "unsupported": [],
+      "trace": [
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "Baghdad history"
+          },
+          "n_hits": 0,
+          "cite_ids": []
+        },
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "Bagdat"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "EB:1797-v3-p41"
+          ]
+        }
+      ],
+      "evidence": {
+        "support": 0.58,
+        "claims": [
+          {
+            "text": "BAGDAT is a city of Asiatic Turkey on the Tigris, formerly the seat of the caliphs.",
+            "cites": [
+              "EB:1797-v3-p41"
+            ],
+            "support": 0.93,
+            "flag": "supported"
+          },
+          {
+            "text": "Its later history under Ottoman rule would continue to decline in importance.",
+            "cites": [
+              "EB:1797-v3-p41"
+            ],
+            "support": 0.23,
+            "flag": "weak"
+          }
+        ]
+      },
+      "ran_at": "2026-10-18T09:15:30Z",
+      "model": "nvidia/Nemotron-3.5-Super-VL"
+    },
+    "topic-combustion": {
+      "answer": "Britannica (1771) explains burning through **phlogiston**, “the inflammable principle” supposed to exist in all combustible bodies [EB:1771-v3-p501]. Wikipedia describes combustion as an exothermic redox reaction between a fuel and an oxidant, usually oxygen [WP:Combustion].\n\n- **Knowledge change:** the phlogiston theory was replaced by oxidation.",
+      "citations": [
+        {
+          "cite_id": "EB:1771-v3-p501",
+          "source": "britannica",
+          "title": "PHLOGISTON",
+          "snippet": "PHLOGISTON, the inflammable principle, which chemists suppose to exist in all combustible bodies.",
+          "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/",
+          "image_url": null,
+          "edition": "1st edition, Vol. III",
+          "year": 1771
+        },
+        {
+          "cite_id": "WP:Combustion",
+          "source": "wikipedia",
+          "title": "Combustion",
+          "snippet": "Combustion is a high-temperature exothermic redox chemical reaction between a fuel and an oxidant, usually atmospheric oxygen.",
+          "url": "https://en.wikipedia.org/wiki/Combustion",
+          "image_url": null,
+          "edition": null,
+          "year": 2026
+        }
+      ],
+      "unsupported": [],
+      "trace": [
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "combustion burning"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "EB:1771-v3-p501"
+          ]
+        },
+        {
+          "name": "search_wikipedia",
+          "args": {
+            "query": "combustion"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "WP:Combustion"
+          ]
+        },
+        {
+          "name": "search_britannica",
+          "args": {
+            "query": "fire flame"
+          },
+          "n_hits": 1,
+          "cite_ids": [
+            "EB:1771-v3-p501"
+          ]
+        }
+      ],
+      "evidence": {
+        "support": 0.83,
+        "claims": [
+          {
+            "text": "Britannica (1771) explains burning through phlogiston, the inflammable principle in all combustible bodies.",
+            "cites": [
+              "EB:1771-v3-p501"
+            ],
+            "support": 0.86,
+            "flag": "supported"
+          },
+          {
+            "text": "Wikipedia describes combustion as an exothermic redox reaction between a fuel and an oxidant.",
+            "cites": [
+              "WP:Combustion"
+            ],
+            "support": 0.94,
+            "flag": "supported"
+          },
+          {
+            "text": "The phlogiston theory was replaced by oxidation.",
+            "cites": [],
+            "support": null,
+            "flag": "uncited"
+          }
+        ]
+      },
+      "ran_at": "2026-10-18T09:19:44Z",
+      "model": "nvidia/Nemotron-3.5-Super-VL"
+    }
+  }
+}
