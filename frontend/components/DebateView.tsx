@@ -14,6 +14,18 @@ export function DebateView({ mock }: { mock: boolean }) {
   const { register } = useCitations();
   const { state, runLive, runMock, stop } = useDebate(register);
   const [topic, setTopic] = useState("Astronomy");
+  const [presets, setPresets] = useState(PRESETS);
+
+  /* live mode: offer the headwords of the pages that are actually indexed */
+  useEffect(() => {
+    if (mock) return;
+    fetch("/api/topics")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((t: unknown) => {
+        if (Array.isArray(t) && t.length) setPresets(t.map(String));
+      })
+      .catch(() => {});
+  }, [mock]);
 
   const running = state.status === "running" || state.status === "connecting";
 
@@ -126,7 +138,7 @@ export function DebateView({ mock }: { mock: boolean }) {
         </form>
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <span className="mr-1 text-xs text-slate-400">Try:</span>
-          {PRESETS.map((p) => (
+          {presets.map((p) => (
             <button
               key={p}
               type="button"

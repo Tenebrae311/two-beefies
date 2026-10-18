@@ -24,29 +24,48 @@ Compares historical Encyclopaedia Britannica pages (1768–1860) with modern Wik
 
 ## Setup
 
+Python 3.14 is required (Hermes Agent only supports 3.14). Hermes is not installable from PyPI, so it is cloned into `vendor/` first.
+
+**With uv:**
+
 ```bash
 ./scripts/setup.sh            # clones Hermes Agent v0.22.2 into vendor/, uv sync, npm install
-$EDITOR .env                  # NEBIUS_API_KEY, EMBED_URL, RERANK_URL, LANCEDB_URI
 ```
+
+**Without uv (pip):**
+
+```bash
+git clone --depth 1 --branch v0.22.2 https://github.com/NousResearch/hermes-agent.git vendor/hermes-agent
+python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
+python -m pip install -r requirements.txt               # installs vendor/hermes-agent + this project (pyproject.toml)
+cd frontend && npm install
+```
+
+Both ways install the same dependencies, which are listed in `pyproject.toml`. With pip, drop the `uv run` prefix from the commands below.
+
+Then fill in `.env`, starting from `.env.example`: `NEBIUS_API_KEY`, `PARSE_URL`, `EMBED_URL`, `RERANK_URL`, `LANCEDB_URI`.
 
 `hermes_home/` is used as `HERMES_HOME`, so Hermes state stays in the repo. Its `config.yaml` turns off Hermes' tool-search bridge, which means the model sees the retrieval tools directly.
 
-### Development data (until the full index exists)
+### Development data (until team 1's index exists)
 
 ```bash
-mkdir -p data/nls-trial
-curl -L -o data/nls-trial/trial.zip https://nlsfoundry.s3.amazonaws.com/trial/nls-trial-encyclopaediaBritannica.zip
-unzip -q data/nls-trial/trial.zip -d data/nls-trial/extracted
-uv run python scripts/build_fixture.py data/nls-trial/extracted/encyclopaedia-britannica-sample/144133901
+uv run python scripts/build_fixture.py --n 30 --seed 42
 ```
 
-This creates a fixture from the 1st edition (1771), Vol. 1 (A–B): all 2,298 page chunks from the ALTO OCR, plus about 25 related Wikipedia articles from the MediaWiki API (fixture only). Without `EMBED_URL`, retrieval falls back to LanceDB full-text search.
+This samples 30 pages (seeded) from the challenge dataset [NationalLibraryOfScotland/encyclopaedia_britannica_illustrated](https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated), which has 2,573 page scans across editions 1–8. The script then:
+
+- saves the scans to `data/pages/`, served by `/api/page-image/<page_index>`
+- reads the text with **Nemotron Parse** if `PARSE_URL` is set. Otherwise it falls back to Nemotron VL and then to Tesseract; the text is cached in `data/ocr/`.
+- looks up Wikipedia articles for the headwords it finds on each page (MediaWiki API, fixture only)
+
+The dataset has no page ids, so a page is identified by its row index (`page_index`). Without `EMBED_URL`, retrieval falls back to LanceDB full-text search.
 
 ## Run
 
 ```bash
 uv run python -m two_beefies.retrieval britannica "planets"            # retrieval only
-uv run python -m two_beefies.qa "How many planets did the 1771 Britannica describe?"
+uv run python -m two_beefies.qa "What does the Britannica say about <topic>, and what changed?"
 uv run python -m two_beefies.debate "Astronomy"                        # debate in the terminal
 uv run uvicorn two_beefies.api:app --port 8000                          # API for the frontend
 cd frontend && npm run dev                                              # UI on :3000 (?mock=1 works offline)

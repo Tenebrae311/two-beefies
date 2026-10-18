@@ -21,7 +21,18 @@ RERANK_URL = os.getenv("RERANK_URL", "").rstrip("/")
 RERANK_MODEL = os.getenv("RERANK_MODEL", "nvidia/llama-nemotron-rerank-vl-1b-v2")
 NIM_API_KEY = os.getenv("NIM_API_KEY", "")
 
-LANCEDB_URI = os.getenv("LANCEDB_URI", str(ROOT / "lancedb"))
+PARSE_URL = os.getenv("PARSE_URL", "").rstrip("/")
+PARSE_MODEL = os.getenv("PARSE_MODEL", "nvidia/nemotron-parse")
+PARSE_API_KEY = os.getenv("PARSE_API_KEY", "")
+
+# Britannica pages: the challenge dataset (2,573 page scans, editions 1-8)
+BRITANNICA_DATASET = "NationalLibraryOfScotland/encyclopaedia_britannica_illustrated"
+HF_CACHE = os.getenv("HF_CACHE", str(ROOT / ".hf_cache"))
+PAGES_DIR = Path(os.getenv("PAGES_DIR", str(ROOT / "data" / "pages")))  # <page_index>.jpg
+
+LANCEDB_URI = os.getenv("LANCEDB_URI", "./lancedb")
+if "://" not in LANCEDB_URI:  # local path: resolve relative to the repo, not the cwd
+    LANCEDB_URI = str((ROOT / LANCEDB_URI).resolve())
 BRITANNICA_TABLE = os.getenv("BRITANNICA_TABLE", "britannica_chunks")
 WIKIPEDIA_TABLE = os.getenv("WIKIPEDIA_TABLE", "wikipedia_chunks")
 MATCHES_TABLE = os.getenv("MATCHES_TABLE", "matches")
