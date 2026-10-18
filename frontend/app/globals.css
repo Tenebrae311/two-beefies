@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f2ee;
+  --foreground: #1c1917;
+  --parchment: #f3e7cc;
+  --parchment-deep: #e8d6ae;
+  --ink: #3b2a1a;
+  --sepia: #7a5230;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-parchment: var(--parchment);
+  --color-parchment-deep: var(--parchment-deep);
+  --color-ink: var(--ink);
+  --color-sepia: var(--sepia);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-garamond);
+  --font-fell: var(--font-fell);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Parchment texture for the Britannica side */
+.parchment {
+  background-color: var(--parchment);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(255, 250, 235, 0.65), transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(160, 110, 50, 0.16), transparent 60%),
+    radial-gradient(ellipse at 0% 100%, rgba(120, 80, 30, 0.12), transparent 50%),
+    repeating-linear-gradient(0deg, rgba(120, 80, 30, 0.025) 0px, rgba(120, 80, 30, 0.025) 1px, transparent 1px, transparent 4px);
+}
+
+.modern-grid {
+  background-color: #fbfbfc;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.header-glow {
+  background:
+    radial-gradient(ellipse at 15% -20%, rgba(214, 160, 80, 0.35), transparent 55%),
+    radial-gradient(ellipse at 90% 120%, rgba(56, 189, 248, 0.22), transparent 55%),
+    linear-gradient(180deg, #14110f 0%, #1c1917 100%);
+}
+
+.drop-cap::first-letter {
+  font-family: var(--font-fell), serif;
+  float: left;
+  font-size: 3.1em;
+  line-height: 0.85;
+  padding: 0.06em 0.08em 0 0;
+  color: #7a2e12;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.animate-slide-in {
+  animation: slide-in-right 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.caret::after {
+  content: "▍";
+  margin-left: 1px;
+  animation: caret-blink 1s steps(1) infinite;
+  opacity: 0.7;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-pop {
+  animation: pop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}

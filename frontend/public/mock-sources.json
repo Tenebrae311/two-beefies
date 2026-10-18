@@ -1,0 +1,90 @@
+{
+  "EB:1771-v1-p487": {
+    "cite_id": "EB:1771-v1-p487",
+    "source": "britannica",
+    "title": "ASTRONOMY",
+    "snippet": "ASTRONOMY is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order.",
+    "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133901",
+    "image_url": "/mock/eb-1771-astronomy-p487.svg",
+    "edition": "1st edition, Vol. I",
+    "year": 1771,
+    "text": "ASTRONOMY is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order.\n\nBy the assistance of this science, the mariner is enabled to conduct his ship through the trackless ocean; the geographer determines the longitudes of places; and the chronologer fixes the dates of remarkable events.\n\nOf all the sciences cultivated by mankind, Astronomy is acknowledged to be, and undoubtedly is, the most sublime, the most interesting, and the most useful. For, by knowledge derived from this science, not only the bulk of the earth is discovered, but our very faculties are enlarged with the grandeur of the ideas it conveys."
+  },
+  "EB:1771-v1-p489": {
+    "cite_id": "EB:1771-v1-p489",
+    "source": "britannica",
+    "title": "ASTRONOMY — Of the Solar System",
+    "snippet": "The solar system consists of the sun, and the planets and comets moving about him. The planets are six in number: Mercury, Venus, the Earth, Mars, Jupiter, and Saturn.",
+    "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133925",
+    "image_url": "/mock/eb-1771-plate-solar-system.svg",
+    "edition": "1st edition, Vol. I",
+    "year": 1771,
+    "text": "The SOLAR SYSTEM consists of the sun, and the planets and comets moving about him as their centre. The planets are of two kinds, primary and secondary.\n\nThe primary planets are six in number: Mercury, Venus, the Earth, Mars, Jupiter, and Saturn; which move round the sun in orbits nearly circular, and in the order here named, Mercury being nearest.\n\nThe secondary planets, or moons, are ten: one attending the Earth, four Jupiter, and five Saturn. That the planets are inhabited, like our earth, by creatures fitted to their several situations, is a reasonable conjecture; for it cannot be supposed the Deity would create such vast bodies to no purpose."
+  },
+  "EB:1771-v1-p491": {
+    "cite_id": "EB:1771-v1-p491",
+    "source": "britannica",
+    "title": "ASTRONOMY — Of the Systems of the World",
+    "snippet": "The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican, which places the sun in the centre, is demonstrated to be the true system of the world.",
+    "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133949",
+    "image_url": "/mock/eb-1771-astronomy-p487.svg",
+    "edition": "1st edition, Vol. I",
+    "year": 1771,
+    "text": "Of the SYSTEMS of the WORLD. The Ptolemaic system, which placed the earth immoveable in the centre, and made the sun, planets, and stars revolve about it, is now universally exploded.\n\nThe Copernican system, revived from the Pythagoreans, places the sun in the centre, and makes the earth, with the other planets, revolve about him. This is demonstrated, by the observations of the moderns, to be the true system of the world; and it displays, in the most striking manner, the wisdom and power of the Creator."
+  },
+  "EB:1853-v4-p12": {
+    "cite_id": "EB:1853-v4-p12",
+    "source": "britannica",
+    "title": "ASTRONOMY — Discovery of New Planets",
+    "snippet": "In 1781 Sir William Herschel discovered the planet Uranus; and in 1846 the planet Neptune was found in the place assigned to it by the calculations of Le Verrier and Adams.",
+    "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/192547381",
+    "image_url": "/mock/eb-1853-astronomy-p12.svg",
+    "edition": "8th edition, Vol. IV",
+    "year": 1853,
+    "text": "The number of the planets known to the ancients was five, besides the earth. In 1781 Sir William Herschel discovered the planet Uranus, the first addition to the system since the remotest antiquity.\n\nIn the first years of the present century the small planets Ceres, Pallas, Juno, and Vesta were found between the orbits of Mars and Jupiter, and their number has since been greatly increased.\n\nLastly, in 1846, the planet Neptune was found in the place assigned to it by the calculations of M. Le Verrier and Mr Adams — the most signal triumph of physical astronomy."
+  },
+  "WP:Solar_System#planets": {
+    "cite_id": "WP:Solar_System#planets",
+    "source": "wikipedia",
+    "title": "Solar System",
+    "snippet": "The Solar System consists of the Sun and the objects that orbit it. It has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
+    "url": "https://en.wikipedia.org/wiki/Solar_System",
+    "image_url": null,
+    "edition": null,
+    "year": 2026,
+    "text": "The Solar System is the gravitationally bound system of the Sun and the objects that orbit it. It formed about 4.6 billion years ago when a dense region of a molecular cloud collapsed.\n\nThe Solar System has eight planets. In order of distance from the Sun they are the four terrestrial planets Mercury, Venus, Earth and Mars, and the four giant planets Jupiter, Saturn, Uranus and Neptune. Uranus was discovered by William Herschel in 1781 and Neptune in 1846 following predictions by Urbain Le Verrier and John Couch Adams.\n\nThere are also at least nine likely dwarf planets, including Ceres, Pluto and Eris."
+  },
+  "WP:Pluto#classification": {
+    "cite_id": "WP:Pluto#classification",
+    "source": "wikipedia",
+    "title": "Pluto",
+    "snippet": "Pluto was discovered in 1930 and was considered the ninth planet until 2006, when the IAU reclassified it as a dwarf planet.",
+    "url": "https://en.wikipedia.org/wiki/Pluto",
+    "image_url": null,
+    "edition": null,
+    "year": 2026,
+    "text": "Pluto (minor-planet designation: 134340 Pluto) is a dwarf planet in the Kuiper belt. It was discovered by Clyde Tombaugh in 1930 and was declared the ninth planet from the Sun.\n\nIn 2006 the International Astronomical Union formally defined the term planet, and Pluto — which has not cleared its orbital neighbourhood — was reclassified as a dwarf planet."
+  },
+  "WP:Astronomy": {
+    "cite_id": "WP:Astronomy",
+    "source": "wikipedia",
+    "title": "Astronomy",
+    "snippet": "Astronomy is a natural science that studies celestial objects and the phenomena that occur in the cosmos. It uses mathematics, physics, and chemistry to explain their origin and their overall evolution.",
+    "url": "https://en.wikipedia.org/wiki/Astronomy",
+    "image_url": null,
+    "edition": null,
+    "year": 2026,
+    "text": "Astronomy is a natural science that studies celestial objects and the phenomena that occur in the cosmos. It uses mathematics, physics, and chemistry in order to explain their origin and their overall evolution.\n\nObjects of interest include planets, moons, stars, nebulae, galaxies, meteoroids, asteroids, and comets. Astronomy is one of the oldest natural sciences."
+  },
+  "WP:Heliocentrism": {
+    "cite_id": "WP:Heliocentrism",
+    "source": "wikipedia",
+    "title": "Heliocentrism",
+    "snippet": "Heliocentrism is a superseded astronomical model in which the Earth and planets revolve around the Sun at the center of the universe. Copernicus presented the mathematical model in 1543.",
+    "url": "https://en.wikipedia.org/wiki/Heliocentrism",
+    "image_url": null,
+    "edition": null,
+    "year": 2026,
+    "text": "Heliocentrism is a superseded astronomical model in which the Earth and planets revolve around the Sun at the center of the universe. Historically, heliocentrism was opposed to geocentrism, which placed the Earth at the center.\n\nNicolaus Copernicus presented a fully predictive mathematical model of a heliocentric system in De revolutionibus orbium coelestium (1543). Today the Sun is known to be one of hundreds of billions of stars in the Milky Way and has no special position in the universe."
+  }
+}

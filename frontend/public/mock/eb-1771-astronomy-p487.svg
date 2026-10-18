@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 920" width="640" height="920">
+<defs>
+<radialGradient id="g" cx="45%" cy="40%" r="80%"><stop offset="0" stop-color="#f4e6c4"/><stop offset="0.7" stop-color="#e8d2a2"/><stop offset="1" stop-color="#c9a66b"/></radialGradient>
+<filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.24  0 0 0 0 0.1  0 0 0 0.10 0"/></filter>
+<filter id="ink"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="7"/><feDisplacementMap in="SourceGraphic" scale="0.9"/></filter>
+</defs>
+<rect width="640" height="920" fill="url(#g)"/>
+<rect width="640" height="920" filter="url(#n)"/>
+<circle cx="167" cy="612" r="8" fill="#9b6b2e" opacity="0.043"/>
+<circle cx="537" cy="809" r="20" fill="#9b6b2e" opacity="0.054"/>
+<circle cx="418" cy="837" r="12" fill="#9b6b2e" opacity="0.035"/>
+<circle cx="59" cy="885" r="18" fill="#9b6b2e" opacity="0.052"/>
+<circle cx="32" cy="742" r="20" fill="#9b6b2e" opacity="0.043"/>
+<circle cx="264" cy="635" r="9" fill="#9b6b2e" opacity="0.075"/>
+<circle cx="61" cy="52" r="6" fill="#9b6b2e" opacity="0.062"/>
+<circle cx="39" cy="420" r="12" fill="#9b6b2e" opacity="0.078"/>
+<circle cx="59" cy="570" r="13" fill="#9b6b2e" opacity="0.068"/>
+<g font-family="Georgia, 'Times New Roman', serif" fill="#2f2114" filter="url(#ink)">
+<text x="60" y="60" font-size="13" letter-spacing="1">A S T</text>
+<text x="580" y="60" font-size="13" text-anchor="end" letter-spacing="1">487</text>
+<line x1="56" y1="72" x2="584" y2="72" stroke="#2f2114" stroke-width="0.8"/>
+<text x="320.0" y="112" font-size="26" text-anchor="middle" letter-spacing="4">ASTRONOMY.</text>
+<text x="60" y="150" font-size="12.2">    ASTRONOMY is the science which</text>
+<text x="60" y="166" font-size="12.2">teaches the knowledge of the</text>
+<text x="60" y="182" font-size="12.2">celestial bodies, their magnitudes,</text>
+<text x="60" y="198" font-size="12.2">motions, distances, periods,</text>
+<text x="60" y="214" font-size="12.2">eclipses, and order.</text>
+<text x="60" y="230" font-size="12.2">    By the assistance of this science,</text>
+<text x="60" y="246" font-size="12.2">the mariner is enabled to conduct his</text>
+<text x="60" y="262" font-size="12.2">ship through the trackless ocean; the</text>
+<text x="60" y="278" font-size="12.2">geographer determines the longitudes</text>
+<text x="60" y="294" font-size="12.2">of places; and the chronologer fixes</text>
+<text x="60" y="310" font-size="12.2">the dates of remarkable events.</text>
+<text x="60" y="326" font-size="12.2">    Of all the sciences cultivated by</text>
+<text x="60" y="342" font-size="12.2">mankind, Astronomy is acknowledged to</text>
+<text x="60" y="358" font-size="12.2">be, and undoubtedly is, the most</text>
+<text x="60" y="374" font-size="12.2">sublime, the most interesting, and</text>
+<text x="60" y="390" font-size="12.2">the most useful. For, by knowledge</text>
+<text x="60" y="406" font-size="12.2">derived from this science, not only</text>
+<text x="60" y="422" font-size="12.2">the bulk of the earth is discovered,</text>
+<text x="60" y="438" font-size="12.2">but our very faculties are enlarged</text>
+<text x="60" y="454" font-size="12.2">with the grandeur of the ideas it</text>
+<text x="60" y="470" font-size="12.2">conveys.</text>
+<text x="60" y="486" font-size="12.2">    Of the SYSTEMS of the WORLD. The</text>
+<text x="60" y="502" font-size="12.2">Ptolemaic system, which placed the</text>
+<text x="60" y="518" font-size="12.2">earth immoveable in the centre, and</text>
+<text x="60" y="534" font-size="12.2">made the sun, planets, and stars</text>
+<text x="60" y="550" font-size="12.2">revolve about it, is now universally</text>
+<text x="60" y="566" font-size="12.2">exploded.</text>
+<text x="60" y="582" font-size="12.2">    The Copernican system, revived from</text>
+<text x="60" y="598" font-size="12.2">the Pythagoreans, places the sun in</text>
+<text x="60" y="614" font-size="12.2">the centre, and makes the earth, with</text>
+<text x="60" y="630" font-size="12.2">the other planets, revolve about him.</text>
+<text x="60" y="646" font-size="12.2">This is demonstrated, by the</text>
+<text x="60" y="662" font-size="12.2">observations of the moderns, to be</text>
+<text x="60" y="678" font-size="12.2">the true system of the world; and it</text>
+<text x="60" y="694" font-size="12.2">displays, in the most striking</text>
+<text x="60" y="710" font-size="12.2">manner, the wisdom and power of the</text>
+<text x="60" y="726" font-size="12.2">Creator.</text>
+<text x="60" y="742" font-size="12.2">Of the SYSTEMS of the WORLD. The</text>
+<text x="60" y="758" font-size="12.2">Ptolemaic system, which placed the</text>
+<text x="60" y="774" font-size="12.2">earth immoveable in the centre, and</text>
+<text x="60" y="790" font-size="12.2">made the sun, planets, and stars</text>
+<text x="60" y="806" font-size="12.2">revolve about it, is now universally</text>
+<text x="60" y="822" font-size="12.2">exploded.</text>
+<text x="60" y="838" font-size="12.2">The Copernican system, revived from</text>
+<text x="332.0" y="150" font-size="12.2">the Pythagoreans, places the sun in</text>
+<text x="332.0" y="166" font-size="12.2">the centre, and makes the earth, with</text>
+<text x="332.0" y="182" font-size="12.2">the other planets, revolve about him.</text>
+<text x="332.0" y="198" font-size="12.2">This is demonstrated, by the</text>
+<text x="332.0" y="214" font-size="12.2">observations of the moderns, to be</text>
+<text x="332.0" y="230" font-size="12.2">the true system of the world; and it</text>
+<text x="332.0" y="246" font-size="12.2">displays, in the most striking</text>
+<text x="332.0" y="262" font-size="12.2">manner, the wisdom and power of the</text>
+<text x="332.0" y="278" font-size="12.2">Creator.</text>
+<text x="332.0" y="294" font-size="12.2">By the assistance of this science,</text>
+<text x="332.0" y="310" font-size="12.2">the mariner is enabled to conduct his</text>
+<text x="332.0" y="326" font-size="12.2">ship through the trackless ocean; the</text>
+<text x="332.0" y="342" font-size="12.2">geographer determines the longitudes</text>
+<text x="332.0" y="358" font-size="12.2">of places; and the chronologer fixes</text>
+<text x="332.0" y="374" font-size="12.2">the dates of remarkable events.</text>
+<text x="332.0" y="390" font-size="12.2">Of all the sciences cultivated by</text>
+<text x="332.0" y="406" font-size="12.2">mankind, Astronomy is acknowledged to</text>
+<text x="332.0" y="422" font-size="12.2">be, and undoubtedly is, the most</text>
+<text x="332.0" y="438" font-size="12.2">sublime, the most interesting, and</text>
+<text x="332.0" y="454" font-size="12.2">the most useful. For, by knowledge</text>
+<text x="332.0" y="470" font-size="12.2">derived from this science, not only</text>
+<text x="332.0" y="486" font-size="12.2">the bulk of the earth is discovered,</text>
+<text x="332.0" y="502" font-size="12.2">but our very faculties are enlarged</text>
+<text x="332.0" y="518" font-size="12.2">with the grandeur of the ideas it</text>
+<text x="332.0" y="534" font-size="12.2">conveys.</text>
+<text x="332.0" y="550" font-size="12.2">By the assistance of this science,</text>
+<text x="332.0" y="566" font-size="12.2">the mariner is enabled to conduct his</text>
+<text x="332.0" y="582" font-size="12.2">ship through the trackless ocean; the</text>
+<text x="332.0" y="598" font-size="12.2">geographer determines the longitudes</text>
+<text x="332.0" y="614" font-size="12.2">of places; and the chronologer fixes</text>
+<text x="332.0" y="630" font-size="12.2">the dates of remarkable events.</text>
+<text x="332.0" y="646" font-size="12.2">By the assistance of this science,</text>
+<text x="332.0" y="662" font-size="12.2">the mariner is enabled to conduct his</text>
+<text x="332.0" y="678" font-size="12.2">ship through the trackless ocean; the</text>
+<text x="332.0" y="694" font-size="12.2">geographer determines the longitudes</text>
+<text x="332.0" y="710" font-size="12.2">of places; and the chronologer fixes</text>
+<text x="332.0" y="726" font-size="12.2">the dates of remarkable events.</text>
+<text x="332.0" y="742" font-size="12.2">Of the SYSTEMS of the WORLD. The</text>
+<text x="332.0" y="758" font-size="12.2">Ptolemaic system, which placed the</text>
+<text x="332.0" y="774" font-size="12.2">earth immoveable in the centre, and</text>
+<text x="332.0" y="790" font-size="12.2">made the sun, planets, and stars</text>
+<text x="332.0" y="806" font-size="12.2">revolve about it, is now universally</text>
+<text x="332.0" y="822" font-size="12.2">exploded.</text>
+<text x="332.0" y="838" font-size="12.2">Of all the sciences cultivated by</text>
+<line x1="320.0" y1="140" x2="320.0" y2="846" stroke="#2f2114" stroke-width="0.5" opacity="0.6"/>
+</g></svg>

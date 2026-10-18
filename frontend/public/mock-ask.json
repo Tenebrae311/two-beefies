@@ -1,0 +1,101 @@
+{
+  "answer": "In its first edition (1771), the *Encyclopaedia Britannica* counted **six primary planets** — Mercury, Venus, the Earth, Mars, Jupiter and Saturn — circling the Sun in the Copernican arrangement [EB:1771-v1-p489] [EB:1771-v1-p491].\n\nBy its eighth edition (1853) Britannica itself had caught up with two major discoveries: **Uranus** (Herschel, 1781) and **Neptune** (Le Verrier and Adams, 1846) [EB:1853-v4-p12].\n\nModern Wikipedia lists **eight planets**, matching the 1853 Britannica on the major planets [WP:Solar_System#planets]. The main later change is Pluto: discovered in 1930, counted as the ninth planet, and reclassified as a dwarf planet in 2006 [WP:Pluto#classification].\n\n- **Knowledge change:** 6 → 8 planets (plus dwarf planets).\n- **Perspective change:** the 1771 text reads the system as proof of the Creator's wisdom; Wikipedia calls heliocentrism a superseded model [WP:Heliocentrism].\n- One claim about Saturn's rings in the 1771 edition could not be verified [EB:1771-v1-p493].",
+  "citations": [
+    {
+      "cite_id": "EB:1771-v1-p489",
+      "source": "britannica",
+      "title": "ASTRONOMY — Of the Solar System",
+      "snippet": "The solar system consists of the sun, and the planets and comets moving about him. The planets are six in number: Mercury, Venus, the Earth, Mars, Jupiter, and Saturn.",
+      "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133925",
+      "image_url": "/mock/eb-1771-plate-solar-system.svg",
+      "edition": "1st edition, Vol. I",
+      "year": 1771
+    },
+    {
+      "cite_id": "EB:1771-v1-p491",
+      "source": "britannica",
+      "title": "ASTRONOMY — Of the Systems of the World",
+      "snippet": "The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican, which places the sun in the centre, is demonstrated to be the true system of the world.",
+      "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133949",
+      "image_url": "/mock/eb-1771-astronomy-p487.svg",
+      "edition": "1st edition, Vol. I",
+      "year": 1771
+    },
+    {
+      "cite_id": "EB:1853-v4-p12",
+      "source": "britannica",
+      "title": "ASTRONOMY — Discovery of New Planets",
+      "snippet": "In 1781 Sir William Herschel discovered the planet Uranus; and in 1846 the planet Neptune was found in the place assigned to it by the calculations of Le Verrier and Adams.",
+      "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/192547381",
+      "image_url": "/mock/eb-1853-astronomy-p12.svg",
+      "edition": "8th edition, Vol. IV",
+      "year": 1853
+    },
+    {
+      "cite_id": "WP:Solar_System#planets",
+      "source": "wikipedia",
+      "title": "Solar System",
+      "snippet": "The Solar System consists of the Sun and the objects that orbit it. It has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
+      "url": "https://en.wikipedia.org/wiki/Solar_System",
+      "image_url": null,
+      "edition": null,
+      "year": 2026
+    },
+    {
+      "cite_id": "WP:Pluto#classification",
+      "source": "wikipedia",
+      "title": "Pluto",
+      "snippet": "Pluto was discovered in 1930 and was considered the ninth planet until 2006, when the IAU reclassified it as a dwarf planet.",
+      "url": "https://en.wikipedia.org/wiki/Pluto",
+      "image_url": null,
+      "edition": null,
+      "year": 2026
+    },
+    {
+      "cite_id": "WP:Heliocentrism",
+      "source": "wikipedia",
+      "title": "Heliocentrism",
+      "snippet": "Heliocentrism is a superseded astronomical model in which the Earth and planets revolve around the Sun at the center of the universe. Copernicus presented the mathematical model in 1543.",
+      "url": "https://en.wikipedia.org/wiki/Heliocentrism",
+      "image_url": null,
+      "edition": null,
+      "year": 2026
+    }
+  ],
+  "unsupported": [
+    "EB:1771-v1-p493"
+  ],
+  "trace": [
+    {
+      "name": "search_britannica",
+      "args": {
+        "query": "number of planets",
+        "edition": 1
+      }
+    },
+    {
+      "name": "search_britannica",
+      "args": {
+        "query": "Herschel Uranus Neptune discovery"
+      }
+    },
+    {
+      "name": "search_wikipedia",
+      "args": {
+        "query": "planets of the Solar System"
+      }
+    },
+    {
+      "name": "get_wikipedia_article",
+      "args": {
+        "title": "Pluto"
+      }
+    },
+    {
+      "name": "get_wikipedia_article",
+      "args": {
+        "title": "Heliocentrism"
+      }
+    }
+  ]
+}

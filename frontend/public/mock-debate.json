@@ -1,0 +1,421 @@
+[
+  {
+    "type": "turn_start",
+    "role": "britannica",
+    "round": 1
+  },
+  {
+    "type": "tool_call",
+    "role": "britannica",
+    "name": "search_britannica",
+    "args": {
+      "query": "astronomy definition"
+    }
+  },
+  {
+    "type": "tool_result",
+    "role": "britannica",
+    "name": "search_britannica",
+    "hits": [
+      {
+        "cite_id": "EB:1771-v1-p487",
+        "source": "britannica",
+        "title": "ASTRONOMY",
+        "snippet": "ASTRONOMY is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133901",
+        "image_url": "/mock/eb-1771-astronomy-p487.svg",
+        "edition": "1st edition, Vol. I",
+        "year": 1771
+      },
+      {
+        "cite_id": "EB:1771-v1-p491",
+        "source": "britannica",
+        "title": "ASTRONOMY — Of the Systems of the World",
+        "snippet": "The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican, which places the sun in the centre, is demonstrated to be the true system of the world.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133949",
+        "image_url": "/mock/eb-1771-astronomy-p487.svg",
+        "edition": "1st edition, Vol. I",
+        "year": 1771
+      }
+    ]
+  },
+  {
+    "type": "tool_call",
+    "role": "britannica",
+    "name": "search_britannica",
+    "args": {
+      "query": "planets solar system"
+    }
+  },
+  {
+    "type": "tool_result",
+    "role": "britannica",
+    "name": "search_britannica",
+    "hits": [
+      {
+        "cite_id": "EB:1771-v1-p489",
+        "source": "britannica",
+        "title": "ASTRONOMY — Of the Solar System",
+        "snippet": "The solar system consists of the sun, and the planets and comets moving about him. The planets are six in number: Mercury, Venus, the Earth, Mars, Jupiter, and Saturn.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133925",
+        "image_url": "/mock/eb-1771-plate-solar-system.svg",
+        "edition": "1st edition, Vol. I",
+        "year": 1771
+      }
+    ]
+  },
+  {
+    "type": "turn_end",
+    "role": "britannica",
+    "round": 1,
+    "text": "Sir, the matter admits of no great dispute. **Astronomy** is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order [EB:1771-v1-p487].\n\nThe solar system consists of the sun, with the planets and comets moving about him; and the primary planets are **six in number** — Mercury, Venus, the Earth, Mars, Jupiter, and Saturn [EB:1771-v1-p489]. The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican system is demonstrated to be the true system of the world, displaying the wisdom and power of the Creator [EB:1771-v1-p491].",
+    "citations": [
+      {
+        "cite_id": "EB:1771-v1-p487",
+        "source": "britannica",
+        "title": "ASTRONOMY",
+        "snippet": "ASTRONOMY is the science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances, periods, eclipses, and order.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133901",
+        "image_url": "/mock/eb-1771-astronomy-p487.svg",
+        "edition": "1st edition, Vol. I",
+        "year": 1771
+      },
+      {
+        "cite_id": "EB:1771-v1-p489",
+        "source": "britannica",
+        "title": "ASTRONOMY — Of the Solar System",
+        "snippet": "The solar system consists of the sun, and the planets and comets moving about him. The planets are six in number: Mercury, Venus, the Earth, Mars, Jupiter, and Saturn.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133925",
+        "image_url": "/mock/eb-1771-plate-solar-system.svg",
+        "edition": "1st edition, Vol. I",
+        "year": 1771
+      },
+      {
+        "cite_id": "EB:1771-v1-p491",
+        "source": "britannica",
+        "title": "ASTRONOMY — Of the Systems of the World",
+        "snippet": "The Ptolemaic system, which placed the earth immoveable in the centre, is now universally exploded; the Copernican, which places the sun in the centre, is demonstrated to be the true system of the world.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133949",
+        "image_url": "/mock/eb-1771-astronomy-p487.svg",
+        "edition": "1st edition, Vol. I",
+        "year": 1771
+      }
+    ],
+    "unsupported": []
+  },
+  {
+    "type": "turn_start",
+    "role": "wikipedia",
+    "round": 1
+  },
+  {
+    "type": "tool_call",
+    "role": "wikipedia",
+    "name": "search_wikipedia",
+    "args": {
+      "query": "planets of the Solar System"
+    }
+  },
+  {
+    "type": "tool_result",
+    "role": "wikipedia",
+    "name": "search_wikipedia",
+    "hits": [
+      {
+        "cite_id": "WP:Solar_System#planets",
+        "source": "wikipedia",
+        "title": "Solar System",
+        "snippet": "The Solar System consists of the Sun and the objects that orbit it. It has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
+        "url": "https://en.wikipedia.org/wiki/Solar_System",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      },
+      {
+        "cite_id": "WP:Pluto#classification",
+        "source": "wikipedia",
+        "title": "Pluto",
+        "snippet": "Pluto was discovered in 1930 and was considered the ninth planet until 2006, when the IAU reclassified it as a dwarf planet.",
+        "url": "https://en.wikipedia.org/wiki/Pluto",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      }
+    ]
+  },
+  {
+    "type": "tool_call",
+    "role": "wikipedia",
+    "name": "search_wikipedia",
+    "args": {
+      "query": "astronomy"
+    }
+  },
+  {
+    "type": "tool_result",
+    "role": "wikipedia",
+    "name": "search_wikipedia",
+    "hits": [
+      {
+        "cite_id": "WP:Astronomy",
+        "source": "wikipedia",
+        "title": "Astronomy",
+        "snippet": "Astronomy is a natural science that studies celestial objects and the phenomena that occur in the cosmos. It uses mathematics, physics, and chemistry to explain their origin and their overall evolution.",
+        "url": "https://en.wikipedia.org/wiki/Astronomy",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      }
+    ]
+  },
+  {
+    "type": "turn_end",
+    "role": "wikipedia",
+    "round": 1,
+    "text": "Some of that holds up well. Astronomy is still defined as the natural science that studies celestial objects and phenomena — now explicitly using mathematics, physics and chemistry [WP:Astronomy].\n\nBut the planet count is out of date: the Solar System has **eight planets**, adding Uranus and Neptune to your six [WP:Solar_System#planets]. Pluto was even counted as a ninth from 1930 until the IAU reclassified it as a **dwarf planet** in 2006 [WP:Pluto#classification].",
+    "citations": [
+      {
+        "cite_id": "WP:Astronomy",
+        "source": "wikipedia",
+        "title": "Astronomy",
+        "snippet": "Astronomy is a natural science that studies celestial objects and the phenomena that occur in the cosmos. It uses mathematics, physics, and chemistry to explain their origin and their overall evolution.",
+        "url": "https://en.wikipedia.org/wiki/Astronomy",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      },
+      {
+        "cite_id": "WP:Solar_System#planets",
+        "source": "wikipedia",
+        "title": "Solar System",
+        "snippet": "The Solar System consists of the Sun and the objects that orbit it. It has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
+        "url": "https://en.wikipedia.org/wiki/Solar_System",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      },
+      {
+        "cite_id": "WP:Pluto#classification",
+        "source": "wikipedia",
+        "title": "Pluto",
+        "snippet": "Pluto was discovered in 1930 and was considered the ninth planet until 2006, when the IAU reclassified it as a dwarf planet.",
+        "url": "https://en.wikipedia.org/wiki/Pluto",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      }
+    ],
+    "unsupported": []
+  },
+  {
+    "type": "turn_start",
+    "role": "moderator",
+    "round": 1
+  },
+  {
+    "type": "turn_end",
+    "role": "moderator",
+    "round": 1,
+    "text": "{\"summary\": \"Both sides define astronomy in nearly identical terms, but they diverge sharply on the number of planets (six vs. eight), and the editor introduces Pluto's 2006 reclassification, which has no 1771 counterpart.\", \"points\": [{\"claim\": \"Astronomy is the science of the celestial bodies\", \"britannica\": \"“The science which teaches the knowledge of the celestial bodies…”\", \"wikipedia\": \"“A natural science that studies celestial objects and phenomena…”\", \"status\": \"agreed\", \"category\": \"language\", \"cites\": [\"EB:1771-v1-p487\", \"WP:Astronomy\"]}, {\"claim\": \"Number of planets in the solar system\", \"britannica\": \"Six primary planets, Mercury to Saturn.\", \"wikipedia\": \"Eight planets, including Uranus and Neptune.\", \"status\": \"disputed\", \"category\": \"knowledge\", \"cites\": [\"EB:1771-v1-p489\", \"WP:Solar_System#planets\"]}, {\"claim\": \"Sun at the centre of the planetary system\", \"britannica\": \"Copernican system is the true system of the world.\", \"wikipedia\": \"(not yet addressed)\", \"status\": \"disputed\", \"category\": \"perspective\", \"cites\": [\"EB:1771-v1-p491\"]}], \"converged\": false}",
+    "citations": [],
+    "unsupported": []
+  },
+  {
+    "type": "turn_start",
+    "role": "britannica",
+    "round": 2
+  },
+  {
+    "type": "tool_call",
+    "role": "britannica",
+    "name": "search_britannica",
+    "args": {
+      "query": "Herschel new planet Neptune"
+    }
+  },
+  {
+    "type": "tool_result",
+    "role": "britannica",
+    "name": "search_britannica",
+    "hits": [
+      {
+        "cite_id": "EB:1853-v4-p12",
+        "source": "britannica",
+        "title": "ASTRONOMY — Discovery of New Planets",
+        "snippet": "In 1781 Sir William Herschel discovered the planet Uranus; and in 1846 the planet Neptune was found in the place assigned to it by the calculations of Le Verrier and Adams.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/192547381",
+        "image_url": "/mock/eb-1853-astronomy-p12.svg",
+        "edition": "8th edition, Vol. IV",
+        "year": 1853
+      }
+    ]
+  },
+  {
+    "type": "turn_end",
+    "role": "britannica",
+    "round": 2,
+    "text": "I grant the point with pleasure, for our own later editions record it. In 1781 Sir William Herschel discovered the planet Uranus, and in 1846 Neptune was found in the very place assigned to it by the calculations of Le Verrier and Adams [EB:1853-v4-p12] — the most signal triumph of physical astronomy.\n\nYet I would remind my learned friend that the planets are, in all probability, inhabited like our earth [EB:1771-v1-p489], and that the *plurality of worlds* was affirmed by the best philosophers of the age [EB:1771-v3-p118].",
+    "citations": [
+      {
+        "cite_id": "EB:1853-v4-p12",
+        "source": "britannica",
+        "title": "ASTRONOMY — Discovery of New Planets",
+        "snippet": "In 1781 Sir William Herschel discovered the planet Uranus; and in 1846 the planet Neptune was found in the place assigned to it by the calculations of Le Verrier and Adams.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/192547381",
+        "image_url": "/mock/eb-1853-astronomy-p12.svg",
+        "edition": "8th edition, Vol. IV",
+        "year": 1853
+      },
+      {
+        "cite_id": "EB:1771-v1-p489",
+        "source": "britannica",
+        "title": "ASTRONOMY — Of the Solar System",
+        "snippet": "The solar system consists of the sun, and the planets and comets moving about him. The planets are six in number: Mercury, Venus, the Earth, Mars, Jupiter, and Saturn.",
+        "url": "https://digital.nls.uk/encyclopaedia-britannica/archive/144133925",
+        "image_url": "/mock/eb-1771-plate-solar-system.svg",
+        "edition": "1st edition, Vol. I",
+        "year": 1771
+      }
+    ],
+    "unsupported": [
+      "EB:1771-v3-p118"
+    ]
+  },
+  {
+    "type": "turn_start",
+    "role": "wikipedia",
+    "round": 2
+  },
+  {
+    "type": "tool_call",
+    "role": "wikipedia",
+    "name": "get_wikipedia_article",
+    "args": {
+      "title": "Heliocentrism"
+    }
+  },
+  {
+    "type": "tool_result",
+    "role": "wikipedia",
+    "name": "get_wikipedia_article",
+    "hits": [
+      {
+        "cite_id": "WP:Heliocentrism",
+        "source": "wikipedia",
+        "title": "Heliocentrism",
+        "snippet": "Heliocentrism is a superseded astronomical model in which the Earth and planets revolve around the Sun at the center of the universe. Copernicus presented the mathematical model in 1543.",
+        "url": "https://en.wikipedia.org/wiki/Heliocentrism",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      }
+    ]
+  },
+  {
+    "type": "turn_end",
+    "role": "wikipedia",
+    "round": 2,
+    "text": "Agreed on Herschel and Le Verrier — the modern record matches yours almost word for word [WP:Solar_System#planets].\n\nOn the Sun-centred system we also agree, though the framing differs: today heliocentrism is described as a *superseded* model — the Sun is one of hundreds of billions of stars with no special place in the universe, and no appeal is made to a Creator [WP:Heliocentrism]. As for inhabited planets, the modern articles make no such claim; there is simply no counterpart to that statement.",
+    "citations": [
+      {
+        "cite_id": "WP:Solar_System#planets",
+        "source": "wikipedia",
+        "title": "Solar System",
+        "snippet": "The Solar System consists of the Sun and the objects that orbit it. It has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
+        "url": "https://en.wikipedia.org/wiki/Solar_System",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      },
+      {
+        "cite_id": "WP:Heliocentrism",
+        "source": "wikipedia",
+        "title": "Heliocentrism",
+        "snippet": "Heliocentrism is a superseded astronomical model in which the Earth and planets revolve around the Sun at the center of the universe. Copernicus presented the mathematical model in 1543.",
+        "url": "https://en.wikipedia.org/wiki/Heliocentrism",
+        "image_url": null,
+        "edition": null,
+        "year": 2026
+      }
+    ],
+    "unsupported": []
+  },
+  {
+    "type": "turn_start",
+    "role": "moderator",
+    "round": 2
+  },
+  {
+    "type": "turn_end",
+    "role": "moderator",
+    "round": 2,
+    "text": "{\"summary\": \"The scholar concedes the new planets using Britannica's own 1853 edition, and both accept a Sun-centred system — though the 1771 text frames it theologically. The claim of inhabited planets has no modern counterpart, and one scholar citation (EB:1771-v3-p118) was never retrieved.\", \"points\": [{\"claim\": \"Astronomy is the science of the celestial bodies\", \"britannica\": \"“The science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances…”\", \"wikipedia\": \"“A natural science that studies celestial objects and the phenomena that occur in the cosmos.”\", \"status\": \"agreed\", \"category\": \"language\", \"cites\": [\"EB:1771-v1-p487\", \"WP:Astronomy\"]}, {\"claim\": \"The solar system has six planets\", \"britannica\": \"Six primary planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn (1771).\", \"wikipedia\": \"Eight planets; Uranus (1781) and Neptune (1846) added, Pluto demoted to dwarf planet (2006).\", \"status\": \"disputed\", \"category\": \"knowledge\", \"cites\": [\"EB:1771-v1-p489\", \"WP:Solar_System#planets\", \"WP:Pluto#classification\"]}, {\"claim\": \"Uranus and Neptune were discovered by Herschel and Le Verrier/Adams\", \"britannica\": \"Recorded in the 8th edition (1853) as the triumph of physical astronomy.\", \"wikipedia\": \"Same discoverers and dates.\", \"status\": \"agreed\", \"category\": \"knowledge\", \"cites\": [\"EB:1853-v4-p12\", \"WP:Solar_System#planets\"]}, {\"claim\": \"The Sun sits at the centre of the system\", \"britannica\": \"The Copernican system is “the true system of the world”, showing the wisdom of the Creator.\", \"wikipedia\": \"Heliocentrism is a superseded model; the Sun has no special place in the universe.\", \"status\": \"agreed\", \"category\": \"perspective\", \"cites\": [\"EB:1771-v1-p491\", \"WP:Heliocentrism\"]}, {\"claim\": \"The planets are probably inhabited\", \"britannica\": \"A “reasonable conjecture” — the Deity would not create such bodies to no purpose.\", \"wikipedia\": \"No corresponding claim in modern articles.\", \"status\": \"disputed\", \"category\": \"no_counterpart\", \"cites\": [\"EB:1771-v1-p489\"]}], \"converged\": true}",
+    "citations": [],
+    "unsupported": []
+  },
+  {
+    "type": "verdict",
+    "converged": true,
+    "points": [
+      {
+        "claim": "Astronomy is the science of the celestial bodies",
+        "britannica": "“The science which teaches the knowledge of the celestial bodies, their magnitudes, motions, distances…”",
+        "wikipedia": "“A natural science that studies celestial objects and the phenomena that occur in the cosmos.”",
+        "status": "agreed",
+        "category": "language",
+        "cites": [
+          "EB:1771-v1-p487",
+          "WP:Astronomy"
+        ]
+      },
+      {
+        "claim": "The solar system has six planets",
+        "britannica": "Six primary planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn (1771).",
+        "wikipedia": "Eight planets; Uranus (1781) and Neptune (1846) added, Pluto demoted to dwarf planet (2006).",
+        "status": "disputed",
+        "category": "knowledge",
+        "cites": [
+          "EB:1771-v1-p489",
+          "WP:Solar_System#planets",
+          "WP:Pluto#classification"
+        ]
+      },
+      {
+        "claim": "Uranus and Neptune were discovered by Herschel and Le Verrier/Adams",
+        "britannica": "Recorded in the 8th edition (1853) as the triumph of physical astronomy.",
+        "wikipedia": "Same discoverers and dates.",
+        "status": "agreed",
+        "category": "knowledge",
+        "cites": [
+          "EB:1853-v4-p12",
+          "WP:Solar_System#planets"
+        ]
+      },
+      {
+        "claim": "The Sun sits at the centre of the system",
+        "britannica": "The Copernican system is “the true system of the world”, showing the wisdom of the Creator.",
+        "wikipedia": "Heliocentrism is a superseded model; the Sun has no special place in the universe.",
+        "status": "agreed",
+        "category": "perspective",
+        "cites": [
+          "EB:1771-v1-p491",
+          "WP:Heliocentrism"
+        ]
+      },
+      {
+        "claim": "The planets are probably inhabited",
+        "britannica": "A “reasonable conjecture” — the Deity would not create such bodies to no purpose.",
+        "wikipedia": "No corresponding claim in modern articles.",
+        "status": "disputed",
+        "category": "no_counterpart",
+        "cites": [
+          "EB:1771-v1-p489"
+        ]
+      }
+    ],
+    "summary": "The two encyclopaedias agree on what astronomy is and that the planets circle the Sun, but 250 years of discovery separate them on the contents of the solar system: Uranus, Neptune and the dwarf planets did not exist for the 1771 reader. The deepest shift is in perspective — the 18th-century text reads the heavens as evidence of a Creator and speculates about inhabited worlds, claims with no modern counterpart."
+  },
+  {
+    "type": "done"
+  }
+]

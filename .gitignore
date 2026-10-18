@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# two-beefies
+vendor/
+.env
+data/
+lancedb/
+hermes_home/*
+!hermes_home/config.yaml

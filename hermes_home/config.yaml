@@ -1,0 +1,11 @@
+# Project-local Hermes home (HERMES_HOME is pointed here by two_beefies.config),
+# so runs are reproducible and do not touch ~/.hermes.
+model:
+  provider: "nebius"
+  default: "nvidia/Nemotron-3.5-Super-VL"
+
+# Expose our retrieval tools directly to the model instead of hiding them behind the
+# tool_search / tool_call bridge (we only have a handful of tools per role).
+tools:
+  tool_search:
+    enabled: "off"
