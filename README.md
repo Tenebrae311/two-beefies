@@ -2,6 +2,8 @@
 
 *Team two-beefies · Nebius Build Week × NVIDIA, Nemotron Agentic AI Challenge*
 
+Demo video link can be found [here:](https://tubcloud.tu-berlin.de/s/GDf3wnzyY62kKmK)
+
 We match scanned pages of the historical **Encyclopaedia Britannica (1768–1860)** with their closest **Wikipedia** articles and let Nemotron-powered Hermes agents compare them. The creative extra is a **debate**: a *Britannica Scholar*, who can only see the old encyclopaedia, argues with a *Wikipedia Editor*, who can only see Wikipedia. A *Moderator* classifies every difference as a change in **language**, **knowledge** or **perspective**, or marks it as having **no counterpart**.
 
 Full technical documentation (setup, configuration, pipeline, model service, layout): **[docs/technical.md](docs/technical.md)**
