@@ -43,7 +43,7 @@ cd frontend && npm install
 
 Both ways install the same dependencies, which are listed in `pyproject.toml`. With pip, drop the `uv run` prefix from the commands below.
 
-Then fill in `.env`, starting from `.env.example`: `NEBIUS_API_KEY`, `PARSE_URL`, `EMBED_URL`, `RERANK_URL`, `LANCEDB_URI`.
+Then fill in `.env`, starting from `.env.example`: `NEBIUS_API_KEY`, `NVIDIA_API_KEY`, `EMBED_URL`, `RERANK_URL`, `LANCEDB_URI` (each field is explained in the file).
 
 `hermes_home/` is used as `HERMES_HOME`, so Hermes state stays in the repo. Its `config.yaml` turns off Hermes' tool-search bridge, which means the model sees the retrieval tools directly.
 
@@ -56,7 +56,7 @@ uv run python scripts/build_fixture.py --n 30 --seed 42
 This samples 30 pages (seeded) from the challenge dataset [NationalLibraryOfScotland/encyclopaedia_britannica_illustrated](https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated), which has 2,573 page scans across editions 1–8. The script then:
 
 - saves the scans to `data/pages/`, served by `/api/page-image/<page_index>`
-- reads the text with **Nemotron Parse** if `PARSE_URL` is set. Otherwise it falls back to Nemotron VL and then to Tesseract; the text is cached in `data/ocr/`.
+- reads the text with **Nemotron Parse**, using team 1's client in `src/batch_nemotron_parse.py`, if `NVIDIA_API_KEY` (or `PARSE_URL`) is set. Otherwise it falls back to Nemotron VL and then to Tesseract; the text is cached in `data/ocr/`.
 - looks up Wikipedia articles for the headwords it finds on each page (MediaWiki API, fixture only)
 
 The dataset has no page ids, so a page is identified by its row index (`page_index`). Without `EMBED_URL`, retrieval falls back to LanceDB full-text search.
@@ -182,6 +182,50 @@ winget install UB-Mannheim.TesseractOCR
 
 Die OCR-Erkennung historischer, mehrspaltiger Seiten ist nur ein Versuch und kann Nachbearbeitung benötigen. Das Script gibt neben dem erkannten Text auch `id`, Label und bibliografische Metadaten des ausgewählten Bildes aus.
 
+## 100 zufällige Bilder mit Nemotron Parse verarbeiten
+
+`src/batch_nemotron_parse.py` wählt 100 Bilder gleichverteilt und ohne Duplikate aus. Jedes Bild wird an NVIDIA Nemotron Parse gesendet und als Text gespeichert.
+
+Der API-Key wird ausschließlich über die Umgebungsvariable `NVIDIA_API_KEY` gelesen. Er gehört weder in den Quellcode noch in Git. `.env` ist durch `.gitignore` ausgeschlossen; für Nebius-Jobs sollte der Wert über SecretStash als Secret-Umgebungsvariable gesetzt werden.
+
+Windows PowerShell:
+
+```powershell
+$env:NVIDIA_API_KEY = "DEIN_KEY_NUR_LOKAL_SETZEN"
+python src/batch_nemotron_parse.py --count 100 --seed 42
+```
+
+Bash:
+
+```bash
+export NVIDIA_API_KEY="DEIN_KEY_NUR_LOKAL_SETZEN"
+python src/batch_nemotron_parse.py --count 100 --seed 42
+```
+
+Ergebnisse:
+
+```text
+.data/nemotron_parse/
+├── records.jsonl       Metadaten, OCR-Text und API-Antwort
+└── text/
+    ├── <id-1>.txt
+    ├── <id-2>.txt
+    └── ...
+```
+
+Das Script schreibt nach jedem Bild einen Datensatz und leert den Ausgabepuffer. Bei einzelnen API-Fehlern wird mit dem nächsten Bild fortgesetzt und der Fehler in `records.jsonl` vermerkt. Die Bilder werden vor dem API-Aufruf als komprimierte JPEG-Data-URI unter ungefähr 180 KB vorbereitet, damit sie inline an die API gesendet werden können.
+
+Optionen:
+
+```bash
+python src/batch_nemotron_parse.py --count 100 --seed 42
+python src/batch_nemotron_parse.py --count 100 --model nvidia/nemotron-parse
+python src/batch_nemotron_parse.py --count 100 --output-dir .data/nemotron_parse_run2
+```
+
+Den API-Key bitte nicht im Chat senden. Für die lokale Ausführung selbst als Umgebungsvariable setzen; für den Cloud-Job als Secret konfigurieren.
+
 ### Wichtiger Hinweis zu Bildern
 
 Die Query-Ausgabe beschreibt die Treffer. Die eigentlichen Bilddaten liegen im Hugging-Face-Dataset und werden von `datasets` lokal gecacht. Für Training oder Bildverarbeitung kann `iter_rows()` aus `src/query_dataset.py` verwendet werden; dort enthält jedes Ergebnis zusätzlich das Bildobjekt.
+

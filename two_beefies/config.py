@@ -21,7 +21,8 @@ RERANK_URL = os.getenv("RERANK_URL", "").rstrip("/")
 RERANK_MODEL = os.getenv("RERANK_MODEL", "nvidia/llama-nemotron-rerank-vl-1b-v2")
 NIM_API_KEY = os.getenv("NIM_API_KEY", "")
 
-PARSE_URL = os.getenv("PARSE_URL", "").rstrip("/")
+NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "")  # hosted Nemotron Parse (team 1 script)
+PARSE_URL = os.getenv("PARSE_URL", "").rstrip("/")  # optional: organizers' endpoint
 PARSE_MODEL = os.getenv("PARSE_MODEL", "nvidia/nemotron-parse")
 PARSE_API_KEY = os.getenv("PARSE_API_KEY", "")
 
