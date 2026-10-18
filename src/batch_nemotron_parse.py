@@ -24,6 +24,8 @@ except ModuleNotFoundError:  # direct invocation: python src/batch_nemotron_pars
     from query_dataset import LABEL_NAMES, iter_rows
 
 DEFAULT_BASE_URL = "https://api.tokenfactory.nebius.com/v1"
+# Kept for the shared fixture/OCR client's hosted NVIDIA backend.
+DEFAULT_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 MAX_INLINE_BYTES = 180_000
 LAYOUT_TAG_RE = re.compile(r"<(?:[xy]_[0-9.]+|class_[^<>]+)>")
 
@@ -177,10 +179,12 @@ def parse_image(
 
 def parse_settings(api_url: str | None = None, model: str | None = None) -> tuple[str, str, str]:
     """Dedicated parsers use their own optional key, never the Token Factory key."""
-    dedicated_url = api_url or os.getenv("PARSE_API_URL")
+    dedicated_url = api_url or os.getenv("PARSE_API_URL") or os.getenv("PARSE_URL")
     base = os.getenv("NEBIUS_BASE_URL", DEFAULT_BASE_URL).rstrip("/")
     url = dedicated_url or f"{base}/chat/completions"
     key = os.getenv("PARSE_API_KEY", "") if dedicated_url else os.getenv("NEBIUS_API_KEY", "")
+    if not dedicated_url and os.getenv("NVIDIA_API_KEY"):
+        url, key = DEFAULT_API_URL, os.environ["NVIDIA_API_KEY"]
     if not dedicated_url and not key:
         raise ValueError("NEBIUS_API_KEY is not set. Configure it in .env or as an environment variable.")
     model = model or os.getenv("PARSE_MODEL", "")

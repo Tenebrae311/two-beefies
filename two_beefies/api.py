@@ -9,10 +9,11 @@ import threading
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
 
-from two_beefies import qa, retrieval
+from two_beefies import config, qa, retrieval
 from two_beefies.debate import run_debate
 
 app = FastAPI(title="Knowledge Across Time")
@@ -68,6 +69,20 @@ async def source(cite_id: str) -> dict:
     if row is None:
         raise HTTPException(404, f"Unknown citation {cite_id}")
     return retrieval.to_citation(row, full_text=True)
+
+
+@app.get("/api/page-image/{page_index}")
+async def page_image(page_index: int) -> FileResponse:
+    path = config.PAGES_DIR / f"{page_index}.jpg"
+    if not path.is_file():
+        raise HTTPException(404, f"No image for page {page_index}")
+    return FileResponse(path, media_type="image/jpeg")
+
+
+@app.get("/api/topics")
+async def topics(limit: int = 12) -> list[str]:
+    """Headwords of indexed Britannica pages, for the frontend's topic presets."""
+    return await asyncio.to_thread(retrieval.topics, limit)
 
 
 @app.get("/api/health")

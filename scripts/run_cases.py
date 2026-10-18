@@ -4,7 +4,7 @@ Writes docs/cases/runs/<slug>.json (full trace incl. Hermes messages) and <slug>
 (human-readable). Pick 3 successes + 3 failures from these and annotate them in
 docs/cases/README.md.
 
-Usage: uv run python scripts/run_cases.py [--only slug1,slug2]
+Usage: uv run python scripts/run_cases.py [--topics 8] [--only slug1,slug2]
 """
 
 import json
@@ -17,32 +17,31 @@ from two_beefies.qa import ask
 
 OUT = config.ROOT / "docs" / "cases" / "runs"
 
-# (slug, question, what we expect to see)
-CANDIDATES = [
-    ("planets", "How many planets did the 1771 Britannica describe, and how does that compare "
-     "with modern Wikipedia?", "success: clear knowledge change (Uranus 1781, Neptune 1846)"),
-    ("copernican", "Does the Britannica accept that the Earth moves around the Sun? How does "
-     "Wikipedia describe the same idea?", "success: agreement, mostly language change"),
-    ("blood", "What did the Britannica say about blood and its circulation, and what has "
-     "changed according to Wikipedia?", "success: knowledge change (cells, oxygen)"),
-    ("bloodletting", "Was bloodletting recommended as a treatment in the Britannica? What does "
-     "Wikipedia say about it today?", "success: knowledge + perspective change"),
-    ("africa", "How does the Britannica describe Africa and its inhabitants compared with "
-     "Wikipedia?", "perspective change; risk of thin evidence"),
-    ("bee", "What did the Britannica know about how bees reproduce?", "knowledge change"),
-    ("air", "What is air made of, according to each source?", "knowledge change "
-     "(pre-oxygen 1771); OCR 'fpring'"),
-    ("mercury", "What does each source say about Mercury?", "failure: ambiguity "
-     "(planet / god / metal)"),
-    ("ocr-such", "Find Britannica passages that use the word 'such' about the stars.",
-     "failure: long-s OCR ('fuch')"),
-    ("count", "How many articles in the 1771 Britannica volume are about medicine?",
-     "failure: aggregate question retrieval cannot answer"),
-    ("electricity", "What did the Britannica say about electricity?", "failure: not in "
-     "the A-B fixture volume -> should admit no evidence"),
-    ("abyssinia", "How did the Britannica describe Abyssinia, and what is its modern "
-     "counterpart?", "no clear counterpart / renamed entity"),
+# Fixed probes for known weak spots: (slug, question, what we expect to see)
+PROBES = [
+    ("ambiguity-mercury", "What does each source say about Mercury?",
+     "failure risk: ambiguity (planet / god / metal)"),
+    ("aggregate-count", "How many of the indexed Britannica pages are about medicine?",
+     "failure risk: aggregate question that top-k retrieval cannot answer"),
+    ("not-indexed", "What did the Britannica say about the steam locomotive?",
+     "failure risk: topic probably not among the indexed pages -> should admit no evidence"),
+    ("long-s-ocr", "Find Britannica passages that use the word 'such'.",
+     "failure risk: long-s OCR ('fuch') breaks lexical search"),
+    ("illustrations", "Which indexed Britannica pages contain illustrations, and what do they show?",
+     "failure risk: needs the image, not just the OCR text"),
 ]
+TOPIC_TEMPLATE = ("What does the Britannica say about {t}, and how does modern Wikipedia "
+                  "describe it? What changed: language, knowledge or perspective?")
+
+
+def candidates(n_topics: int) -> list[tuple[str, str, str]]:
+    """Comparison questions for headwords that are actually indexed, plus fixed probes."""
+    from two_beefies.retrieval import topics
+    per_topic = [("topic-" + re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-"),
+                  TOPIC_TEMPLATE.format(t=t),
+                  "success candidate: indexed page with a Wikipedia counterpart")
+                 for t in topics(n_topics)]
+    return per_topic + PROBES
 
 
 def to_markdown(slug: str, expectation: str, out: dict) -> str:
@@ -64,8 +63,9 @@ def main() -> None:
     only = None
     if "--only" in sys.argv:
         only = set(sys.argv[sys.argv.index("--only") + 1].split(","))
+    n_topics = int(sys.argv[sys.argv.index("--topics") + 1]) if "--topics" in sys.argv else 8
     OUT.mkdir(parents=True, exist_ok=True)
-    for slug, question, expectation in CANDIDATES:
+    for slug, question, expectation in candidates(n_topics):
         if only and slug not in only:
             continue
         print(f"=== {slug}: {question}", flush=True)

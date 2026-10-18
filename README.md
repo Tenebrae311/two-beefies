@@ -24,29 +24,48 @@ Compares historical Encyclopaedia Britannica pages (1768–1860) with modern Wik
 
 ## Setup
 
+Python 3.14 is required (Hermes Agent only supports 3.14). Hermes is not installable from PyPI, so it is cloned into `vendor/` first.
+
+**With uv:**
+
 ```bash
 ./scripts/setup.sh            # clones Hermes Agent v0.22.2 into vendor/, uv sync, npm install
-$EDITOR .env                  # NEBIUS_API_KEY, EMBED_URL, RERANK_URL, LANCEDB_URI
 ```
+
+**Without uv (pip):**
+
+```bash
+git clone --depth 1 --branch v0.22.2 https://github.com/NousResearch/hermes-agent.git vendor/hermes-agent
+python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
+python -m pip install -r requirements.txt               # installs vendor/hermes-agent + this project (pyproject.toml)
+cd frontend && npm install
+```
+
+Both ways install the same dependencies, which are listed in `pyproject.toml`. With pip, drop the `uv run` prefix from the commands below.
+
+Then fill in `.env`, starting from `.env.example`: `NEBIUS_API_KEY`, `NVIDIA_API_KEY`, `EMBED_URL`, `RERANK_URL`, `LANCEDB_URI` (each field is explained in the file).
 
 `hermes_home/` is used as `HERMES_HOME`, so Hermes state stays in the repo. Its `config.yaml` turns off Hermes' tool-search bridge, which means the model sees the retrieval tools directly.
 
-### Development data (until the full index exists)
+### Development data (until team 1's index exists)
 
 ```bash
-mkdir -p data/nls-trial
-curl -L -o data/nls-trial/trial.zip https://nlsfoundry.s3.amazonaws.com/trial/nls-trial-encyclopaediaBritannica.zip
-unzip -q data/nls-trial/trial.zip -d data/nls-trial/extracted
-uv run python scripts/build_fixture.py data/nls-trial/extracted/encyclopaedia-britannica-sample/144133901
+uv run python scripts/build_fixture.py --n 30 --seed 42
 ```
 
-This creates a fixture from the 1st edition (1771), Vol. 1 (A–B): all 2,298 page chunks from the ALTO OCR, plus about 25 related Wikipedia articles from the MediaWiki API (fixture only). Without `EMBED_URL`, retrieval falls back to LanceDB full-text search.
+This samples 30 pages (seeded) from the challenge dataset [NationalLibraryOfScotland/encyclopaedia_britannica_illustrated](https://huggingface.co/datasets/NationalLibraryOfScotland/encyclopaedia_britannica_illustrated), which has 2,573 page scans across editions 1–8. The script then:
+
+- saves the scans to `data/pages/`, served by `/api/page-image/<page_index>`
+- reads the text with **Nemotron Parse**, using team 1's client in `src/batch_nemotron_parse.py`, if `NVIDIA_API_KEY` (or `PARSE_URL`) is set. Otherwise it falls back to Nemotron VL and then to Tesseract; the text is cached in `data/ocr/`.
+- looks up Wikipedia articles for the headwords it finds on each page (MediaWiki API, fixture only)
+
+The dataset has no page ids, so a page is identified by its row index (`page_index`). Without `EMBED_URL`, retrieval falls back to LanceDB full-text search.
 
 ## Run
 
 ```bash
 uv run python -m two_beefies.retrieval britannica "planets"            # retrieval only
-uv run python -m two_beefies.qa "How many planets did the 1771 Britannica describe?"
+uv run python -m two_beefies.qa "What does the Britannica say about <topic>, and what changed?"
 uv run python -m two_beefies.debate "Astronomy"                        # debate in the terminal
 uv run uvicorn two_beefies.api:app --port 8000                          # API for the frontend
 cd frontend && npm run dev                                              # UI on :3000 (?mock=1 works offline)
@@ -70,6 +89,7 @@ docs/cases/    agent case studies (3 successes, 3 failures)
 ### Schneller vollständiger Pipeline-Test (standardmäßig 2 Seiten)
 
 ```powershell
+python -m pip install -r requirements-pipeline.txt
 python -m src.run_small_pipeline --run-dir .data/ingestion/live100 --count 2 --allow-partial-index
 ```
 
@@ -128,7 +148,7 @@ python -m venv .venv
 # macOS/Linux:
 # source .venv/bin/activate
 
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-pipeline.txt
 ```
 
 ### Content abfragen
@@ -198,7 +218,7 @@ Die OCR-Erkennung historischer, mehrspaltiger Seiten ist nur ein Versuch und kan
 ### Konfiguration und Start
 
 ```powershell
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-pipeline.txt
 ```
 
 In der lokalen `.env`:
@@ -273,7 +293,7 @@ Quelle: [Wikimedia Foundation – Wikipedia Structured Contents, enwiki](https:/
 Die englischen Parquet-Dateien herunterladen und lokal entpacken, beispielsweise unter `data/wikipedia/enwiki/`. Die vollständige englische Ausgabe ist laut Dataset Card etwa 34,61 GiB groß; der daraus erzeugte Text-/Suchindex benötigt zusätzlichen Speicher. Der Import liest die Dateien in Batches, ohne den gesamten Bestand in den Arbeitsspeicher zu laden.
 
 ```powershell
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-pipeline.txt
 python -m src.build_wikipedia_index --source data/wikipedia/enwiki --index .data/wikipedia_en.sqlite
 # Nach einem Abbruch: dieselben Dateien und denselben Index verwenden
 python -m src.build_wikipedia_index --source data/wikipedia/enwiki --index .data/wikipedia_en.sqlite --resume
@@ -351,7 +371,7 @@ python -m src.build_remote_wikipedia_index --workers 8 --resume
 
 `src/batch_nemotron_parse.py` wählt standardmäßig 100 Bilder gleichverteilt und ohne Zurücklegen aus dem oben verlinkten Hugging-Face-Dataset aus. Jedes Bild wird über einen OpenAI-kompatiblen Nebius-Chat-Completions-Endpunkt an Nemotron Parse gesendet und als Text gespeichert. Die Dataset-ID ist nicht pro Seite eindeutig; Dateinamen enthalten deshalb zusätzlich die Position im Batch. Koordinaten- und Klassentags des Parsers werden aus dem Text entfernt; die unveränderte API-Antwort bleibt in `records.jsonl` erhalten.
 
-Zuerst `python -m pip install -r requirements.txt` ausführen und die folgenden Werte in einer `.env` im Repository-Stammverzeichnis eintragen. Das Skript lädt diese Datei automatisch; bereits gesetzte Umgebungsvariablen haben Vorrang.
+Zuerst `python -m pip install -r requirements-pipeline.txt` ausführen und die folgenden Werte in einer `.env` im Repository-Stammverzeichnis eintragen. Das Skript lädt diese Datei automatisch; bereits gesetzte Umgebungsvariablen haben Vorrang.
 
 ```dotenv
 PARSE_MODEL=nvidia/nemotron-3.5-parse

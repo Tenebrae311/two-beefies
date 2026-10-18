@@ -63,7 +63,7 @@ def _record(task_id: str | None, name: str, args: dict, rows: list[dict]) -> Non
 
 def _compact(row: dict) -> dict:
     """What the model sees for a search hit: provenance + snippet, no vectors."""
-    keys = ("cite_id", "title", "section", "edition", "year", "volume_label", "page_seq",
+    keys = ("cite_id", "title", "section", "edition", "volume_label", "page_index", "illustrated",
             "date_modified", "retrieval_score", "rerank_score")
     out = {k: row[k] for k in keys if row.get(k) is not None}
     out["snippet"] = retrieval.snippet(row.get("text", ""))

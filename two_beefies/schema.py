@@ -24,19 +24,26 @@ class ParsedPage(LanceModel):
 
 
 class BritannicaChunk(LanceModel):
-    id: str  # unique row id, cited by the agent as "EB:<id>"
-    doc_id: str  # page (or article) id this chunk belongs to
+    """One text chunk of a page from the challenge dataset
+    NationalLibraryOfScotland/encyclopaedia_britannica_illustrated (split "train").
+    The dataset has no page ids, so a page is identified by its row index."""
+
+    id: str  # unique page/chunk ID, cited by the agent as "EB:<id>"
+    doc_id: str  # stable page identity; fixture uses str(page_index), pipeline also includes an image hash
     chunk_index: int
-    title: str | None = None  # headword / running head, if known
+    page_index: int  # row index in the HF dataset
+    volume_id: str  # dataset column `id` (NLS volume id, shared by ~13 pages)
+    meta: str  # dataset column `meta` (full volume title)
+    illustrated: bool  # dataset column `label` == 1
+    title: str | None = None  # headwords found on the page, e.g. "NICE, NICHE"
     section: str | None = None
-    text: str  # OCR / Nemotron Parse text (FTS index on this column)
-    url: str | None = None  # NLS viewer URL
-    image_url: str | None = None  # scan, e.g. https://deriv.nls.uk/dcn30/.../<page_id>.30.jpg
-    edition: str | None = None  # e.g. "1st", "7th"
-    year: int | None = None
-    volume_label: str | None = None  # e.g. "First edition, 1771, Volume 1, A-B"
-    page_id: str | None = None
-    page_seq: int | None = None
+    text: str  # Nemotron Parse text (FTS index on this column)
+    url: str | None = None  # dataset viewer link for this row
+    image_url: str | None = None  # "/api/page-image/<page_index>" (served from data/pages/)
+    edition: str | None = None  # e.g. "4th (1801-1810)"
+    year: int | None = None  # first year of that edition
+    volume_label: str | None = None  # e.g. "Fourth edition, Volume 15 Part 1, NIC-ORB"
+    ocr_model: str | None = None  # parse / vl / tesseract
     embed_model: str | None = None
     vector: Vector(EMBED_DIM)
 

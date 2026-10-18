@@ -97,7 +97,9 @@ def _score(row: dict) -> float | None:
 
 
 def search(source: Source, query: str, k: int = 5, edition: str | None = None) -> list[dict]:
-    where = f"edition = {_quote(edition)}" if edition and source == "britannica" else None
+    # edition values look like "4th (1801-1810)"; match on the prefix
+    where = (f"edition LIKE {_quote(edition.strip() + '%')}"
+             if edition and source == "britannica" else None)
     rows = _candidates(source, query, config.CANDIDATES if config.RERANK_URL else k, where)
     for row in rows:
         row["retrieval_score"] = _score(row)
@@ -151,6 +153,13 @@ def counterparts(cite_id: str) -> list[dict]:
                 m["wikipedia_cite_id"] = f"WP:{wp[0]['id']}"
         out.append(m)
     return out
+
+
+def topics(limit: int = 12) -> list[str]:
+    """First headword of each indexed Britannica page (title holds "HEAD1, HEAD2, ...")."""
+    rows = _table("britannica").search().select(["title"]).limit(10_000).to_list()
+    heads = [r["title"].split(",")[0].strip().title() for r in rows if r.get("title")]
+    return list(dict.fromkeys(heads))[:limit]
 
 
 def snippet(text: str, n: int = config.SNIPPET_CHARS) -> str:

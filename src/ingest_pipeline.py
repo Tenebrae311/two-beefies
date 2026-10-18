@@ -86,9 +86,11 @@ def chunk_rows(entry: dict, text: str, split: str, model: str, size: int, overla
     edition = editions[edition_match[1].lower()] if edition_match else None
     return [{"id": f"{entry['doc_id']}-{i}", "doc_id": entry["doc_id"],
              "chunk_index": i, "text": chunk, "title": meta or entry["doc_id"],
+             "page_index": entry["dataset_index"], "volume_id": entry["dataset_id"],
+             "meta": meta, "illustrated": entry.get("label") == 1,
              "section": None, "url": f"https://huggingface.co/datasets/{DATASET_ID}/viewer/default/{split}?row={entry['dataset_index']}",
              "image_url": None, "edition": edition, "year": None, "volume_label": meta,
-             "page_id": None, "page_seq": None, "embed_model": model}
+             "ocr_model": "parse", "embed_model": model}
             for i, chunk in enumerate(chunk_text(text, size, overlap))]
 
 

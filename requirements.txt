@@ -1,7 +1,7 @@
-datasets>=3.0,<5
-Pillow>=10.0
-pytesseract>=0.3.10
-requests>=2.32.0
-python-dotenv>=1.0
-lancedb>=0.40.0
-pyarrow>=26.0.0
+# Install without uv (Python 3.14 required by Hermes Agent):
+#   git clone --depth 1 --branch v0.22.2 https://github.com/NousResearch/hermes-agent.git vendor/hermes-agent
+#   python -m pip install -r requirements.txt
+# The dependency list itself lives in pyproject.toml (also used by `uv sync`).
+# For the standalone data pipeline without Hermes, use requirements-pipeline.txt.
+-e ./vendor/hermes-agent
+-e .

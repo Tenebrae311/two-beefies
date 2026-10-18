@@ -24,6 +24,27 @@ class SampleRowsTests(unittest.TestCase):
 
 
 class ParseImageTests(unittest.TestCase):
+    @patch.dict(os.environ, {"PARSE_URL": "https://legacy-parser.example/v1/chat/completions",
+                             "PARSE_MODEL": "parse-model", "NEBIUS_API_KEY": "account-secret"}, clear=True)
+    def test_legacy_parser_url_alias_uses_dedicated_authentication(self):
+        url, model, key = parse_settings()
+        self.assertEqual(url, "https://legacy-parser.example/v1/chat/completions")
+        self.assertEqual(model, "parse-model")
+        self.assertEqual(key, "")
+
+    @patch("src.batch_nemotron_parse.parse_image", return_value=("Fixture OCR", {}))
+    def test_fixture_ocr_client_uses_shared_parser_without_forwarding_hosted_key(self, parse):
+        from two_beefies import config
+        from two_beefies.ocr import ocr_parse
+        with patch.object(config, "PARSE_URL", "https://parser.example/v1/chat/completions"), \
+                patch.object(config, "PARSE_API_KEY", ""), \
+                patch.object(config, "NVIDIA_API_KEY", "hosted-only-key"):
+            from io import BytesIO
+            data = BytesIO()
+            Image.new("RGB", (10, 10), "white").save(data, format="JPEG")
+            self.assertEqual(ocr_parse(data.getvalue()), "Fixture OCR")
+            self.assertEqual(parse.call_args.kwargs["api_key"], "")
+
     def test_removes_parse_layout_tags_but_preserves_document_content(self):
         text = "<x_0.1><y_0.25>Historical text<class_Text>\n\n<chart>data</chart>"
         self.assertEqual(extract_text(text), "Historical text\n\n<chart>data</chart>")

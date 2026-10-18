@@ -1,0 +1,9 @@
+# Standalone sampling, parsing, Wikipedia matching and embedding pipeline.
+# Does not require cloning or installing Hermes Agent.
+datasets>=3.0,<5
+Pillow>=10.0
+pytesseract>=0.3.10
+requests>=2.32.0
+python-dotenv>=1.0
+lancedb>=0.40.0
+pyarrow>=26.0.0
