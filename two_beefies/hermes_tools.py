@@ -170,7 +170,7 @@ def register() -> None:
     registry.register(
         name="find_counterparts", toolset="crosswalk",
         schema=_schema("find_counterparts",
-                       "Look up the precomputed best-matching Wikipedia articles for a Britannica "
-                       "page (from the matching pipeline), with scores and a no_clear_match flag.",
+                       "Look up the precomputed closest Wikipedia passage for a Britannica "
+                       "passage, with its cosine score and a no_clear_match flag (page-level fallback for older data).",
                        {"britannica_cite_id": _CITE}, ["britannica_cite_id"]),
         handler=_counterparts_handler)

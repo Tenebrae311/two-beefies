@@ -7,7 +7,7 @@ null. `vector` dimension must match the embedding model used for both indexing
 
 from lancedb.pydantic import LanceModel, Vector
 
-EMBED_DIM = 2048  # llama-nemotron-embed-vl-1b-v2 default; change together with team 1
+EMBED_DIM = 2048  # Nemotron default; Qwen fallback explicitly requests the same dimension.
 
 
 class ParsedPage(LanceModel):
@@ -46,6 +46,21 @@ class BritannicaChunk(LanceModel):
     ocr_model: str | None = None  # parse / vl / tesseract
     embed_model: str | None = None
     vector: Vector(EMBED_DIM)
+
+    # Logical foreign key to WikipediaChunk.id, with the article ID for grouping.
+    # None in match_no_clear_match means this chunk has not been compared yet.
+    matched_wikipedia_chunk_id: str | None = None
+    matched_wikipedia_doc_id: str | None = None
+    match_vector_score: float | None = None
+    match_no_clear_match: bool | None = None
+
+
+CHUNK_MATCH_DEFAULTS = {
+    "matched_wikipedia_chunk_id": None,
+    "matched_wikipedia_doc_id": None,
+    "match_vector_score": None,
+    "match_no_clear_match": None,
+}
 
 
 class WikipediaChunk(LanceModel):

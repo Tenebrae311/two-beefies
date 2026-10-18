@@ -97,7 +97,20 @@ Der kleine Runner verwendet bei einem vorhandenen Lauf nur die ersten zwei gespe
 
 `--allow-partial-index` erlaubt ausdrücklich die bereits importierten Shards eines unvollständigen Indexes. Ergebnisse enthalten diese eingeschränkte Corpus-Abdeckung; sie sind keine Suche im vollständigen Wikipedia-Bestand. Ohne dieses Flag wird ein unvollständiger Index abgelehnt.
 
-Fehlt der echte Nemotron-Embedding-Endpunkt (`EMBED_URL`), bleiben Parser-Texte, Analysen und Kandidaten erhalten. Der Lauf schreibt `small_pipeline_summary.json` mit Status `awaiting_nemotron_embedding_endpoint` und endet mit Exit-Code 2. Es werden weder ein anderes Modell noch Platzhaltervektoren eingesetzt. Nach Eintragen des Endpunkts wird derselbe Befehl fortgesetzt.
+Fehlt ein echter Embedding-Endpunkt (`EMBED_URL`), bleiben Parser-Texte, Analysen und Kandidaten erhalten. Der Lauf schreibt `small_pipeline_summary.json` mit Status `awaiting_embedding_endpoint` und endet mit Exit-Code 2. Nach Eintragen des Endpunkts wird derselbe Befehl fortgesetzt. Modelle werden ausschließlich über die Konfiguration gewählt; es gibt keinen stillen Modellwechsel bei API-Fehlern und keine Platzhaltervektoren.
+
+#### Expliziter Open-Source-Fallback: Qwen3-Embedding-8B
+
+Falls das eigene Nemotron-Deployment noch fehlt, unterstützt die Pipeline **`Qwen/Qwen3-Embedding-8B` (Apache-2.0)** über Nebius Token Factory. In der lokalen `.env` setzen:
+
+```dotenv
+EMBED_URL=https://api.tokenfactory.nebius.com/v1
+EMBED_MODEL=Qwen/Qwen3-Embedding-8B
+```
+
+Der vorhandene `NEBIUS_API_KEY` authentifiziert die Anfragen (einen nur für NIM gedachten `NIM_API_KEY` hierfür leer lassen). Der Qwen-Adapter fordert direkt bei der API `dimensions=2048` an; Vektoren werden weder aufgefüllt noch manuell abgeschnitten. Britannica und Wikipedia verwenden identische Passage-Embeddings. Die Vektorsuche verwendet dasselbe Modell und dieselbe Dimension, mit Qwens Suchinstruktion für Query-Embeddings. Parser und Themenanalyse verwenden weiterhin Nemotron.
+
+Der Zwei-Seiten-Startbefehl oben bleibt derselbe. `final_matching` im Ergebnis protokolliert `embed_model`, `embed_dim` und `embedding_fallback`; auch jede gespeicherte Chunk-Zeile enthält das tatsächliche `embed_model`. Bestehende Embedding-Tabellen mit einem anderen Modell werden abgelehnt. Für einen späteren Wechsel zurück zu Nemotron neue Namen für `BRITANNICA_TABLE`, `WIKIPEDIA_TABLE` und `MATCHES_TABLE` wählen und diese Vektoren neu erzeugen. Qwen ermöglicht den funktionierenden Matching-Lauf, ersetzt aber nicht den geforderten Nachweis des Nemotron-Embedders im Hackathon-Briefing.
 
 Der letzte Schritt kann separat gestartet werden:
 
@@ -105,7 +118,24 @@ Der letzte Schritt kann separat gestartet werden:
 python -m src.finalize_matches --run-dir .data/ingestion/live100 --limit 2 --allow-partial-index
 ```
 
-Er encodiert Britannica-Abschnitte und die maximal 50 Wikipedia-Kandidaten mit demselben Embedding-Modell, speichert Vektoren in `britannica_chunks`/`wikipedia_chunks` und den besten Kandidaten in `matches`. Die Bewertung ist der maximale Kosinuswert zwischen den Textabschnitten. Pro Wikipedia-Artikel werden standardmäßig höchstens acht über den Text verteilte Abschnitte berücksichtigt (`--max-article-chunks`). `--min-score` erlaubt eine Mindestähnlichkeit; darunter wird `no_clear_match` gesetzt. Geänderte OCR-Texte oder Corpus-Snapshots machen alte Kandidaten ungültig. Embeddings werden nach Modell, Endpunkt und Text gecacht.
+Er encodiert Britannica-Abschnitte und die maximal 50 Wikipedia-Kandidaten mit demselben konfigurierten Embedding-Modell (Nemotron oder dem expliziten Qwen-Fallback) und speichert die Vektoren in `britannica_chunks`/`wikipedia_chunks`. **Jede Britannica-Zeile erhält ihren eigenen semantisch ähnlichsten Wikipedia-Treffer.** Verglichen werden ausschließlich die Kandidaten der zugehörigen Britannica-Seite, mit den tatsächlich gespeicherten Vektoren.
+
+Für jede Britannica-Zeile wird pro Kandidatenartikel der höchste Kosinuswert seiner ausgewählten Wikipedia-Abschnitte berechnet. Der Artikel mit dem höchsten Wert gewinnt; die genaue Wikipedia-Zeile, die diesen Wert erzielt, wird mitgespeichert. Verschiedene Britannica-Abschnitte derselben Seite können unterschiedliche Artikel auswählen. Es ist keine globale 1:1-Zuordnung: Mehrere Britannica-Zeilen dürfen denselben Wikipedia-Treffer haben. Bei exakt gleichen Scores entscheiden lexikalischer Kandidatenrang, Artikel-ID und anschließend Chunk-Index/ID deterministisch.
+
+Die Referenz steht direkt in `britannica_chunks`:
+
+| Spalte | Bedeutung |
+|---|---|
+| `matched_wikipedia_chunk_id` | Logischer Fremdschlüssel auf `wikipedia_chunks.id`: der genaue beste Textabschnitt |
+| `matched_wikipedia_doc_id` | Wikipedia-Artikel-ID dieses Abschnitts (`wikipedia_chunks.doc_id`) |
+| `match_vector_score` | Kosinus-Ähnlichkeit im Bereich −1 bis 1 |
+| `match_no_clear_match` | `false`: Treffer verlinkt; `true`: unter Mindestscore; `null`: noch kein gültiger Vergleich |
+
+LanceDB erzwingt keine relationalen Foreign-Key-Constraints. Die Pipeline prüft deshalb vor dem Verlinken, dass jede referenzierte Zeile eindeutig vorhanden ist und Artikel-ID, Text und Embedding-Modell stimmen. Die neuen nullable Spalten werden bei vorhandenen Britannica-Tabellen additiv ergänzt. Wikipedia-Chunk-IDs enthalten Revision und Texthash; bereits gespeicherte Zielzeilen bleiben erhalten, sodass kleinere Chunk-Budgets oder neue Artikelrevisionen keine Referenzen anderer Seiten löschen.
+
+Pro Wikipedia-Artikel werden standardmäßig höchstens acht über den Text verteilte Abschnitte berücksichtigt (`--max-article-chunks`). `--min-score` erlaubt eine Mindestähnlichkeit; Standard `-1` akzeptiert den nächsten Kandidaten auch bei negativem Kosinuswert. Unter einer gesetzten Schwelle bleiben beide Referenzspalten leer, der beste Score wird trotzdem gespeichert. Fehlt ein Kandidatenartikel oder sind Embeddings ungültig, wird für die betroffene Seite kein Teilvergleich als Gewinner veröffentlicht. Frühere Zuordnungen dieser Seite werden beim erneuten Abgleich ungültig gemacht. Geänderte OCR-Texte, Corpus-Snapshots oder Artikelrevisionen machen alte Kandidaten ungültig. Embeddings werden nach Modell, Endpunkt und Text gecacht.
+
+`matches` enthält zusätzlich weiterhin den Gesamttreffer pro Seite. `retrieval.counterparts("EB:<chunk-id>")` verwendet vorrangig die neue zeilenspezifische Referenz und liefert die genaue `WP:<chunk-id>`-Zitation. `final_matches/*.json` enthält sowohl `chunk_matches` als auch das Seitenranking; die Zusammenfassung zählt außerdem `processed_chunks`, `matched_chunks` und `no_counterpart_chunks`.
 
 Rohe Parser-Texte werden außerdem unabhängig vom Embedder in LanceDBs `britannica_pages` gespeichert. Der abgeschlossene Teil des großen Laufs bleibt erhalten; für den Kurztest werden keine 100 Bilder erneut verarbeitet.
 
@@ -354,7 +384,7 @@ Im Ausgabeordner entstehen `analysis/*.json` (Zusammenfassung, Themen und Suchbe
 
 In LanceDB speichert `wikipedia_candidates` je Kandidat die Britannica-Dokument-ID, Wikipedia-ID, Rang, lexikalischen Fusionsscore, Titel, URL, Abstract-Ausschnitt, Revision, Quellenposition und Corpus-Snapshot sowie die passenden Themen/Suchanfragen. Wiederholungen aktualisieren diese Vorauswahl dokumentweise. Unlesbare Seiten oder fehlende Treffer erhalten eine leere Vorauswahl.
 
-Diese Tabelle enthält **Vorschläge**, noch keine bestätigten 1:1-Zuordnungen. `src.finalize_matches` encodiert diese maximal 50 Kandidaten und schreibt die Top-1-Entscheidung in `matches`. `WikipediaIndex.get(wikipedia_doc_id)` liefert dafür den vollständigen normalisierten Artikeltext; Kandidaten und Index müssen denselben `corpus_snapshot` verwenden.
+Diese Tabelle enthält **Vorschläge**, noch keine bestätigten Zuordnungen. `src.finalize_matches` encodiert diese maximal 50 Kandidaten und schreibt für jede Britannica-Chunk-Zeile die eigene Top-1-Referenz auf `wikipedia_chunks.id` sowie die Seitenentscheidung in `matches` (siehe oben). `WikipediaIndex.get(wikipedia_doc_id)` liefert dafür den vollständigen normalisierten Artikeltext; Kandidaten und Index müssen denselben `corpus_snapshot` verwenden.
 
 ### Wikipedia ohne vollständigen Dump-Download
 

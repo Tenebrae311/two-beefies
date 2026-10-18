@@ -21,7 +21,8 @@ from src.batch_nemotron_parse import image_to_data_uri, parse_image, parse_setti
 from src.query_dataset import DATASET_ID, iter_rows
 from two_beefies import config
 from two_beefies.embedding import embed_passages
-from two_beefies.schema import BritannicaChunk, ParsedPage
+from two_beefies.schema import BritannicaChunk, CHUNK_MATCH_DEFAULTS, ParsedPage
+from two_beefies.tables import vector_table
 from two_beefies.wiki_prefilter import WikipediaAnalysisBranch, WikipediaPrefilter
 
 
@@ -90,21 +91,12 @@ def chunk_rows(entry: dict, text: str, split: str, model: str, size: int, overla
              "meta": meta, "illustrated": entry.get("label") == 1,
              "section": None, "url": f"https://huggingface.co/datasets/{DATASET_ID}/viewer/default/{split}?row={entry['dataset_index']}",
              "image_url": None, "edition": edition, "year": None, "volume_label": meta,
-             "ocr_model": "parse", "embed_model": model}
+             "ocr_model": "parse", "embed_model": model, **CHUNK_MATCH_DEFAULTS}
             for i, chunk in enumerate(chunk_text(text, size, overlap))]
 
 
 def open_table(uri: str, name: str, model: str):
-    db = lancedb.connect(uri)
-    table = db.create_table(name, schema=BritannicaChunk, exist_ok=True)
-    expected = BritannicaChunk.to_arrow_schema()
-    if not table.schema.equals(expected, check_metadata=False):
-        raise ValueError("Existing table schema differs from BritannicaChunk; use another table")
-    # Do not silently mix vectors produced by different models.
-    literal = "'" + model.replace("'", "''") + "'"
-    if table.count_rows(f"embed_model IS NULL OR embed_model != {literal}"):
-        raise ValueError("Table contains another/unknown embedding model; use another table")
-    return table
+    return vector_table(lancedb.connect(uri), name, BritannicaChunk, model)
 
 
 def run_pipeline(*, run_dir: Path, count: int, seed: int | None, split: str, cache_dir: str,
@@ -121,7 +113,10 @@ def run_pipeline(*, run_dir: Path, count: int, seed: int | None, split: str, cac
         raise ValueError("Count and embedding batch size must be positive")
     chunk_text("validate", chunk_size, overlap)
     table = open_table(db_uri, table_name, embed_model) if embedding_enabled else None
-    pages = lancedb.connect(db_uri).create_table(config.BRITANNICA_PAGES_TABLE, schema=ParsedPage, exist_ok=True)
+    db = lancedb.connect(db_uri)
+    pages = db.create_table(config.BRITANNICA_PAGES_TABLE, schema=ParsedPage, exist_ok=True)
+    matches = (db.open_table(config.MATCHES_TABLE)
+               if embedding_enabled and config.MATCHES_TABLE in db.list_tables().tables else None)
     manifest_path = run_dir / "manifest.json"
     if resume:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -193,8 +188,10 @@ def run_pipeline(*, run_dir: Path, count: int, seed: int | None, split: str, cac
                     for row, vector in zip(rows, vectors, strict=True):
                         row["vector"] = vector
                     stage = "store"
+                    if matches is not None:
+                        matches.delete("britannica_doc_id = '" + doc_id.replace("'", "''") + "'")
                     table.merge_insert("id").when_matched_update_all().when_not_matched_insert_all().execute(rows)
-                    table.delete(f"doc_id = '{doc_id}' AND chunk_index >= {len(rows)}")
+                    table.delete("doc_id = '" + doc_id.replace("'", "''") + f"' AND chunk_index >= {len(rows)}")
                     summary["stored_images"] += 1
                     summary["stored_chunks"] += len(rows)
                     events.append({"doc_id": doc_id, "status": "stored", "stage": "embed",
