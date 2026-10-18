@@ -222,7 +222,12 @@ __marimo__/
 # two-beefies
 vendor/
 .env
-data/
+data/*
+!data/README.md
 lancedb/
 hermes_home/*
 !hermes_home/config.yaml
+
+# Hugging Face / local dataset cache
+.hf_cache/
+.data/
