@@ -102,7 +102,7 @@ export function VisionCard({
         </span>
       </figcaption>
 
-      <div className="flex gap-3 p-3">
+      <div className="flex flex-col gap-3 p-3 sm:flex-row">
         {vision.images.length > 0 && (
           <div className="flex shrink-0 items-start gap-2">
             {vision.images.map((src, i) => {
