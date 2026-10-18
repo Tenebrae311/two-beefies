@@ -1,4 +1,4 @@
-"""Sample random dataset images and parse them with NVIDIA Nemotron Parse."""
+"""Sample random dataset images and parse them with Nemotron Parse via Nebius."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ import base64
 import json
 import os
 import random
+import re
 import time
 from collections.abc import Iterable
 from io import BytesIO
@@ -14,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 import requests
+from dotenv import load_dotenv
 from PIL import Image as PILImage
 
 try:
@@ -21,9 +23,9 @@ try:
 except ModuleNotFoundError:  # direct invocation: python src/batch_nemotron_parse.py
     from query_dataset import LABEL_NAMES, iter_rows
 
-DEFAULT_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
-DEFAULT_MODEL = "nvidia/nemotron-parse"
+DEFAULT_BASE_URL = "https://api.tokenfactory.nebius.com/v1"
 MAX_INLINE_BYTES = 180_000
+LAYOUT_TAG_RE = re.compile(r"<(?:[xy]_[0-9.]+|class_[^<>]+)>")
 
 
 def sample_rows(
@@ -82,11 +84,13 @@ def image_to_data_uri(value: Any) -> str:
 
 def extract_text(parsed: Any) -> str:
     """Flatten Nemotron Parse markdown_bbox output into readable text."""
+    if isinstance(parsed, str):
+        return LAYOUT_TAG_RE.sub("", parsed).strip()
     if isinstance(parsed, dict):
         if isinstance(parsed.get("text"), str):
-            return parsed["text"].strip()
+            return extract_text(parsed["text"])
         if isinstance(parsed.get("content"), str):
-            return parsed["content"].strip()
+            return extract_text(parsed["content"])
         for key in ("data", "results", "detections", "items"):
             if key in parsed:
                 return extract_text(parsed[key])
@@ -94,7 +98,7 @@ def extract_text(parsed: Any) -> str:
         parts = []
         for item in parsed:
             if isinstance(item, dict) and isinstance(item.get("text"), str):
-                parts.append(item["text"].strip())
+                parts.append(extract_text(item["text"]))
             else:
                 text = extract_text(item)
                 if text:
@@ -106,21 +110,23 @@ def extract_text(parsed: Any) -> str:
 def parse_image(
     image_data_uri: str,
     api_key: str,
-    api_url: str = DEFAULT_API_URL,
-    model: str = DEFAULT_MODEL,
+    api_url: str,
+    model: str,
     timeout: int = 180,
     retries: int = 3,
 ) -> tuple[str, dict[str, Any]]:
     """Call Nemotron Parse and return extracted text plus raw API response."""
     payload = {
         "model": model,
-        "tools": [
-            {"type": "function", "function": {"name": "markdown_bbox"}}
-        ],
         "messages": [
             {
                 "role": "user",
                 "content": [
+                    {
+                        "type": "text",
+                        "text": "Extract all text from this document image in reading order. "
+                        "Return only the transcribed text, without commentary.",
+                    },
                     {
                         "type": "image_url",
                         "image_url": {"url": image_data_uri},
@@ -132,10 +138,11 @@ def parse_image(
         "stream": False,
     }
     headers = {
-        "Authorization": f"Bearer {api_key}",
         "Accept": "application/json",
         "Content-Type": "application/json",
     }
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
 
     last_error: Exception | None = None
     for attempt in range(retries):
@@ -154,8 +161,12 @@ def parse_image(
             tool_calls = message.get("tool_calls", [])
             if tool_calls:
                 arguments = json.loads(tool_calls[0]["function"]["arguments"])
-                return extract_text(arguments), raw
-            return extract_text(message.get("content", "")), raw
+                text = extract_text(arguments)
+            else:
+                text = extract_text(message.get("content", ""))
+            if not text:
+                raise ValueError("Parse API returned no extractable text")
+            return text, raw
         except (requests.RequestException, KeyError, IndexError, json.JSONDecodeError) as exc:
             last_error = exc
             if attempt + 1 < retries:
@@ -164,24 +175,39 @@ def parse_image(
     raise RuntimeError(f"Nemotron Parse request failed: {last_error}") from last_error
 
 
+def parse_settings(api_url: str | None = None, model: str | None = None) -> tuple[str, str, str]:
+    """Dedicated parsers use their own optional key, never the Token Factory key."""
+    dedicated_url = api_url or os.getenv("PARSE_API_URL")
+    base = os.getenv("NEBIUS_BASE_URL", DEFAULT_BASE_URL).rstrip("/")
+    url = dedicated_url or f"{base}/chat/completions"
+    key = os.getenv("PARSE_API_KEY", "") if dedicated_url else os.getenv("NEBIUS_API_KEY", "")
+    if not dedicated_url and not key:
+        raise ValueError("NEBIUS_API_KEY is not set. Configure it in .env or as an environment variable.")
+    model = model or os.getenv("PARSE_MODEL", "")
+    if not model.strip():
+        raise ValueError("Set PARSE_MODEL in .env or pass --model with the exact parser model ID.")
+    return url, model, key
+
+
 def main() -> None:
+    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--count", type=int, default=100)
     parser.add_argument("--seed", type=int, help="reproducible sample")
     parser.add_argument("--split", default="train")
     parser.add_argument("--cache-dir", default=".hf_cache")
     parser.add_argument("--output-dir", default=".data/nemotron_parse")
-    parser.add_argument("--api-url", default=DEFAULT_API_URL)
-    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--api-url")
+    parser.add_argument("--model")
     parser.add_argument("--timeout", type=int, default=180)
     args = parser.parse_args()
 
-    api_key = os.environ.get("NVIDIA_API_KEY")
-    if not api_key:
-        raise SystemExit(
-            "NVIDIA_API_KEY is not set. Configure it as an environment variable "
-            "or a Nebius SecretStash secret; do not put it in Git."
-        )
+    if args.count < 1:
+        parser.error("--count must be at least 1")
+    try:
+        args.api_url, args.model, api_key = parse_settings(args.api_url, args.model)
+    except ValueError as exc:
+        parser.error(str(exc))
 
     output_dir = Path(args.output_dir)
     text_dir = output_dir / "text"
@@ -219,7 +245,10 @@ def main() -> None:
                 )
                 result["text"] = text
                 result["raw_response"] = raw
-                (text_dir / f"{record_id}.txt").write_text(
+                # Dataset IDs can identify a volume rather than a unique page.
+                filename = f"{position:03d}_{record_id}.txt"
+                result["text_file"] = f"text/{filename}"
+                (text_dir / filename).write_text(
                     text + "\n", encoding="utf-8"
                 )
                 print(f"[{position}/{args.count}] parsed {record_id}", flush=True)

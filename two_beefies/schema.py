@@ -10,6 +10,19 @@ from lancedb.pydantic import LanceModel, Vector
 EMBED_DIM = 2048  # llama-nemotron-embed-vl-1b-v2 default; change together with team 1
 
 
+class ParsedPage(LanceModel):
+    """Durable page text, independently of embedding availability."""
+
+    doc_id: str
+    text: str
+    meta: str
+    dataset_id: str
+    dataset_index: int
+    image_file: str
+    parse_model: str
+    source_text_sha256: str
+
+
 class BritannicaChunk(LanceModel):
     id: str  # unique row id, cited by the agent as "EB:<id>"
     doc_id: str  # page (or article) id this chunk belongs to
@@ -52,3 +65,25 @@ class Match(LanceModel):
     rerank_score: float | None = None
     no_clear_match: bool = False
     reason: str | None = None  # why this is (not) a good match
+
+
+class WikipediaCandidate(LanceModel):
+    """LLM-guided lexical shortlist, not an accepted crosswalk Match."""
+
+    id: str
+    britannica_doc_id: str
+    wikipedia_doc_id: str
+    rank: int
+    lexical_score: float
+    title: str
+    url: str
+    snippet: str
+    revision_id: str
+    wikidata_qid: str | None = None
+    source_file: str
+    source_row: int
+    corpus_snapshot: str
+    analysis_model: str
+    source_text_sha256: str
+    matched_queries: list[str]
+    matched_topics: list[str]

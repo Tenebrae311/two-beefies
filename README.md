@@ -56,16 +56,38 @@ uv run python scripts/run_cases.py                                      # candid
 ## Layout
 
 ```
-src/           dataset queries + OCR (part 1, see below)
+src/           dataset queries, OCR and ingest_pipeline (sampling -> parsing -> embeddings -> LanceDB)
 tests/         tests for src/
 data/          dataset notes (data/README.md); local data is gitignored
-two_beefies/   config, schema (LanceDB contract), retrieval, hermes_tools, grounding, agents, qa, debate, api
+two_beefies/   config, schema (LanceDB contract), embedding, retrieval, hermes_tools, grounding, agents, qa, debate, api
 scripts/       setup.sh, build_fixture.py, run_cases.py
 frontend/      Next.js UI (Debate + Ask)
 docs/cases/    agent case studies (3 successes, 3 failures)
 ```
 
 ## Datensatz & OCR (Teil 1)
+
+### Schneller vollständiger Pipeline-Test (standardmäßig 2 Seiten)
+
+```powershell
+python -m src.run_small_pipeline --run-dir .data/ingestion/live100 --count 2 --allow-partial-index
+```
+
+Der kleine Runner verwendet bei einem vorhandenen Lauf nur die ersten zwei gespeicherten Seiten und vorhandene Parser-/LLM-Checkpoints. Bei einem neuen Laufordner wählt er standardmäßig nur zwei Bilder aus. Er führt Parsing, Nemotron-Analyse, Wikipedia-Vorauswahl, Embeddings und finale Top-1-Zuordnung nacheinander aus. Ein vorhandener Wikipedia-Metadatenindex wird vorausgesetzt; ein großer Indexaufbau oder Download wird nicht automatisch gestartet.
+
+`--allow-partial-index` erlaubt ausdrücklich die bereits importierten Shards eines unvollständigen Indexes. Ergebnisse enthalten diese eingeschränkte Corpus-Abdeckung; sie sind keine Suche im vollständigen Wikipedia-Bestand. Ohne dieses Flag wird ein unvollständiger Index abgelehnt.
+
+Fehlt der echte Nemotron-Embedding-Endpunkt (`EMBED_URL`), bleiben Parser-Texte, Analysen und Kandidaten erhalten. Der Lauf schreibt `small_pipeline_summary.json` mit Status `awaiting_nemotron_embedding_endpoint` und endet mit Exit-Code 2. Es werden weder ein anderes Modell noch Platzhaltervektoren eingesetzt. Nach Eintragen des Endpunkts wird derselbe Befehl fortgesetzt.
+
+Der letzte Schritt kann separat gestartet werden:
+
+```powershell
+python -m src.finalize_matches --run-dir .data/ingestion/live100 --limit 2 --allow-partial-index
+```
+
+Er encodiert Britannica-Abschnitte und die maximal 50 Wikipedia-Kandidaten mit demselben Embedding-Modell, speichert Vektoren in `britannica_chunks`/`wikipedia_chunks` und den besten Kandidaten in `matches`. Die Bewertung ist der maximale Kosinuswert zwischen den Textabschnitten. Pro Wikipedia-Artikel werden standardmäßig höchstens acht über den Text verteilte Abschnitte berücksichtigt (`--max-article-chunks`). `--min-score` erlaubt eine Mindestähnlichkeit; darunter wird `no_clear_match` gesetzt. Geänderte OCR-Texte oder Corpus-Snapshots machen alte Kandidaten ungültig. Embeddings werden nach Modell, Endpunkt und Text gecacht.
+
+Rohe Parser-Texte werden außerdem unabhängig vom Embedder in LanceDBs `britannica_pages` gespeichert. Der abgeschlossene Teil des großen Laufs bleibt erhalten; für den Kurztest werden keine 100 Bilder erneut verarbeitet.
 
 ### Enthaltene Daten
 
@@ -163,23 +185,197 @@ winget install UB-Mannheim.TesseractOCR
 
 Die OCR-Erkennung historischer, mehrspaltiger Seiten ist nur ein Versuch und kann Nachbearbeitung benötigen. Das Script gibt neben dem erkannten Text auch `id`, Label und bibliografische Metadaten des ausgewählten Bildes aus.
 
-## 100 zufällige Bilder mit Nemotron Parse verarbeiten
+## Pipeline: 100 zufällige Bilder → Parse → Embeddings → LanceDB
 
-`src/batch_nemotron_parse.py` wählt 100 Bilder gleichverteilt und ohne Duplikate aus. Jedes Bild wird an NVIDIA Nemotron Parse gesendet und als Text gespeichert.
+`src/ingest_pipeline.py` verbindet die Schritte zu einem wiederaufnehmbaren Lauf:
 
-Der API-Key wird ausschließlich über die Umgebungsvariable `NVIDIA_API_KEY` gelesen. Er gehört weder in den Quellcode noch in Git. `.env` ist durch `.gitignore` ausgeschlossen; für Nebius-Jobs sollte der Wert über SecretStash als Secret-Umgebungsvariable gesetzt werden.
+1. Standardmäßig **100 zufällige Dataset-Zeilen ohne Zurücklegen** auswählen und die Bilder lokal sichern.
+2. Bilder mit dem dedizierten Nemotron-Parser auslesen; bereinigten Text und unveränderte API-Antworten speichern.
+3. Texte in Abschnitte von maximal **2.000 Zeichen mit 200 Zeichen Überlappung** aufteilen.
+4. Die Abschnitte mit **Nemotron Embed VL** als `input_type=passage` encodieren, in Batches von maximal 16 Abschnitten.
+5. Echte **2.048-dimensionale Vektoren**, Text, Herkunft und Metadaten in LanceDBs `britannica_chunks` speichern. Ein Volltextindex wird zusätzlich aufgebaut; kleine Tabellen können direkt per Vektorsuche durchsucht werden.
+
+### Konfiguration und Start
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+In der lokalen `.env`:
+
+```dotenv
+# Dedizierter Parser, Modellkennung durch /v1/models bestätigt
+PARSE_API_URL=https://port8000-kh2kceraevwe0k1.tunnel.applications.uk-south2.nebius.cloud/v1/chat/completions
+PARSE_MODEL=nvidia/nemotron-3.5-parse
+PARSE_API_KEY=
+
+# Den tatsächlichen laufenden Embedding-NIM-Endpunkt eintragen
+EMBED_URL=https://DEIN-EMBEDDING-ENDPUNKT
+EMBED_MODEL=nvidia/llama-nemotron-embed-vl-1b-v2
+NIM_API_KEY=
+
+LANCEDB_URI=./lancedb
+BRITANNICA_TABLE=britannica_chunks
+```
+
+Der bekannte Parser benötigt beim bisherigen Test keinen Key. `PARSE_API_KEY` ist nur nötig, wenn der Parser selbst Authentifizierung verlangt. Dein `NEBIUS_API_KEY` wird nicht an einen dedizierten Parser gesendet. `NIM_API_KEY` gehört ausschließlich zur Embedding-/Reranking-Konfiguration. Tunnel-URLs können sich nach einem Deployment-Neustart ändern.
+
+Für Embeddings/Reranking über `https://api.tokenfactory.nebius.com/v1/...` wird automatisch der vorhandene `NEBIUS_API_KEY` genutzt, sofern kein expliziter `NIM_API_KEY` gesetzt ist. An separate Deployment-/Tunnel-URLs wird der Nebius-Kontokey nicht automatisch weitergegeben. Ein Nemotron-Embed-VL-Deployment muss tatsächlich verfügbar sein; bei der zuletzt geprüften Token-Factory-Modellliste dieses Kontos war es nicht enthalten. Der Endpunkt eines separat auf Nebius betriebenen NIM kann stattdessen als `EMBED_URL` eingetragen werden.
+
+Aus dem Repository-Stammverzeichnis:
+
+```powershell
+python -m src.ingest_pipeline --count 100 --run-dir .data/ingestion/run100
+# Optional: reproduzierbare Auswahl mit --seed 42
+```
+
+Ohne `--run-dir` entsteht ein neuer Zeitstempel-Ordner. Fehlt `EMBED_URL`, stoppt die Pipeline vor Download und Parsing. Platzhalter- oder Nullvektoren werden nicht gespeichert. Ein vorhandener Index mit anderem Embedding-Modell bzw. abweichendem Schema wird abgelehnt; dafür eine separate Tabelle mit `--table` wählen. Das Query-Embedding muss dasselbe Modell verwenden wie die Pipeline (`EMBED_MODEL`).
+
+### Zwischenstände und Fortsetzen
+
+```text
+.data/ingestion/run100/
+├── manifest.json       feste Bildauswahl, Dataset-Zeilen, Metadaten und Prüfsummen
+├── images/             die tatsächlich an den Parser gesendeten JPEGs
+├── parsed/             bereinigte TXT-Dateien und rohe Parser-Antworten als JSON
+├── events.jsonl        Erfolg/Fehler pro Bild und Verarbeitungsstufe
+└── summary.json        Anzahl ausgewählter/gespeicherter Bilder, Chunks und Fehler
+```
+
+```powershell
+python -m src.ingest_pipeline --resume --run-dir .data/ingestion/run100
+```
+
+Beim Fortsetzen wird die gespeicherte Auswahl verwendet, ohne das Dataset erneut zu laden. Vorhandene Parser-Antworten werden wiederverwendet, sofern Endpunkt und Parse-Modell gleich geblieben sind. Embeddings werden erneut erzeugt und per stabiler Chunk-ID aktualisiert bzw. eingefügt, statt Duplikate anzulegen. Überzählige alte Chunks desselben Dokuments werden entfernt. Fehler einzelner Bilder werden protokolliert; andere Bilder werden weiterverarbeitet. Bei Fehlern endet der Lauf mit Exit-Code 1.
+
+Die Dataset-ID kann bei verschiedenen Seiten gleich sein. Dokument-IDs der Pipeline verwenden deshalb Dataset-Zeile und Bild-Prüfsumme. Unbekannte Seitenzahlen und Erscheinungsjahre bleiben leer, statt aus der Band-ID erfunden zu werden. Der Embedding-Zweig befüllt Britannica. Der folgende LLM-Zweig baut zusätzlich eine Wikipedia-Vorauswahl auf.
+
+## Zweiter Zweig: LLM-Verständnis → bis zu 50 Wikipedia-Kandidaten pro Seite
+
+```text
+100 zufällige Bilder → Nemotron Parse → gespeicherter Seitentext
+                                       ├─ Passage-Embeddings → britannica_chunks
+                                       └─ Nemotron 3.5 Super VL
+                                          → Themen, Entitäten, Suchbegriffe, moderne Synonyme
+                                          → Suche im lokalen enwiki-Snapshot
+                                          → bis zu 50 Artikel pro Seite → wikipedia_candidates
+                                          → Embedding-Vergleich / Top-1-Match
+```
+
+Eine Britannica-Seite kann mehrere verschiedene Einträge enthalten. Das LLM analysiert deshalb bis zu acht Themen pro Seite und liefert je Thema `keywords`, `search_queries` und `suggested_titles`. Historische Schreibweisen und offensichtliche OCR-Fehler werden bei der Suche in moderne englische Begriffe überführt. Titelvorschläge sind Suchhinweise; nur Artikel, die tatsächlich im Wikipedia-Snapshot stehen, können in die Kandidatentabelle gelangen.
+
+Die Kandidaten werden über einen **SQLite-FTS5-Volltextindex** mit BM25-Gewichtung von Titel, Beschreibung, Abstract und Artikeltext gefunden. Treffer mehrerer Suchanfragen werden per Reciprocal Rank Fusion zusammengeführt und nach Artikel-ID dedupliziert. Exakte, im Snapshot bestätigte Titelvorschläge erhalten zusätzlich Gewicht. Es entstehen maximal 50 Kandidaten **pro Britannica-Seite**, nicht 50 für alle Seiten zusammen. Bei weniger Treffern wird die Liste nicht mit erfundenen oder beliebigen Artikeln aufgefüllt. Die Relevanz dieser Vorauswahl muss anschließend durch Embeddings geprüft werden.
+
+### 1. Suchindex aus dem verlinkten Kaggle-Datensatz aufbauen
+
+Quelle: [Wikimedia Foundation – Wikipedia Structured Contents, enwiki](https://www.kaggle.com/datasets/wikimedia-foundation/wikipedia-structured-contents/data?select=enwiki).
+
+Die englischen Parquet-Dateien herunterladen und lokal entpacken, beispielsweise unter `data/wikipedia/enwiki/`. Die vollständige englische Ausgabe ist laut Dataset Card etwa 34,61 GiB groß; der daraus erzeugte Text-/Suchindex benötigt zusätzlichen Speicher. Der Import liest die Dateien in Batches, ohne den gesamten Bestand in den Arbeitsspeicher zu laden.
+
+```powershell
+python -m pip install -r requirements.txt
+python -m src.build_wikipedia_index --source data/wikipedia/enwiki --index .data/wikipedia_en.sqlite
+# Nach einem Abbruch: dieselben Dateien und denselben Index verwenden
+python -m src.build_wikipedia_index --source data/wikipedia/enwiki --index .data/wikipedia_en.sqlite --resume
+```
+
+Das tatsächliche Structured-Contents-Schema wird verarbeitet: `identifier`, `name`, `url`, `description`, `abstract`, JSON-kodierte `sections`, `version.identifier` und `main_entity.identifier`. Französische Artikel werden ausgeschlossen. Bei mehrfach vorhandenen Artikel-IDs bleibt die neueste Revision erhalten. Artikeltext, Quell-Shard und Zeilennummer bleiben gespeichert, damit die spätere Embedding-Stufe die Kandidaten direkt aus dem Snapshot laden kann. Ein Index über nur einzelne Shards ist für Tests möglich; er durchsucht dann nur diesen Teilbestand.
+
+In `.env` können diese Werte gesetzt werden:
+
+```dotenv
+WIKI_ANALYSIS_MODEL=nvidia/Nemotron-3.5-Super-VL
+WIKI_INDEX_PATH=./.data/wikipedia_en.sqlite
+WIKI_CANDIDATES_TABLE=wikipedia_candidates
+```
+
+Das LLM verwendet `NEBIUS_BASE_URL` und den bereits vorhandenen `NEBIUS_API_KEY`. Es benötigt weder den Parser-Key noch einen Embedding-Endpunkt.
+
+### 2. Bereits geparste Texte nachträglich analysieren und Kandidaten finden
+
+```powershell
+# Gespeicherte Parser-Texte eines Pipeline-Laufs verwenden
+python -m src.match_wikipedia --run-dir .data/ingestion/run100
+
+# Alternativ: vorhandene Britannica-Seiten aus LanceDB lesen
+python -m src.match_wikipedia --from-db --output-dir .data/wiki_prefilter/run100
+
+# Alternativ: records.jsonl des früheren reinen Parser-Laufs verwenden
+python -m src.match_wikipedia --records .data/nemotron_parse_test_10/records.jsonl --output-dir .data/wiki_prefilter/test10
+```
+
+`--from-db` gruppiert Chunks anhand ihrer `doc_id`; mögliche Überlappungen bleiben im LLM-Eingabetext enthalten. Vorhandene vollständige Parser-Checkpoints sind deshalb die bevorzugte Quelle. Der alte `records.jsonl`-Import erzeugt eigene stabile Dokument-IDs, weil die damaligen Dataset-IDs nicht pro Seite eindeutig waren. Er verändert keine bestehenden Britannica-Chunk-IDs.
+
+Ohne lokalen Wikipedia-Bestand lassen sich zunächst nur die Themen und Suchbegriffe erzeugen. Beim späteren Suchlauf denselben Ausgabeordner verwenden, damit diese Analysen wiederverwendet werden:
+
+```powershell
+python -m src.match_wikipedia --from-db --analyze-only --output-dir .data/wiki_prefilter/run100
+# Später, sobald der Wikipedia-Index aufgebaut ist:
+python -m src.match_wikipedia --from-db --output-dir .data/wiki_prefilter/run100
+```
+
+Für einen kleinen Test kann `--limit 1` gesetzt werden. Sehr lange OCR-Texte werden anhand von vier über die Seite verteilten Ausschnitten analysiert (insgesamt maximal 24.000 Textzeichen); dies wird im Analyse-Checkpoint vermerkt.
+
+### 3. Beide Zweige direkt nach dem Parsing ausführen
+
+```powershell
+# Sampling → Parsing → LLM/Wikipedia, noch ohne Embedding-Endpunkt möglich
+python -m src.ingest_pipeline --count 100 --mode wikipedia --run-dir .data/ingestion/run100
+
+# Sampling → Parsing → sowohl LLM/Wikipedia als auch Britannica-Embeddings
+python -m src.ingest_pipeline --count 100 --mode both --run-dir .data/ingestion/run100_both
+```
+
+Bei `--mode both` werden die beiden Zweige unabhängig verarbeitet: Ein Embedding-Fehler verhindert die Wikipedia-Vorauswahl nicht und umgekehrt. Der bisherige Standard `--mode embeddings` bleibt verfügbar. Beim Fortsetzen zusätzlich `--resume` setzen.
+
+### Ergebnisse und späteres 1:1-Matching
+
+Im Ausgabeordner entstehen `analysis/*.json` (Zusammenfassung, Themen und Suchbegriffe, Modell und rohe LLM-Antwort), `candidates/*.json` (gefundene Artikel und Rangfolge), `events.jsonl` und `summary.json`. Die Gesamtpipeline legt dies unter `<run-dir>/wikipedia/` ab. LLM-Analysen werden bei gleichem Text, Metadaten, Modell, Endpunkt und Prompt wiederverwendet; die Suche wird gegen den aktuellen Index erneut ausgeführt.
+
+In LanceDB speichert `wikipedia_candidates` je Kandidat die Britannica-Dokument-ID, Wikipedia-ID, Rang, lexikalischen Fusionsscore, Titel, URL, Abstract-Ausschnitt, Revision, Quellenposition und Corpus-Snapshot sowie die passenden Themen/Suchanfragen. Wiederholungen aktualisieren diese Vorauswahl dokumentweise. Unlesbare Seiten oder fehlende Treffer erhalten eine leere Vorauswahl.
+
+Diese Tabelle enthält **Vorschläge**, noch keine bestätigten 1:1-Zuordnungen. `src.finalize_matches` encodiert diese maximal 50 Kandidaten und schreibt die Top-1-Entscheidung in `matches`. `WikipediaIndex.get(wikipedia_doc_id)` liefert dafür den vollständigen normalisierten Artikeltext; Kandidaten und Index müssen denselben `corpus_snapshot` verwenden.
+
+### Wikipedia ohne vollständigen Dump-Download
+
+`src.build_remote_wikipedia_index` kann alternativ nur Titel, Beschreibungen, IDs, URLs und Revisionsmetadaten per HTTP-Range-Zugriff aus dem offiziellen Wikimedia-Hugging-Face-Repository `wikimedia/structured-wikipedia` laden. Es wird eine feste Revision verwendet. Die Wikipedia-Artikeltexte bleiben zunächst remote und werden nur für ausgewählte Kandidaten geladen und unter `.data/wikipedia_article_cache/` gecacht. Das entspricht dem Structured-Contents-Datenformat des Kaggle-Datensatzes; der konkrete Snapshot wird ausdrücklich protokolliert.
+
+Dieser Metadatenindex sucht in Titeln/Beschreibungen, nicht im gesamten Artikeltext. Auch der vollständige Metadatenindex braucht Laufzeit; er wird deshalb nur explizit aufgebaut:
+
+```powershell
+python -m src.build_remote_wikipedia_index --workers 8
+python -m src.build_remote_wikipedia_index --workers 8 --resume
+```
+
+## Nur Parsing: 100 zufällige Bilder mit Nemotron Parse über Nebius verarbeiten
+
+`src/batch_nemotron_parse.py` wählt standardmäßig 100 Bilder gleichverteilt und ohne Zurücklegen aus dem oben verlinkten Hugging-Face-Dataset aus. Jedes Bild wird über einen OpenAI-kompatiblen Nebius-Chat-Completions-Endpunkt an Nemotron Parse gesendet und als Text gespeichert. Die Dataset-ID ist nicht pro Seite eindeutig; Dateinamen enthalten deshalb zusätzlich die Position im Batch. Koordinaten- und Klassentags des Parsers werden aus dem Text entfernt; die unveränderte API-Antwort bleibt in `records.jsonl` erhalten.
+
+Zuerst `python -m pip install -r requirements.txt` ausführen und die folgenden Werte in einer `.env` im Repository-Stammverzeichnis eintragen. Das Skript lädt diese Datei automatisch; bereits gesetzte Umgebungsvariablen haben Vorrang.
+
+```dotenv
+PARSE_MODEL=nvidia/nemotron-3.5-parse
+PARSE_API_URL=https://port8000-kh2kceraevwe0k1.tunnel.applications.uk-south2.nebius.cloud/v1/chat/completions
+PARSE_API_KEY=
+```
+
+`PARSE_MODEL` muss die genaue Kennung des Modells aus `GET /v1/models` des jeweiligen Endpunkts enthalten. Für den oben verlinkten dedizierten Parser wurde `nvidia/nemotron-3.5-parse` bestätigt. Ohne Modellkennung bricht das Skript vor dem Dataset-Download ab.
+
+Ohne `PARSE_API_URL` wird Token Factory mit `NEBIUS_API_KEY` angesprochen. Für einen dedizierten `PARSE_API_URL` wird nur der optionale `PARSE_API_KEY` verwendet. `.env` ist durch `.gitignore` ausgeschlossen; für Nebius-Jobs können Schlüssel über SecretStash als Secret-Umgebungsvariable gesetzt werden.
 
 Windows PowerShell:
 
 ```powershell
-$env:NVIDIA_API_KEY = "DEIN_KEY_NUR_LOKAL_SETZEN"
+$env:PARSE_API_URL = "https://port8000-kh2kceraevwe0k1.tunnel.applications.uk-south2.nebius.cloud/v1/chat/completions"
+$env:PARSE_MODEL = "nvidia/nemotron-3.5-parse"
 python src/batch_nemotron_parse.py --count 100 --seed 42
 ```
 
 Bash:
 
 ```bash
-export NVIDIA_API_KEY="DEIN_KEY_NUR_LOKAL_SETZEN"
+export PARSE_API_URL="https://port8000-kh2kceraevwe0k1.tunnel.applications.uk-south2.nebius.cloud/v1/chat/completions"
+export PARSE_MODEL="nvidia/nemotron-3.5-parse"
 python src/batch_nemotron_parse.py --count 100 --seed 42
 ```
 
@@ -189,8 +385,8 @@ Ergebnisse:
 .data/nemotron_parse/
 ├── records.jsonl       Metadaten, OCR-Text und API-Antwort
 └── text/
-    ├── <id-1>.txt
-    ├── <id-2>.txt
+    ├── 001_<id-1>.txt
+    ├── 002_<id-2>.txt
     └── ...
 ```
 
@@ -200,7 +396,8 @@ Optionen:
 
 ```bash
 python src/batch_nemotron_parse.py --count 100 --seed 42
-python src/batch_nemotron_parse.py --count 100 --model nvidia/nemotron-parse
+python src/batch_nemotron_parse.py --count 100 --model "EXAKTE_NEBIUS_MODELL_ID"
+python src/batch_nemotron_parse.py --count 100 --api-url "https://DEIN-ENDPUNKT/v1/chat/completions"
 python src/batch_nemotron_parse.py --count 100 --output-dir .data/nemotron_parse_run2
 ```
 

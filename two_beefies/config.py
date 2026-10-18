@@ -2,6 +2,7 @@
 
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 
@@ -21,10 +22,24 @@ RERANK_URL = os.getenv("RERANK_URL", "").rstrip("/")
 RERANK_MODEL = os.getenv("RERANK_MODEL", "nvidia/llama-nemotron-rerank-vl-1b-v2")
 NIM_API_KEY = os.getenv("NIM_API_KEY", "")
 
+
+def nim_api_key(url: str) -> str:
+    """Reuse the account key only for the official HTTPS Token Factory endpoint."""
+    if NIM_API_KEY:
+        return NIM_API_KEY
+    parsed = urlparse(url)
+    if parsed.scheme == "https" and parsed.hostname == "api.tokenfactory.nebius.com":
+        return NEBIUS_API_KEY
+    return ""
+
 LANCEDB_URI = os.getenv("LANCEDB_URI", str(ROOT / "lancedb"))
 BRITANNICA_TABLE = os.getenv("BRITANNICA_TABLE", "britannica_chunks")
+BRITANNICA_PAGES_TABLE = os.getenv("BRITANNICA_PAGES_TABLE", "britannica_pages")
 WIKIPEDIA_TABLE = os.getenv("WIKIPEDIA_TABLE", "wikipedia_chunks")
 MATCHES_TABLE = os.getenv("MATCHES_TABLE", "matches")
+WIKI_INDEX_PATH = os.getenv("WIKI_INDEX_PATH", str(ROOT / ".data" / "wikipedia_en.sqlite"))
+WIKI_CANDIDATES_TABLE = os.getenv("WIKI_CANDIDATES_TABLE", "wikipedia_candidates")
+WIKI_ANALYSIS_MODEL = os.getenv("WIKI_ANALYSIS_MODEL", "nvidia/Nemotron-3.5-Super-VL")
 
 # Retrieval knobs
 CANDIDATES = int(os.getenv("RETRIEVAL_CANDIDATES", "20"))  # vector hits handed to the reranker

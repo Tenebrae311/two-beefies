@@ -35,17 +35,19 @@ def _table(source: Source):
 
 
 def _nim_url(base: str, path: str) -> str:
-    return base if base.endswith(path) else f"{base}/v1/{path}"
+    base = base.rstrip("/")
+    return base if base.endswith(path) else f"{base}{'/' if base.endswith('/v1') else '/v1/'}{path}"
 
 
-def _nim_headers() -> dict:
-    return {"Authorization": f"Bearer {config.NIM_API_KEY}"} if config.NIM_API_KEY else {}
+def _nim_headers(url: str | None = None) -> dict:
+    key = config.nim_api_key(config.EMBED_URL if url is None else url)
+    return {"Authorization": f"Bearer {key}"} if key else {}
 
 
 def embed_query(text: str) -> list[float]:
     resp = httpx.post(
         _nim_url(config.EMBED_URL, "embeddings"),
-        headers=_nim_headers(),
+        headers=_nim_headers(config.EMBED_URL),
         json={"model": config.EMBED_MODEL, "input": [text], "input_type": "query",
               "modality": "text", "encoding_format": "float", "truncate": "END"},
         timeout=60,
@@ -58,7 +60,7 @@ def rerank(query: str, passages: list[str]) -> list[tuple[int, float]]:
     """Return (passage index, logit) sorted best first."""
     resp = httpx.post(
         _nim_url(config.RERANK_URL, "ranking"),
-        headers=_nim_headers(),
+        headers=_nim_headers(config.RERANK_URL),
         json={"model": config.RERANK_MODEL, "query": {"text": query},
               "passages": [{"text": p} for p in passages], "truncate": "END"},
         timeout=60,
