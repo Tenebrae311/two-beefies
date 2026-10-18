@@ -1,4 +1,4 @@
-"""Retrieval over the two LanceDB tables: Nemotron embed -> LanceDB -> Nemotron rerank.
+"""Retrieval: configured embedder (Nemotron or Qwen) -> LanceDB -> optional Nemotron rerank.
 
 Embedding and reranking come from the organizers' model service (one HTTP service for
 both models, see RETRIEVAL_BASE_URL). Without it, retrieval falls back to LanceDB
@@ -18,6 +18,7 @@ import lancedb
 from lancedb.index import FTS
 
 from two_beefies import config
+from two_beefies.embedding import embed_texts
 
 log = logging.getLogger(__name__)
 
@@ -79,7 +80,8 @@ def embed(texts: list[str], input_type: Literal["query", "document"]) -> list[li
 
 
 def embed_query(text: str) -> list[float]:
-    return embed([text], "query")[0]
+    return embed_texts([text], url=config.EMBED_URL, model=config.EMBED_MODEL,
+                       api_key=config.nim_api_key(config.EMBED_URL), input_type="query", timeout=60)[0]
 
 
 def rerank(query: str, passages: list[str]) -> list[tuple[int, float]]:
@@ -104,7 +106,10 @@ def _quote(value: str) -> str:
 
 def _candidates(source: Source, query: str, n: int, where: str | None) -> list[dict]:
     tbl = _table(source)
-    if config.RETRIEVAL_BASE_URL and _has_vectors(source):
+    # A dev fixture built without an embedding model stores embed_model "none": full-text only.
+    if config.EMBED_URL and tbl.count_rows("embed_model IS NOT NULL AND embed_model != 'none'"):
+        if tbl.count_rows(f"embed_model IS NULL OR embed_model != {_quote(config.EMBED_MODEL)}"):
+            raise ValueError("Retrieval embedding model differs from the stored vectors; select matching tables/model")
         q = tbl.search(embed_query(query)).distance_type("cosine")
     else:
         try:
@@ -160,13 +165,34 @@ def get(cite_id: str) -> dict | None:
 
 
 def counterparts(cite_id: str) -> list[dict]:
-    """Team 1's Britannica -> Wikipedia matches for the page this chunk belongs to.
+    """Prefer this chunk's exact match; use page-level matches for older data.
     Accepts a chunk id (EB:<page>-<chunk>) or a page id (EB:<page>)."""
     source, row_id = parse_cite_id(cite_id)
     if source != "britannica":
         return []
     row = get(cite_id)
     doc_id = row["doc_id"] if row else row_id
+    if row is not None and row.get("match_no_clear_match") is not None:
+        match = {"britannica_doc_id": row["doc_id"], "britannica_chunk_id": row["id"],
+                 "wikipedia_doc_id": row.get("matched_wikipedia_doc_id"),
+                 "wikipedia_chunk_id": row.get("matched_wikipedia_chunk_id"), "rank": 1,
+                 "vector_score": row.get("match_vector_score"), "rerank_score": None,
+                 "no_clear_match": row["match_no_clear_match"],
+                 "reason": "Best passage cosine for this Britannica chunk within its Wikipedia shortlist"}
+        if not match["no_clear_match"]:
+            try:
+                wp = (_table("wikipedia").search()
+                      .where(f"id = {_quote(str(match['wikipedia_chunk_id']))}").limit(2).to_list())
+            except Exception as exc:
+                log.warning("Wikipedia match target unavailable: %s", exc)
+                return []
+            if (len(wp) != 1 or wp[0]["doc_id"] != match["wikipedia_doc_id"]
+                    or wp[0].get("embed_model") != row.get("embed_model")):
+                log.warning("Invalid Wikipedia chunk reference on Britannica chunk %s", row["id"])
+                return []
+            match["wikipedia_title"] = wp[0]["title"]
+            match["wikipedia_cite_id"] = f"WP:{wp[0]['id']}"
+        return [match]
     try:
         matches = _db().open_table(config.MATCHES_TABLE)
     except Exception as e:

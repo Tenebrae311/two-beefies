@@ -32,8 +32,8 @@ def run(run_dir: Path, count: int = 2, allow_partial_index: bool = False, top_k:
         if result["parsing_and_analysis"]["failed"] or result["wikipedia"]["failed"]:
             result["status"] = "failed_before_embedding"
         elif not config.EMBED_URL:
-            result["status"] = "awaiting_nemotron_embedding_endpoint"
-            result["blocker"] = "EMBED_URL is missing; no substitute model or placeholder vectors were used"
+            result["status"] = "awaiting_embedding_endpoint"
+            result["blocker"] = "EMBED_URL is missing; configure Nemotron or explicitly select the Qwen fallback"
         else:
             result["final_matching"] = finalize_run(
                 run_dir=run_dir, index_path=Path(config.WIKI_INDEX_PATH), db_uri=config.LANCEDB_URI,

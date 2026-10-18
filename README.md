@@ -152,6 +152,19 @@ Helpers: `src.run_small_pipeline` runs a bounded end-to-end pass (two pages by d
 `src.complete_parsed_run` finishes a saved sampling run concurrently. The pipeline refuses to run without
 `RETRIEVAL_BASE_URL`, because it never stores placeholder vectors.
 
+**Chunk-level matching.** `src.finalize_matches` compares every Britannica chunk only with the Wikipedia shortlist of
+its own page. For each candidate article it takes the best cosine score over up to 8 chunks of that article
+(`--max-article-chunks`); the highest-scoring article wins. The exact winning Wikipedia chunk is stored on the
+Britannica row (`matched_wikipedia_chunk_id`, `matched_wikipedia_doc_id`, `match_vector_score`,
+`match_no_clear_match`), and `matches` keeps the page-level result. Below `--min-score` the chunk is marked as having no
+clear counterpart. `retrieval.counterparts("EB:<chunk-id>")` returns this exact `WP:<chunk-id>` citation to the agent.
+
+**Embedding fallback.** As long as the Nemotron embedding deployment is not available, the pipeline can explicitly use
+the open-source `Qwen/Qwen3-Embedding-8B` via Nebius Token Factory (`RETRIEVAL_BASE_URL=https://api.tokenfactory.nebius.com/v1`,
+`EMBED_MODEL=Qwen/Qwen3-Embedding-8B`, authenticated with `NEBIUS_API_KEY`). It requests genuine 2048-d vectors, and
+queries use the same model. There is no silent model switching; tables refuse mixed models. This keeps matching
+working, but it does not replace the Nemotron embedder required by the challenge.
+
 ## Dataset tools
 
 Standalone utilities for exploring the source dataset.

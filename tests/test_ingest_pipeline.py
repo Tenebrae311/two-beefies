@@ -8,8 +8,8 @@ import lancedb
 from PIL import Image
 
 from src.ingest_pipeline import chunk_text, open_table, run_pipeline
-from two_beefies.embedding import embed_passages
-from two_beefies.schema import EMBED_DIM
+from two_beefies.embedding import QWEN_EMBED_MODEL, embed_passages
+from two_beefies.schema import CHUNK_MATCH_DEFAULTS, EMBED_DIM, Match
 
 
 class EmbeddingTests(unittest.TestCase):
@@ -30,7 +30,7 @@ class EmbeddingTests(unittest.TestCase):
             self.assertEqual(_nim_url(base, "embeddings"), "https://embed.example/v1/embeddings")
 
     @patch("two_beefies.embedding.requests.post")
-    def test_batches_reorders_and_uses_document_mode(self, post):
+    def test_batches_reorders_and_uses_passage_mode(self, post):
         def respond(_url, **kwargs):
             from unittest.mock import Mock
             response = Mock(status_code=200)
@@ -45,9 +45,7 @@ class EmbeddingTests(unittest.TestCase):
         self.assertEqual([v[0] for v in vectors], [1.0, 2.0, 1.0])
         self.assertEqual(post.call_count, 2)
         self.assertEqual(post.call_args.args[0], "https://embed.example/v1/embeddings")
-        # the organizers' model service accepts only "query" / "document" and no extra fields
-        self.assertEqual(post.call_args.kwargs["json"],
-                         {"model": "embed-model", "input": ["three"], "input_type": "document"})
+        self.assertEqual(post.call_args.kwargs["json"]["input_type"], "passage")
         self.assertEqual(post.call_args.kwargs["headers"]["Authorization"], "Bearer embed-key")
 
     @patch("two_beefies.embedding.requests.post")
@@ -60,6 +58,54 @@ class EmbeddingTests(unittest.TestCase):
                 post.return_value.json.return_value = {"data": data}
                 with self.assertRaises(ValueError):
                     embed_passages(["text"], url="https://embed.example", model="embed-model")
+
+    @patch("two_beefies.embedding.requests.post")
+    def test_qwen_passages_request_native_dimensions_without_nim_parameters(self, post):
+        post.return_value.status_code = 200
+        post.return_value.json.return_value = {"model": QWEN_EMBED_MODEL, "data": [
+            {"index": 0, "embedding": [1.0] * EMBED_DIM}]}
+        vectors = embed_passages(["Historical astronomy"], url="https://embed.example/v1",
+                                 model=QWEN_EMBED_MODEL, api_key="test-key")
+        self.assertEqual(len(vectors[0]), EMBED_DIM)
+        self.assertEqual(post.call_args.kwargs["json"], {
+            "model": QWEN_EMBED_MODEL, "input": ["Historical astronomy"],
+            "dimensions": EMBED_DIM, "encoding_format": "float"})
+
+    @patch("two_beefies.embedding.requests.post")
+    def test_qwen_queries_use_same_model_dimensions_and_validated_response(self, post):
+        from two_beefies import config
+        from two_beefies.retrieval import embed_query
+        post.return_value.status_code = 200
+        post.return_value.json.return_value = {"model": QWEN_EMBED_MODEL, "data": [
+            {"index": 0, "embedding": [1.0] * EMBED_DIM}]}
+        with patch.object(config, "EMBED_MODEL", QWEN_EMBED_MODEL), patch.object(config, "EMBED_URL", "https://embed.example"):
+            self.assertEqual(len(embed_query("What changed in astronomy?")), EMBED_DIM)
+            payload = post.call_args.kwargs["json"]
+            self.assertEqual(payload["model"], QWEN_EMBED_MODEL)
+            self.assertEqual(payload["dimensions"], EMBED_DIM)
+            self.assertTrue(payload["input"][0].startswith("Instruct: "))
+            self.assertTrue(payload["input"][0].endswith("\nQuery:What changed in astronomy?"))
+            post.return_value.json.return_value["data"][0]["embedding"] = [0.0] * EMBED_DIM
+            with self.assertRaisesRegex(ValueError, "zero vector"):
+                embed_query("Astronomy")
+
+    @patch("two_beefies.embedding.requests.post")
+    def test_response_from_another_model_is_rejected(self, post):
+        post.return_value.status_code = 200
+        post.return_value.json.return_value = {"model": "another-model", "data": [
+            {"index": 0, "embedding": [1.0] * EMBED_DIM}]}
+        with self.assertRaisesRegex(ValueError, "model differs"):
+            embed_passages(["text"], url="https://embed.example", model=QWEN_EMBED_MODEL)
+
+    @patch("two_beefies.retrieval.embed_query")
+    @patch("two_beefies.retrieval._table")
+    def test_retrieval_rejects_vectors_from_another_model_before_embedding(self, table, embed):
+        from two_beefies import config, retrieval
+        table.return_value.count_rows.return_value = 1
+        with patch.object(config, "EMBED_URL", "https://embed.example"), patch.object(config, "EMBED_MODEL", QWEN_EMBED_MODEL):
+            with self.assertRaisesRegex(ValueError, "model differs"):
+                retrieval.search("britannica", "Astronomy")
+        embed.assert_not_called()
 
 
 class ChunkTests(unittest.TestCase):
@@ -127,10 +173,20 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("Third edition", hits[0]["meta"])
             self.assertIn("Astronomy", hits[0]["text"])
             self.assertTrue(table.search("Astronomy", query_type="fts").limit(1).to_list())
+            # Re-embedding invalidates both direct row links and page summaries.
+            table.update(values={"matched_wikipedia_chunk_id": "previous-wp-chunk",
+                                 "matched_wikipedia_doc_id": "previous-wp-article",
+                                 "match_vector_score": 0.9, "match_no_clear_match": False})
+            matches = lancedb.connect(settings["db_uri"]).create_table("matches", schema=Match)
+            matches.add([Match(britannica_doc_id=hits[0]["doc_id"], wikipedia_doc_id="previous-wp-article",
+                               rank=1, vector_score=0.9).model_dump()])
             third = run_pipeline(**settings)
             table = lancedb.connect(settings["db_uri"]).open_table("britannica_chunks")
             self.assertEqual(table.count_rows(), count)
             self.assertEqual(third["failed"], 0)
+            self.assertEqual(lancedb.connect(settings["db_uri"]).open_table("matches").count_rows(), 0)
+            self.assertTrue(all(row[name] is None for row in table.to_arrow().to_pylist()
+                                for name in CHUNK_MATCH_DEFAULTS))
             # Changed chunking replaces old chunks rather than accumulating them.
             settings["chunk_size"] = 1000
             shorter = run_pipeline(**settings)
