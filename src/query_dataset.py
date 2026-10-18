@@ -10,6 +10,7 @@ import json
 from collections.abc import Iterator
 from typing import Any
 
+from datasets import Image as DatasetImage
 from datasets import load_dataset
 
 DATASET_ID = "NationalLibraryOfScotland/encyclopaedia_britannica_illustrated"
@@ -20,6 +21,7 @@ def iter_rows(
     split: str = "train",
     cache_dir: str | None = None,
     streaming: bool = True,
+    decode_images: bool = True,
 ) -> Iterator[dict[str, Any]]:
     """Yield dataset rows without requiring a checked-in data copy."""
     dataset = load_dataset(
@@ -28,6 +30,8 @@ def iter_rows(
         streaming=streaming,
         cache_dir=cache_dir,
     )
+    if not decode_images:
+        dataset = dataset.cast_column("image", DatasetImage(decode=False))
     yield from dataset
 
 

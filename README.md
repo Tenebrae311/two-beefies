@@ -22,7 +22,11 @@ Die Parquet-Datei ist ungefähr 374 MB groß und wird deshalb nicht direkt in Gi
 ├── data/
 │   └── README.md              Herkunft, Schema und Speicherentscheidung
 ├── src/
-│   └── query_dataset.py       Laden und Filtern des Datasets
+│   ├── __init__.py
+│   ├── query_dataset.py         Laden und Filtern des Datasets
+│   └── random_image_to_text.py  Zufälliges Bild auswählen und OCR ausführen
+├── tests/
+│   └── test_random_image_to_text.py
 ├── .gitignore                 lokale Caches und Datenablagen
 ├── requirements.txt           Python-Abhängigkeiten
 └── README.md                  Projekt- und Nutzungsdokumentation
@@ -71,6 +75,28 @@ for row in rows:
 ```
 
 `query_rows` arbeitet standardmäßig im Streaming-Modus. Dadurch muss nicht das komplette Dataset in den Arbeitsspeicher geladen werden.
+
+## Zufälliges Bild in Text umwandeln
+
+`src/random_image_to_text.py` wählt per Reservoir Sampling genau einen zufälligen Datenpunkt aus und führt Tesseract-OCR auf dem Bild aus:
+
+```bash
+python src/random_image_to_text.py --save-image .data/random.jpg --output .data/random.json
+```
+
+Für eine reproduzierbare Auswahl kann ein Seed angegeben werden:
+
+```bash
+python src/random_image_to_text.py --seed 42
+```
+
+Zusätzlich zu `pytesseract` muss die Tesseract-Anwendung selbst installiert und im `PATH` verfügbar sein. Auf Windows kann die Installation beispielsweise über `winget` erfolgen:
+
+```bash
+winget install UB-Mannheim.TesseractOCR
+```
+
+Die OCR-Erkennung historischer, mehrspaltiger Seiten ist nur ein Versuch und kann Nachbearbeitung benötigen. Das Script gibt neben dem erkannten Text auch `id`, Label und bibliografische Metadaten des ausgewählten Bildes aus.
 
 ## Wichtiger Hinweis zu Bildern
 
